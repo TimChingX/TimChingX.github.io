@@ -273,10 +273,17 @@ button{font:inherit;color:inherit}
 .tabs button[aria-pressed="true"]{background:#1a1916;color:#fff;border-color:#1a1916}
 .tabs button.here{background:rgba(128,89,28,.1);color:var(--lib-acc);border-color:var(--lib-acc);font-weight:600}
 .lib-row.top{align-items:flex-start}
-.lib-legend{margin-left:auto;display:grid;grid-template-columns:auto auto;column-gap:18px;row-gap:5px;font-size:13px;line-height:1.5;color:var(--muted);align-items:start}
-.lib-legend label{grid-row:span 3;display:inline-flex;align-items:center;gap:6px;cursor:pointer;color:var(--fg);padding-top:1px}
-.lib-legend span{display:block;padding-left:18px;text-indent:-18px}
-.lib-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px;text-indent:0}
+.lib-info{margin-left:auto;max-width:660px;font-size:13px;line-height:1.5;color:var(--muted)}
+.lib-info summary{display:none}
+.li-grid{display:grid;grid-template-columns:auto 1fr;column-gap:18px;row-gap:9px;align-items:start}
+.li-k{margin:0;color:var(--fg);font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+label.li-k{cursor:pointer}
+.li-v{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.li-v b{color:var(--lib-acc);font-weight:600;margin-right:8px}
+.li-marks{padding-top:8px;border-top:1px solid var(--line)}
+.li-grid label.li-k{padding-top:8px;border-top:1px solid var(--line)}
+.li-marks li{padding-left:18px;text-indent:-18px}
+.li-marks i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px;text-indent:0}
 .lib-body{flex:1;overflow:auto;padding:8px 32px 64px;-webkit-overflow-scrolling:touch}
 .lib-mod{max-width:1400px;margin:0 auto;padding-top:28px}
 .lib-mod h3{font-size:22px;font-weight:600;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
@@ -412,7 +419,9 @@ button{font:inherit;color:inherit}
   .lib-body{padding:4px 16px 64px}
   .lib-cols{grid-template-columns:1fr;gap:20px}
   .lib-search{max-width:none}
-  .lib-legend{margin-left:0;width:100%;font-size:12px}
+  .lib-info{margin-left:0;max-width:none;width:100%;font-size:12px}
+  .lib-info summary{display:list-item;cursor:pointer;color:var(--lib-acc);font-weight:600;font-size:13px}
+  .lib-info[open] summary{margin-bottom:8px}
   .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
   .tabs button{flex:none}
 }
@@ -875,12 +884,24 @@ button{font:inherit;color:inherit}
     </div>
     <div class="lib-row top">
       <div class="tabs" id="libTabs"></div>
-      <div class="lib-legend">
-        <label><input type="checkbox" id="libMarks" checked> 字体颜色</label>
-        <span><i style="background:var(--mark-g)"></i>绿色：依据《前期物业服务协议》《管理规约》的约定事项</span>
-        <span><i style="background:var(--mark-q)"></i>金褐：依据行业标准或标杆案例的量化频次与指标承诺</span>
-        <span><i style="background:var(--mark-r)"></i>赭红：本次修订新增或调整的条款，供审定确认</span>
-      </div>
+      <details class="lib-info" id="libInfo" open>
+        <summary>编制依据与字体颜色说明</summary>
+        <div class="li-grid">
+          <p class="li-k">编制依据</p>
+          <ul class="li-v">
+            <li><b>有法可依</b>《物业管理条例》及广东省、广州市物业管理相关规定</li>
+            <li><b>有标可循</b>广东省物业服务等级标准（住宅物业一级标准）及 DB44/T 1315 档案管理规范</li>
+            <li><b>有约在先</b>本项目《前期物业服务协议》《管理规约》约定的服务事项与收费安排</li>
+            <li><b>有例可鉴</b>建发物业服务标准体系及同类高端住宅项目服务实践案例</li>
+          </ul>
+          <label class="li-k"><input type="checkbox" id="libMarks" checked> 字体颜色</label>
+          <ul class="li-v li-marks">
+            <li><i style="background:var(--mark-g)"></i>绿色：依据《前期物业服务协议》《管理规约》的约定事项</li>
+            <li><i style="background:var(--mark-q)"></i>金褐：依据行业标准或标杆案例的量化频次与指标承诺</li>
+            <li><i style="background:var(--mark-r)"></i>赭红：本次修订新增或调整的条款，供审定确认</li>
+          </ul>
+        </div>
+      </details>
     </div>
   </div>
   <div class="lib-body" id="libBody"></div>
@@ -1092,7 +1113,7 @@ button{font:inherit;color:inherit}
     if (!built) { buildTabs(); built = true; }
     libMod = m == null ? 'all' : String(m);
     lastFocus = document.activeElement;
-    lib.hidden = false; draw();
+    lib.hidden = false; var inf = document.getElementById('libInfo'); if (inf) inf.open = !window.matchMedia('(max-width:760px)').matches; draw();
     document.body.style.overflow = 'hidden';
     if (mode === 'deck') libq.focus({ preventScroll: true });
   }
