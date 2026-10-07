@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>程文辉的作品集</title>
+<meta name="description" content="程文辉（Tim），住宅物业客户服务管理。6 年多住宅物业经验，持物业管理师证书。这里收录我做过的物业服务方案与演示材料。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="程文辉的作品集">
+<meta property="og:description" content="住宅物业客户服务管理。收录物业服务方案与演示材料。">
+<meta property="og:image" content="https://timchingx.github.io/works/yangxi-garden/cover.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231B231F'/%3E%3Cpath d='M14 50V30L32 16l18 14v20' fill='none' stroke='%23D6B67C' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/serif-600.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Wenhui Serif";src:url(assets/serif-600.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --stone:#EDEFEB;   /* page */
+  --paper:#F7F8F5;   /* record card */
+  --ink:#1B231F;     /* text */
+  --muted:#56615B;   /* secondary text */
+  --line:#C9D0C9;    /* rules */
+  --brass:#7A5820;   /* links */
+  --brass-fill:#7A5820;
+  --on-brass:#FFFFFF;
+  --f-serif:"Wenhui Serif","Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif;
+  --f-sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Segoe UI","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --stone:#131714;--paper:#1A1F1C;--ink:#E6EAE6;--muted:#9AA49E;--line:#2E3631;
+    --brass:#D6B67C;--brass-fill:#D6B67C;--on-brass:#1B160C;
+  }
+}
+:root[data-theme="dark"]{
+  --stone:#131714;--paper:#1A1F1C;--ink:#E6EAE6;--muted:#9AA49E;--line:#2E3631;
+  --brass:#D6B67C;--brass-fill:#D6B67C;--on-brass:#1B160C;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 16px/1.75 var(--f-sans);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--brass);text-underline-offset:.22em;text-decoration-thickness:1px}
+a:focus-visible{outline:2px solid var(--brass);outline-offset:4px;border-radius:2px}
+img{display:block;max-width:100%;height:auto}
+
+.page{max-width:1120px;margin:0 auto;
+  padding:calc(48px + env(safe-area-inset-top,0px)) 20px calc(32px + env(safe-area-inset-bottom,0px));
+  display:grid;grid-template-columns:minmax(0,1fr)}
+
+/* name: the one loud element */
+.name{margin:0;font-family:var(--f-serif);font-weight:600;color:var(--ink);
+  font-size:clamp(64px,19vw,104px);line-height:1;letter-spacing:.08em}
+.alias{margin:18px 0 0;font-family:var(--f-serif);font-weight:600;font-size:22px;line-height:1.2;color:var(--brass);letter-spacing:.02em}
+.role{margin:6px 0 0;font-size:18px;font-weight:600;line-height:1.5}
+.bio{margin:14px 0 0;max-width:34em;color:var(--muted)}
+
+.works{margin-top:56px}
+.works h2{margin:0 0 20px;font-family:var(--f-serif);font-weight:600;font-size:22px;line-height:1.3;
+  padding-bottom:12px;border-bottom:1px solid var(--line)}
+
+.work + .work{margin-top:64px}
+.cover{display:block;border-radius:6px;overflow:hidden;background:#000;
+  box-shadow:0 1px 0 rgba(0,0,0,.04),0 18px 40px -24px rgba(20,30,25,.45)}
+.cover img{width:100%;aspect-ratio:16/9;object-fit:cover}
+
+.work-body{margin-top:24px;display:grid;gap:24px}
+.work h3{margin:0;font-family:var(--f-serif);font-weight:600;font-size:28px;line-height:1.35;letter-spacing:.02em}
+.work h3 a{color:inherit;text-decoration:none}
+.work h3 a:hover{text-decoration:underline}
+.desc{margin:12px 0 0;max-width:36em}
+
+/* 登记表: the work's particulars, set like a property-office record card */
+.record{margin:0;display:grid;grid-template-columns:1fr 1fr;background:var(--paper);
+  border:1px solid var(--line);border-radius:4px;overflow:hidden;align-self:start}
+.record div{padding:12px 14px;border-top:1px solid var(--line)}
+.record div:nth-child(-n+2){border-top:0}
+.record div:nth-child(odd){border-right:1px solid var(--line)}
+.record div.wide{grid-column:1 / -1;border-right:0}
+.record dt{font-size:13px;line-height:1.4;color:var(--muted)}
+.record .nw{white-space:nowrap}
+.record dd{margin:4px 0 0;font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums}
+
+.actions{margin:20px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:4px;
+  background:var(--brass-fill);color:var(--on-brass);font-weight:600;text-decoration:none}
+.btn:hover{filter:brightness(1.08)}
+.tip{margin:14px 0 0;font-size:14px;color:var(--muted)}
+
+.foot{margin-top:72px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px}
+
+@media (min-width:720px){
+  .work-body{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px}
+}
+@media (min-width:960px){
+  .page{grid-template-columns:auto minmax(0,1fr);column-gap:88px;padding:104px 48px 48px}
+  .name{grid-row:1 / span 3;writing-mode:vertical-rl;font-size:136px;letter-spacing:.14em;
+    position:sticky;top:104px;align-self:start}
+  .intro{grid-column:2}
+  .alias{margin-top:6px}
+  .works{grid-column:2;margin-top:72px}
+  .foot{grid-column:2}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <h1 class="name">程文辉</h1>
+
+  <header class="intro">
+    <p class="alias" lang="en">Tim</p>
+    <p class="role">住宅物业客户服务管理</p>
+    <p class="bio">做了 6 年多住宅物业，持物业管理师证书，经手过越秀、龙光、建发的住宅项目。这里放的是我做过的物业服务方案和演示材料。</p>
+  </header>
+
+  <section class="works" aria-labelledby="works-h">
+    <h2 id="works-h">作品</h2>
+
+    <article class="work">
+      <a class="cover" href="works/yangxi-garden/" aria-label="打开演示：建发央玺花园前期物业服务标准">
+        <img src="works/yangxi-garden/cover.jpg" width="1600" height="900" alt="演示封面：建发央玺花园前期物业服务标准">
+      </a>
+      <div class="work-body">
+        <div>
+          <h3><a href="works/yangxi-garden/">建发央玺花园<br>前期物业服务标准</a></h3>
+          <p class="desc">把项目的前期物业服务标准做成一份可翻页的网页演示：169 项服务条款分为五大服务模块，一级基础标准与超一级增项逐项对照，另附可搜索的条款库。</p>
+          <p class="actions">
+            <a class="btn" href="works/yangxi-garden/">打开演示</a>
+            <a href="works/yangxi-garden/#lib">查看全部 169 项条款</a>
+          </p>
+          <p class="tip">电脑上可用键盘方向键翻页；手机上会自动变成上下滑动浏览。</p>
+        </div>
+        <dl class="record">
+          <div><dt>编制时间</dt><dd>2026 年 8 月</dd></div>
+          <div><dt>形式</dt><dd>网页演示，19 页</dd></div>
+          <div><dt>基础标准（一级）</dt><dd>56 项</dd></div>
+          <div><dt>增项服务（超一级）</dt><dd>113 项</dd></div>
+          <div class="wide"><dt>服务模块</dt><dd><span class="nw">综合管理</span>、<span class="nw">设施设备维护</span>、<span class="nw">公共秩序维护</span>、<span class="nw">保洁</span>、<span class="nw">绿化养护</span></dd></div>
+        </dl>
+      </div>
+    </article>
+  </section>
+
+  <footer class="foot">
+    <span>个人作品展示页，非企业官方网站。</span>
+    <span>© 2026 程文辉</span>
+  </footer>
+</main>
+</body>
+</html>
