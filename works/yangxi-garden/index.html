@@ -875,7 +875,7 @@ label.li-k{cursor:pointer}
 </div>
 <button class="fab" type="button" data-lib="all">条款库</button>
 
-<div class="lib marks-on" id="lib" hidden role="dialog" aria-modal="true" aria-labelledby="libTitle">
+<div class="lib" id="lib" hidden role="dialog" aria-modal="true" aria-labelledby="libTitle">
   <div class="lib-head">
     <div class="lib-row">
       <p class="lib-title" id="libTitle">条款库<small id="libCount"></small></p>
@@ -885,7 +885,7 @@ label.li-k{cursor:pointer}
     <div class="lib-row top">
       <div class="tabs" id="libTabs"></div>
       <details class="lib-info" id="libInfo" open>
-        <summary>编制依据与字体颜色说明</summary>
+        <summary>编制依据</summary>
         <div class="li-grid">
           <p class="li-k">编制依据</p>
           <ul class="li-v">
@@ -893,12 +893,6 @@ label.li-k{cursor:pointer}
             <li><b>有标可循</b>广东省物业服务等级标准（住宅物业一级标准）及 DB44/T 1315 档案管理规范</li>
             <li><b>有约在先</b>本项目《前期物业服务协议》《管理规约》约定的服务事项与收费安排</li>
             <li><b>有例可鉴</b>建发物业服务标准体系及同类高端住宅项目服务实践案例</li>
-          </ul>
-          <label class="li-k"><input type="checkbox" id="libMarks" checked> 字体颜色</label>
-          <ul class="li-v li-marks">
-            <li><i style="background:var(--mark-g)"></i>绿色：依据《前期物业服务协议》《管理规约》的约定事项</li>
-            <li><i style="background:var(--mark-q)"></i>金褐：依据行业标准或标杆案例的量化频次与指标承诺</li>
-            <li><i style="background:var(--mark-r)"></i>赭红：本次修订新增或调整的条款，供审定确认</li>
           </ul>
         </div>
       </details>
@@ -1150,7 +1144,6 @@ label.li-k{cursor:pointer}
     if (spyQueued) return; spyQueued = true;
     requestAnimationFrame(function(){ spyQueued = false; spy(); });
   }, { passive: true });
-  document.getElementById('libMarks').addEventListener('change', function(e){ lib.classList.toggle('marks-on', e.target.checked); });
 
   setMode();
 })();
