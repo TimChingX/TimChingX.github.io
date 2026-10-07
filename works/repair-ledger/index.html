@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>工程维修台账与数据仪表盘</title>
+<meta name="description" content="程文辉的作品：用 Excel 公式搭建的维修工单系统，包含入户和公区维修台账、师傅调度看板、数据仪表盘、单元查询和入户维修评价表。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工程维修台账与数据仪表盘">
+<meta property="og:description" content="用 Excel 公式搭建的维修工单系统：自动编号、派单看板、日周月排行、单元查询。">
+<meta property="og:image" content="https://timchingx.github.io/works/repair-ledger/cover.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231B231F'/%3E%3Cpath d='M14 50V30L32 16l18 14v20' fill='none' stroke='%23D6B67C' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preload" href="../../assets/serif-600.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Wenhui Serif";src:url(../../assets/serif-600.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --stone:#EDEFEB;--paper:#F7F8F5;--ink:#1B231F;--muted:#56615B;--line:#C9D0C9;
+  --brass:#7A5820;--brass-fill:#7A5820;--on-brass:#FFFFFF;
+  --f-serif:"Wenhui Serif","Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif;
+  --f-sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Segoe UI","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --stone:#131714;--paper:#1A1F1C;--ink:#E6EAE6;--muted:#9AA49E;--line:#2E3631;
+    --brass:#D6B67C;--brass-fill:#D6B67C;--on-brass:#1B160C;
+  }
+}
+:root[data-theme="dark"]{
+  --stone:#131714;--paper:#1A1F1C;--ink:#E6EAE6;--muted:#9AA49E;--line:#2E3631;
+  --brass:#D6B67C;--brass-fill:#D6B67C;--on-brass:#1B160C;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 16px/1.75 var(--f-sans);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--brass);text-underline-offset:.22em;text-decoration-thickness:1px}
+a:focus-visible{outline:2px solid var(--brass);outline-offset:4px;border-radius:2px}
+img{display:block;max-width:100%;height:auto}
+
+.page{max-width:1040px;margin:0 auto;
+  padding:calc(28px + env(safe-area-inset-top,0px)) 20px calc(32px + env(safe-area-inset-bottom,0px))}
+
+.back{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--brass)}
+.back svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.head{margin-top:36px}
+h1{margin:0;font-family:var(--f-serif);font-weight:600;font-size:clamp(34px,8.4vw,56px);line-height:1.2;letter-spacing:.02em}
+.lead{margin:18px 0 0;max-width:36em;font-size:17px}
+
+.overview{margin-top:32px;display:grid;gap:24px}
+.record{margin:0;display:grid;grid-template-columns:1fr 1fr;background:var(--paper);
+  border:1px solid var(--line);border-radius:4px;overflow:hidden;align-self:start}
+.record div{padding:12px 14px;border-top:1px solid var(--line)}
+.record div:nth-child(-n+2){border-top:0}
+.record div:nth-child(odd){border-right:1px solid var(--line)}
+.record dt{font-size:13px;line-height:1.4;color:var(--muted)}
+.record dd{margin:4px 0 0;font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums}
+.record .nw{white-space:nowrap}
+
+.get p{margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:4px;
+  background:var(--brass-fill);color:var(--on-brass);font-weight:600;text-decoration:none}
+.btn:hover{filter:brightness(1.08)}
+.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.note{margin-top:12px !important;font-size:14px;color:var(--muted);max-width:30em}
+
+.sheet{margin-top:72px;padding-top:28px;border-top:1px solid var(--line)}
+.sheet h2{margin:0;font-family:var(--f-serif);font-weight:600;font-size:26px;line-height:1.35;letter-spacing:.02em}
+.sheet > p{margin:12px 0 0;max-width:38em}
+.sheet ul{margin:14px 0 0;padding-left:1.2em;max-width:38em}
+.sheet li{margin:6px 0;padding-left:.2em}
+.sheet li::marker{color:var(--brass)}
+
+figure{margin:24px 0 0}
+.shot{display:block;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff;
+  box-shadow:0 14px 32px -24px rgba(20,30,25,.5)}
+figcaption{margin-top:10px;font-size:13px;color:var(--muted)}
+.swipe{display:none}
+.chart{max-width:760px}
+
+.pair{display:grid;gap:24px;align-items:start}
+.pair p{margin:12px 0 0;max-width:38em}
+
+.foot{margin-top:80px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px}
+
+@media (max-width:719px){
+  .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:4px;background:#fff}
+  .scroller .shot{border:0;border-radius:0;box-shadow:none;width:760px;max-width:none}
+  .swipe{display:inline}
+}
+@media (min-width:720px){
+  .page{padding:48px 40px 48px}
+  .head{margin-top:48px}
+  .overview{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:start}
+  .overview .record{order:2}
+  .pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+  .pair figure{margin-top:0}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <a class="back" href="../../"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2 3.5 6l4 4"/></svg>程文辉的作品集</a>
+
+  <header class="head">
+    <h1>工程维修台账<br>与数据仪表盘</h1>
+    <p class="lead">一套用 Excel 公式搭起来的维修工单系统。客服只管登记报修，单据编号、空闲师傅名单、完成率、满意度和师傅排行都由表格自动算出，不用宏，打开就能用。</p>
+  </header>
+
+  <section class="overview" aria-label="概况">
+    <dl class="record">
+      <div><dt>形式</dt><dd>Excel 工作簿，<span class="nw">5 张工作表</span></dd></div>
+      <div><dt>数据周期</dt><dd><span class="nw">2026.7.30</span>–<span class="nw">8.7</span></dd></div>
+      <div><dt>工单</dt><dd>143 张：<span class="nw">入户 121</span>，<span class="nw">公区 22</span></dd></div>
+      <div><dt>师傅</dt><dd>5 位</dd></div>
+      <div><dt>完成率</dt><dd>86.7%</dd></div>
+      <div><dt>好评率</dt><dd>99.1%<span class="nw">（111 条评价）</span></dd></div>
+    </dl>
+    <div class="get">
+      <p><a class="btn" href="repair-ledger-sample.xlsx" download="工程维修台账（示例）.xlsx"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m-3.5-3.5L8 10l3.5-3.5M3 13h10"/></svg>下载示例文件</a></p>
+      <p class="note">示例文件已脱敏：师傅姓名、房号和备注里的住户信息都换成了虚构内容，公式和统计口径与原表一致。为了让日榜、周榜有数据，统计基准日固定在 2026 年 8 月 7 日，改成其他日期即可回看。</p>
+    </div>
+  </section>
+
+  <section class="sheet" aria-labelledby="s1">
+    <h2 id="s1">入户维修台账</h2>
+    <p>每张工单一行，顶部是师傅调度看板。</p>
+    <ul>
+      <li>工单处于“跟进中”的师傅自动列为工作中，其余的列为空闲可派单；把某位师傅设成“休息”，他就不会出现在空闲名单里。</li>
+      <li>单据编号按“楼栋-房号-月日”自动生成，同一户再次报修自动加 -02、-03 后缀。</li>
+      <li>“该户累计”统计同一户报修了几次，2 次标黄，3 次及以上标红，反复报修的住户一眼能看出来。</li>
+      <li>上门排序、完成情况、维修评价都用下拉选择并按状态着色；漏填报修日期、跟进人重复选了同一位师傅，也会标色提醒。</li>
+    </ul>
+    <figure>
+      <div class="scroller"><a class="shot" href="ledger.png"><img src="ledger.png" width="1800" height="1090" alt="入户维修台账截图：顶部是师傅调度看板，下方是工单列表，包含报修日期、楼栋、房号、问题描述、跟进人、预约时间、上门排序、完成情况、该户累计、单据编号、维修备注、维修评价和业主意见"></a></div>
+      <figcaption>入户维修台账（示例数据）<span class="swipe">，左右滑动查看，点图片看大图</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet" aria-labelledby="s2">
+    <h2 id="s2">公区维修台账</h2>
+    <p>结构和入户台账一致，按楼栋加区域位置登记，比如东大门、车库出口、某个车位。两张台账共用同一批师傅，一位师傅只要在任一张台账里有跟进中的工单，就不会出现在空闲名单里。</p>
+    <figure>
+      <div class="scroller"><a class="shot" href="public.png"><img src="public.png" width="1800" height="774" loading="lazy" alt="公区维修台账截图：按楼栋和区域位置登记的公共区域维修工单"></a></div>
+      <figcaption>公区维修台账（示例数据）<span class="swipe">，左右滑动查看</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet" aria-labelledby="s3">
+    <h2 id="s3">总仪表盘</h2>
+    <p>入户和公区两张台账的数据汇总到一页，只需改一个“统计基准日”，下面的数字全部跟着刷新，可以回看任意一天。</p>
+    <ul>
+      <li>当日总览：报修量、完成率、评价分布，以及每位师傅当天的接单和在岗状态。</li>
+      <li>日榜、周榜、月榜，各分两列排名：一列按完成量，一列按满意度得分（非常满意 100 分、满意 80 分、一般 60 分、不满意 0 分，取平均）。</li>
+      <li>累计总览、按楼栋统计、按师傅统计、师傅×楼栋明细，另有两张图表。</li>
+    </ul>
+    <figure>
+      <div class="scroller"><a class="shot" href="dashboard.png"><img src="dashboard.png" width="1600" height="1595" loading="lazy" alt="总仪表盘截图：统计基准日、当日工单总览、各师傅当日明细、日榜周榜月榜和累计总览"></a></div>
+      <figcaption>总仪表盘上半部分（示例数据）<span class="swipe">，左右滑动查看</span></figcaption>
+    </figure>
+    <figure class="chart">
+      <a class="shot" href="chart-buildings.png"><img src="chart-buildings.png" width="1100" height="541" loading="lazy" alt="柱状图：各楼栋累计工单状态，按已完成、跟进中、需另约时间分段"></a>
+      <figcaption>仪表盘图表：各楼栋工单状态（累计）</figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet" aria-labelledby="s4">
+    <h2 id="s4">单元查询</h2>
+    <p>选查询范围和楼栋，填上房号，就能列出这个单元的全部维修记录，并汇总完成情况、好评率、首次和最近一次报修日期。房号留空就查整栋，适合每月盘点哪栋楼问题集中。</p>
+    <figure>
+      <div class="scroller"><a class="shot" href="lookup.png"><img src="lookup.png" width="1800" height="924" loading="lazy" alt="单元查询截图：查询 6 栋全栋，共 17 单报修记录及汇总统计"></a></div>
+      <figcaption>单元查询：6 栋全栋（示例数据）<span class="swipe">，左右滑动查看</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet" aria-labelledby="s5">
+    <div class="pair">
+      <div>
+        <h2 id="s5">入户维修评价表</h2>
+        <p>打印出来随工单上门，维修完成后由业主验收签字。表上的单据编号和台账一一对应，业主的评价登记回台账的“维修评价”一栏，再进入仪表盘统计。</p>
+      </div>
+      <figure>
+        <a class="shot" href="form.png"><img src="form.png" width="1063" height="1558" loading="lazy" alt="入户维修评价表：楼栋房号、业主姓名、联系电话、维修内容登记、满意度评价和签字确认栏"></a>
+        <figcaption>入户维修评价表（打印版）</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>个人作品展示页，非企业官方网站。页面截图与示例文件均为脱敏数据。</span>
+    <span>© 2026 程文辉</span>
+  </footer>
+</main>
+</body>
+</html>
