@@ -24,6 +24,7 @@
 
 1. 在 `works/` 下新建一个文件夹，放入作品的 `index.html` 和封面图 `cover.jpg`（建议 1600×900）。
 2. 在首页 `index.html` 的「作品」部分复制一段 `<article class="work">`，改成新作品的标题、说明和链接。
-3. 首页标题用的是思源宋体子集，只含已用到的字。新标题里有子集外的字时，用 `pyftsubset` 从 Noto Serif CJK SC SemiBold 重新生成 `assets/serif-600.woff2`（包含首页所有标题用字）。
+3. 在新作品页的 `</body>` 前加一行 `<script defer src="https://events.vercount.one/js"></script>`，这一页的访问才会计入全站访问统计。
+4. 首页标题用的是思源宋体子集，只含已用到的字。新标题里有子集外的字时，用 `pyftsubset` 从 Noto Serif CJK SC SemiBold 重新生成 `assets/serif-600.woff2`（包含首页所有标题用字）。
 
 本页为个人作品展示，非企业官方网站。
