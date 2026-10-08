@@ -67,10 +67,6 @@ button{font:inherit;color:inherit}
 .latin{font-family:var(--f-num);font-weight:500}
 .cover .eyebrow{font-family:var(--f-num);letter-spacing:.42em;color:var(--muted);font-weight:500}
 .cover-title{font-size:156px;font-weight:600;letter-spacing:.08em;line-height:1.1;margin-top:40px}
-.shine{background:linear-gradient(100deg,#b58d52 0%,#e9d2a2 30%,#fffaf0 50%,#e9d2a2 70%,#b58d52 100%);background-size:260% 100%;background-position:0% 0;
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.slide.active .shine{animation:sweep 2.6s ease .5s both}
-@keyframes sweep{from{background-position:100% 0}to{background-position:0% 0}}
 .cover-sub{font-size:58px;font-weight:500;letter-spacing:.2em;margin-top:22px}
 .cover-en{font-size:18px;letter-spacing:.36em;color:var(--muted);margin-top:22px}
 .cover-tags{display:flex;gap:16px;margin-top:64px;flex-wrap:wrap;justify-content:center}
@@ -242,15 +238,16 @@ button{font:inherit;color:inherit}
 .closing .lead{margin-top:30px;max-width:none}
 .closing .libbtn{margin-top:56px;font-size:24px;padding:16px 34px;border-color:rgba(214,182,124,.6);color:var(--gold)}
 .closing .cover-foot{justify-content:center;gap:36px}
-/* light sweep: a narrow soft glint slides across the title, then the line below, every 9s */
+/* light sweep (cover + closing): a narrow soft glint slides across the title, then the line below, every 5s */
 .sheen{--sheen-base:var(--gold-text);--sheen-hi:255,250,236;
   background-image:linear-gradient(105deg,transparent 43%,rgba(var(--sheen-hi),.28) 46.5%,rgba(var(--sheen-hi),.92) 50%,rgba(var(--sheen-hi),.28) 53.5%,transparent 57%),var(--sheen-base);
   background-size:300% 100%,100% 100%;background-repeat:no-repeat;background-position:88% 0,0 0;
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.sheen.soft{--sheen-base:linear-gradient(var(--muted),var(--muted));--sheen-hi:255,242,214}
-.slide.active .sheen{animation:sheen 9s cubic-bezier(.45,.05,.55,.95) 1.4s infinite}
+.sheen.soft{--sheen-base:linear-gradient(var(--sheen-c,var(--muted)),var(--sheen-c,var(--muted)));--sheen-hi:255,242,214}
+.cover-sub .sheen{--sheen-c:var(--fg);--sheen-hi:226,190,124}
+.slide.active .sheen{animation:sheen 5s cubic-bezier(.45,.05,.55,.95) 1.4s infinite}
 .slide.active .sheen.soft{animation-delay:2s}
-@keyframes sheen{0%{background-position:88% 0,0 0}30%,100%{background-position:12% 0,0 0}}
+@keyframes sheen{0%{background-position:88% 0,0 0}46%,100%{background-position:12% 0,0 0}}
 
 /* ---------- layout polish (v3) ---------- */
 /* 02 · 169: bigger dot matrix, less dead space in the middle */
@@ -519,7 +516,7 @@ label.li-k{cursor:pointer}
 }
 @media (prefers-reduced-motion:reduce){
   .slide,.slide.active{transition:opacity .2s ease,visibility 0s}
-  .slide.active [data-a],.slide.active .reveal,.slide.active .dots i,.slide.active .shine,.slide.active .sheen,.cover-glow{animation:none !important}
+  .slide.active [data-a],.slide.active .reveal,.slide.active .dots i,.slide.active .sheen,.cover-glow{animation:none !important}
 }
 
 /* ---------- print / Save as PDF (open the file in Chrome, Ctrl+P) ---------- */
@@ -530,9 +527,9 @@ label.li-k{cursor:pointer}
   .viewport{position:static;overflow:visible}
   .stage{position:static;transform:none;width:1920px;height:auto}
   .slide{position:relative;width:1920px;height:1080px;opacity:1;visibility:visible;transform:none;transition:none;break-after:page;page-break-after:always}
-  .slide [data-a],.slide .reveal,.dots i,.shine,.cover-glow{animation:none !important;opacity:1 !important;clip-path:none !important}
+  .slide [data-a],.slide .reveal,.dots i,.cover-glow{animation:none !important;opacity:1 !important;clip-path:none !important}
   .hud,.lib,.fab,.libbtn{display:none !important}
-  .gold-txt,.shine{background:none !important;color:#d9ba82 !important;-webkit-text-fill-color:#d9ba82 !important}
+  .gold-txt{background:none !important;color:#d9ba82 !important;-webkit-text-fill-color:#d9ba82 !important}
   .light .gold-txt{color:var(--gold-deep) !important;-webkit-text-fill-color:var(--gold-deep) !important}
   .sheen{animation:none !important;background:none !important;color:inherit !important;-webkit-text-fill-color:inherit !important}
 }
@@ -548,8 +545,8 @@ label.li-k{cursor:pointer}
 <section class="slide dark cover" data-title="封面">
   <div class="cover-glow" aria-hidden="true"></div>
   <p class="eyebrow" data-a style="--d:0">C &amp; D&nbsp;&nbsp;PROPERTY MANAGEMENT</p>
-  <h1 class="cover-title" data-a style="--d:1"><span class="shine">建发央玺花园</span></h1>
-  <p class="cover-sub" data-a style="--d:2">前期物业服务标准</p>
+  <h1 class="cover-title gold-txt" data-a style="--d:1"><span class="sheen">建发央玺花园</span></h1>
+  <p class="cover-sub" data-a style="--d:2"><span class="sheen soft">前期物业服务标准</span></p>
   <p class="cover-en latin" data-a style="--d:3">PRELIMINARY PROPERTY SERVICE STANDARDS</p>
   <div class="cover-tags" data-a style="--d:4"><span>基础标准（一级）</span><span>增项服务（超一级，含品质承诺）</span></div>
   <footer class="cover-foot" data-a style="--d:6"><span class="org"><span class="lbl">服务单位：</span><span>广州怡家园物业管理有限公司</span><span>建发物业服务集团有限公司</span></span><span>二〇二六年八月</span></footer>
