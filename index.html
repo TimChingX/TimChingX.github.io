@@ -24,6 +24,8 @@
   --brass:#7A5820;   /* links */
   --brass-fill:#7A5820;
   --on-brass:#FFFFFF;
+  --hl:#F2DFA6;      /* highlighter */
+  --hl-ink:#1B231F;
   --f-serif:"Wenhui Serif","Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif;
   --f-sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Segoe UI","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;
 }
@@ -31,11 +33,13 @@
   :root:not([data-theme="light"]){
     --stone:#131714;--paper:#1A1F1C;--ink:#E6EAE6;--muted:#9AA49E;--line:#2E3631;
     --brass:#D6B67C;--brass-fill:#D6B67C;--on-brass:#1B160C;
+    --hl:#4A3E22;--hl-ink:#F4E6C4;
   }
 }
 :root[data-theme="dark"]{
   --stone:#131714;--paper:#1A1F1C;--ink:#E6EAE6;--muted:#9AA49E;--line:#2E3631;
   --brass:#D6B67C;--brass-fill:#D6B67C;--on-brass:#1B160C;
+  --hl:#4A3E22;--hl-ink:#F4E6C4;
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -70,6 +74,9 @@ img{display:block;max-width:100%;height:auto}
 .work h3 a{color:inherit;text-decoration:none}
 .work h3 a:hover{text-decoration:underline}
 .desc{margin:12px 0 0;max-width:36em}
+.hl{margin:12px 0 0;max-width:36em}
+.hl mark{background:var(--hl);color:var(--hl-ink);font-weight:600;padding:2px 6px;border-radius:3px;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
 
 /* 登记表: the work's particulars, set like a property-office record card */
 .record{margin:0;display:grid;grid-template-columns:1fr 1fr;background:var(--paper);
@@ -166,6 +173,7 @@ img{display:block;max-width:100%;height:auto}
         <div>
           <h3><a href="works/shanghai-property-law/">上海住宅物业<br>法规速查</a></h3>
           <p class="desc">把《民法典》物业相关的 66 条和《上海市住宅物业管理规定》110 条按主题拆开、对齐，合并成一页：每条要点都标出处，另附 2026 修订对照、关键数字速查、客服场景速查和自测卡片。</p>
+          <p class="hl"><mark>可高效学习民法典和上海住宅物业管理规定。</mark></p>
           <p class="actions">
             <a class="btn" href="works/shanghai-property-law/">打开速查</a>
             <a href="works/shanghai-property-law/#rev">2026 修订改了什么</a>
