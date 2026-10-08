@@ -205,6 +205,8 @@ button{font:inherit;color:inherit}
 .seasons{--drop:100px;display:grid;grid-template-columns:1fr 1fr;column-gap:72px;align-content:space-between;padding-bottom:var(--drop)}
 .season{display:flex;flex-direction:column;gap:12px;min-width:0}
 .season:nth-child(even){position:relative;top:var(--drop)}
+/* 14 · headline: the second half drops like the seasons below */
+.h1 .drop{display:inline-block;position:relative;top:.6em}
 .season .when{font-size:80px;line-height:1;font-weight:600;color:var(--acc);letter-spacing:0;margin:0 0 4px}
 .season .when .bk{font-weight:300;color:rgba(226,194,136,.5);font-feature-settings:'halt'}
 .season h3{font-size:44px;font-weight:600}
@@ -453,6 +455,7 @@ label.li-k{cursor:pointer}
   .scroll .seasons{--drop:0px;row-gap:30px;grid-template-columns:1fr;padding-bottom:0}
   .scroll .season{gap:6px}
   .scroll .season:nth-child(even){top:0;margin-left:22%}
+  .scroll .h1 .drop{display:block;top:0;margin-left:22%}
   .scroll .season h3{font-size:20px}
   .scroll .season .when{font-size:44px;margin-bottom:4px}
   .scroll .season p{font-size:13.5px}
@@ -843,7 +846,7 @@ label.li-k{cursor:pointer}
 <section class="slide dark" data-title="专项行动">
   <div class="head">
     <p class="eyebrow" data-a style="--d:0">四 · 保洁服务</p>
-    <h2 class="h1" data-a style="--d:1">一年四季，<wbr>没有淡季。</h2>
+    <h2 class="h1" data-a style="--d:1">一年四季，<wbr><span class="drop">没有淡季。</span></h2>
   </div>
   <div class="seasons-wrap">
     <div class="seasons">
