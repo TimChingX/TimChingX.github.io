@@ -240,14 +240,23 @@ button{font:inherit;color:inherit}
 .closing .cover-foot{justify-content:center;gap:36px}
 /* light sweep (cover + closing): a narrow soft glint slides across the title, then the line below, every 2s */
 .sheen{--sheen-base:var(--gold-text);--sheen-hi:255,252,244;--sheen-lo:rgba(110,74,24,.34);
-  background-image:linear-gradient(105deg,transparent 38%,var(--sheen-lo) 43.5%,rgba(var(--sheen-hi),.62) 47.5%,rgba(var(--sheen-hi),1) 50%,rgba(var(--sheen-hi),.62) 52.5%,var(--sheen-lo) 56.5%,transparent 62%),var(--sheen-base);
-  background-size:300% 100%,100% 100%;background-repeat:no-repeat;background-position:94% 0,0 0;
+  background-image:linear-gradient(105deg,transparent 36%,var(--sheen-lo) 42%,rgba(var(--sheen-hi),.7) 46.5%,rgba(var(--sheen-hi),1) 48.5%,rgba(var(--sheen-hi),1) 51.5%,rgba(var(--sheen-hi),.7) 53.5%,var(--sheen-lo) 58%,transparent 64%),var(--sheen-base);
+  background-size:300% 100%,100% 100%;background-repeat:no-repeat;background-position:97% 0,0 0;
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .sheen.soft{--sheen-base:linear-gradient(var(--sheen-c,var(--muted)),var(--sheen-c,var(--muted)));--sheen-hi:255,255,255;--sheen-lo:transparent}
 .cover-sub .sheen{--sheen-c:var(--fg);--sheen-hi:206,160,82}
+/* halo: a blurred copy of the title, revealed only under the moving light */
+.sheen.halo{position:relative}
+.sheen.halo::after{content:attr(data-text);position:absolute;left:-60px;top:-60px;padding:60px;white-space:nowrap;pointer-events:none;
+  color:rgb(255,224,164);-webkit-text-fill-color:rgb(255,224,164);filter:blur(16px);opacity:.75;
+  -webkit-mask-image:linear-gradient(105deg,transparent 40%,#000 48%,#000 52%,transparent 60%);mask-image:linear-gradient(105deg,transparent 40%,#000 48%,#000 52%,transparent 60%);
+  -webkit-mask-origin:content-box;mask-origin:content-box;-webkit-mask-clip:border-box;mask-clip:border-box;
+  -webkit-mask-size:300% 300%;mask-size:300% 300%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:97% 50%;mask-position:97% 50%}
 .slide.active .sheen{animation:sheen 2s cubic-bezier(.45,.05,.55,.95) 1.4s infinite}
 .slide.active .sheen.soft{animation-delay:2s}
-@keyframes sheen{0%{background-position:94% 0,0 0}60%,100%{background-position:6% 0,0 0}}
+.slide.active .sheen.halo::after{animation:sheen-halo 2s cubic-bezier(.45,.05,.55,.95) 1.4s infinite}
+@keyframes sheen{0%{background-position:97% 0,0 0}60%,100%{background-position:3% 0,0 0}}
+@keyframes sheen-halo{0%{-webkit-mask-position:97% 50%;mask-position:97% 50%}60%,100%{-webkit-mask-position:3% 50%;mask-position:3% 50%}}
 
 /* ---------- layout polish (v3) ---------- */
 /* 02 · 169: bigger dot matrix, less dead space in the middle */
@@ -517,6 +526,7 @@ label.li-k{cursor:pointer}
 @media (prefers-reduced-motion:reduce){
   .slide,.slide.active{transition:opacity .2s ease,visibility 0s}
   .slide.active [data-a],.slide.active .reveal,.slide.active .dots i,.slide.active .sheen,.cover-glow{animation:none !important}
+  .sheen.halo::after{display:none}
 }
 
 /* ---------- print / Save as PDF (open the file in Chrome, Ctrl+P) ---------- */
@@ -532,6 +542,7 @@ label.li-k{cursor:pointer}
   .gold-txt{background:none !important;color:#d9ba82 !important;-webkit-text-fill-color:#d9ba82 !important}
   .light .gold-txt{color:var(--gold-deep) !important;-webkit-text-fill-color:var(--gold-deep) !important}
   .sheen{animation:none !important;background:none !important;color:inherit !important;-webkit-text-fill-color:inherit !important}
+  .sheen.halo::after{display:none}
 }
 </style>
 </head>
@@ -545,7 +556,7 @@ label.li-k{cursor:pointer}
 <section class="slide dark cover" data-title="封面">
   <div class="cover-glow" aria-hidden="true"></div>
   <p class="eyebrow" data-a style="--d:0">C &amp; D&nbsp;&nbsp;PROPERTY MANAGEMENT</p>
-  <h1 class="cover-title gold-txt" data-a style="--d:1"><span class="sheen">建发央玺花园</span></h1>
+  <h1 class="cover-title gold-txt" data-a style="--d:1"><span class="sheen halo" data-text="建发央玺花园">建发央玺花园</span></h1>
   <p class="cover-sub" data-a style="--d:2"><span class="sheen soft">前期物业服务标准</span></p>
   <p class="cover-en latin" data-a style="--d:3">PRELIMINARY PROPERTY SERVICE STANDARDS</p>
   <div class="cover-tags" data-a style="--d:4"><span>基础标准（一级）</span><span>增项服务（超一级，含品质承诺）</span></div>
@@ -942,7 +953,7 @@ label.li-k{cursor:pointer}
 <section class="slide dark closing" data-title="结尾">
   <div class="cover-glow" aria-hidden="true"></div>
   <p class="eyebrow" data-a style="--d:0">建发央玺花园 · 前期物业服务标准</p>
-  <h2 class="h-xl gold-txt" data-a style="--d:1;margin-top:36px"><span class="sheen">以玺为证。</span></h2>
+  <h2 class="h-xl gold-txt" data-a style="--d:1;margin-top:36px"><span class="sheen halo" data-text="以玺为证。">以玺为证。</span></h2>
   <p class="lead" data-a style="--d:2"><span class="sheen soft">169 项服务条款，说到、做到、查得到。</span></p>
   <button class="libbtn" type="button" data-lib="all" data-a style="--d:3">查看全部 169 项条款</button>
   <footer class="cover-foot" data-a style="--d:5"><span class="org"><span class="lbl">服务单位：</span><span>广州怡家园物业管理有限公司</span><span>建发物业服务集团有限公司</span></span><span>二〇二六年八月</span></footer>
