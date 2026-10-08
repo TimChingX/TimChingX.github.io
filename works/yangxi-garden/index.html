@@ -242,6 +242,15 @@ button{font:inherit;color:inherit}
 .closing .lead{margin-top:30px;max-width:none}
 .closing .libbtn{margin-top:56px;font-size:24px;padding:16px 34px;border-color:rgba(214,182,124,.6);color:var(--gold)}
 .closing .cover-foot{justify-content:center;gap:36px}
+/* light sweep: a narrow soft glint slides across the title, then the line below, every 9s */
+.sheen{--sheen-base:var(--gold-text);--sheen-hi:255,250,236;
+  background-image:linear-gradient(105deg,transparent 43%,rgba(var(--sheen-hi),.28) 46.5%,rgba(var(--sheen-hi),.92) 50%,rgba(var(--sheen-hi),.28) 53.5%,transparent 57%),var(--sheen-base);
+  background-size:300% 100%,100% 100%;background-repeat:no-repeat;background-position:88% 0,0 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.sheen.soft{--sheen-base:linear-gradient(var(--muted),var(--muted));--sheen-hi:255,242,214}
+.slide.active .sheen{animation:sheen 9s cubic-bezier(.45,.05,.55,.95) 1.4s infinite}
+.slide.active .sheen.soft{animation-delay:2s}
+@keyframes sheen{0%{background-position:88% 0,0 0}30%,100%{background-position:12% 0,0 0}}
 
 /* ---------- layout polish (v3) ---------- */
 /* 02 · 169: bigger dot matrix, less dead space in the middle */
@@ -510,7 +519,7 @@ label.li-k{cursor:pointer}
 }
 @media (prefers-reduced-motion:reduce){
   .slide,.slide.active{transition:opacity .2s ease,visibility 0s}
-  .slide.active [data-a],.slide.active .reveal,.slide.active .dots i,.slide.active .shine,.cover-glow{animation:none !important}
+  .slide.active [data-a],.slide.active .reveal,.slide.active .dots i,.slide.active .shine,.slide.active .sheen,.cover-glow{animation:none !important}
 }
 
 /* ---------- print / Save as PDF (open the file in Chrome, Ctrl+P) ---------- */
@@ -525,6 +534,7 @@ label.li-k{cursor:pointer}
   .hud,.lib,.fab,.libbtn{display:none !important}
   .gold-txt,.shine{background:none !important;color:#d9ba82 !important;-webkit-text-fill-color:#d9ba82 !important}
   .light .gold-txt{color:var(--gold-deep) !important;-webkit-text-fill-color:var(--gold-deep) !important}
+  .sheen{animation:none !important;background:none !important;color:inherit !important;-webkit-text-fill-color:inherit !important}
 }
 </style>
 </head>
@@ -935,8 +945,8 @@ label.li-k{cursor:pointer}
 <section class="slide dark closing" data-title="结尾">
   <div class="cover-glow" aria-hidden="true"></div>
   <p class="eyebrow" data-a style="--d:0">建发央玺花园 · 前期物业服务标准</p>
-  <h2 class="h-xl gold-txt" data-a style="--d:1;margin-top:36px">以玺为证。</h2>
-  <p class="lead" data-a style="--d:2">169 项服务条款，说到、做到、查得到。</p>
+  <h2 class="h-xl gold-txt" data-a style="--d:1;margin-top:36px"><span class="sheen">以玺为证。</span></h2>
+  <p class="lead" data-a style="--d:2"><span class="sheen soft">169 项服务条款，说到、做到、查得到。</span></p>
   <button class="libbtn" type="button" data-lib="all" data-a style="--d:3">查看全部 169 项条款</button>
   <footer class="cover-foot" data-a style="--d:5"><span class="org"><span class="lbl">服务单位：</span><span>广州怡家园物业管理有限公司</span><span>建发物业服务集团有限公司</span></span><span>二〇二六年八月</span></footer>
 </section>
