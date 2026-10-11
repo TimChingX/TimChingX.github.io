@@ -1041,6 +1041,7 @@ label.li-k{cursor:pointer}
     pg.textContent = pad(cur + 1) + ' / ' + pad(N);
     prog.style.width = ((cur + 1) / N * 100) + '%';
     app.classList.toggle('on-light', s.classList.contains('light'));
+    app.classList.toggle('past-cover', cur > 0);   /* 返回主页按钮只在封面显示 */
     try { history.replaceState(null, '', '#p' + (cur + 1)); } catch (e) {}
   }
   function next(){ go(cur + 1); }
@@ -1260,6 +1261,7 @@ label.li-k{cursor:pointer}
 #app.on-light ~ .pf-back{color:#1d1d1f;background:rgba(255,255,255,.8);border-color:rgba(0,0,0,.1)}
 #app.on-light ~ .pf-back .pf-note{color:rgba(29,29,31,.55);border-left-color:rgba(0,0,0,.15)}
 #app.scroll ~ .pf-back{position:absolute}
+#app.deck.past-cover ~ .pf-back{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,visibility 0s .25s}
 @media print{.pf-back{display:none !important}}
 </style>
 <script>(function(){ if (window.__pfLib) { var b = document.querySelector('.fab[data-lib]'); if (b) b.click(); } })();</script>
