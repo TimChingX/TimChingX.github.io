@@ -50,53 +50,49 @@ a{color:var(--brass);text-underline-offset:.22em;text-decoration-thickness:1px}
 a:focus-visible{outline:2px solid var(--brass);outline-offset:4px;border-radius:2px}
 img{display:block;max-width:100%;height:auto}
 
-.page{max-width:1000px;margin:0 auto;
-  padding:calc(56px + env(safe-area-inset-top,0px)) 20px calc(32px + env(safe-area-inset-bottom,0px))}
+.page{max-width:1080px;margin:0 auto;
+  padding:calc(40px + env(safe-area-inset-top,0px)) 16px calc(28px + env(safe-area-inset-bottom,0px))}
 
 /* header: centred, the name is the one loud element */
 .intro{text-align:center}
 .name{margin:0;font-family:var(--f-serif);font-weight:600;color:var(--ink);
-  font-size:clamp(52px,15vw,96px);line-height:1.1;letter-spacing:.08em}
+  font-size:clamp(44px,12vw,72px);line-height:1.1;letter-spacing:.08em}
 .name .alias{font-size:.36em;color:var(--brass);letter-spacing:.02em;white-space:nowrap}
-.bio{margin:22px auto 0;max-width:32em;color:var(--muted)}
+.bio{margin:14px auto 0;max-width:40em;font-size:15px;line-height:1.7;color:var(--muted)}
 
-.works{margin-top:56px}
-.works h2{margin:0 0 20px;font-family:var(--f-serif);font-weight:600;font-size:22px;line-height:1.3;
-  padding-bottom:12px;border-bottom:1px solid var(--line)}
+.works{margin-top:32px}
+.works h2{margin:0 0 16px;font-family:var(--f-serif);font-weight:600;font-size:20px;line-height:1.3;
+  padding-bottom:10px;border-bottom:1px solid var(--line)}
 
-.work + .work{margin-top:64px}
-.cover{display:block;border-radius:6px;overflow:hidden;background:#000;
-  box-shadow:0 1px 0 rgba(0,0,0,.04),0 18px 40px -24px rgba(20,30,25,.45)}
-.cover img{width:100%;aspect-ratio:16/9;object-fit:cover}
-
-.work-body{margin-top:24px;display:grid;gap:24px}
-.work h3{margin:0;font-family:var(--f-serif);font-weight:600;font-size:28px;line-height:1.35;letter-spacing:.02em}
+/* 三张作品卡：手机上横排一行一张，电脑上三张并排 */
+.list{display:grid;gap:12px}
+.work{position:relative;display:grid;grid-template-columns:120px minmax(0,1fr);
+  background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  transition:border-color .2s,box-shadow .2s,transform .2s}
+.work:hover{border-color:var(--brass);transform:translateY(-2px);
+  box-shadow:0 18px 36px -24px rgba(20,30,25,.5)}
+.work:focus-within{outline:2px solid var(--brass);outline-offset:3px}
+.thumb{margin:12px 0 0 12px;align-self:start;border-radius:3px;overflow:hidden;background:#000;
+  box-shadow:0 0 0 1px var(--line)}
+.thumb img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.head{padding:12px 14px 0}
+.work h3{margin:0;font-family:var(--f-serif);font-weight:600;font-size:17px;line-height:1.4;letter-spacing:.02em}
 .work h3 a{color:inherit;text-decoration:none}
-.work h3 a:hover{text-decoration:underline}
-.desc{margin:12px 0 0;max-width:36em}
-.hl{margin:12px 0 0;max-width:36em}
-.hl mark{background:var(--hl);color:var(--hl-ink);font-weight:600;padding:2px 6px;border-radius:3px;
-  -webkit-box-decoration-break:clone;box-decoration-break:clone}
-.hl .nw{white-space:nowrap}
+.work h3 a:focus-visible{outline:0}
+.work h3 a::after{content:"";position:absolute;inset:0;z-index:1}   /* 整张卡片都可点 */
+.desc{display:none;margin:8px 0 0;font-size:14px;line-height:1.7;color:var(--muted)}
+.go{display:none;font-size:14px;font-weight:600;color:var(--brass)}
 
-/* 登记表: the work's particulars, set like a property-office record card */
-.record{margin:0;display:grid;grid-template-columns:1fr 1fr;background:var(--paper);
-  border:1px solid var(--line);border-radius:4px;overflow:hidden;align-self:start}
-.record div{padding:12px 14px;border-top:1px solid var(--line)}
-.record div:nth-child(-n+2){border-top:0}
-.record div:nth-child(odd){border-right:1px solid var(--line)}
-.record div.wide{grid-column:1 / -1;border-right:0}
-.record dt{font-size:13px;line-height:1.4;color:var(--muted)}
-.record .nw{white-space:nowrap}
-.record dd{margin:4px 0 0;font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums}
+/* 登记表式的三格数字 */
+.figs{grid-column:1 / -1;margin:12px 0 0;display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line)}
+.figs div{display:flex;flex-direction:column-reverse;justify-content:flex-end;padding:8px 12px 10px}
+.figs div + div{border-left:1px solid var(--line)}
+.figs dt{font-size:12px;line-height:1.4;color:var(--muted)}
+.figs dd{margin:0;font-size:18px;line-height:1.3;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.figs small{margin-left:2px;font-size:12px;font-weight:400;color:var(--muted)}
 
-.actions{margin:20px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
-.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:4px;
-  background:var(--brass-fill);color:var(--on-brass);font-weight:600;text-decoration:none}
-.btn:hover{filter:brightness(1.08)}
-.tip{margin:14px 0 0;font-size:14px;color:var(--muted)}
-
-.foot{margin-top:72px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);
+.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);
   display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px}
 
 /* 钥匙牌：页脚角落的小装饰 */
@@ -127,14 +123,28 @@ img{display:block;max-width:100%;height:auto}
 .stats dd{margin:2px 0 0;font-size:28px;line-height:1.25;font-weight:600;font-variant-numeric:tabular-nums}
 .stats p{margin:10px 0 0;font-size:12px;line-height:1.5;color:var(--muted)}
 
-@media (min-width:720px){
-  .work-body{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px}
+@media (min-width:560px) and (max-width:839px){
+  .work{grid-template-columns:200px minmax(0,1fr)}
+  .work h3{font-size:19px}
+  .desc{display:block}
 }
-@media (min-width:960px){
-  .page{padding:96px 48px 48px}
-  .works{margin-top:80px}
+@media (min-width:840px){
+  .page{padding:64px 40px 40px}
+  .bio{font-size:16px}
+  .works{margin-top:44px}
+  .list{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .work{display:flex;flex-direction:column}
+  .thumb{margin:0;border-radius:0;box-shadow:none;border-bottom:1px solid var(--line)}
+  .head{padding:16px 18px 0}
+  .work h3{font-size:20px}
+  .desc{display:block}
+  .figs{margin-top:auto;padding-top:16px;border-top:0}
+  .figs div{border-top:1px solid var(--line);padding:10px 18px 12px}
+  .figs div + div{padding-left:14px}
+  .figs dd{font-size:20px}
+  .go{display:block;padding:0 18px 16px}
 }
-@media (prefers-reduced-motion:reduce){.keytag,.keytag.sway,.keytag:hover{animation:none}}
+@media (prefers-reduced-motion:reduce){.keytag,.keytag.sway,.keytag:hover{animation:none}.work,.work:hover{transition:none;transform:none}}
 @media print{.keytag,.stats{display:none}}
 </style>
 </head>
@@ -148,54 +158,35 @@ img{display:block;max-width:100%;height:auto}
   <section class="works" aria-labelledby="works-h">
     <h2 id="works-h">作品</h2>
 
-    <article class="work">
-      <a class="cover" href="works/yangxi-garden/" aria-label="打开演示：建发央玺花园前期物业服务标准">
-        <img src="works/yangxi-garden/cover.jpg" width="1600" height="900" alt="演示封面：建发央玺花园前期物业服务标准">
-      </a>
-      <div class="work-body">
-        <div>
+    <div class="list">
+      <article class="work">
+        <div class="thumb"><img src="works/yangxi-garden/cover.jpg" width="1600" height="900" alt="演示封面：建发央玺花园前期物业服务标准"></div>
+        <div class="head">
           <h3><a href="works/yangxi-garden/">建发央玺花园<br>前期物业服务标准</a></h3>
-          <p class="desc">把项目的前期物业服务标准做成一份可翻页的网页演示：169 项服务条款分为五大服务模块，一级基础标准与超一级增项逐项对照，另附可搜索的条款库。</p>
-          <p class="actions">
-            <a class="btn" href="works/yangxi-garden/">打开演示</a>
-            <a href="works/yangxi-garden/#lib">查看全部 169 项条款</a>
-          </p>
-          <p class="tip">电脑上可用键盘方向键翻页；手机上会自动变成上下滑动浏览。</p>
+          <p class="desc">把前期物业服务标准做成可翻页的网页演示，一级基础标准与超一级增项逐项对照，附可搜索的条款库。</p>
         </div>
-        <dl class="record">
-          <div><dt>编制时间</dt><dd>2026 年 8 月</dd></div>
-          <div><dt>形式</dt><dd>网页演示，19 页</dd></div>
-          <div><dt>基础标准（一级）</dt><dd>56 项</dd></div>
-          <div><dt>增项服务（超一级）</dt><dd>113 项</dd></div>
-          <div class="wide"><dt>服务模块</dt><dd><span class="nw">综合管理</span>、<span class="nw">设施设备维护</span>、<span class="nw">公共秩序维护</span>、<span class="nw">保洁</span>、<span class="nw">绿化养护</span></dd></div>
+        <dl class="figs">
+          <div><dt>服务条款</dt><dd>169<small>项</small></dd></div>
+          <div><dt>网页演示</dt><dd>19<small>页</small></dd></div>
+          <div><dt>服务模块</dt><dd>5<small>个</small></dd></div>
         </dl>
-      </div>
-    </article>
+        <span class="go" aria-hidden="true">打开演示 →</span>
+      </article>
 
-    <article class="work">
-      <a class="cover" href="works/repair-ledger/" aria-label="查看作品：工程维修台账与数据仪表盘">
-        <img src="works/repair-ledger/cover.jpg" width="1600" height="900" loading="lazy" alt="Excel 截图：工程维修数据仪表盘的当日工单总览和人员排行榜">
-      </a>
-      <div class="work-body">
-        <div>
+      <article class="work">
+        <div class="thumb"><img src="works/repair-ledger/cover.jpg" width="1600" height="900" alt="Excel 截图：工程维修数据仪表盘的当日工单总览和人员排行榜"></div>
+        <div class="head">
           <h3><a href="works/repair-ledger/">工程维修台账<br>与数据仪表盘</a></h3>
-          <p class="desc">用 Excel 公式搭的维修工单系统：登记报修后自动编号、列出空闲师傅，仪表盘按日、周、月统计完成率和满意度并给师傅排名，还能按楼栋房号查出一户的全部记录。</p>
-          <p class="hl"><mark>使用建议：导入腾讯文档、<span class="nw">WPS 等在线表格，</span><span class="nw">即可多人协作。</span></mark></p>
-          <p class="actions">
-            <a class="btn" href="works/repair-ledger/">查看作品</a>
-            <a href="works/repair-ledger/repair-ledger-sample.xlsx" download="工程维修台账（示例）.xlsx">下载示例文件</a>
-          </p>
-          <p class="tip">页面截图和示例文件均为脱敏数据。</p>
+          <p class="desc">用 Excel 公式搭的维修工单系统：自动编号派单，按日、周、月统计完成率和满意度；导入腾讯文档、WPS 即可多人协作。</p>
         </div>
-        <dl class="record">
-          <div><dt>形式</dt><dd>Excel 工作簿，<span class="nw">5 张工作表</span></dd></div>
-          <div><dt>数据周期</dt><dd><span class="nw">2026.7.30</span>–<span class="nw">8.7</span></dd></div>
-          <div><dt>工单</dt><dd>143 张</dd></div>
-          <div><dt>好评率</dt><dd>99.1%</dd></div>
-          <div class="wide"><dt>包含</dt><dd><span class="nw">入户和公区台账</span>、<span class="nw">师傅调度看板</span>、<span class="nw">总仪表盘</span>、<span class="nw">单元查询</span>、<span class="nw">入户维修评价表</span></dd></div>
+        <dl class="figs">
+          <div><dt>维修工单</dt><dd>143<small>张</small></dd></div>
+          <div><dt>好评率</dt><dd>99.1<small>%</small></dd></div>
+          <div><dt>工作表</dt><dd>5<small>张</small></dd></div>
         </dl>
-      </div>
-    </article>
+        <span class="go" aria-hidden="true">查看作品 →</span>
+      </article>
+    </div>
   </section>
 
   <footer class="foot">
