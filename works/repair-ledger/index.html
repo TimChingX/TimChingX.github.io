@@ -44,13 +44,16 @@ img{display:block;max-width:100%;height:auto}
   padding:calc(28px + env(safe-area-inset-top,0px)) 20px calc(32px + env(safe-area-inset-bottom,0px))}
 
 /* 左上角返回主页按钮，三个作品页统一 */
-.pf-back{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:16px;z-index:25;display:inline-flex;align-items:center;gap:7px;
+.pf-back{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:16px;z-index:25;display:inline-flex;align-items:center;gap:7px;
   min-height:36px;padding:8px 14px 8px 10px;border-radius:999px;font:500 13px/1.2 var(--f-sans);color:var(--ink);text-decoration:none;
   background:var(--paper);border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.06);opacity:.92;transition:opacity .2s,border-color .2s}
 .pf-back:hover,.pf-back:focus-visible{opacity:1;border-color:var(--brass)}
 .pf-back:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:999px}
 .pf-back svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .pf-back .pf-note{margin-left:3px;padding-left:9px;border-left:1px solid var(--line);color:var(--muted)}
+.pf-back{transition:opacity .2s,border-color .2s,box-shadow .2s}
+.pf-scrolled .pf-back .pf-note{display:none}
+.pf-scrolled .pf-back{box-shadow:0 6px 18px -8px rgba(0,0,0,.35)}
 @media print{.pf-back{display:none !important}}
 
 .head{margin-top:56px}
@@ -202,6 +205,12 @@ figcaption{margin-top:10px;font-size:13px;color:var(--muted)}
     <span>© 2026 程文辉</span>
   </footer>
 </main>
+<script>/* 返回主页按钮：始终固定在左上角，滚动后收窄 */
+(function(){var r=document.documentElement,q=false;
+  function u(){q=false;r.classList.toggle('pf-scrolled',(window.scrollY||0)>40);if(window.pfNav)pfNav()}
+  addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(u)}},{passive:true});
+  addEventListener('resize',u);u();
+})();</script>
 <script defer src="https://events.vercount.one/js"></script>
 </body>
 </html>

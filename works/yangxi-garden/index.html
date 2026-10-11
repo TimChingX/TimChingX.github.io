@@ -1041,7 +1041,6 @@ label.li-k{cursor:pointer}
     pg.textContent = pad(cur + 1) + ' / ' + pad(N);
     prog.style.width = ((cur + 1) / N * 100) + '%';
     app.classList.toggle('on-light', s.classList.contains('light'));
-    app.classList.toggle('past-cover', cur > 0);   /* 返回主页按钮只在封面显示 */
     try { history.replaceState(null, '', '#p' + (cur + 1)); } catch (e) {}
   }
   function next(){ go(cur + 1); }
@@ -1260,10 +1259,17 @@ label.li-k{cursor:pointer}
 .pf-back .pf-note{margin-left:3px;padding-left:9px;border-left:1px solid rgba(255,255,255,.22);color:rgba(245,245,247,.62)}
 #app.on-light ~ .pf-back{color:#1d1d1f;background:rgba(255,255,255,.8);border-color:rgba(0,0,0,.1)}
 #app.on-light ~ .pf-back .pf-note{color:rgba(29,29,31,.55);border-left-color:rgba(0,0,0,.15)}
-#app.scroll ~ .pf-back{position:absolute}
-#app.deck.past-cover ~ .pf-back{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,visibility 0s .25s}
+.pf-back{transition:opacity .2s,border-color .2s,box-shadow .2s}
+.pf-scrolled .pf-back .pf-note{display:none}
+.pf-scrolled .pf-back{box-shadow:0 6px 18px -8px rgba(0,0,0,.35)}
 @media print{.pf-back{display:none !important}}
 </style>
+<script>/* 返回主页按钮：始终固定在左上角，滚动后收窄 */
+(function(){var r=document.documentElement,q=false;
+  function u(){q=false;r.classList.toggle('pf-scrolled',(window.scrollY||0)>40);if(window.pfNav)pfNav()}
+  addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(u)}},{passive:true});
+  addEventListener('resize',u);u();
+})();</script>
 <script>(function(){ if (window.__pfLib) { var b = document.querySelector('.fab[data-lib]'); if (b) b.click(); } })();</script>
 <script defer src="https://events.vercount.one/js"></script>
 </body>

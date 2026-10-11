@@ -3205,7 +3205,7 @@ footer{padding-block:40px 56px;color:var(--muted);font-size:12.5px}
 <!-- portfolio: link back to the home page -->
 <a class="pf-back" href="../../"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2 3.5 6l4 4"/></svg>返回主页<span class="pf-note">个人作品展示</span></a>
 <style>
-.pf-back{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:16px;z-index:25;display:inline-flex;align-items:center;gap:7px;
+.pf-back{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:16px;z-index:25;display:inline-flex;align-items:center;gap:7px;
   min-height:36px;padding:8px 14px 8px 10px;border-radius:999px;font:500 13px/1.2 var(--f-body);color:var(--ink);text-decoration:none;
   background:var(--surface);border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.06);opacity:.92;transition:opacity .2s}
 .pf-back:hover,.pf-back:focus-visible{opacity:1}
@@ -3213,8 +3213,28 @@ footer{padding-block:40px 56px;color:var(--muted);font-size:12.5px}
 .pf-back svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .pf-back .pf-note{margin-left:3px;padding-left:9px;border-left:1px solid var(--line);color:var(--muted)}
 .hero{padding-top:84px}
+.pf-back{transition:opacity .2s,border-color .2s,box-shadow .2s}
+.pf-scrolled .pf-back .pf-note{display:none}
+.pf-scrolled .pf-back{box-shadow:0 6px 18px -8px rgba(0,0,0,.35)}
 @media print{.pf-back{display:none !important}.hero{padding-top:44px}}
 </style>
+<script>/* 章节导航吸顶时，按钮放进导航那一行，导航标签往右让位 */
+window.pfNav=function(){var a=document.querySelector('.pf-back'),nav=document.querySelector('.nav'),inn=document.getElementById('navIn');
+  if(!a||!nav||!inn)return;
+  if(inn.dataset.pl===undefined)inn.dataset.pl=getComputedStyle(inn).paddingLeft;
+  a.style.top='';var dt=parseFloat(getComputedStyle(a).top),h=a.offsetHeight,nr=nav.getBoundingClientRect();
+  if(nr.bottom>0&&nr.top<dt+h){   /* 导航条和按钮上下重叠了 */
+    a.style.top=Math.round(Math.min(dt,nr.top+(nr.height-h)/2))+'px';
+    inn.style.paddingLeft='';var need=a.getBoundingClientRect().right+10-inn.getBoundingClientRect().left;
+    if(need>parseFloat(inn.dataset.pl))inn.style.paddingLeft=need+'px';
+  }else inn.style.paddingLeft='';
+};</script>
+<script>/* 返回主页按钮：始终固定在左上角，滚动后收窄 */
+(function(){var r=document.documentElement,q=false;
+  function u(){q=false;r.classList.toggle('pf-scrolled',(window.scrollY||0)>40);if(window.pfNav)pfNav()}
+  addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(u)}},{passive:true});
+  addEventListener('resize',u);u();
+})();</script>
 <script defer src="https://events.vercount.one/js"></script>
 </body>
 </html>
