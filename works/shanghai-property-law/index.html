@@ -244,6 +244,95 @@ ul.dot li::marker{color:var(--muted)}
 .ledger .grp{grid-column:1/-1;background:var(--surface-2);padding:6px 14px;font-size:12.5px;font-weight:700;color:var(--ink-2);letter-spacing:.06em}
 @media (max-width:900px){.ledger{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){.ledger{grid-template-columns:minmax(0,1fr)}}
+
+/* ===== 速学：学习地图 · 记忆卡 · 速学/查阅模式 · 学习进度 ===== */
+.lmap{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 18px 14px}
+.lmap-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 14px}
+.lmap-t{font-family:var(--f-display);font-weight:900;font-size:21px;line-height:1.3}
+.lmap-s{font-size:13.5px;color:var(--muted)}
+.how{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.how li{background:var(--surface-2);border-radius:8px;padding:8px 12px;font-size:13px;line-height:1.55;color:var(--ink-2)}
+.how b{display:block;color:var(--ink);font-size:14px;margin-bottom:1px}
+.units{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.unit{border:1px solid var(--line);border-radius:10px;padding:11px 14px 10px;display:flex;flex-direction:column;gap:5px;min-width:0}
+.unit.all{border-color:color-mix(in srgb,var(--civ) 55%,var(--line));background:color-mix(in srgb,var(--civ-soft) 45%,transparent)}
+.u-h{display:flex;align-items:center;gap:8px}
+.u-no{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--muted)}
+.u-name{font-family:var(--f-display);font-weight:900;font-size:16.5px}
+.u-prog{margin-left:auto;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.unit.all .u-prog{color:var(--civ);font-weight:600}
+.u-q{font-size:13px;line-height:1.55;color:var(--ink-2)}
+.u-links{display:flex;flex-wrap:wrap;gap:3px 12px}
+.u-links a{font-size:13.5px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);line-height:1.6}
+.u-links a:hover{color:var(--blue);border-color:currentColor}
+.u-links a.done::before{content:"✓";margin-right:3px;color:var(--civ);font-weight:700}
+.u-bar{height:4px;border-radius:2px;background:var(--surface-2);overflow:hidden;margin-top:4px}
+.u-bar i{display:block;height:100%;width:0;background:var(--civ);border-radius:2px;transition:width .3s}
+.u-t{font-size:12px;color:var(--muted)}
+.lbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.lmode{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:2px;background:var(--surface-2)}
+.lmode button{font:inherit;font-size:13.5px;border:0;background:none;color:var(--ink-2);padding:5px 14px;border-radius:999px;cursor:pointer;min-height:32px}
+.lmode button[aria-pressed="true"]{background:var(--ink);color:var(--bg);font-weight:700}
+.lbtn,.mc-hide,.mc-done,.mc-more{font:inherit;font-size:13.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:5px 12px;border-radius:999px;cursor:pointer;min-height:32px}
+.lbtn[aria-pressed="true"],.mc-hide[aria-pressed="true"]{border-color:var(--warn);color:var(--warn);background:var(--warn-soft);font-weight:700}
+.lprog{margin-left:auto;font-size:13.5px;color:var(--ink-2);white-space:nowrap}
+.lprog b{font-family:var(--f-mono);color:var(--ink)}
+.lreset{font:inherit;font-size:12.5px;background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;padding:0 0 0 8px}
+.lhint{flex-basis:100%;font-size:12.5px;color:var(--muted)}
+
+/* 记忆卡 */
+.mc{max-width:900px;margin:2px 0 4px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:10px;padding:14px 18px 12px;scroll-margin-top:72px}
+.mc.done{border-left-color:var(--civ)}
+.mc-h{display:flex;align-items:center;gap:8px}
+.mc-tag{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--warn)}
+.mc.done .mc-tag{color:var(--civ)}
+.mc.done .mc-tag::after{content:" · 已学会"}
+.mc-no{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.mc-hide{margin-left:auto;font-size:12.5px;padding:3px 11px;min-height:28px}
+.mc-gist{margin-top:6px;font-family:var(--f-display);font-weight:900;font-size:18.5px;line-height:1.5;text-wrap:pretty}
+.mc-rhyme{display:inline-flex;align-items:baseline;gap:8px;margin-top:8px;background:var(--warn-soft);border-radius:6px;padding:4px 11px;font-weight:700;font-size:14px;line-height:1.6}
+.mc-rhyme>span{flex:none;font-size:11.5px;letter-spacing:.14em;color:var(--warn)}
+.mc-pts{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px;counter-reset:mcp}
+.mc-pts li{counter-increment:mcp;position:relative;padding-left:30px;font-size:14.5px;line-height:1.75}
+.mc-pts li::before{content:counter(mcp);position:absolute;left:0;top:3px;width:21px;height:21px;border-radius:50%;background:var(--surface-2);color:var(--ink-2);font:600 12px/21px var(--f-mono);text-align:center}
+.ck{color:var(--warn);font-weight:700}
+.mc.hide .ck{color:transparent;background:var(--warn-soft);border-radius:3px;box-shadow:inset 0 -2px 0 var(--warn);cursor:pointer;-webkit-user-select:none;user-select:none;transition:color .15s}
+.mc.hide .ck.on{color:var(--warn);background:none;box-shadow:none}
+.mc-f{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}
+.mc-done::before{content:"";display:inline-block;width:12px;height:12px;margin-right:6px;border:1.5px solid currentColor;border-radius:3px;vertical-align:-1px}
+.mc-done[aria-pressed="true"]{background:var(--civ);border-color:var(--civ);color:var(--on-strong);font-weight:700}
+.mc-done[aria-pressed="true"]::before{content:"✓";border:0;width:auto;height:auto;font-weight:700}
+.mc-more{border-color:transparent;background:none;color:var(--blue);padding-inline:6px}
+.mc-more .t::after{content:" ▾";font-size:11px}
+.mc-more[aria-expanded="true"] .t::after{content:" ▴"}
+.mc-more .mins{color:var(--muted);font-size:12.5px}
+.sec-body{margin-top:14px}
+.sec-body[hidden]{margin-top:0}
+
+/* 吸顶导航上的进度 */
+.nav-prog{height:2px;margin-top:-1px}
+.nav-prog i{display:block;height:100%;width:0;background:var(--civ);transition:width .3s}
+.nav a.done::after{content:"✓";margin-left:3px;color:var(--civ);font-weight:700}
+.nav a.on.done::after{color:inherit}
+
+@media (max-width:860px){.units{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){
+  .lmap{padding:14px 14px 12px;margin-inline:-6px}
+  .how{grid-template-columns:1fr;gap:6px}
+  .how li{padding:7px 11px}
+  .units{grid-template-columns:1fr;gap:8px}
+  .u-q{display:none}
+  .lprog{margin-left:0}
+  .mc{padding:12px 14px 10px;margin-inline:-6px}
+  .mc-gist{font-size:16.5px}
+  .mc-pts li{font-size:14px;padding-left:28px}
+  .mc-rhyme{display:flex}
+}
+@media print{
+  .lbar,.mc-f,.mc-hide,.nav-prog{display:none!important}
+  .sec-body[hidden]{display:block!important;content-visibility:visible!important}
+  .mc.hide .ck{color:inherit;background:none;box-shadow:none}
+}
 </style>
 </head>
 <body>
@@ -252,6 +341,22 @@ ul.dot li::marker{color:var(--muted)}
   <h1>上海物业法规速学</h1>
   <div class="dualrule" aria-hidden="true"><span class="m" style="flex:66"></span><span class="s" style="flex:110"></span></div>
   <p class="meta">把枯燥的法律条文做成一看就懂的图解：《民法典》物业相关条款 <b class="mono">66</b> 条 ＋ 《上海市住宅物业管理规定》 <b class="mono">110</b> 条（2026 修正文本）按主题拆开、对齐，再配上关键数字、工作场景和自测卡片，帮你抓住记忆点，学得快、记得牢。</p>
+
+  <div class="lmap" id="learn" aria-label="学习地图">
+    <div class="lmap-h"><p class="lmap-t">学习地图</p><p class="lmap-s">6 个单元 · 26 张记忆卡 · 速学约 26 分钟，详读约 126 分钟</p></div>
+    <ol class="how">
+      <li><b>① 先看记忆卡</b>每节一句话 + 3 个考点，琥珀色是要背的重点</li>
+      <li><b>② 遮住再回想</b>点「遮住重点」，想出来再点开对答案</li>
+      <li><b>③ 打勾 + 自测</b>记住了点「本节已学会」，学完到文末做自测卡</li>
+    </ol>
+    <div class="units"><div class="unit" data-unit="1" data-secs="overview rev civil fusion numbers"><div class="u-h"><span class="u-no">01</span><span class="u-name">导读</span><span class="u-prog">0/5</span></div><p class="u-q">先搭框架：两部法怎么分工、2026 改了什么、要背哪些数字</p><div class="u-links"><a href="#overview" data-sec="overview">总览与分工</a><a href="#rev" data-sec="rev">2026 修订</a><a href="#civil" data-sec="civil">民法典精要</a><a href="#fusion" data-sec="fusion">融合对照</a><a href="#numbers" data-sec="numbers">数字速查</a></div><div class="u-bar" aria-hidden="true"><i></i></div><p class="u-t">5 张记忆卡 · 详读约 31 分钟</p></div><div class="unit" data-unit="2" data-secs="owners vote gov area assembly committee ptc"><div class="u-h"><span class="u-no">02</span><span class="u-name">业主与自治</span><span class="u-prog">0/7</span></div><p class="u-q">业主有什么权利，事情怎么表决，业主大会和业委会怎么成立、运作</p><div class="u-links"><a href="#owners" data-sec="owners">业主权利与共有</a><a href="#vote" data-sec="vote">共同决定</a><a href="#gov" data-sec="gov">监管体系</a><a href="#area" data-sec="area">管理区域</a><a href="#assembly" data-sec="assembly">业主大会</a><a href="#committee" data-sec="committee">业委会</a><a href="#ptc" data-sec="ptc">物业治理委员会</a></div><div class="u-bar" aria-hidden="true"><i></i></div><p class="u-t">7 张记忆卡 · 详读约 26 分钟</p></div><div class="unit" data-unit="3" data-secs="service fees"><div class="u-h"><span class="u-no">03</span><span class="u-name">物业服务</span><span class="u-prog">0/2</span></div><p class="u-q">合同从选聘到交接的每个时限，物业费怎么收、收益归谁</p><div class="u-links"><a href="#service" data-sec="service">物业服务合同</a><a href="#fees" data-sec="fees">物业费与收益</a></div><div class="u-bar" aria-hidden="true"><i></i></div><p class="u-t">2 张记忆卡 · 详读约 13 分钟</p></div><div class="unit" data-unit="4" data-secs="use deco fund parking neighbor"><div class="u-h"><span class="u-no">04</span><span class="u-name">使用与维护</span><span class="u-prog">0/5</span></div><p class="u-q">什么不能做、装修怎么管、维修资金怎么交怎么用、车位给谁</p><div class="u-links"><a href="#use" data-sec="use">使用维护</a><a href="#deco" data-sec="deco">装修管理</a><a href="#fund" data-sec="fund">维修资金</a><a href="#parking" data-sec="parking">停车</a><a href="#neighbor" data-sec="neighbor">相邻关系</a></div><div class="u-bar" aria-hidden="true"><i></i></div><p class="u-t">5 张记忆卡 · 详读约 20 分钟</p></div><div class="unit" data-unit="5" data-secs="tort pets privacy limit penalty"><div class="u-h"><span class="u-no">05</span><span class="u-name">责任与风险</span><span class="u-prog">0/5</span></div><p class="u-q">出了事谁担责、物业怎样免责，时效和罚款怎么算</p><div class="u-links"><a href="#tort" data-sec="tort">损害责任</a><a href="#pets" data-sec="pets">饲养动物</a><a href="#privacy" data-sec="privacy">个人信息</a><a href="#limit" data-sec="limit">诉讼时效</a><a href="#penalty" data-sec="penalty">法律责任</a></div><div class="u-bar" aria-hidden="true"><i></i></div><p class="u-t">5 张记忆卡 · 详读约 13 分钟</p></div><div class="unit" data-unit="6" data-secs="roles scenes"><div class="u-h"><span class="u-no">06</span><span class="u-name">实务</span><span class="u-prog">0/2</span></div><p class="u-q">按角色自查、用场景练答，再过一遍易混点和自测</p><div class="u-links"><a href="#roles" data-sec="roles">按角色看</a><a href="#scenes" data-sec="scenes">工作场景</a><a href="#confuse" data-sec="confuse">易混点</a><a href="#quiz" data-sec="quiz">自测</a></div><div class="u-bar" aria-hidden="true"><i></i></div><p class="u-t">2 张记忆卡 · 详读约 23 分钟</p></div></div>
+    <div class="lbar">
+      <div class="lmode" role="group" aria-label="阅读模式"><button type="button" data-mode="learn" aria-pressed="true">速学模式</button><button type="button" data-mode="read" aria-pressed="false">查阅模式</button></div>
+      <button type="button" class="lbtn" id="hideAll" aria-pressed="false">遮住全部重点</button>
+      <span class="lprog">已学会 <b id="lpN">0</b> / 26<button type="button" class="lreset" id="lpReset">清空</button></span>
+      <p class="lhint" id="lhint">速学模式：每节只显示记忆卡，点「展开详解」看完整图表和条文；在页面里搜索时会自动展开。</p>
+    </div>
+  </div>
 
   <div class="sources">
     <div class="srccard">
@@ -306,20 +411,13 @@ ul.dot li::marker{color:var(--muted)}
     <div class="tb"><b>地方性法规 · 上海规定</b>在上位法框架内细化流程、时限、比例和罚则<span class="a s">沪1</span></div>
   </div>
 
-  <nav class="toc" aria-label="目录">
-    <div class="tg"><div class="tgl">导读</div><div><a href="#overview">总览与分工</a><a href="#rev">2026 修订</a><a href="#civil">民法典精要</a><a href="#fusion">融合对照</a><a href="#numbers">数字速查</a></div></div>
-    <div class="tg"><div class="tgl">业主与自治</div><div><a href="#owners">业主权利与共有</a><a href="#vote">共同决定</a><a href="#gov">监管体系</a><a href="#area">管理区域</a><a href="#assembly">业主大会</a><a href="#committee">业委会</a><a href="#ptc">物业治理委员会</a></div></div>
-    <div class="tg"><div class="tgl">物业服务</div><div><a href="#service">物业服务合同</a><a href="#fees">物业费与收益</a></div></div>
-    <div class="tg"><div class="tgl">使用与维护</div><div><a href="#use">使用维护</a><a href="#deco">装修管理</a><a href="#fund">维修资金</a><a href="#parking">停车</a><a href="#neighbor">相邻关系</a></div></div>
-    <div class="tg"><div class="tgl">责任与风险</div><div><a href="#tort">损害责任</a><a href="#pets">饲养动物</a><a href="#privacy">个人信息</a><a href="#limit">诉讼时效</a><a href="#penalty">法律责任</a></div></div>
-    <div class="tg"><div class="tgl">实务</div><div><a href="#roles">按角色看</a><a href="#scenes">工作场景</a><a href="#confuse">易混点</a><a href="#quiz">自测</a></div></div>
-  </nav>
 </header>
 
 <nav class="nav" aria-label="章节导航">
   <div class="wrap nav-in" id="navIn">
     <a href="#overview">总览</a><a href="#rev">2026修订</a><a href="#civil">民法典精要</a><a href="#fusion">融合对照</a><a href="#numbers">数字</a><a href="#owners">业主权利</a><a href="#vote">共同决定</a><a href="#gov">监管</a><a href="#area">区域</a><a href="#assembly">业主大会</a><a href="#committee">业委会</a><a href="#ptc">治理委员会</a><a href="#service">物业合同</a><a href="#fees">物业费与收益</a><a href="#use">使用维护</a><a href="#deco">装修管理</a><a href="#fund">维修资金</a><a href="#parking">停车</a><a href="#neighbor">相邻关系</a><a href="#tort">损害责任</a><a href="#pets">饲养动物</a><a href="#privacy">个人信息</a><a href="#limit">诉讼时效</a><a href="#penalty">法律责任</a><a href="#roles">按角色</a><a href="#scenes">场景</a><a href="#confuse">易混点</a><a href="#quiz">自测</a>
   </div>
+  <div class="nav-prog" aria-hidden="true"><i id="navProg"></i></div>
 </nav>
 
 <main>
@@ -328,6 +426,8 @@ ul.dot li::marker{color:var(--muted)}
   <div class="sh"><span class="ch">导读</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range">民937 · 沪1–3、107–110</span></div>
   <h2>总览：两部法怎么分工</h2>
   <p class="intro">同一件事，民法典先给原则，上海规定再给办法。左右两栏是各自独有的内容，中间是两部都写了、而且口径一致的规则。</p>
+  <aside class="mc" data-sec="overview" aria-label="记忆卡 1-1"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">1-1</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">民法典给原则，上海规定给办法；两部都写的规则，口径一致。</p><p class="mc-rhyme"><span>口诀</span>民法典定原则 · 上海定细则</p><ol class="mc-pts"><li>两部都有：<b class="ck">双⅔参与</b>；一般事项<b class="ck">双过半</b>、重大事项<b class="ck">双¾</b><span class="a m">民278</span><span class="a s">沪21</span></li><li>民法典独有：<b class="ck">9 项</b>共同决定事项、决定可请求法院<b class="ck">撤销</b>、不得<b class="ck">停水停电</b>催费<span class="a m">民278</span><span class="a m">民280</span><span class="a m">民944</span></li><li>上海独有：业主大会<b class="ck">30/60/90 日</b>成立流程、物业治理委员会、<b class="ck">11 类</b>行政罚款<span class="a s">沪16–21</span><span class="a s">沪42–47</span><span class="a s">沪94–104</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-overview"><span class="t">收起详解</span><span class="mins"> · 约 4 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-overview">
 
   <div class="venn">
     <div class="vm">
@@ -408,6 +508,7 @@ ul.dot li::marker{color:var(--muted)}
     <div class="tl"><div class="d">2022 / 2023</div><div class="e">第三、四次修正</div><div class="s">2022.10.28、2023.12.28</div></div>
     <div class="tl key"><div class="d">2026.09.18</div><div class="e">修改决定通过</div><div class="s">增至 110 条；2026.11.01 施行</div></div>
   </div>
+</div>
 </section>
 
 <!-- 2026 修订要点 -->
@@ -415,6 +516,8 @@ ul.dot li::marker{color:var(--muted)}
   <div class="sh"><span class="ch">导读 · 版本更新</span><span class="src s">上海规定</span><span class="range">2026.09.18 修改决定 · 2026.11.01 施行</span></div>
   <h2>2026 修订：上海规定改了什么</h2>
   <p class="intro">上海市十六届人大常委会第三十四次会议于 2026 年 9 月 18 日通过修改决定，共 34 项修改，<b>自 2026 年 11 月 1 日起施行</b>。全文从 95 条增至 110 条，新增 15 条、实质修改 33 条，其余条文多为条号顺移和用语统一。本页上海规定部分已全部按新文本和新条号改写。</p>
+  <aside class="mc" data-sec="rev" aria-label="记忆卡 1-2"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">1-2</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">2026 年 9 月 18 日通过、11 月 1 日施行，上海规定从 95 条增至 110 条。</p><p class="mc-rhyme"><span>口诀</span>街道从「可以」变「应当」</p><ol class="mc-pts"><li>新增<b class="ck">15 条</b>、实质修改<b class="ck">33 条</b>；原「房管机构」的事务统一由<b class="ck">乡镇政府或街道办事处</b>承担<span class="a s">沪7</span></li><li>无人报告也无人要求时，街道<b class="ck">应当主动组建</b>筹备组、换届改选小组；新设<b class="ck">物业治理委员会</b><span class="a s">沪18</span><span class="a s">沪33</span><span class="a s">沪42–47</span></li><li>业主大会可经统一平台<b class="ck">互联网表决</b>；拒不执行判决的业主可被<b class="ck">限制消费、列入失信名单</b><span class="a s">沪21</span><span class="a s">沪61</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-rev"><span class="t">收起详解</span><span class="mins"> · 约 4 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-rev">
 
   <div class="panel">
     <div class="wleg"><span><i class="n"></i>新增 <b class="mono">15</b></span><span><i class="c"></i>修改 <b class="mono">33</b></span><span><i></i>条号顺移或仅用语统一 <b class="mono">62</b></span><span class="muted">悬停数字看条号</span></div>
@@ -486,6 +589,7 @@ ul.dot li::marker{color:var(--muted)}
     </tbody>
   </table></div>
   <div class="callout plain mt"><b>用语统一</b>：“共用部分”“物业共用部分”统一改为<b>共有部分</b>（与民法典一致），“物业服务费”统一改为<b>物业费</b>，“房管机构”统一改为<b>乡、镇人民政府或者街道办事处</b>。条号对照依据修改决定中写明的新条号推算；章节划分按新增条文所在位置推定，以重新公布的正式文本为准。</div>
+</div>
 </section>
 
 <!-- 民法典精要 -->
@@ -493,6 +597,8 @@ ul.dot li::marker{color:var(--muted)}
   <div class="sh"><span class="ch">我的摘编 · 一句话版</span><span class="src m">民法典</span><span class="range">66 条</span></div>
   <h2>民法典精要：66 条逐条压缩</h2>
   <p class="intro">前 3 章全章收录，后 5 章为节选。每条压成一句，右上角链接跳到融合后的详解。</p>
+  <aside class="mc" data-sec="civil" aria-label="记忆卡 1-3"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">1-3</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">66 条按条号分块记，先记住每块管什么。</p><p class="mc-rhyme"><span>口诀</span>271–287 管业主 · 937–950 管合同 · 1252–1258 管坠物</p><ol class="mc-pts"><li>271–287 区分所有权：专有归自己、共有共同管理；<b class="ck">第 278 条</b>是 9 项共同决定<span class="a m">民271</span><span class="a m">民278</span></li><li>937–950 物业服务合同：解聘提前<b class="ck">60 日</b>、不续聘提前<b class="ck">90 日</b>、不得<b class="ck">停水停电</b>催费<span class="a m">民946</span><span class="a m">民947</span><span class="a m">民944</span></li><li>1252–1258 物件损害多为<b class="ck">过错推定</b>；另有 1198 安保、188 时效、288–296 相邻、1032–1038 个人信息<span class="a m">民1253</span><span class="a m">民1198</span><span class="a m">民188</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-civil"><span class="t">收起详解</span><span class="mins"> · 约 8 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-civil">
   <div class="grid g2">
     <div class="panel cgrp">
       <div class="gh"><div><div class="ed">第二编 物权 · 第六章 · 全章</div><h3>业主的建筑物区分所有权</h3></div><a href="#owners">详解 →</a></div>
@@ -597,6 +703,7 @@ ul.dot li::marker{color:var(--muted)}
       </ol>
     </div>
   </div>
+</div>
 </section>
 
 <style>
@@ -651,6 +758,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">核心视图</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range" id="fusionCount"></span></div>
   <h2>融合对照：同一主题，两部法各说了什么</h2>
   <p class="intro">按主题逐行对齐。“关系”一列告诉你该以哪部为主：一致的直接记；上海细化的记上海的具体数字；民法典补充的是上海规定没写、但同样适用的规则。</p>
+  <aside class="mc" data-sec="fusion" aria-label="记忆卡 1-4"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">1-4</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">31 个主题逐行对齐，先看「关系」一列，决定记哪部。</p><ol class="mc-pts"><li><b class="ck">一致</b>4 个：直接记，如不得整体转委托、不续聘提前 90 日<span class="a m">民941</span><span class="a s">沪56</span><span class="a m">民947</span></li><li><b class="ck">上海细化</b>14 个：记上海的具体数字，如维修资金<b class="ck">30%</b>补建线、公共收益<b class="ck">&gt;50%</b>补充维修资金<span class="a s">沪79</span><span class="a s">沪63</span></li><li><b class="ck">民法典补充</b>10 个：上海没写但同样适用，如诉讼时效、物件损害、个人信息；<b class="ck">仅上海</b>3 个：治理委员会、行政处罚、管理区域<span class="a m">民188</span><span class="a m">民1253</span><span class="a m">民1035</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-fusion"><span class="t">收起详解</span><span class="mins"> · 约 9 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-fusion">
   <div class="fsum" id="fsum" role="img" aria-label="各关系类型的主题数量"></div>
   <div class="fsum-l" id="fsumL"></div>
   <div class="filters" role="group" aria-label="按关系筛选">
@@ -665,6 +774,7 @@ td.nw{white-space:nowrap}
     <thead><tr><th style="width:15%">主题</th><th class="m" style="width:36%">民法典</th><th class="s" style="width:36%">上海规定</th><th style="width:13%">关系</th></tr></thead>
     <tbody id="ftb"></tbody>
   </table></div>
+</div>
 </section>
 
 <!-- 数字速查 -->
@@ -672,6 +782,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">两部法提炼</span><span class="range" id="numCount"></span></div>
   <h2>关键数字速查</h2>
   <p class="intro">“几日内”“几分之几”“多少平方米”集中在这里。两部法规定相同的数字合并成一行，同时标两个出处。</p>
+  <aside class="mc" data-sec="numbers" aria-label="记忆卡 1-5"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">1-5</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">83 个数字按「时限、比例、规模、频次」四类记，相同的数字合并成一行。</p><p class="mc-rhyme"><span>口诀</span>30 → 60 → 90 · 双⅔参与 · 双过半 / 双¾</p><ol class="mc-pts"><li>时限：建设单位<b class="ck">30 日</b>报告、街道<b class="ck">60 日</b>组建筹备组、筹备组<b class="ck">90 日</b>内开首次会议<span class="a s">沪17</span><span class="a s">沪18</span><span class="a s">沪19</span></li><li>比例：参与<b class="ck">≥⅔</b>，一般事项<b class="ck">过半</b>，重大事项<b class="ck">≥¾</b>；公共收益补充维修资金<b class="ck">高于 50%</b><span class="a m">民278</span><span class="a s">沪63</span></li><li>频次：业委会至少<b class="ck">每 2 个月</b>开一次会；公共收益<b class="ck">每季度</b>、维修资金<b class="ck">每半年</b>公布<span class="a s">沪30</span><span class="a s">沪80</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-numbers"><span class="t">收起详解</span><span class="mins"> · 约 6 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-numbers">
   <div class="filters" role="group" aria-label="按类别筛选">
     <span class="fl">类别</span>
     <button type="button" data-f="全部" aria-pressed="true">全部</button>
@@ -688,6 +800,7 @@ td.nw{white-space:nowrap}
     <button type="button" data-g="办" aria-pressed="false">涉及装修办法</button>
   </div>
   <div class="ledger" id="ledger"></div>
+</div>
 </section>
 
 <!-- 业主权利与共有 -->
@@ -695,6 +808,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">业主与自治</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range">民271–274、287 · 沪3、15、55、107</span></div>
   <h2>业主权利与共有部分</h2>
   <p class="intro">“区分所有”是整个物业管理的地基：房子里面归自己，房子外面大家共有、共同管理。</p>
+  <aside class="mc" data-sec="owners" aria-label="记忆卡 2-1"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">2-1</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">专有部分自己做主、自己出钱；共有部分共同决定、按面积分摊。</p><ol class="mc-pts"><li>专有部分可占有、使用、收益、处分；红线是不得<b class="ck">危及建筑物安全</b>、不得<b class="ck">损害其他业主</b><span class="a m">民271</span><span class="a m">民272</span></li><li>不得以<b class="ck">放弃权利</b>为由不履行义务；转让房屋时，共有和共同管理的权利<b class="ck">一并转让</b><span class="a m">民273</span><span class="a s">沪15</span></li><li>三种部位：专有（自己承担）、部分共有、全体共有（相关业主按<b class="ck">建筑面积比例</b>分摊）<span class="a s">沪107</span><span class="a s">沪82</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-owners"><span class="t">收起详解</span><span class="mins"> · 约 3 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-owners">
 
   <div class="duo">
     <div>
@@ -777,6 +892,7 @@ td.nw{white-space:nowrap}
       <div class="callout civ" style="margin-top:12px"><b>民法典另要求</b>：行为符合节约资源、保护生态环境的要求，配合物业执行政府依法实施的应急处置措施<span class="a m">民286</span>；转让、出租、设立居住权或改变共有部分用途时告知物业<span class="a m">民945</span>；已按约服务的不得以未接受服务为由拒付物业费<span class="a m">民944</span>。</div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 共同决定 -->
@@ -784,6 +900,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">核心机制</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range">民278–280 · 沪13、16、20–21、65、72、83</span></div>
   <h2>共同决定：9 项事项，两道门槛</h2>
   <p class="intro">民法典列出哪些事必须业主共同决定，上海规定沿用同一套表决门槛。先看够不够人来投（参与门槛），再看投票的人里同意的够不够（同意门槛）。<b>面积和人数必须同时达标</b>，同意比例的分母是<b>参与表决的业主</b>。</p>
+  <aside class="mc" data-sec="vote" aria-label="记忆卡 2-2"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">2-2</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">先看够不够人投（双⅔参与），再看同意的够不够（双过半或双¾）。</p><p class="mc-rhyme"><span>口诀</span>筹钱、改建、改用途、搞经营 → 双¾；其余 → 双过半</p><ol class="mc-pts"><li>9 项共同决定中，<b class="ck">筹集维修资金、改建重建、改变用途或经营</b>须双¾，其余双过半<span class="a m">民278</span><span class="a s">沪21</span></li><li>面积和人数<b class="ck">必须同时达标</b>；同意比例的分母是<b class="ck">参与表决</b>的业主<span class="a m">民278</span></li><li>换算记：参与刚好达标时，双过半最低约需全体<b class="ck">1/3</b>同意，双¾ 最低约需全体<b class="ck">1/2</b>同意<span class="a m">民278</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-vote"><span class="t">收起详解</span><span class="mins"> · 约 4 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-vote">
 
   <div class="sub" style="margin-top:0"><h3>业主共同决定的 9 项事项</h3><span class="a m">民278</span></div>
   <div class="nine">
@@ -866,6 +984,7 @@ td.nw{white-space:nowrap}
     <div class="callout blue"><b>会议形式</b>：可集体讨论、书面征求意见，或<b>通过互联网方式</b>进行；互联网表决须通过本市统一的物业管理监管与服务信息平台，筹备组、换届改选小组或业委会应提供帮助，确有困难的业主应提供书面表决方式。业主可委托代理人参会，代理人须持<b>书面委托书</b>，按委托人意见投票<span class="a s">沪21</span><span class="a s">沪66</span></div>
     <div class="callout plain"><b>计数口径</b>：法律所称“以上”“以内”“届满”包括本数，“过半数”不含一半（参照《民法典》第1259条，不在摘编内）。</div>
   </div>
+</div>
 </section>
 
 <style>
@@ -909,6 +1028,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">业主与自治</span><span class="src s">上海规定</span><span class="src m">民法典</span><span class="range">沪4–10、48、50、66–67 · 民277、285–286</span></div>
   <h2>监管体系：谁管谁</h2>
   <p class="intro">民法典只说政府部门和居委会要“指导和协助”，具体分工由上海规定落实。2026 修订后的主线是：党建引领，市政府统筹，区里管企业和资金，<b>街道（乡镇）全面承接原“房管机构”的事务</b>，居委会深度参与业委会运作。</p>
+  <aside class="mc" data-sec="gov" aria-label="记忆卡 2-3"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">2-3</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">党建引领、市政府统筹，区里管企业和资金，街道承接原「房管机构」的事务。</p><p class="mc-rhyme"><span>口诀</span>党委领导 · 政府主导 · 居民自治 · 社会协同</p><ol class="mc-pts"><li>市房管：定政策、建<b class="ck">统一平台</b>，2026 新增<b class="ck">指导专项维修资金管理</b><span class="a s">沪6</span></li><li>区房管：监管物业企业和从业人员；业主大会成立前<b class="ck">代管维修资金</b><span class="a s">沪6</span><span class="a s">沪80</span></li><li>街道（乡镇）：业主大会和业委会的组建、<b class="ck">备案</b>，合同备案，纠纷调解；居委会可<b class="ck">推荐委员候选人</b><span class="a s">沪7</span><span class="a s">沪24</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-gov"><span class="t">收起详解</span><span class="mins"> · 约 4 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-gov">
 
   <div class="panel" style="margin-bottom:12px">
     <h3>工作格局与治理架构<span class="a s">沪4</span><span class="a s">沪8</span></h3>
@@ -1032,6 +1153,7 @@ td.nw{white-space:nowrap}
       </ul>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 管理区域 -->
@@ -1039,6 +1161,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">业主与自治</span><span class="src s">上海规定</span><span class="range">沪11–14</span></div>
   <h2>物业管理区域与建设单位移交资料</h2>
   <p class="intro">民法典以“建筑区划”为单位界定共有部分<span class="a m">民274</span>，上海规定把它落实为可核定、可调整的物业管理区域。</p>
+  <aside class="mc" data-sec="area" aria-label="记忆卡 2-4"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">2-4</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">配套设施设备共用的，划为一个物业管理区域，由区房管核定。</p><ol class="mc-pts"><li>建设单位申请规划许可证时提出，区房管<b class="ck">5 日内</b>核定；售房时须在合同中<b class="ck">明示区域范围</b><span class="a s">沪12</span></li><li>调整物业管理区域须业主表决：<b class="ck">双⅔参与 + 双过半</b><span class="a s">沪13</span></li><li>建设单位须移交<b class="ck">竣工图、设备技术资料、保修和使用说明</b>等资料，交街道（乡镇）<span class="a s">沪14</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-area"><span class="t">收起详解</span><span class="mins"> · 约 1 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-area">
   <div class="grid g2">
     <div class="panel">
       <h3>怎么划分<span class="a s">沪11</span></h3>
@@ -1070,6 +1194,7 @@ td.nw{white-space:nowrap}
       </ol>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 业主大会 -->
@@ -1077,6 +1202,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">业主与自治</span><span class="src s">上海规定</span><span class="src m">民法典</span><span class="range">沪16–22、26、29、41 · 民277</span></div>
   <h2>业主大会：从成立到运作</h2>
   <p class="intro">民法典规定业主“可以”设立业主大会，具体条件和程序交给法规<span class="a m">民277</span>。上海规定给出了完整流水线：业主大会由一个物业管理区域内<b>全体业主</b>组成<span class="a s">沪16</span>，每一步都有时限和责任主体。</p>
+  <aside class="mc" data-sec="assembly" aria-label="记忆卡 2-5"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">2-5</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">交付面积达 50% 或首套交付满 2 年，就应召开首次业主大会。</p><p class="mc-rhyme"><span>口诀</span>30 报告 · 60 筹备 · 90 开会</p><ol class="mc-pts"><li>建设单位<b class="ck">30 日</b>内报告 → 街道<b class="ck">60 日</b>内组建筹备组 → 筹备组成立后<b class="ck">90 日</b>内开首次会议<span class="a s">沪17</span><span class="a s">沪18</span><span class="a s">沪19</span></li><li>筹备组：业主代表<b class="ck">不低于一半</b>、总人数单数、<b class="ck">街道代表</b>任组长<span class="a s">沪18</span></li><li><b class="ck">20%</b>以上业主提议可开临时会议；可经统一平台<b class="ck">互联网表决</b>，困难业主可书面表决<span class="a s">沪29</span><span class="a s">沪21</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-assembly"><span class="t">收起详解</span><span class="mins"> · 约 5 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-assembly">
 
   <div class="grid g2">
     <div class="panel">
@@ -1168,6 +1295,7 @@ td.nw{white-space:nowrap}
       </ul>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 业委会 -->
@@ -1175,6 +1303,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">业主与自治</span><span class="src s">上海规定</span><span class="src m">民法典</span><span class="range">沪23–41、95 · 民278、280</span></div>
   <h2>业主委员会：组成、职责、运作、换届</h2>
   <p class="intro">选举业委会或者更换业委会成员，属于业主共同决定事项，适用双⅔参与、双过半同意<span class="a m">民278</span>。其余细则都在上海规定。</p>
+  <aside class="mc" data-sec="committee" aria-label="记忆卡 2-6"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">2-6</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">5 人以上单数、任期 3–5 年，决定须全体委员过半数签字。</p><p class="mc-rhyme"><span>口诀</span>届满前 5 个月报告 · 换届期间冻结 4 类事项</p><ol class="mc-pts"><li>人数<b class="ck">5 人以上单数</b>（1 万㎡以下可 3 人），任期<b class="ck">3–5 年</b>，用房<b class="ck">≥30㎡</b><span class="a s">沪23</span><span class="a s">沪54</span></li><li>定期会议至少<b class="ck">每两个月</b>一次；<b class="ck">⅓</b>以上委员提议开临时会议；决定<b class="ck">3 日</b>内公告<span class="a s">沪30</span></li><li>委员有 5 项禁止行为，罢免前<b class="ck">中止履职</b>，可罚<b class="ck">3千–3万元</b><span class="a s">沪37</span><span class="a s">沪95</span></li><li>任期届满<b class="ck">5 个月前</b>报告街道；换届期间不得决定<b class="ck">选聘解聘物业、调整收费</b>等事项<span class="a s">沪33</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-committee"><span class="t">收起详解</span><span class="mins"> · 约 7 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-committee">
 
   <div class="kv">
     <div><div class="kk">人数</div><div class="vv">5 人以上单数</div><div class="vs">建筑面积 1 万㎡以下的小区可为 3 人<span class="a s">沪23</span></div></div>
@@ -1338,6 +1468,7 @@ td.nw{white-space:nowrap}
       </ul>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 物业治理委员会 -->
@@ -1345,6 +1476,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">业主与自治 · 2026 新设</span><span class="src s">上海规定</span><span class="range">沪42–47、108</span></div>
   <h2>物业治理委员会：业委会缺位时的补位机制</h2>
   <p class="intro">选不出首届业委会、或者换届卡住时，由街道（乡镇）牵头组建物业治理委员会，过渡期内组织业主表决、推动选出业委会，业委会依法成立后自行解散。具体组建、运行办法由市房管部门会同相关部门制定<span class="a s">沪108</span>。</p>
+  <aside class="mc" data-sec="ptc" aria-label="记忆卡 2-7"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">2-7</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">选不出首届业委会，或换届卡住时，由街道组建物业治理委员会补位。</p><ol class="mc-pts"><li><b class="ck">街道代表</b>任主任，业主代表<b class="ck">不低于一半</b><span class="a s">沪43</span></li><li>决定须<b class="ck">过半数委员</b>同意并公告；可组织业主表决物业管理事项并实施<span class="a s">沪44</span><span class="a s">沪45</span></li><li>任期一般<b class="ck">≤1 年</b>，经区政府同意最长<b class="ck">2 年</b>；业委会成立后<b class="ck">自行解散</b><span class="a s">沪47</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-ptc"><span class="t">收起详解</span><span class="mins"> · 约 2 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-ptc">
 
   <div class="flow">
     <div class="fs"><b>触发情形（任一）</b>①符合业主大会成立条件，但规定时间内<b>选不出首届业委会</b>；②业委会任期届满或符合提前换届条件，但规定时间内<b>未完成换届</b><span class="a s">沪42</span></div><div class="fa">→</div>
@@ -1383,6 +1516,7 @@ td.nw{white-space:nowrap}
     </div>
   </div>
   <div class="callout plain mt"><b>和筹备组的区别</b>：筹备组组长、物业治理委员会主任都由街道代表担任，业主代表都不低于一半；但筹备组只负责筹备首次业主大会，物业治理委员会还可以<b>组织业主表决物业管理事项并组织实施</b>，且有明确任期<span class="a s">沪18</span><span class="a s">沪44</span><span class="a s">沪47</span>。业委会全体辞职后、治理委员会组建前，由居委会或村委会组织业主管理<span class="a s">沪38</span>。</div>
+</div>
 </section>
 
 <style>
@@ -1428,6 +1562,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">物业服务</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range">民284–285、937–950 · 沪49–59、62、64–67</span></div>
   <h2>物业服务合同：从选聘到交接</h2>
   <p class="intro">民法典第二十四章是合同规则的主干，上海规定补上招标、备案、移交时限和罚则。下面 6 个阶段按合同的实际顺序排列。</p>
+  <aside class="mc" data-sec="service" aria-label="记忆卡 3-1"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">3-1</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">合同按 6 步记：选聘 → 签约 → 履行 → 到期或解除 → 退出交接 → 空档期。</p><p class="mc-rhyme"><span>口诀</span>通知期 60 / 90 / 90 / 60</p><ol class="mc-pts"><li>前期物业须<b class="ck">公开招标</b>，期限一般<b class="ck">不超过两年</b>；签订后<b class="ck">30 日</b>内报街道备案<span class="a s">沪52</span><span class="a s">沪56</span></li><li>业主解聘提前<b class="ck">60 日</b>；物业不续聘、依法解除提前<b class="ck">90 日</b>；不定期合同解除提前<b class="ck">60 日</b><span class="a m">民946</span><span class="a m">民947</span><span class="a s">沪58</span><span class="a m">民948</span></li><li>终止后<b class="ck">10 日</b>内移交 7 类资料财物，否则罚<b class="ck">1万–10万元</b>；新物业接管前原物业继续服务，<b class="ck">可收费</b><span class="a s">沪62</span><span class="a s">沪96</span><span class="a m">民950</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-service"><span class="t">收起详解</span><span class="mins"> · 约 9 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-service">
 
   <div class="life" aria-label="物业服务合同生命周期">
     <div class="stage"><div class="st">选聘</div><ul>
@@ -1666,12 +1802,15 @@ td.nw{white-space:nowrap}
       </ul>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 物业费与收益 -->
 <section class="wrap" id="fees">
   <div class="sh"><span class="ch">物业服务</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range">民282–283、943–944 · 沪60–61、63、80–81</span></div>
   <h2>物业费与共有部分收益</h2>
+  <aside class="mc" data-sec="fees" aria-label="记忆卡 3-2"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">3-2</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">已按约服务就得交费；催费只能催告、诉讼或仲裁，不能停水停电。</p><p class="mc-rhyme"><span>口诀</span>收益先扣成本 · 按季度补维修资金过半</p><ol class="mc-pts"><li>不得以<b class="ck">未接受或无需接受服务</b>为由拒付；不得以<b class="ck">停水、停电、停热、停燃气</b>催费<span class="a m">民944</span></li><li>共有部分收入<b class="ck">扣除合理成本</b>后归业主共有；按<b class="ck">季度</b>补充维修资金，比例<b class="ck">高于 50%</b><span class="a m">民282</span><span class="a s">沪63</span></li><li>酬金制<b class="ck">每年</b>报告经审计的收支和预算；包干制<b class="ck">调价前</b>报告<span class="a s">沪60</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-fees"><span class="t">收起详解</span><span class="mins"> · 约 4 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-fees">
 
   <div class="grid g2" style="margin-top:16px">
     <div class="panel">
@@ -1755,6 +1894,7 @@ td.nw{white-space:nowrap}
     <div class="callout blue"><b>审价</b>：维修资金和公共收益的使用实行<b>工程审价</b>和<b>使用程序审核</b><span class="a s">沪81</span></div>
     <div class="callout blue"><b>审计</b>：委托有资质的中介做<b>年度</b>和<b>换届</b>财务审计（含业委会工作经费），结果在显著位置公告 <b>30日</b>；2026 修订把“利用共有部分获取收入情况”纳入审计<span class="a s">沪81</span></div>
   </div>
+</div>
 </section>
 
 <style>
@@ -1793,6 +1933,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">使用与维护</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range">民272、279、286、942、945 · 沪68–74、82–83、86、88–91、93</span></div>
   <h2>物业的使用与维护</h2>
   <p class="intro">总原则来自民法典：业主行使专有部分权利，<b>不得危及建筑物的安全，不得损害其他业主的合法权益</b><span class="a m">民272</span>。上海规定把它拆成禁止清单、审批流程和罚款。</p>
+  <aside class="mc" data-sec="use" aria-label="记忆卡 4-1"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">4-1</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">9 类禁止行为各有罚则；物业发现违规先劝阻，无效的 24 小时内报告。</p><ol class="mc-pts"><li>承接查验发现的问题，建设单位<b class="ck">30 日</b>内整改<span class="a s">沪68</span></li><li>损坏承重结构罚<b class="ck">5万–10万元</b>；违法搭建<b class="ck">1万–10万元</b>；破坏外貌、占用共有部分<b class="ck">1千–1万元</b><span class="a s">沪98</span><span class="a s">沪99</span><span class="a s">沪100</span></li><li>物业劝阻无效<b class="ck">24 小时</b>内报告业委会和行政部门，否则自身可罚<b class="ck">1千–1万元</b><span class="a s">沪73</span><span class="a s">沪102</span></li><li>住改商：<b class="ck">利害关系业主一致同意</b>，再报区房管审批；擅改罚<b class="ck">1万–5万元</b><span class="a m">民279</span><span class="a s">沪72</span><span class="a s">沪101</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-use"><span class="t">收起详解</span><span class="mins"> · 约 5 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-use">
 
   <div class="grid g2">
     <div class="panel">
@@ -1902,6 +2044,7 @@ td.nw{white-space:nowrap}
     </div>
   </div>
   <p class="xs muted" style="margin-top:8px">请求停止侵害、排除妨碍、消除危险，<b>不适用诉讼时效</b><span class="a m">民196</span>：违建、占道拖了多年，照样可以主张。</p>
+</div>
 </section>
 
 <!-- 装修管理 -->
@@ -1909,6 +2052,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">使用与维护</span><span class="src b">装修办法</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range">办1–48 · 民272、294–296、945、1255 · 沪53、59、70–71、73、98–102</span></div>
   <h2>装修管理：从申报到保修</h2>
   <p class="intro">民法典只规定装修要告知物业、配合检查<span class="a m">民945</span>，上海规定要求签装修管理协议<span class="a s">沪71</span>。具体怎么申报、协议写什么、哪些能改哪些不能改、发现违规怎么处理，都在《住宅室内装饰装修管理办法》里。三者叠加使用：<b>办法给操作细节，上海规定给更重的罚款和 24 小时报告时限。</b></p>
+  <aside class="mc" data-sec="deco" aria-label="记忆卡 4-2"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">4-2</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">三份文件叠着用：民法典要告知，上海要签协议，装修办法给操作细则。</p><p class="mc-rhyme"><span>口诀</span>保修 2 年 · 厨卫外墙防渗漏 5 年</p><ol class="mc-pts"><li>开工前向物业<b class="ck">申报登记</b>、签<b class="ck">装修管理服务协议</b>；未签的，物业可禁止人员、材料进场<span class="a b">办13</span><span class="a b">办16</span><span class="a s">沪71</span></li><li>禁止：无方案动<b class="ck">承重结构</b>、<b class="ck">阳台改厨卫</b>、扩大承重墙门窗、损坏节能设施；拆改燃气、暖气须<b class="ck">先批准</b><span class="a b">办5</span><span class="a b">办6</span></li><li>物业不得<b class="ck">指派装修企业</b>、推销材料；最低保修<b class="ck">2 年</b>，厨卫、外墙面防渗漏<b class="ck">5 年</b><span class="a b">办19</span><span class="a b">办32</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-deco"><span class="t">收起详解</span><span class="mins"> · 约 8 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-deco">
 
   <div class="grid g2">
     <div class="panel">
@@ -2083,12 +2228,15 @@ td.nw{white-space:nowrap}
     <div class="callout civ"><b>民事责任另算</b>：装修危及建筑物或相邻安全<span class="a m">民272</span><span class="a m">民295</span>、噪声扰民<span class="a m">民294</span>、利用相邻房屋造成损害<span class="a m">民296</span>的，受害人可主张民事责任；装修材料堆放倒塌致害，堆放人适用过错推定<span class="a m">民1255</span>。</div>
     <div class="callout plain"><b>三份文件都没写的</b>：装修押金或保证金、每天具体可施工的时段、申报审核的时限。办法只要求协议约定“允许施工的时间”和“管理服务费用”<span class="a b">办16</span>，具体以管理规约、装修管理服务协议和本地相关规定为准。</div>
   </div>
+</div>
 </section>
 
 <!-- 维修资金 -->
 <section class="wrap" id="fund">
   <div class="sh"><span class="ch">使用与维护</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range">民278、281 · 沪78–81、84–85、87</span></div>
   <h2>专项维修资金：交、补、管、用</h2>
+  <aside class="mc" data-sec="fund" aria-label="记忆卡 4-3"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">4-3</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">维修资金属业主共有：使用双过半，筹集双¾。</p><p class="mc-rhyme"><span>口诀</span>低于 30% 要补建 · 兜底补到 50%</p><ol class="mc-pts"><li><b class="ck">专户存储、专款专用、业主决策、政府监督</b>；业主大会成立前由<b class="ck">区房管</b>代管<span class="a s">沪80</span></li><li>余额不足首期<b class="ck">30%</b>须补建；业主大会<b class="ck">90 日</b>内未决定的，业主收到通知后<b class="ck">90 日</b>内一次性补至首期<b class="ck">50%</b><span class="a s">沪79</span></li><li>紧急维修：业委会<b class="ck">7 日</b>不批且已影响安全的，街道<b class="ck">应当</b>组织代修；收支至少<b class="ck">每半年</b>公布一次<span class="a s">沪87</span><span class="a s">沪80</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-fund"><span class="t">收起详解</span><span class="mins"> · 约 3 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-fund">
 
   <div class="duo" style="margin-top:16px">
     <div>
@@ -2168,12 +2316,15 @@ td.nw{white-space:nowrap}
       </table></div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 停车 -->
 <section class="wrap" id="parking">
   <div class="sh"><span class="ch">使用与维护</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range">民275–276 · 沪75–77</span></div>
   <h2>停车位管理</h2>
+  <aside class="mc" data-sec="parking" aria-label="记忆卡 4-4"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">4-4</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">规划车位首先满足业主，未售车位不得只售不租。</p><ol class="mc-pts"><li>占用共有道路或场地的车位，属<b class="ck">业主共有</b><span class="a m">民275</span><span class="a s">沪75</span></li><li>车位不超套数时，一户只能购买或附赠<b class="ck">1 个</b>（2026 删去「可多一个」）<span class="a s">沪75</span></li><li>不提供给本区域业主的，罚<b class="ck">1万–10万元</b>；特种车辆执行公务停放<b class="ck">不收费</b><span class="a s">沪103</span><span class="a s">沪75</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-parking"><span class="t">收起详解</span><span class="mins"> · 约 2 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-parking">
   <div class="duo" style="margin-top:16px">
     <div>
       <div class="dh"><span class="src m">民法典</span><h3>归属与优先</h3></div>
@@ -2219,6 +2370,7 @@ td.nw{white-space:nowrap}
       <div class="callout red" style="margin-top:8px"><b>建设单位不将车位提供本区域业主</b>：责令立即改正，并处 1万–10万元<span class="a s">沪103</span></div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 相邻关系 -->
@@ -2226,6 +2378,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">使用与维护</span><span class="src m">民法典</span><span class="range">民288–296 · 关联 沪70、90</span></div>
   <h2>相邻关系：楼上楼下的规则</h2>
   <p class="intro">漏水、噪声、油烟、遮光、借道检修，大多是相邻关系问题。物业不是裁判者，但要能说清规则、组织协调；上海规定对噪声、有害物质的禁止<span class="a s">沪70</span>和配合维修义务<span class="a s">沪90</span>与这里衔接。</p>
+  <aside class="mc" data-sec="neighbor" aria-label="记忆卡 4-5"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">4-5</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">处理原则：有利生产、方便生活、团结互助、公平合理。</p><p class="mc-rhyme"><span>口诀</span>水 · 路 · 线 · 光 · 声 · 安全</p><ol class="mc-pts"><li>法律法规有规定的从其规定，没有规定的可按<b class="ck">当地习惯</b><span class="a m">民288</span><span class="a m">民289</span></li><li>用水排水、通行、铺设管线须提供<b class="ck">必要便利</b>，并<b class="ck">尽量避免造成损害</b><span class="a m">民290</span><span class="a m">民291</span><span class="a m">民292</span><span class="a m">民296</span></li><li>不得妨碍<b class="ck">通风、采光、日照</b>，不得违规排放<b class="ck">噪声和污染物</b>，不得危及相邻安全<span class="a m">民293</span><span class="a m">民294</span><span class="a m">民295</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-neighbor"><span class="t">收起详解</span><span class="mins"> · 约 2 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-neighbor">
   <div class="nb">
     <div><div class="nt">处理原则<span class="a m">民288</span></div><div class="nd">有利生产、方便生活、团结互助、公平合理</div><div class="ns"><b>场景</b>：协调邻里纠纷时先讲原则，再找具体条文</div></div>
     <div><div class="nt">规则来源<span class="a m">民289</span></div><div class="nd">法律法规有规定的从其规定；没有规定的，可以按照当地习惯</div><div class="ns"><b>场景</b>：管理规约、上海规定有具体要求时优先适用</div></div>
@@ -2237,6 +2391,7 @@ td.nw{white-space:nowrap}
     <div><div class="nt">相邻安全<span class="a m">民295</span></div><div class="nd">挖掘土地、建造建筑物、铺设管线、安装设备等，不得危及相邻不动产的安全</div><div class="ns"><b>场景</b>：装修凿墙打孔、私挖地下空间（损坏承重另罚<span class="a s">沪98</span>）</div></div>
     <div><div class="nt">避免损害<span class="a m">民296</span></div><div class="nd">因用水、排水、通行、铺设管线等利用相邻不动产的，应尽量避免造成损害</div><div class="ns"><b>场景</b>：借用邻居房屋检修后恢复原状；造成损失的赔偿<span class="a s">沪90</span></div></div>
   </div>
+</div>
 </section>
 
 <style>
@@ -2288,6 +2443,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">责任与风险</span><span class="src m">民法典</span><span class="range">民1198、1252–1258 · 关联 沪57、87–89</span></div>
   <h2>损害责任：建筑物、物件与安全保障</h2>
   <p class="intro">这一章是物业服务企业最直接的法律风险来源。物业多以“<b>管理人</b>”身份出现：外墙脱落、高空坠物、树木倒伏、窨井伤人，很多情形适用<b>过错推定</b>：出了事由管理人自己证明没有过错或已尽到职责，证明不了就要担责。</p>
+  <aside class="mc" data-sec="tort" aria-label="记忆卡 5-1"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">5-1</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">物业多以「管理人」身份担责，大多适用过错推定：证明自己没过错才免责。</p><p class="mc-rhyme"><span>口诀</span>连带 · 补偿 · 补充</p><ol class="mc-pts"><li>倒塌塌陷：建设单位与施工单位<b class="ck">连带</b><span class="a m">民1252</span></li><li>脱落坠落、堆放物、林木、窨井：<b class="ck">过错推定</b><span class="a m">民1253</span><span class="a m">民1255</span><span class="a m">民1257</span><span class="a m">民1258</span></li><li>高空抛物查不清：可能加害的使用人<b class="ck">补偿</b>；物业未采取安保措施，<b class="ck">自身担责</b><span class="a m">民1254</span></li><li>第三人致害：未尽安保义务的管理者承担<b class="ck">补充责任</b>，之后可向第三人追偿<span class="a m">民1198</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-tort"><span class="t">收起详解</span><span class="mins"> · 约 3 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-tort">
 
   <div class="tbl-wrap"><table class="stack">
     <thead><tr><th>情形</th><th>谁担责</th><th>归责方式</th><th>如何免责 / 减责</th><th>物业关注点（实务示例）</th></tr></thead>
@@ -2313,6 +2470,7 @@ td.nw{white-space:nowrap}
     <div class="fs"><b>难以确定</b>除能证明自己不是侵权人的外，由<b>可能加害的建筑物使用人给予补偿</b>；补偿后有权向侵权人追偿</div>
   </div>
   <div class="callout civ mt"><b>物业的独立责任</b>：物业服务企业等建筑物管理人应当<b>采取必要的安全保障措施</b>防止抛物、坠物发生；未采取的，依法承担未履行安全保障义务的侵权责任<span class="a m">民1254</span>。实务中常见的做法包括外立面监控、警示宣传、巡查劝导、清理阳台外沿搁置物，并留存记录。</div>
+</div>
 </section>
 
 <!-- 饲养动物 -->
@@ -2320,6 +2478,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">责任与风险</span><span class="src m">民法典</span><span class="range">民1245–1251 · 关联 民286、沪23</span></div>
   <h2>饲养动物：免责空间逐级收窄</h2>
   <p class="intro">动物致害原则上由饲养人或管理人担责，不问其是否有过错。能否减免，取决于是否违规饲养，以及被侵权人一方的过错程度。</p>
+  <aside class="mc" data-sec="pets" aria-label="记忆卡 5-2"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">5-2</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">原则上饲养人担责；违规越重，免责空间越小。</p><ol class="mc-pts"><li>一般动物致害：被侵权人<b class="ck">故意或重大过失</b>，可不担或减轻<span class="a m">民1245</span></li><li>违规、未采取安全措施（如未拴绳）：只有被侵权人<b class="ck">故意</b>才能减轻<span class="a m">民1246</span></li><li>烈性犬等禁养动物：条文<b class="ck">未规定</b>免责减责事由；遗弃、逃逸期间由<b class="ck">原饲养人</b>担责<span class="a m">民1247</span><span class="a m">民1249</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-pets"><span class="t">收起详解</span><span class="mins"> · 约 1 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-pets">
   <div class="tbl-wrap"><table>
     <thead><tr><th>情形</th><th style="text-align:center">被侵权人故意</th><th style="text-align:center">被侵权人重大过失</th><th>结果</th></tr></thead>
     <tbody>
@@ -2335,6 +2495,7 @@ td.nw{white-space:nowrap}
     <div class="panel"><h3>饲养规范<span class="a m">民1251</span></h3><p class="small">饲养动物应当遵守法律法规，尊重社会公德，<b>不得妨碍他人生活</b>。</p>
       <p class="small" style="margin-top:8px"><b>物业衔接</b>：业委会拟订宠物管理等规章制度<span class="a s">沪23</span>；对违反规定饲养动物的，业主大会或业委会可请求停止侵害等<span class="a m">民286</span>。</p></div>
   </div>
+</div>
 </section>
 
 <!-- 个人信息 -->
@@ -2342,6 +2503,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">责任与风险</span><span class="src m">民法典</span><span class="src s">上海规定</span><span class="range">民1032–1038 · 沪15、59</span></div>
   <h2>隐私与个人信息：物业是“信息处理者”</h2>
   <p class="intro">业主清册、门禁、车辆道闸、监控、报修记录，物业每天都在处理个人信息。上海规定只要求“妥善保管业主信息资料”<span class="a s">沪59</span>，民法典给出了完整规则。</p>
+  <aside class="mc" data-sec="privacy" aria-label="记忆卡 5-3"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">5-3</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">物业是信息处理者：合法、正当、必要，征得同意，不得泄露。</p><ol class="mc-pts"><li><b class="ck">人脸等生物识别</b>、身份证号、行踪、电话都属于个人信息<span class="a m">民1034</span></li><li>收集须<b class="ck">合法、正当、必要</b>、不得过度，征得同意，公开处理规则<span class="a m">民1035</span></li><li>发生泄露：及时<b class="ck">补救</b>、<b class="ck">告知本人</b>、<b class="ck">报告主管部门</b><span class="a m">民1038</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-privacy"><span class="t">收起详解</span><span class="mins"> · 约 2 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-privacy">
 
   <div class="grid g2">
     <div class="panel">
@@ -2385,6 +2548,7 @@ td.nw{white-space:nowrap}
     <div class="callout plain"><b>不担民事责任的情形</b>：在本人同意范围内合理处理；合理处理本人自行公开或已合法公开的信息（本人明确拒绝或侵害其重大利益的除外）；为公共利益或本人合法权益合理实施<span class="a m">民1036</span></div>
   </div>
   <p class="xs muted" style="margin-top:8px">公示提示：业委会依管理规约公示违规行为时<span class="a s">沪93</span>，按“必要”原则只公示与事项相关的内容，避免公开电话、身份证件号码等信息<span class="a m">民1035</span><span class="a m">民1038</span>。</p>
+</div>
 </section>
 
 <!-- 诉讼时效 -->
@@ -2392,6 +2556,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">责任与风险</span><span class="src m">民法典</span><span class="range">民188、189、192、195、196 · 关联 民944、沪61</span></div>
   <h2>诉讼时效：物业费追缴的时间账</h2>
   <p class="intro">上海规定只说“可以提起诉讼或者申请仲裁”<span class="a s">沪61</span>，什么时候还来得及，看民法典。下图以知道欠费之日为起点，按年示意三种情况。</p>
+  <aside class="mc" data-sec="limit" aria-label="记忆卡 5-4"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">5-4</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">物业费诉讼时效 3 年，每次书面催告都会让它重新计算。</p><p class="mc-rhyme"><span>口诀</span>3 年可中断 · 20 年封顶</p><ol class="mc-pts"><li>普通时效<b class="ck">3 年</b>，自知道受损和义务人之日起算；最长保护<b class="ck">20 年</b><span class="a m">民188</span></li><li><b class="ck">书面催告</b>、业主同意履行、起诉仲裁 → 时效中断、重新计算；分期还款从<b class="ck">末期</b>起算<span class="a m">民195</span><span class="a m">民189</span></li><li>停止侵害、排除妨碍、消除危险<b class="ck">不适用</b>诉讼时效：违建、占道拖多久都能主张<span class="a m">民196</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-limit"><span class="t">收起详解</span><span class="mins"> · 约 2 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-limit">
 
   <div class="panel">
     <div class="lt" aria-label="诉讼时效示意">
@@ -2439,6 +2605,7 @@ td.nw{white-space:nowrap}
       <li>走完业委会督促、物业催告后，及时诉讼或仲裁<span class="a s">沪61</span><span class="a m">民944</span>；胜诉后业主拒不执行的，法院可限制消费、纳入失信被执行人名单<span class="a s">沪61</span></li>
     </ul></div>
   </div>
+</div>
 </section>
 
 <!-- 法律责任 -->
@@ -2446,6 +2613,8 @@ td.nw{white-space:nowrap}
   <div class="sh"><span class="ch">责任与风险</span><span class="src s">上海规定</span><span class="src m">民法典</span><span class="range">沪92–106 · 民280、286–287、946、949</span></div>
   <h2>法律责任：行政处罚与民事责任</h2>
   <p class="intro">两条线并行。<b>行政处罚</b>由区房管、城管等部门依上海规定作出，罚款上缴；<b>民事责任</b>由业主、业委会、物业等依民法典向对方主张，赔偿归受损方。同一行为可能两条线都要承担。</p>
+  <aside class="mc" data-sec="penalty" aria-label="记忆卡 5-5"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">5-5</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">两条线并行：行政罚款上缴，民事赔偿归受损方。</p><p class="mc-rhyme"><span>口诀</span>承重最重 5 万–10 万</p><ol class="mc-pts"><li>罚款梯度：承重结构<b class="ck">5万–10万</b>＞ 搭建、不移交、车位、未报告<b class="ck">1万–10万</b>＞ 改变使用性质<b class="ck">1万–5万</b>＞ 外貌、物业未劝阻<b class="ck">1千–1万</b><span class="a s">沪94–103</span></li><li>业委会委员违规罚<b class="ck">3千–3万</b>；挪用侵占公共收益罚挪用金额<b class="ck">2 倍以下</b><span class="a s">沪95</span><span class="a s">沪97</span></li><li>民事：业主大会或业委会可请求<b class="ck">停止侵害、排除妨碍、消除危险、恢复原状、赔偿损失</b><span class="a m">民286</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-penalty"><span class="t">收起详解</span><span class="mins"> · 约 5 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-penalty">
 
   <div class="sub" style="margin-top:0"><h3><span class="src s">上海规定</span> 罚款一图看清</h3></div>
   <p class="small" style="color:var(--ink-2);margin-bottom:10px">罚款区间按对数刻度排列，便于比较轻重；按金额倍数处罚或只责令改正的情形见下表。除第99条外，执法主体均为<b>区房屋行政管理部门</b>。</p>
@@ -2488,6 +2657,7 @@ td.nw{white-space:nowrap}
     <div class="panel"><h3>个人信息侵权</h3><p class="small">泄露、篡改、非法提供业主信息，或违反处理规则的，承担民事责任<span class="a m">民1035</span><span class="a m">民1038</span>；合理处理的情形可免责<span class="a m">民1036</span>。</p></div>
     <div class="panel"><h3>时间限制</h3><p class="small">民事请求一般受 3 年诉讼时效限制<span class="a m">民188</span>；停止侵害、排除妨碍、消除危险除外<span class="a m">民196</span>。见“诉讼时效”。</p></div>
   </div>
+</div>
 </section>
 
 <style>
@@ -2530,6 +2700,8 @@ footer{padding-block:40px 56px;color:var(--muted);font-size:12.5px}
   <div class="sh"><span class="ch">实务 · 跨章节汇总</span><span class="src m">民法典</span><span class="src s">上海规定</span></div>
   <h2>按角色看：各方要做什么</h2>
   <p class="intro">把散在两部法里的义务按主体归拢，适合对照自查。</p>
+  <aside class="mc" data-sec="roles" aria-label="记忆卡 6-1"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">6-1</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">把散在两部法里的义务按主体归拢，适合物业对照自查。</p><ol class="mc-pts"><li>合同：不续约届满前<b class="ck">90 日</b>通知；终止后<b class="ck">10 日</b>内移交 7 类资料财物<span class="a s">沪58</span><span class="a s">沪62</span></li><li>公开：建立<b class="ck">7 类档案</b>，前 3 类定期公示；酬金制每年、包干制调价前报告<span class="a s">沪59</span><span class="a s">沪60</span></li><li>现场：违规先劝阻，无效<b class="ck">24 小时</b>内报告；<b class="ck">不得指派</b>装修企业<span class="a s">沪73</span><span class="a b">办19</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-roles"><span class="t">收起详解</span><span class="mins"> · 约 3 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-roles">
   <div class="tabs" role="tablist" aria-label="选择角色">
     <button type="button" role="tab" id="t-pm" aria-controls="r-pm" aria-selected="true">物业服务企业</button>
     <button type="button" role="tab" id="t-yw" aria-controls="r-yw" aria-selected="false">业主委员会</button>
@@ -2668,6 +2840,7 @@ footer{padding-block:40px 56px;color:var(--muted);font-size:12.5px}
       <li>违规改阳台、增加荷载罚 1千–1万，损坏节能设施罚 1千–5千<span class="a b">办38</span></li>
     </ul>
   </div>
+</div>
 </section>
 
 <!-- 工作场景 -->
@@ -2675,6 +2848,8 @@ footer{padding-block:40px 56px;color:var(--muted);font-size:12.5px}
   <div class="sh"><span class="ch">实务应用</span><span class="range" id="sceneCount"></span></div>
   <h2>客服工作场景速查</h2>
   <p class="intro">一线常见问题配上两部法的依据，回答业主或面试提问时可以直接引用。</p>
+  <aside class="mc" data-sec="scenes" aria-label="记忆卡 6-2"><div class="mc-h"><span class="mc-tag">记忆卡</span><span class="mc-no">6-2</span><button type="button" class="mc-hide" aria-pressed="false" title="把重点遮住，先回想再点开">遮住重点</button></div><p class="mc-gist">45 个一线场景：先给结论，再报条号。</p><ol class="mc-pts"><li>「房子空着、不坐电梯所以不交费」：<b class="ck">不成立</b><span class="a m">民944</span></li><li>「停水停电逼业主交费」：<b class="ck">不能</b>，只能催告后诉讼或仲裁<span class="a m">民944</span><span class="a s">沪61</span></li><li>「业委会正在换届，要不要续签合同」：<b class="ck">等新一届</b>，换届期间不得决定选聘解聘<span class="a s">沪33</span></li></ol><div class="mc-f"><button type="button" class="mc-done" aria-pressed="false">本节已学会</button><button type="button" class="mc-more" aria-expanded="true" aria-controls="body-scenes"><span class="t">收起详解</span><span class="mins"> · 约 9 分钟</span></button></div></aside>
+  <div class="sec-body" id="body-scenes">
   <div class="filters" role="group" aria-label="按主题筛选场景">
     <span class="fl">主题</span>
     <button type="button" data-c="全部" aria-pressed="true">全部</button>
@@ -2733,6 +2908,7 @@ footer{padding-block:40px 56px;color:var(--muted);font-size:12.5px}
     <div class="sc" data-c="信息自治"><div class="q"><span class="tag">信息与自治</span>业主大会想搞线上投票</div><div class="ans">可以，但须通过<b>本市统一的物业管理监管与服务信息平台</b>；筹备组或业委会要为业主提供帮助，确有困难的提供书面表决<span class="a s">沪21</span><span class="a s">沪66</span>。门槛仍是双⅔参与<span class="a m">民278</span>。</div></div>
     <div class="sc" data-c="合同"><div class="q"><span class="tag">合同</span>公司想中途解除合同撤场</div><div class="ans">依法解除合同的，须提前 <b>90 日</b>书面通知业主或业委会，并<b>书面告知街道</b><span class="a s">沪58</span>；终止后按期交接、10 日内移交 7 类资料财物<span class="a m">民949</span><span class="a s">沪62</span>。</div></div>
   </div>
+</div>
 </section>
 
 <!-- 易混点 -->
@@ -3201,6 +3377,141 @@ footer{padding-block:40px 56px;color:var(--muted);font-size:12.5px}
   }
 })();
 </script>
+<script>
+/* ---------- 速学：模式、记忆卡、学习进度（进度只存在本机浏览器） ---------- */
+(function(){
+  var KEY = "lawLearn.v1", MKEY = "lawLearn.mode";
+  function load(k, d){ try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } }
+  function save(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".mc"));
+  var ids = cards.map(function(c){ return c.getAttribute("data-sec"); });
+  var cardOf = {}, bodyOf = {};
+  cards.forEach(function(c, i){ cardOf[ids[i]] = c; bodyOf[ids[i]] = document.getElementById("body-" + ids[i]); });
+  var learned = load(KEY, []); if (!Array.isArray(learned)) learned = [];
+  learned = learned.filter(function(id){ return cardOf[id]; });
+  var mode = load(MKEY, "learn") === "read" ? "read" : "learn";
+
+  /* 展开 / 收起某一节的详解 */
+  function setBody(id, open){
+    var b = bodyOf[id], c = cardOf[id]; if (!b || !c) return;
+    if (open) b.removeAttribute("hidden"); else b.setAttribute("hidden", "until-found");
+    var btn = c.querySelector(".mc-more");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.querySelector(".t").textContent = open ? "收起详解" : "展开详解";
+  }
+  ids.forEach(function(id){
+    var b = bodyOf[id]; if (!b) return;
+    /* 浏览器页内搜索命中折叠内容时会自动展开（Chrome / Edge） */
+    b.addEventListener("beforematch", function(){ setBody(id, true); });
+  });
+
+  /* 速学 / 查阅模式 */
+  var segBtns = Array.prototype.slice.call(document.querySelectorAll(".lmode button"));
+  var hint = document.getElementById("lhint");
+  function setMode(m, keep){
+    mode = m; if (!keep) save(MKEY, m);
+    document.documentElement.setAttribute("data-lmode", m);
+    ids.forEach(function(id){ setBody(id, m === "read"); });
+    segBtns.forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-mode") === m ? "true" : "false"); });
+    if (hint) hint.textContent = m === "read"
+      ? "查阅模式：所有图表和条文全部展开，适合对照查找；每节仍可单独收起。"
+      : "速学模式：每节只显示记忆卡，点「展开详解」看完整图表和条文；在页面里搜索时会自动展开。";
+  }
+
+  /* 跳到折叠内容里的锚点时，先展开那一节 */
+  function reveal(hash){
+    if (!hash || hash.length < 2) return null;
+    var el = document.getElementById(decodeURIComponent(hash.slice(1))); if (!el) return null;
+    var b = el.closest ? el.closest(".sec-body") : null;
+    if (b && b.hasAttribute("hidden")) setBody(b.id.slice(5), true);
+    return el;
+  }
+
+  /* 遮住重点：先回想，再点开 */
+  function setHide(c, on){
+    c.classList.toggle("hide", on);
+    c.querySelector(".mc-hide").setAttribute("aria-pressed", on ? "true" : "false");
+    c.querySelector(".mc-hide").textContent = on ? "显示重点" : "遮住重点";
+    Array.prototype.forEach.call(c.querySelectorAll(".ck"), function(k){
+      k.classList.remove("on");
+      if (on){ k.setAttribute("tabindex", "0"); k.setAttribute("role", "button"); k.setAttribute("aria-label", "已遮住，点按显示"); }
+      else { k.removeAttribute("tabindex"); k.removeAttribute("role"); k.removeAttribute("aria-label"); }
+    });
+  }
+  var hideAll = document.getElementById("hideAll");
+  function syncHideAll(){
+    var all = cards.length && cards.every(function(c){ return c.classList.contains("hide"); });
+    hideAll.setAttribute("aria-pressed", all ? "true" : "false");
+    hideAll.textContent = all ? "显示全部重点" : "遮住全部重点";
+  }
+
+  /* 学习进度 */
+  var units = Array.prototype.slice.call(document.querySelectorAll(".unit"));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll("#navIn a"));
+  var mapLinks = Array.prototype.slice.call(document.querySelectorAll(".u-links a"));
+  function render(){
+    var set = {}; learned.forEach(function(id){ set[id] = 1; });
+    cards.forEach(function(c, i){
+      var on = !!set[ids[i]];
+      c.classList.toggle("done", on);
+      var b = c.querySelector(".mc-done");
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.textContent = on ? "已学会" : "本节已学会";
+    });
+    units.forEach(function(u){
+      var secs = (u.getAttribute("data-secs") || "").split(" ").filter(Boolean);
+      var n = secs.filter(function(id){ return set[id]; }).length;
+      u.querySelector(".u-prog").textContent = n + "/" + secs.length;
+      u.querySelector(".u-bar i").style.width = (secs.length ? n / secs.length * 100 : 0) + "%";
+      u.classList.toggle("all", secs.length > 0 && n === secs.length);
+    });
+    navLinks.concat(mapLinks).forEach(function(a){ a.classList.toggle("done", !!set[a.getAttribute("href").slice(1)]); });
+    document.getElementById("lpN").textContent = learned.length;
+    document.getElementById("navProg").style.width = (learned.length / ids.length * 100) + "%";
+  }
+
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    var k = t.closest(".mc.hide .ck"); if (k){ k.classList.toggle("on"); return; }
+    var btn = t.closest(".mc-more");
+    if (btn){
+      var id = btn.closest(".mc").getAttribute("data-sec"), open = btn.getAttribute("aria-expanded") !== "true";
+      setBody(id, open);
+      if (!open){ var r = cardOf[id].getBoundingClientRect(); if (r.top < 0) cardOf[id].scrollIntoView({block: "start"}); }
+      return;
+    }
+    btn = t.closest(".mc-done");
+    if (btn){
+      var sid = btn.closest(".mc").getAttribute("data-sec"), i = learned.indexOf(sid);
+      if (i < 0) learned.push(sid); else learned.splice(i, 1);
+      save(KEY, learned); render(); return;
+    }
+    btn = t.closest(".mc-hide");
+    if (btn){ var c = btn.closest(".mc"); setHide(c, !c.classList.contains("hide")); syncHideAll(); return; }
+    btn = t.closest(".lmode button"); if (btn){ setMode(btn.getAttribute("data-mode")); return; }
+    if (t.closest("#hideAll")){
+      var on = hideAll.getAttribute("aria-pressed") !== "true";
+      cards.forEach(function(c){ setHide(c, on); }); syncHideAll(); return;
+    }
+    if (t.closest("#lpReset")){
+      if (learned.length && window.confirm("清空本机记录的学习进度？")){ learned = []; save(KEY, learned); render(); }
+      return;
+    }
+    var a = t.closest('a[href^="#"]'); if (a) reveal(a.getAttribute("href"));
+  });
+  document.addEventListener("keydown", function(e){
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(".mc.hide .ck")){ e.preventDefault(); e.target.classList.toggle("on"); }
+  });
+  window.addEventListener("hashchange", function(){ reveal(location.hash); });
+
+  setMode(mode, true);
+  render(); syncHideAll();
+  var target = reveal(location.hash);
+  if (target) window.addEventListener("load", function(){ target.scrollIntoView(); });
+})();
+
+</script>
 <!-- portfolio: link back to the home page -->
 <a class="pf-back" href="../../"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2 3.5 6l4 4"/></svg>返回主页<span class="pf-note">个人作品展示</span></a>
 <style>
@@ -3224,9 +3535,13 @@ window.pfNav=function(){var a=document.querySelector('.pf-back'),nav=document.qu
   a.style.top='';var dt=parseFloat(getComputedStyle(a).top),h=a.offsetHeight,nr=nav.getBoundingClientRect();
   if(nr.bottom>0&&nr.top<dt+h){   /* 导航条和按钮上下重叠了 */
     a.style.top=Math.round(Math.min(dt,nr.top+(nr.height-h)/2))+'px';
-    inn.style.paddingLeft='';var need=a.getBoundingClientRect().right+10-inn.getBoundingClientRect().left;
+    inn.style.paddingLeft='';var need=a.getBoundingClientRect().right+18-inn.getBoundingClientRect().left;
     if(need>parseFloat(inn.dataset.pl))inn.style.paddingLeft=need+'px';
-  }else inn.style.paddingLeft='';
+    /* 横向滚动的导航标签在按钮后面渐隐，不从按钮左侧露出来 */
+    var edge=Math.round(a.getBoundingClientRect().right-inn.getBoundingClientRect().left);
+    var mk=edge>0?'linear-gradient(90deg,transparent '+(edge+2)+'px,#000 '+(edge+14)+'px)':'';
+    inn.style.webkitMaskImage=mk;inn.style.maskImage=mk;
+  }else{inn.style.paddingLeft='';inn.style.webkitMaskImage='';inn.style.maskImage='';}
 };</script>
 <script>/* 返回主页按钮：始终固定在左上角，滚动后收窄 */
 (function(){var r=document.documentElement,q=false;
