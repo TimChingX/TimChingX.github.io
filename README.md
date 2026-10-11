@@ -10,14 +10,14 @@
 | --- | --- |
 | [建发央玺花园 · 前期物业服务标准](https://timchingx.github.io/works/yangxi-garden/) | 网页演示，19 页；169 项服务条款（基础标准 56 项、增项服务 113 项），附可搜索的条款库 |
 | [工程维修台账与数据仪表盘](https://timchingx.github.io/works/repair-ledger/) | Excel 工单系统：入户和公区台账、师傅调度看板、总仪表盘、单元查询、入户维修评价表；页面截图和示例文件均为脱敏数据 |
-| [上海住宅物业法规速查](https://timchingx.github.io/works/shanghai-property-law/) | 网页速查：《民法典》物业相关 66 条与《上海市住宅物业管理规定》110 条（2026 修正）按主题对齐合并，附 2026 修订对照、关键数字速查、客服场景速查和自测卡片 |
+| [上海物业法规速学](https://timchingx.github.io/works/shanghai-property-law/) | 可视化图解，把枯燥的法律条文变成好记的要点：《民法典》物业相关 66 条与《上海市住宅物业管理规定》110 条（2026 修正）按主题对齐合并，附 2026 修订对照、关键数字速查、客服场景速查和自测卡片 |
 
 ## 目录
 
 - `index.html`：作品集首页
 - `works/yangxi-garden/`：演示页面及封面图
 - `works/repair-ledger/`：维修台账作品页、截图和脱敏示例文件
-- `works/shanghai-property-law/`：法规速查页面及封面图
+- `works/shanghai-property-law/`：法规速学页面及封面图
 - `assets/`：首页用到的字体（思源宋体子集）
 
 ## 添加新作品
