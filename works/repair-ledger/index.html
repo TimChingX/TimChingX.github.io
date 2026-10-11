@@ -43,11 +43,17 @@ img{display:block;max-width:100%;height:auto}
 .page{max-width:1040px;margin:0 auto;
   padding:calc(28px + env(safe-area-inset-top,0px)) 20px calc(32px + env(safe-area-inset-bottom,0px))}
 
-.back{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);text-decoration:none}
-.back:hover{color:var(--brass)}
-.back svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* 左上角返回主页按钮，三个作品页统一 */
+.pf-back{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:16px;z-index:25;display:inline-flex;align-items:center;gap:7px;
+  min-height:36px;padding:8px 14px 8px 10px;border-radius:999px;font:500 13px/1.2 var(--f-sans);color:var(--ink);text-decoration:none;
+  background:var(--paper);border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.06);opacity:.92;transition:opacity .2s,border-color .2s}
+.pf-back:hover,.pf-back:focus-visible{opacity:1;border-color:var(--brass)}
+.pf-back:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:999px}
+.pf-back svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pf-back .pf-note{margin-left:3px;padding-left:9px;border-left:1px solid var(--line);color:var(--muted)}
+@media print{.pf-back{display:none !important}}
 
-.head{margin-top:36px}
+.head{margin-top:56px}
 h1{margin:0;font-family:var(--f-serif);font-weight:600;font-size:clamp(34px,8.4vw,56px);line-height:1.2;letter-spacing:.02em}
 .lead{margin:18px 0 0;max-width:36em;font-size:17px}
 
@@ -95,7 +101,7 @@ figcaption{margin-top:10px;font-size:13px;color:var(--muted)}
 }
 @media (min-width:720px){
   .page{padding:48px 40px 48px}
-  .head{margin-top:48px}
+  .head{margin-top:52px}
   .overview{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:start}
   .overview .record{order:2}
   .pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
@@ -105,7 +111,7 @@ figcaption{margin-top:10px;font-size:13px;color:var(--muted)}
 </head>
 <body>
 <main class="page">
-  <a class="back" href="../../"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2 3.5 6l4 4"/></svg>程文辉的作品集</a>
+  <a class="pf-back" href="../../"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2 3.5 6l4 4"/></svg>返回主页<span class="pf-note">个人作品展示</span></a>
 
   <header class="head">
     <h1>工程维修台账<br>与数据仪表盘</h1>
