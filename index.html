@@ -107,21 +107,17 @@ img{display:block;max-width:100%;height:auto}
 @media (hover:hover){.keytag:hover{animation:sway 1.1s ease-in-out}}
 @keyframes sway{0%,100%{transform:rotate(0)}20%{transform:rotate(9deg)}45%{transform:rotate(-6deg)}70%{transform:rotate(3deg)}}
 
+/* 访客数：只显示一个数字的小胶囊 */
 .stats{position:fixed;z-index:30;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));
-  width:232px;padding:14px 16px 12px;background:var(--paper);color:var(--ink);
-  border:1px solid var(--line);border-radius:6px;box-shadow:0 18px 40px -20px rgba(20,30,25,.45);
-  font:400 14px/1.5 var(--f-sans);
-  opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility 0s .2s}
-.stats.open{opacity:1;visibility:visible;transform:none;transition:opacity .2s,transform .2s}
-.stats-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font-weight:600}
-.stats-x{width:32px;height:32px;margin:-8px -10px -8px 0;border:0;border-radius:4px;background:none;
-  color:var(--muted);font:400 20px/1 var(--f-sans);cursor:pointer}
-.stats-x:focus-visible{outline:2px solid var(--brass)}
-.stats dl{margin:0;border:1px solid var(--line);border-radius:4px}
-.stats dl div{padding:8px 10px}
-.stats dt{font-size:12px;color:var(--muted)}
-.stats dd{margin:2px 0 0;font-size:28px;line-height:1.25;font-weight:600;font-variant-numeric:tabular-nums}
-.stats p{margin:10px 0 0;font-size:12px;line-height:1.5;color:var(--muted)}
+  min-width:52px;padding:4px 14px;background:var(--paper);color:var(--brass);
+  border:1px solid var(--line);border-radius:999px;box-shadow:0 10px 24px -14px rgba(20,30,25,.5);
+  font:600 18px/1.2 var(--f-sans);font-variant-numeric:tabular-nums;text-align:center;cursor:default;
+  opacity:0;visibility:hidden;transform:translateY(6px) scale(.96);
+  transition:opacity .18s,transform .18s,visibility 0s .18s}
+.stats.open{opacity:1;visibility:visible;transform:none;transition:opacity .18s,transform .18s}
+/* 窄屏时停在作品卡和页脚线之间，不挡住钥匙牌 */
+@media (max-width:1279px){.stats{bottom:calc(71px + env(safe-area-inset-bottom,0px))}}
+@media (min-width:840px) and (max-width:1279px){.stats{bottom:83px;right:max(40px,calc(50vw - 500px))}}
 
 @media (min-width:560px) and (max-width:839px){
   .work{grid-template-columns:200px minmax(0,1fr)}
@@ -144,7 +140,7 @@ img{display:block;max-width:100%;height:auto}
   .figs dd{font-size:20px}
   .go{display:block;padding:0 18px 16px}
 }
-@media (prefers-reduced-motion:reduce){.keytag,.keytag.sway,.keytag:hover{animation:none}.work,.work:hover{transition:none;transform:none}}
+@media (prefers-reduced-motion:reduce){.keytag,.keytag.sway,.keytag:hover{animation:none}.work,.work:hover{transition:none;transform:none}.stats{transition:none;transform:none}}
 @media print{.keytag,.stats{display:none}}
 </style>
 </head>
@@ -209,13 +205,7 @@ img{display:block;max-width:100%;height:auto}
   </footer>
 </main>
 
-<div class="stats" id="stats" role="dialog" aria-label="访问统计">
-  <div class="stats-h"><span>访问统计</span><button type="button" class="stats-x" aria-label="关闭">×</button></div>
-  <dl>
-    <div><dt>访客</dt><dd id="vercount_value_site_uv">–</dd></div>
-  </dl>
-  <p>全站累计，含你自己的访问。同一浏览器一年内只算 1 个访客。</p>
-</div>
+<div class="stats" id="stats" aria-label="访客数"><span id="vercount_value_site_uv">–</span></div>
 
 <script>
 (function(){
@@ -246,9 +236,9 @@ img{display:block;max-width:100%;height:auto}
     if(buf==='666'){buf='';toggle()}
   });
 
-  panel.querySelector('.stats-x').addEventListener('click',function(){setOpen(false)});
+  // 点数字本身或页面其他地方都会收起
   document.addEventListener('click',function(e){
-    if(panel.classList.contains('open')&&!panel.contains(e.target)&&!tag.contains(e.target))setOpen(false);
+    if(panel.classList.contains('open')&&!tag.contains(e.target))setOpen(false);
   });
 })();
 </script>
