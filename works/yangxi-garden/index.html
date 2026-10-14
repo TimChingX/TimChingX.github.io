@@ -1154,14 +1154,28 @@ label.li-k{cursor:pointer}
     var x = e.clientX, w = window.innerWidth;
     if (x < w * 0.25) prev(); else next();
   });
-  var wheelAcc = 0, wheelLock = 0;
+  /* wheel / trackpad: one swipe turns one page.
+     A trackpad keeps sending scroll events for a second or two after the fingers lift (inertia),
+     so a page turn disarms the wheel until that stream stops (a pause), or until a new swipe
+     clearly starts on top of the fading inertia (the deltas grow again). */
+  var wheelAcc = 0, wheelArmed = true, wheelLast = 0, wheelHold = 0, wheelRecent = [];
   window.addEventListener('wheel', function(e){
     if (mode !== 'deck' || !lib.hidden) return;
     e.preventDefault();
     var now = Date.now();
-    if (now < wheelLock) return;
-    wheelAcc += e.deltaY + e.deltaX;
-    if (Math.abs(wheelAcc) > 60) { if (wheelAcc > 0) next(); else prev(); wheelAcc = 0; wheelLock = now + 700; }
+    var d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+    if (e.deltaMode === 1) d *= 32; else if (e.deltaMode === 2) d *= window.innerHeight;
+    var gap = now - wheelLast; wheelLast = now;
+    if (gap > 220) { wheelArmed = true; wheelAcc = 0; wheelRecent = []; }
+    wheelRecent.push(Math.abs(d)); if (wheelRecent.length > 6) wheelRecent.shift();
+    if (!wheelArmed && now > wheelHold && wheelRecent.length === 6) {
+      var older = (wheelRecent[0] + wheelRecent[1] + wheelRecent[2]) / 3, newer = (wheelRecent[3] + wheelRecent[4] + wheelRecent[5]) / 3;
+      if (newer > 8 && newer > older * 1.5) { wheelArmed = true; wheelAcc = 0; }
+    }
+    if (!wheelArmed) return;
+    if (wheelAcc && (wheelAcc > 0) !== (d > 0)) wheelAcc = 0;
+    wheelAcc += d;
+    if (Math.abs(wheelAcc) > 50) { if (wheelAcc > 0) next(); else prev(); wheelAcc = 0; wheelArmed = false; wheelHold = now + 750; }
   }, { passive: false });
   var tx = null, ty = null;
   stage.addEventListener('touchstart', function(e){ if (mode !== 'deck') return; tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
