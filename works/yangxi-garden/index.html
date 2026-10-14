@@ -17,6 +17,7 @@
   --f-cn:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Segoe UI","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC","Source Han Sans SC",sans-serif;
   --f-num:"Manrope Num",var(--f-cn);
   --ease:cubic-bezier(.2,.75,.2,1);
+  --page-ease:cubic-bezier(.72,0,.18,1);--page-t:.65s;
   --t-mega:340px;--t-hero:200px;--t-xl:120px;--t-h1:92px;--t-h2:56px;--t-h3:32px;--t-body:26px;--t-small:21px;--t-eye:22px;
   --pad-x:140px;--pad-top:104px;--pad-bot:116px;
 }
@@ -34,14 +35,24 @@ button{font:inherit;color:inherit}
 .viewport{position:fixed;inset:0;overflow:hidden;background:var(--night)}
 .stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform:translate(-50%,-50%) scale(var(--k,.5));transform-origin:center}
 .slide{position:absolute;inset:0;padding:var(--pad-top) var(--pad-x) var(--pad-bot);display:flex;flex-direction:column;overflow:hidden;
-  opacity:0;visibility:hidden;transform:scale(1.012);transition:opacity .55s ease,transform .8s var(--ease),visibility 0s linear .55s}
-.slide.active{opacity:1;visibility:visible;transform:none;transition:opacity .55s ease,transform .8s var(--ease),visibility 0s}
+  visibility:hidden;transform:translate3d(0,100%,0);transition:transform var(--page-t) var(--page-ease),visibility 0s linear var(--page-t)}
+/* vertical paging: pages still to come wait below the stage, pages already seen sit above it; the current one slides into place */
+.slide.past{transform:translate3d(0,-100%,0)}
+.slide.active{visibility:visible;transform:none;transition:transform var(--page-t) var(--page-ease),visibility 0s}
+.stage.instant .slide{transition:none !important}
+.deck .stage{overflow:hidden}
+.deck .viewport{touch-action:pinch-zoom;overscroll-behavior:none}
 .dark{background:radial-gradient(1500px 760px at 50% -12%,rgba(226,194,136,.15),rgba(226,194,136,0) 72%),var(--night);color:var(--on-night);--on-plus:#1a1712;--fg:var(--on-night);--muted:var(--on-night-muted);--line:var(--night-line);--raise:var(--night-raise);--acc:var(--gold);--seg-base:#7b766e;--seg-plus:var(--gold)}
 .light{background:var(--paper);color:var(--on-paper);--on-plus:#fff;--fg:var(--on-paper);--muted:var(--on-paper-muted);--line:var(--paper-line);--raise:var(--paper-raise);--acc:var(--gold-deep);--seg-base:#c9c5bc;--seg-plus:var(--gold-deep)}
 
 /* entrance motion: only while a slide is active */
 .slide.active [data-a]{animation:rise .9s var(--ease) both;animation-delay:calc(var(--d,0) * 90ms + 120ms)}
 @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+/* while paging, content rides in with the page and settles with a slight lag, so a page never arrives empty */
+.deck .stage.paging .slide.active [data-a]{animation:settle .9s cubic-bezier(.3,.6,.2,1) both;animation-delay:calc(var(--d,0) * 35ms)}
+.deck .stage.paging.back .slide.active [data-a]{animation-name:settle-back}
+@keyframes settle{from{transform:translateY(90px)}to{transform:none}}
+@keyframes settle-back{from{transform:translateY(-90px)}to{transform:none}}
 .slide.active .reveal{animation:reveal 1.2s var(--ease) both;animation-delay:calc(var(--d,0) * 90ms + 300ms)}
 @keyframes reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 
@@ -315,8 +326,16 @@ button{font:inherit;color:inherit}
 /* ---------- HUD ---------- */
 .hud{position:fixed;left:0;right:0;bottom:0;z-index:20;pointer-events:none;--hud-fg:#f5f5f7;--hud-bg:rgba(40,40,40,.72);--hud-line:rgba(255,255,255,.14)}
 .on-light .hud{--hud-fg:#1d1d1f;--hud-bg:rgba(255,255,255,.8);--hud-line:rgba(0,0,0,.1)}
-.progress{position:absolute;left:0;bottom:0;height:3px;width:100%;background:transparent}
-.progress i{display:block;height:100%;width:0;background:var(--gold);transition:width .5s var(--ease)}
+.rail{position:fixed;right:calc(14px + env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;pointer-events:auto}
+.rail button{position:relative;display:block;width:26px;height:18px;border:0;padding:0;background:transparent;cursor:pointer;color:var(--hud-fg)}
+.rail button::before{content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:3px;background:currentColor;opacity:.3;
+  transition:height .5s var(--ease),margin .5s var(--ease),opacity .25s,background-color .25s}
+.rail button:hover::before{opacity:.75}
+.rail button[aria-current="page"]::before{height:20px;margin-top:-10px;background:var(--gold);opacity:1}
+.rail button::after{content:attr(data-t);position:absolute;right:32px;top:50%;transform:translate(6px,-50%);white-space:nowrap;font-size:12px;line-height:1;padding:7px 11px;border-radius:999px;
+  background:var(--hud-bg);border:1px solid var(--hud-line);color:var(--hud-fg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:opacity .2s,transform .25s var(--ease)}
+.rail button:hover::after,.rail button:focus-visible::after{opacity:1;transform:translate(0,-50%)}
+.rail button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;border-radius:6px}
 .pg{position:absolute;right:22px;bottom:16px;font-family:var(--f-num);font-size:13px;letter-spacing:.08em;color:var(--hud-fg);opacity:.45}
 .ctrls{position:absolute;left:50%;bottom:22px;transform:translate(-50%,8px);display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;
   background:var(--hud-bg);border:1px solid var(--hud-line);color:var(--hud-fg);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
@@ -517,7 +536,9 @@ label.li-k{cursor:pointer}
   .tabs button{flex:none}
 }
 @media (prefers-reduced-motion:reduce){
-  .slide,.slide.active{transition:opacity .2s ease,visibility 0s}
+  .deck .slide,.deck .slide.past,.deck .slide.active{transform:none}
+  .deck .slide{opacity:0;transition:opacity .25s ease,visibility 0s linear .25s}
+  .deck .slide.active{opacity:1;transition:opacity .25s ease,visibility 0s}
   .slide.active [data-a],.slide.active .reveal,.slide.active .dots i,.slide.active .sheen,.cover-glow{animation:none !important}
 }
 
@@ -529,6 +550,7 @@ label.li-k{cursor:pointer}
   .viewport{position:static;overflow:visible}
   .stage{position:static;transform:none;width:1920px;height:auto}
   .slide{position:relative;width:1920px;height:1080px;opacity:1;visibility:visible;transform:none;transition:none;break-after:page;page-break-after:always}
+  .slide,.slide.past,.slide.active{opacity:1 !important;visibility:visible !important;transform:none !important}
   .slide [data-a],.slide .reveal,.dots i,.cover-glow{animation:none !important;opacity:1 !important;clip-path:none !important}
   .hud,.lib,.fab,.libbtn{display:none !important}
   .gold-txt{background:none !important;color:#d9ba82 !important;-webkit-text-fill-color:#d9ba82 !important}
@@ -958,16 +980,16 @@ label.li-k{cursor:pointer}
 </div></div>
 
 <div class="hud" id="hud">
-  <div class="progress"><i id="prog"></i></div>
+  <nav class="rail" id="rail" aria-label="页面导航"></nav>
   <span class="pg" id="pg">01 / 19</span>
   <div class="ctrls" role="toolbar" aria-label="演示控制">
-    <button type="button" id="prev" aria-label="上一页"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5"/></svg></button>
-    <button type="button" id="next" aria-label="下一页"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
+    <button type="button" id="prev" aria-label="上一页"><svg viewBox="0 0 16 16"><path d="M3 10 8 5l5 5"/></svg></button>
+    <button type="button" id="next" aria-label="下一页"><svg viewBox="0 0 16 16"><path d="m3 6 5 5 5-5"/></svg></button>
     <span class="sep"></span>
     <button type="button" data-lib="all">条款库</button>
     <button type="button" id="fs">全屏</button>
     <span class="sep"></span>
-    <span class="hint">← → 翻页 · F 全屏 · L 条款库</span>
+    <span class="hint">↑ ↓ 翻页 · F 全屏 · L 条款库</span>
   </div>
 </div>
 <button class="fab" type="button" data-lib="all">条款库</button>
@@ -1005,7 +1027,7 @@ label.li-k{cursor:pointer}
   var app = document.getElementById('app'), stage = document.getElementById('stage');
   var slides = Array.prototype.slice.call(stage.querySelectorAll('.slide'));
   var N = slides.length, cur = -1, mode = '';
-  var hud = document.getElementById('hud'), pg = document.getElementById('pg'), prog = document.getElementById('prog');
+  var hud = document.getElementById('hud'), pg = document.getElementById('pg'), rail = document.getElementById('rail');
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   function pad(n){ return (n < 10 ? '0' : '') + n; }
 
@@ -1030,16 +1052,29 @@ label.li-k{cursor:pointer}
     var k = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
     stage.style.setProperty('--k', k);
   }
-  function go(i){
+  /* page rail: one mark per page, hover shows the page title */
+  var marks = slides.map(function(s, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('data-t', pad(i + 1) + '　' + (s.getAttribute('data-title') || ''));
+    b.setAttribute('aria-label', '第 ' + (i + 1) + ' 页：' + (s.getAttribute('data-title') || ''));
+    b.addEventListener('click', function(){ go(i); });
+    rail.appendChild(b);
+    return b;
+  });
+  function go(i, instant){
     i = Math.max(0, Math.min(N - 1, i));
     if (i === cur) return;
-    if (cur >= 0) slides[cur].classList.remove('active');
+    stage.classList.toggle('back', cur >= 0 && i < cur);
+    stage.classList.toggle('paging', !instant);
+    if (instant) stage.classList.add('instant');
+    slides.forEach(function(s, j){ s.classList.toggle('past', j < i); s.classList.toggle('active', j === i); });
+    if (instant) { void stage.offsetWidth; stage.classList.remove('instant'); }
     cur = i;
     var s = slides[cur];
-    s.classList.add('active');
     countUp(s);
     pg.textContent = pad(cur + 1) + ' / ' + pad(N);
-    prog.style.width = ((cur + 1) / N * 100) + '%';
+    marks.forEach(function(b, j){ if (j === cur) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
     app.classList.toggle('on-light', s.classList.contains('light'));
     try { history.replaceState(null, '', '#p' + (cur + 1)); } catch (e) {}
   }
@@ -1085,11 +1120,12 @@ label.li-k{cursor:pointer}
         keep = h ? parseInt(h, 10) - 1 : 0;
       }
       stopScroll();
-      slides.forEach(function(s){ s.classList.remove('active', 'pre'); });
-      cur = -1; fit(); go(keep);
+      slides.forEach(function(s){ s.classList.remove('active', 'pre', 'past'); });
+      stage.classList.remove('back', 'paging');
+      cur = -1; fit(); go(keep, true);
     } else {
       var at = cur;
-      slides.forEach(function(s){ s.classList.remove('active'); });
+      slides.forEach(function(s){ s.classList.remove('active', 'past'); });
       if (at > 0) slides[at].scrollIntoView();
       startScroll();
     }
@@ -1105,6 +1141,7 @@ label.li-k{cursor:pointer}
     if (mode !== 'deck') return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     var k = e.key;
+    if ((k === 'Enter' || k === ' ') && e.target && e.target.closest && e.target.closest('button, a')) return;
     if (k === 'ArrowRight' || k === 'ArrowDown' || k === 'PageDown' || k === ' ' || k === 'Enter') { next(); e.preventDefault(); }
     else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp' || k === 'Backspace') { prev(); e.preventDefault(); }
     else if (k === 'Home') { go(0); e.preventDefault(); }
@@ -1126,14 +1163,16 @@ label.li-k{cursor:pointer}
     var now = Date.now();
     if (now < wheelLock) return;
     wheelAcc += e.deltaY + e.deltaX;
-    if (Math.abs(wheelAcc) > 60) { if (wheelAcc > 0) next(); else prev(); wheelAcc = 0; wheelLock = now + 750; }
+    if (Math.abs(wheelAcc) > 60) { if (wheelAcc > 0) next(); else prev(); wheelAcc = 0; wheelLock = now + 700; }
   }, { passive: false });
   var tx = null, ty = null;
   stage.addEventListener('touchstart', function(e){ if (mode !== 'deck') return; tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
   stage.addEventListener('touchend', function(e){
     if (mode !== 'deck' || tx === null) return;
     var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) next(); else prev(); }
+    var ax = Math.abs(dx), ay = Math.abs(dy);
+    if (ay > 40 && ay >= ax) { if (dy < 0) next(); else prev(); }   /* swipe up = next page */
+    else if (ax > 40) { if (dx < 0) next(); else prev(); }
     tx = ty = null;
   });
   document.getElementById('next').addEventListener('click', next);
