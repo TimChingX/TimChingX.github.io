@@ -1140,19 +1140,11 @@ label.li-k{cursor:pointer}
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     var k = e.key;
     if ((k === 'Enter' || k === ' ') && e.target && e.target.closest && e.target.closest('button, a')) return;
-    if (k === 'ArrowRight' || k === 'ArrowDown' || k === 'PageDown' || k === ' ' || k === 'Enter') { next(); e.preventDefault(); }
-    else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp' || k === 'Backspace') { prev(); e.preventDefault(); }
+    if (k === 'ArrowDown' || k === 'PageDown') { next(); e.preventDefault(); }
+    else if (k === 'ArrowUp' || k === 'PageUp') { prev(); e.preventDefault(); }
     else if (k === 'Home') { go(0); e.preventDefault(); }
     else if (k === 'End') { go(N - 1); e.preventDefault(); }
     else if (k === 'f' || k === 'F') { toggleFs(); }
-  });
-  stage.addEventListener('click', function(e){
-    if (mode !== 'deck') return;
-    if (e.target.closest('button, a, input')) return;
-    var sel = window.getSelection && String(window.getSelection());
-    if (sel) return;
-    var x = e.clientX, w = window.innerWidth;
-    if (x < w * 0.25) prev(); else next();
   });
   /* wheel / trackpad: one swipe turns one page.
      A trackpad keeps sending scroll events for a second or two after the fingers lift (inertia),
@@ -1163,7 +1155,8 @@ label.li-k{cursor:pointer}
     if (mode !== 'deck' || !lib.hidden) return;
     e.preventDefault();
     var now = Date.now();
-    var d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;   /* sideways swipe: never turns a page */
+    var d = e.deltaY;
     if (e.deltaMode === 1) d *= 32; else if (e.deltaMode === 2) d *= window.innerHeight;
     var gap = now - wheelLast; wheelLast = now;
     if (gap > 220) { wheelArmed = true; wheelAcc = 0; wheelRecent = []; }
@@ -1183,8 +1176,7 @@ label.li-k{cursor:pointer}
     if (mode !== 'deck' || tx === null) return;
     var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
     var ax = Math.abs(dx), ay = Math.abs(dy);
-    if (ay > 40 && ay >= ax) { if (dy < 0) next(); else prev(); }   /* swipe up = next page */
-    else if (ax > 40) { if (dx < 0) next(); else prev(); }
+    if (ay > 40 && ay >= ax) { if (dy < 0) next(); else prev(); }   /* swipe up = next page; sideways does nothing */
     tx = ty = null;
   });
   document.getElementById('next').addEventListener('click', next);
