@@ -313,12 +313,11 @@ button{font:inherit;color:inherit}
 .gkey .ph{grid-row:1 / span 2;aspect-ratio:auto;align-self:stretch;min-height:0}
 .gkey .metrics{margin-top:48px}
 
-/* 18 · basis: numbered columns, the four-character principle as the title */
-.basis{counter-reset:basis}
-.basis li{counter-increment:basis;justify-content:flex-start;gap:0;padding:44px 40px 46px}
-.basis li::before{content:counter(basis,decimal-leading-zero);font-family:var(--f-num);font-size:22px;font-weight:600;color:var(--acc);letter-spacing:.12em}
-.basis .tag{margin-top:auto;font-size:46px;color:var(--fg);letter-spacing:.06em;line-height:1.2}
-.basis p{font-size:25px;color:var(--muted);line-height:1.65;margin-top:22px}
+/* 18 · basis: four principle cards sized to their text, centred in the space under the headline */
+.basis{flex:none;margin:auto 0}
+.basis li{justify-content:flex-start;gap:0;padding:56px 40px 60px}
+.basis .tag{font-size:52px;color:var(--fg);letter-spacing:.06em;line-height:1.2}
+.basis p{font-size:25px;color:var(--muted);line-height:1.7;margin-top:30px}
 
 /* 19 · closing: date on its own line under the signatories */
 .closing .cover-foot{flex-direction:column;align-items:center;gap:14px}
@@ -516,8 +515,7 @@ label.li-k{cursor:pointer}
   .scroll .mkey .metric .v.cn{font-size:clamp(26px,7.5vw,36px)}
   .scroll .mkey .metric .l{font-size:13.5px}
   .scroll .svc .fgrid{grid-template-rows:none;row-gap:22px;margin-top:0}
-  .scroll .basis li::before{font-size:12px}
-  .scroll .basis .tag{font-size:20px;margin-top:4px}
+  .scroll .basis .tag{font-size:20px;margin-top:0}
   .scroll .basis p{margin-top:2px}
   .scroll .hud{display:none}
   .scroll .fab{display:inline-flex;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.18);
