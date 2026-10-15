@@ -319,8 +319,10 @@ button{font:inherit;color:inherit}
 .basis .tag{font-size:52px;color:var(--fg);letter-spacing:.06em;line-height:1.2}
 .basis p{font-size:25px;color:var(--muted);line-height:1.7;margin-top:30px}
 
-/* 19 · closing: date on its own line under the signatories */
-.closing .cover-foot{flex-direction:column;align-items:center;gap:14px}
+/* 19 · closing: the signature sits in the flow under the button (clear of the control bar), set off by a short gold hairline; the date lines up under the company names */
+.closing .cover-foot{position:static;margin-top:72px;flex-direction:column;align-items:center;gap:0}
+.closing .cover-foot::before{content:"";width:56px;height:1px;background:rgba(214,182,124,.45);margin-bottom:36px}
+.closing .cover-foot .org .date{margin-top:8px}
 
 /* ---------- HUD ---------- */
 .hud{position:fixed;left:0;right:0;bottom:0;z-index:20;pointer-events:none;--hud-fg:#f5f5f7;--hud-bg:rgba(40,40,40,.72);--hud-line:rgba(255,255,255,.14)}
@@ -502,6 +504,8 @@ label.li-k{cursor:pointer}
   .scroll .closing{min-height:80vh}
   .scroll .closing .libbtn{font-size:15px;padding:12px 22px;margin-top:36px}
   .scroll .closing .cover-foot{flex-direction:column;gap:6px}
+  .scroll .closing .cover-foot::before{width:32px;margin-bottom:14px}
+  .scroll .closing .cover-foot .org .date{margin-top:4px}
   .scroll .tier.base{padding-right:0}
   .scroll .tier.plus{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:32px}
   .scroll .mkey .count{display:block;padding-top:24px;align-self:stretch}
@@ -972,7 +976,7 @@ label.li-k{cursor:pointer}
   <h2 class="h-xl gold-txt" data-a style="--d:1;margin-top:36px"><span class="sheen">以玺为证</span></h2>
   <p class="lead" data-a style="--d:2"><span class="sheen soft">169 项服务条款，说到、做到、查得到。</span></p>
   <button class="libbtn" type="button" data-lib="all" data-a style="--d:3">查看全部 169 项条款</button>
-  <footer class="cover-foot" data-a style="--d:5"><span class="org"><span class="lbl">服务单位：</span><span>建发物业服务集团有限公司</span><span>广州怡家园物业管理有限公司</span></span><span>二〇二六年八月</span></footer>
+  <footer class="cover-foot" data-a style="--d:5"><span class="org"><span class="lbl">服务单位：</span><span>建发物业服务集团有限公司</span><span>广州怡家园物业管理有限公司</span><span class="date">二〇二六年八月</span></span></footer>
 </section>
 
 </div></div>
