@@ -96,7 +96,10 @@ img{display:block;max-width:100%;height:auto}
   display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px}
 
 /* 钥匙牌：页脚角落的隐形开关，图标不显示，位置和点击区域保留 */
-.foot-r{display:inline-flex;align-items:center;gap:10px}
+.foot-r{display:inline-flex;align-items:center;gap:10px;margin-left:auto}
+.mail{margin-right:6px;white-space:nowrap}
+/* 窄屏：邮箱和版权单独一行，靠右 */
+@media (max-width:559px){.foot-r{flex-basis:100%;justify-content:flex-end}}
 .keytag{display:inline-block;width:18px;height:27px;color:var(--brass);opacity:0;cursor:default;
   transform-origin:50% 4px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
   -webkit-user-select:none;user-select:none}
@@ -118,6 +121,8 @@ img{display:block;max-width:100%;height:auto}
 /* 窄屏时停在作品卡和页脚线之间，不挡住钥匙牌 */
 @media (max-width:1279px){.stats{bottom:calc(71px + env(safe-area-inset-bottom,0px))}}
 @media (min-width:840px) and (max-width:1279px){.stats{bottom:83px;right:max(40px,calc(50vw - 500px))}}
+/* 窄屏页脚占两行（邮箱那行），胶囊跟着上移一行 */
+@media (max-width:559px){.stats{bottom:calc(98px + env(safe-area-inset-bottom,0px))}}
 
 @media (min-width:560px) and (max-width:839px){
   .work{grid-template-columns:200px minmax(0,1fr)}
@@ -201,7 +206,7 @@ img{display:block;max-width:100%;height:auto}
 
   <footer class="foot">
     <span>个人作品展示页，非企业官方网站。</span>
-    <span class="foot-r">© 2026 程文辉<span class="keytag" id="keytag" aria-hidden="true"><svg viewBox="0 0 24 36"><rect class="body" x="4" y="10" width="16" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><circle class="hole" cx="12" cy="14" r="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M12 14A6 6 0 1 1 17.2 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 29V24.5L12 21l4.5 3.5V29" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span></span>
+    <span class="foot-r"><a class="mail" href="mailto:timchingx@gmail.com">timchingx@gmail.com</a>© 2026 程文辉<span class="keytag" id="keytag" aria-hidden="true"><svg viewBox="0 0 24 36"><rect class="body" x="4" y="10" width="16" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><circle class="hole" cx="12" cy="14" r="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M12 14A6 6 0 1 1 17.2 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 29V24.5L12 21l4.5 3.5V29" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span></span>
   </footer>
 </main>
 
