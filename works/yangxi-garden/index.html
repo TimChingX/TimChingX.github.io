@@ -590,20 +590,12 @@ input,textarea{-webkit-user-select:text;user-select:text;-webkit-touch-callout:d
   .slide.active [data-a],.slide.active .reveal,.slide.active .dots i,.slide.active .sheen,.cover-glow{animation:none !important}
 }
 
-/* ---------- print / Save as PDF (open the file in Chrome, Ctrl+P) ---------- */
+/* ---------- 禁止打印：打印或另存为 PDF 时只输出一行提示，不输出作品内容 ---------- */
 @media print{
-  @page{size:1920px 1080px;margin:0}
-  html,body{width:1920px;background:#000}
-  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .viewport{position:static;overflow:visible}
-  .stage{position:static;transform:none;width:1920px;height:auto}
-  .slide{position:relative;width:1920px;height:1080px;opacity:1;visibility:visible;transform:none;transition:none;break-after:page;page-break-after:always}
-  .slide,.slide.past,.slide.active{opacity:1 !important;visibility:visible !important;transform:none !important}
-  .slide [data-a],.slide .reveal,.dots i,.cover-glow{animation:none !important;opacity:1 !important;clip-path:none !important}
-  .hud,.lib,.fab,.libbtn{display:none !important}
-  .gold-txt{background:none !important;color:#d9ba82 !important;-webkit-text-fill-color:#d9ba82 !important}
-  .light .gold-txt{color:var(--gold-deep) !important;-webkit-text-fill-color:var(--gold-deep) !important}
-  .sheen{animation:none !important;background:none !important;color:inherit !important;-webkit-text-fill-color:inherit !important}
+  @page{size:A4;margin:20mm}
+  html,body{width:auto !important;height:auto !important;background:#fff !important;overflow:visible !important}
+  body > *{display:none !important}
+  body::before{content:"本作品仅供在线浏览，不提供打印或导出。";display:block;padding-top:40mm;text-align:center;font-family:var(--f-cn),sans-serif;font-size:16pt;color:#333}
 }
 </style>
 </head>
@@ -1331,6 +1323,11 @@ input,textarea{-webkit-user-select:text;user-select:text;-webkit-touch-callout:d
   ['contextmenu', 'selectstart', 'dragstart'].forEach(function(t){
     document.addEventListener(t, function(e){ if (!inField(e)) e.preventDefault(); });
   });
+  /* 禁止打印：拦截 ⌘/Ctrl+P（从浏览器菜单打印时，打印样式只输出一行提示） */
+  document.addEventListener('keydown', function(e){
+    if ((e.metaKey || e.ctrlKey) && (e.key === 'p' || e.key === 'P')) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+  window.print = function(){};
   /* scroll-spy: in the 全部 view, light up the tab of the module being read */
   var spyQueued = false;
   function spy(){
