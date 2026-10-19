@@ -433,6 +433,9 @@ label.li-k{cursor:pointer}
 .cl mark{background:#f5df9e;color:inherit;border-radius:2px}
 .lib-empty{color:var(--muted);font-size:15px;padding:12px 0}
 .lib-none{max-width:1400px;margin:60px auto;text-align:center;color:var(--muted)}
+/* 条款库内文字不可选中、不可复制（搜索框除外，保证仍可输入） */
+.lib{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.lib input{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
 
 /* ---------- reading mode: phones and portrait screens ---------- */
 @media screen{
@@ -1312,6 +1315,18 @@ label.li-k{cursor:pointer}
   });
   document.getElementById('libClose').addEventListener('click', closeLib);
   libq.addEventListener('input', draw);
+  /* 条款库内容禁止复制：拦截复制、剪切、右键菜单、选中与拖拽（搜索框除外） */
+  function inSearch(e){ return e.target === libq; }
+  ['copy', 'cut'].forEach(function(t){
+    document.addEventListener(t, function(e){
+      if (lib.hidden || inSearch(e)) return;
+      e.preventDefault();
+      if (e.clipboardData) e.clipboardData.setData('text/plain', '');
+    });
+  });
+  ['contextmenu', 'selectstart', 'dragstart'].forEach(function(t){
+    lib.addEventListener(t, function(e){ if (!inSearch(e)) e.preventDefault(); });
+  });
   /* scroll-spy: in the 全部 view, light up the tab of the module being read */
   var spyQueued = false;
   function spy(){
