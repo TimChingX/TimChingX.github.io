@@ -56,91 +56,65 @@ img{display:block;max-width:100%;height:auto}
 .works h2{margin:0 0 16px;font-family:var(--f-serif);font-weight:600;font-size:20px;line-height:1.3;
   padding-bottom:10px;border-bottom:1px solid var(--line)}
 
-/* 作品卡：手机和平板上一张占一行，从上往下排；宽屏（≥840px）所有作品排在同一行，顶部对齐、等高。
-   新增作品会自动排进去；卡片里的字号和布局按卡片自身宽度变化（容器查询）。 */
-.list{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
-.work{position:relative;display:flex;flex-direction:column;container:work/inline-size;
+/* 作品卡：每项作品占一行，左边封面、右边标题和数字，三项作品一屏看完不用翻。
+   手机：封面 | 标题，底下一排三格数字；平板（卡片宽 ≥480px）再加两行简介；
+   电脑（≥840px）：封面 | 标题、简介、入口 | 竖排三格数字。
+   封面会裁得比 16:9 窄，主体不在正中的封面在 img 上用 object-position 指定保留哪边。 */
+.list{display:grid;gap:10px}
+.work{position:relative;display:grid;grid-template-columns:40% minmax(0,1fr);grid-template-rows:1fr auto;
+  container:work/inline-size;
   background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden;
   transition:border-color .2s,box-shadow .2s,transform .2s}
 .work:hover{border-color:var(--brass);transform:translateY(-2px);
   box-shadow:0 18px 36px -24px rgba(20,30,25,.5)}
 .work:focus-within{outline:2px solid var(--brass);outline-offset:3px}
-.thumb{background:#000;border-bottom:1px solid var(--line)}
-.thumb img{width:100%;aspect-ratio:16/9;object-fit:cover}
-.head{padding:8px 8px 0}
-.work h3{margin:0;font-family:var(--f-serif);font-weight:600;font-size:clamp(12px,9cqi,18px);line-height:1.45;letter-spacing:.02em;text-wrap:balance}
+.thumb{position:relative;grid-row:1 / 3;min-height:calc(40cqi * 9 / 16);background:#000;border-right:1px solid var(--line)}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.head{padding:10px 12px 8px}
+.work h3{margin:0;font-family:var(--f-serif);font-weight:600;font-size:16px;line-height:1.4;letter-spacing:.02em;text-wrap:balance}
 .work h3 a{color:inherit;text-decoration:none}
 .work h3 a:focus-visible{outline:0}
 .work h3 a::after{content:"";position:absolute;inset:0;z-index:1}   /* 整张卡片都可点 */
-.desc{display:none;margin:6px 0 0;font-size:13px;line-height:1.7;color:var(--muted);
-  -webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.desc{display:none;margin:4px 0 0;font-size:13px;line-height:1.7;color:var(--muted);
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .go{display:none;font-size:13px;font-weight:600;color:var(--brass)}
 
-/* 登记表式的数字：窄卡片一行一项，卡片够宽时三格并排 */
-.figs{margin:auto 0 0;padding-top:8px}
-.figs div{display:flex;justify-content:space-between;align-items:baseline;gap:6px;
-  padding:4px 8px;border-top:1px solid var(--line)}
+/* 登记表式的数字：三格并排，数字在上、名称在下 */
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;border-top:1px solid var(--line)}
+.figs div{display:flex;flex-direction:column-reverse;padding:5px 4px 6px 12px}
+.figs div + div{border-left:1px solid var(--line)}
 .figs dt{font-size:11px;line-height:1.4;color:var(--muted);white-space:nowrap}
-.figs dd{margin:0;font-size:13px;line-height:1.3;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.figs dd{margin:0;font-size:15px;line-height:1.3;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
 .figs small{margin-left:2px;font-size:11px;font-weight:400;color:var(--muted)}
 
-/* 很窄的卡片（如 320 宽的手机）：数字在上、名称在下 */
-@container work (width < 104px){
-  .figs div{flex-direction:column-reverse;align-items:flex-start;gap:0}
-}
-@container work (width < 150px){
-  .head{padding:8px 6px 0}
-  .work h3{letter-spacing:0}
-}
-@container work (width >= 150px){
-  .head{padding:10px 12px 0}
-  .figs div{padding:5px 12px}
-  .figs dt{font-size:12px}
-  .figs dd{font-size:15px}
-  .figs small{font-size:12px}
-}
-@container work (width >= 220px){
-  .go{display:block;padding:8px 12px 12px}
-}
-@container work (width >= 240px){
+/* 平板：卡片宽，右边补上两行简介 */
+@container work (width >= 480px){
   .desc{display:-webkit-box}
 }
-@container work (width >= 280px){
-  .head{padding:14px 16px 0}
-  .desc{font-size:14px}
-  .figs{display:grid;grid-template-columns:repeat(3,1fr);padding-top:12px}
-  .figs div{flex-direction:column-reverse;justify-content:flex-end;align-items:stretch;gap:0;padding:8px 12px 10px}
-  .figs div + div{border-left:1px solid var(--line)}
-  .figs dd{font-size:17px}
-  .go{padding:2px 16px 14px}
-}
 
-/* 手机和平板：一张作品占一行，左边封面、右边标题和数字，三项作品一屏看完不用翻。
-   封面在这里会裁得比 16:9 窄，主体不在正中的封面在 img 上用 object-position 指定保留哪边。 */
-@media (max-width:839px){
-  .list{gap:10px}
-  .work{display:grid;grid-template-columns:40% minmax(0,1fr);grid-template-rows:1fr auto}
-  .thumb{position:relative;grid-row:1 / 3;min-height:calc(40cqi * 9 / 16);border-bottom:0;border-right:1px solid var(--line)}
-  .thumb img{position:absolute;inset:0;height:100%;aspect-ratio:auto}
-  .head{padding:10px 12px 8px}
-  .work h3{font-size:16px;line-height:1.4}
-  .desc,.go{display:none}
-  .figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:0;border-top:1px solid var(--line)}
-  .figs div{flex-direction:column-reverse;justify-content:flex-end;align-items:stretch;gap:0;padding:5px 4px 6px 12px;border-top:0}
-  .figs div + div{border-left:1px solid var(--line)}
-  .figs dt{font-size:11px}
-  .figs dd{font-size:15px}
-  .figs small{font-size:11px}
-  /* 平板上卡片宽，右边空间够，补上两行简介 */
-  @container work (width >= 480px){
-    .desc{display:-webkit-box;-webkit-line-clamp:2;font-size:13px}
-  }
-}
-/* 很窄的手机（如 320 宽）：封面再窄一点，给数字留位置 */
+/* 很窄的手机（如 320 宽）：封面再窄一点，给数字留位置；标题字距收紧 */
 @media (max-width:359px){
   .work{grid-template-columns:36% minmax(0,1fr)}
   .thumb{min-height:calc(36cqi * 9 / 16)}
   .figs div{padding-left:10px}
+  .work h3{letter-spacing:0}
+}
+
+/* 电脑：封面 | 标题（一行）、两行简介、入口 | 竖排三格数字，名称在左、数字在右 */
+@media (min-width:840px){
+  .work{grid-template-columns:240px minmax(0,1fr) 172px}
+  .thumb{min-height:135px}
+  .head{grid-column:2;grid-row:1;padding:14px 20px 4px}
+  .work h3{font-size:19px}
+  .work h3 br{display:none}
+  .desc{display:-webkit-box;font-size:13.5px}
+  .go{display:block;grid-column:2;grid-row:2;padding:0 20px 12px}
+  .figs{grid-column:3;grid-row:1 / 3;grid-template-columns:none;grid-template-rows:repeat(3,1fr);border-top:0;border-left:1px solid var(--line)}
+  .figs div{flex-direction:row;justify-content:space-between;align-items:center;gap:8px;padding:0 16px}
+  .figs div + div{border-left:0;border-top:1px solid var(--line)}
+  .figs dt{font-size:12px}
+  .figs dd{font-size:17px}
+  .figs small{font-size:12px}
 }
 
 .foot{position:relative;margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);
@@ -172,16 +146,11 @@ img{display:block;max-width:100%;height:auto}
 /* 窄屏时停在作品卡和页脚线之间、靠右，不挡住钥匙牌；跟着页脚走，页面翻不翻都在同一位置 */
 @media (max-width:1279px){.stats{position:absolute;right:0;bottom:calc(100% + 4px)}}
 
-/* 很窄的手机（如 320 宽）：标题字距收紧 */
-@media (max-width:359px){
-  .work h3{letter-spacing:0}
-}
 @media (min-width:560px){
-  .list{gap:20px}
+  .list{gap:14px}
 }
 @media (min-width:840px){
-  .page{padding:64px 40px 40px}
-  .list{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:24px}
+  .page{padding:48px 40px 24px}
 }
 @media (prefers-reduced-motion:reduce){.keytag,.keytag.sway,.keytag:hover{animation:none}.work,.work:hover{transition:none;transform:none}.stats{transition:none;transform:none}}
 @media print{.keytag,.stats{display:none}}
