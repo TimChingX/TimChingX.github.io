@@ -1,0 +1,1348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>物业费收缴手册</title>
+<meta name="description" content="程文辉的作品：把《物业费收缴规范与技巧手册》做成可交互的学习网页，10 节微课配图解和小测，闪卡间隔复习，附催费函生成、法条速查和晨会行动清单。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物业费收缴 · 互动学习手册">
+<meta property="og:description" content="10 节微课、32 张闪卡、41 道情境题，附催费函生成、法条速查和晨会行动清单。">
+<meta property="og:image" content="https://timchingx.github.io/works/fee-collection/cover.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231B231F'/%3E%3Cpath d='M14 50V30L32 16l18 14v20' fill='none' stroke='%23D6B67C' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: sticky ledger header · course map home · 720px reading column with a lesson rail on wide screens */
+:root{
+  --paper:#F1F4F5; --surface:#FFFFFF; --surface-2:#E7ECEF;
+  --ink:#14202A; --ink-2:#4E5D69; --ink-3:#7A8893; --rule:#D5DDE2;
+  --accent:#1E4C8A; --accent-ink:#FFFFFF; --accent-soft:#E2EAF5;
+  --seal:#BE3A2C; --seal-soft:#F7E3DF; --seal-ink:#FFFFFF;
+  --ok:#2C7650; --ok-soft:#DFF0E6;
+  --warn:#9A630F; --warn-soft:#FAEFD8;
+  --shadow:0 1px 2px rgba(20,32,42,.06),0 6px 20px rgba(20,32,42,.07);
+  --f-display:"Noto Serif SC","Noto Serif CJK SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;
+  --f-body:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Segoe UI",Roboto,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1318; --surface:#151E25; --surface-2:#1D2932;
+    --ink:#E3E9ED; --ink-2:#A2B0BA; --ink-3:#71808B; --rule:#283540;
+    --accent:#8FB2EC; --accent-ink:#0D1318; --accent-soft:#1A2A42;
+    --seal:#EA6B5B; --seal-soft:#3B1F1B; --seal-ink:#1A0D0B;
+    --ok:#6CC391; --ok-soft:#14301F;
+    --warn:#E3AA4C; --warn-soft:#33270F;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1318; --surface:#151E25; --surface-2:#1D2932;
+  --ink:#E3E9ED; --ink-2:#A2B0BA; --ink-3:#71808B; --rule:#283540;
+  --accent:#8FB2EC; --accent-ink:#0D1318; --accent-soft:#1A2A42;
+  --seal:#EA6B5B; --seal-soft:#3B1F1B; --seal-ink:#1A0D0B;
+  --ok:#6CC391; --ok-soft:#14301F;
+  --warn:#E3AA4C; --warn-soft:#33270F;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--ink-2)}
+.sm{font-size:13px}
+em{font-style:normal}
+
+/* ---------- header ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--rule)}
+.top-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:14px;height:56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-family:var(--f-display);font-weight:900;font-size:18px;letter-spacing:.06em;white-space:nowrap}
+.brand svg{width:26px;height:26px;color:var(--seal);flex:none}
+.nav{display:flex;gap:2px;margin-left:auto}
+.nav a{padding:5px 12px;border-radius:999px;text-decoration:none;color:var(--ink-2);font-size:15px;white-space:nowrap}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+.prog-t{font-size:13px;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.bar{height:3px;background:var(--surface-2)}
+.bar i{display:block;height:100%;width:0;background:var(--seal);transition:width .5s ease}
+@media (max-width:620px){.prog-t{display:none}.nav a{padding:5px 9px;font-size:14px}.brand{font-size:16px}}
+@media (max-width:360px){.brand span{display:none}}
+
+.main{max-width:1180px;margin:0 auto;padding-block:28px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* ---------- buttons, tags ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:999px;border:1.5px solid transparent;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:15px;line-height:1.3;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+.btn.ghost:hover{border-color:var(--ink-3);filter:none}
+.btn.seal{background:var(--seal);color:var(--seal-ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;filter:none}
+.btn.sm{padding:6px 12px;font-size:13px}
+.link{border:0;background:none;padding:0;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-size:inherit}
+kbd{font-family:var(--f-mono);font-size:11px;padding:1px 6px;border-radius:4px;border:1px solid currentColor;opacity:.7}
+.tag{display:inline-block;font-size:12px;line-height:1.5;padding:2px 8px;border-radius:4px;background:var(--surface-2);color:var(--ink-2);letter-spacing:.04em;white-space:nowrap;font-weight:600}
+.tag.red{background:var(--seal-soft);color:var(--seal)}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.blue{background:var(--accent-soft);color:var(--accent)}
+.seg{display:inline-flex;flex-wrap:wrap;padding:3px;gap:2px;border-radius:999px;background:var(--surface-2)}
+.seg button{border:0;background:none;padding:6px 14px;border-radius:999px;cursor:pointer;color:var(--ink-2);font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
+
+/* ---------- home ---------- */
+.hero{position:relative;overflow-x:clip;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 56px;align-items:center;padding-block:12px 36px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-size:13px;letter-spacing:.14em;color:var(--ink-2)}
+.hero h1{font-family:var(--f-display);font-weight:900;font-size:clamp(46px,9vw,92px);line-height:1.04;letter-spacing:.04em;margin-top:10px}
+.hero h1 small{display:block;font-size:.3em;font-weight:700;letter-spacing:.22em;color:var(--ink-2);margin-top:14px}
+.thesis{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:22px;font-size:17px;font-weight:600}
+.thesis span{display:inline-flex;align-items:center;gap:8px}
+.thesis span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--seal)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hero-meta{margin-top:16px;font-size:13px;color:var(--ink-3)}
+.seal-big{width:clamp(150px,21vw,232px);height:auto;color:var(--seal);transform:rotate(-9deg)}
+.stamp-load{animation:stampLoad .6s cubic-bezier(.2,.9,.3,1.25) .15s both}
+@keyframes stampLoad{from{opacity:0;transform:rotate(-9deg) scale(1.5)}to{opacity:1;transform:rotate(-9deg) scale(1)}}
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr}
+  .seal-big{position:absolute;top:2px;right:0;width:92px}
+  .eyebrow{padding-right:96px}
+}
+.today{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center;margin-top:24px;padding:14px 18px;background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);font-size:15px}
+.today b{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.today .gap{flex:1}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:44px 0 14px}
+.sec-h h2{font-family:var(--f-display);font-size:26px;font-weight:900}
+.sec-h p{color:var(--ink-2);font-size:14px}
+.stage{display:grid;grid-template-columns:132px minmax(0,1fr);gap:16px;padding-block:18px;border-top:1px solid var(--rule)}
+.stage-l{font-family:var(--f-display);font-weight:900;font-size:20px;line-height:1.4}
+.stage-l small{display:block;font-family:var(--f-body);font-weight:400;font-size:13px;color:var(--ink-3);margin-top:2px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.tile{position:relative;display:flex;flex-direction:column;gap:6px;padding:16px 16px 14px;background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--accent);transform:translateY(-1px)}
+.tile .no{font-family:var(--f-mono);font-size:13px;color:var(--ink-3)}
+.tile h3{font-family:var(--f-display);font-size:19px;font-weight:900}
+.tile.done h3{padding-right:40px}
+.tile p{font-size:14px;color:var(--ink-2);line-height:1.6}
+.tile .ft{margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;font-size:13px;color:var(--ink-3)}
+.tile .ft .ok{color:var(--seal);font-weight:600}
+.tile .stamp{position:absolute;top:8px;right:8px;width:50px;height:50px;color:var(--seal);transform:rotate(12deg);opacity:.92}
+@media (max-width:640px){.stage{grid-template-columns:1fr;gap:10px}}
+.methods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden}
+.methods div{background:var(--surface);padding:16px 18px}
+.methods b{display:block;font-size:16px;margin-bottom:4px}
+.methods p{font-size:14px;color:var(--ink-2);line-height:1.65}
+@media (max-width:860px){.methods{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.methods{grid-template-columns:1fr}}
+.toolrow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.toolrow button{text-align:left;display:flex;flex-direction:column;gap:4px;padding:14px 16px;border:1px solid var(--rule);border-radius:var(--r);background:var(--surface);cursor:pointer}
+.toolrow button:hover{border-color:var(--accent)}
+.toolrow b{font-size:16px}
+.toolrow span{font-size:13px;color:var(--ink-2);line-height:1.55}
+@media (max-width:860px){.toolrow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- lesson ---------- */
+.lwrap{display:grid;grid-template-columns:212px minmax(0,1fr);gap:52px}
+.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);align-self:start;display:flex;flex-direction:column;gap:2px;font-size:14px}
+.rail-h{font-size:12px;letter-spacing:.12em;color:var(--ink-3);padding:0 10px 6px}
+.rail a{display:flex;gap:10px;align-items:center;padding:7px 10px;border-radius:8px;color:var(--ink-2);text-decoration:none}
+.rail a:hover{color:var(--ink);background:var(--surface)}
+.rail a[aria-current="page"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
+.rail .n{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);width:18px;flex:none}
+.rail .d{margin-left:auto;width:8px;height:8px;border-radius:50%;background:var(--seal);flex:none}
+@media (max-width:960px){.lwrap{grid-template-columns:1fr}.rail{display:none}}
+.lesson{max-width:720px;min-width:0}
+.l-head{position:relative;padding-bottom:18px}
+.l-head.stamped{padding-right:110px}
+.l-eye{font-size:13px;color:var(--ink-3);letter-spacing:.06em}
+.l-head h1{font-family:var(--f-display);font-weight:900;font-size:clamp(32px,5vw,46px);line-height:1.2;margin-top:6px}
+.l-head .sub{color:var(--ink-2);margin-top:4px}
+.l-stamp{position:absolute;top:-6px;right:0;width:100px;height:100px;color:var(--seal);transform:rotate(14deg);opacity:.92}
+.stamp-in{animation:stampIn .5s cubic-bezier(.2,.9,.3,1.25) both}
+@keyframes stampIn{from{opacity:0;transform:rotate(14deg) scale(1.9)}to{opacity:.92;transform:rotate(14deg) scale(1)}}
+@media (max-width:560px){.l-head.stamped{padding-right:76px}.l-stamp{width:72px;height:72px}}
+.key{padding:20px 22px;border:1.5px solid var(--ink);border-radius:var(--r);background:var(--surface)}
+.key-l{display:block;font-size:12px;letter-spacing:.16em;color:var(--seal);font-weight:700;margin-bottom:6px}
+.key p{font-family:var(--f-display);font-size:20px;font-weight:700;line-height:1.65}
+.key em{color:var(--seal)}
+.sec{display:flex;flex-direction:column;gap:14px;padding-top:34px;scroll-margin-top:72px}
+.lesson>.tip{margin-top:14px}
+.sec>h2{font-family:var(--f-display);font-size:23px;font-weight:900}
+.lead{color:var(--ink-2);font-size:15px;margin-top:-6px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.g2,.g3{grid-template-columns:1fr}}
+.box{padding:16px 18px;background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);display:flex;flex-direction:column;gap:6px;min-width:0}
+.box h3{font-size:17px;font-weight:700;line-height:1.5}
+.box p{font-size:15px;color:var(--ink-2);line-height:1.7}
+.box .ul li{font-size:15px}
+.ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.ul li{position:relative;padding-left:18px;line-height:1.7}
+.ul li::before{content:"";position:absolute;left:3px;top:.74em;width:6px;height:6px;border-radius:50%;background:var(--ink-3)}
+.ol{margin:0;padding:0;list-style:none;counter-reset:o;display:flex;flex-direction:column;gap:8px}
+.ol li{counter-increment:o;position:relative;padding-left:34px;line-height:1.7}
+.ol li::before{content:counter(o);position:absolute;left:0;top:2px;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--ink);font-family:var(--f-mono);font-size:12px;font-weight:600;display:grid;place-items:center;line-height:1}
+.tip{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;padding:14px 16px;border-radius:var(--r);background:var(--warn-soft);font-size:15px;line-height:1.75}
+.tip-l{font-size:12px;letter-spacing:.08em;color:var(--warn);font-weight:700;white-space:nowrap;padding-top:3px}
+.tip.red{background:var(--seal-soft)} .tip.red .tip-l{color:var(--seal)}
+.tip.blue{background:var(--accent-soft)} .tip.blue .tip-l{color:var(--accent)}
+@media (max-width:480px){.tip{grid-template-columns:1fr}}
+.say{margin:0;display:flex;flex-direction:column;gap:12px;padding:16px;background:var(--surface-2);border-radius:var(--r)}
+.say figcaption{font-size:12px;letter-spacing:.12em;color:var(--ink-3)}
+.bub{max-width:90%;display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+.bub.me{align-self:flex-end;align-items:flex-end}
+.bub .who{font-size:12px;color:var(--ink-3)}
+.bub .who em{color:var(--ink-2)}
+.bub p{padding:10px 14px;border-radius:14px;background:var(--surface);line-height:1.65;font-size:15px}
+.bub.me p{background:var(--accent);color:var(--accent-ink);border-top-right-radius:4px}
+.bub.them p{border-top-left-radius:4px}
+.copy{border:0;background:none;color:var(--ink-3);font-size:12px;cursor:pointer;padding:2px 4px}
+.copy:hover{color:var(--accent)}
+.chain{display:flex;align-items:stretch;gap:6px}
+.ch{flex:1 1 0;min-width:0;padding:12px 12px 14px;background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);display:flex;flex-direction:column;gap:3px}
+.ch .i{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.ch b{font-family:var(--f-display);font-size:18px;font-weight:900;line-height:1.4}
+.ch span{font-size:13px;color:var(--ink-2);line-height:1.55}
+.ch.end{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.ch.end span,.ch.end .i{color:var(--paper);opacity:.75}
+.arr{align-self:center;flex:none;color:var(--ink-3);font-size:15px}
+@media (max-width:640px){.chain{flex-direction:column}.arr{transform:rotate(90deg)}}
+.svgwrap{overflow-x:auto;background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:10px}
+.svgwrap svg{display:block;width:100%;height:auto;min-width:460px}
+.svgwrap text{font-family:var(--f-body)}
+.cy-node rect{fill:var(--paper);stroke:var(--rule);stroke-width:1.5}
+.cy-node text{fill:var(--ink);font-size:15px;font-weight:600}
+.cy-arc{fill:none;stroke:var(--seal);stroke-width:2.2}
+.ah{fill:var(--seal)}
+.cy-mid{fill:var(--seal);font-family:var(--f-display)!important;font-weight:900;font-size:24px}
+.cy-sub{fill:var(--ink-2);font-size:13px}
+.wv-area{fill:var(--accent-soft)}
+.wv-line{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linejoin:round}
+.wv-l{fill:var(--ink);font-size:14px;font-weight:700}
+.wv-base{stroke:var(--rule);stroke-width:1}
+.wv-s{fill:var(--ink-3);font-size:12px}
+.lm-axis{stroke:var(--ink-3);stroke-width:2}
+.lm-arc{fill:none;stroke:var(--ok);stroke-width:2;stroke-dasharray:4 4}
+.lm-dot{fill:var(--surface);stroke:var(--ink);stroke-width:2.5}
+.lm-dot.w{fill:var(--accent);stroke:var(--accent)}
+.lm-dot.s{fill:var(--seal);stroke:var(--seal)}
+.lm-t{fill:var(--ink);font-size:13px;font-weight:700}
+.lm-m{fill:var(--ink-3);font-size:11px}
+.lm-g{fill:var(--ok);font-size:12px;font-weight:700}
+.lm-n{fill:var(--ink-2);font-size:12px}
+.map{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.map a{display:flex;flex-direction:column;gap:4px;padding:14px;border:1px solid var(--rule);border-radius:var(--r);background:var(--surface);text-decoration:none;color:var(--ink)}
+.map a:hover{border-color:var(--accent)}
+.map .i{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.map b{font-family:var(--f-display);font-size:17px;font-weight:900}
+.map span{font-size:13px;color:var(--ink-2);line-height:1.55}
+.map .go{margin-top:auto;padding-top:6px;font-size:12px;color:var(--accent)}
+.map-band{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;margin-top:8px;padding:10px 14px;border-radius:var(--r);background:var(--seal-soft);color:var(--ink);font-size:14px;text-decoration:none}
+.map-band b{color:var(--seal)}
+@media (max-width:760px){.map{grid-template-columns:1fr}}
+.ledger{border:1px solid var(--rule);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.lg-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:4px 18px;padding:12px 16px;border-top:1px solid var(--rule);font-size:14px;line-height:1.65}
+.lg-row:first-child{border-top:0}
+.lg-row.c2{grid-template-columns:132px minmax(0,1fr)}
+.lg-row.c2b{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}
+.lg-head{font-size:12px;color:var(--ink-3);letter-spacing:.06em;font-weight:600;background:var(--surface-2)}
+.lg-row .x{color:var(--seal);font-weight:700}
+.lg-row .v{color:var(--ok)}
+.lg-row .old{color:var(--ink-3);text-decoration:line-through}
+.ledger.sm .lg-row{padding:8px 12px;font-size:13px}
+@media (max-width:640px){
+  .lg-row,.lg-row.c2,.lg-row.c2b{grid-template-columns:1fr}
+  .lg-head{display:none}
+  .lg-row [data-l]::before{content:attr(data-l);display:block;font-size:11px;color:var(--ink-3);letter-spacing:.06em}
+}
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tl li{position:relative;padding:0 0 24px 28px;border-left:2px solid var(--rule);margin-left:8px}
+.tl li:last-child{border-left-color:transparent;padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-9px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:3px solid var(--accent)}
+.tl li:last-child::before{border-color:var(--seal)}
+.tl-k{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-3)}
+.tl b{display:block;font-family:var(--f-display);font-size:20px;font-weight:900;margin:2px 0 8px}
+.tl p{font-size:15px;color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.chips span{font-size:13px;padding:3px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--rule)}
+.ladder{display:flex;flex-direction:column;gap:6px}
+.lad{display:grid;grid-template-columns:150px 70px minmax(0,1fr);gap:14px;align-items:center;padding:12px 16px;background:var(--surface);border:1px solid var(--rule);border-radius:8px}
+.lad b{font-weight:700}
+.lad span{font-size:14px;color:var(--ink-2);line-height:1.6}
+.dots{display:flex;gap:4px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--surface-2)}
+.dots i.on{background:var(--warn)}
+@media (max-width:560px){.lad{grid-template-columns:1fr auto}.lad span{grid-column:1/-1}}
+.rv-list{display:flex;flex-direction:column;gap:10px}
+.rv{border:1px solid var(--rule);border-radius:var(--r);background:var(--surface)}
+.rv-f{display:flex;gap:14px;align-items:center;padding:14px 16px}
+.rv-q{flex:1;min-width:0}
+.rv-q .lbl{display:block;font-size:12px;color:var(--ink-3)}
+.rv-q q{display:block;font-family:var(--f-display);font-weight:700;font-size:17px;line-height:1.55;quotes:"“" "”"}
+.rv-f .btn{flex:none}
+.rv-b{padding:12px 16px 16px;border-top:1px dashed var(--rule);display:flex;flex-direction:column;gap:10px;font-size:15px}
+.rv-meta{display:flex;flex-wrap:wrap;gap:6px}
+.rv-tools{display:flex;justify-content:flex-end}
+.rl{padding:20px;border:1.5px solid var(--ink);border-radius:var(--r);background:var(--surface)}
+.rl-top{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-3)}
+.rl-q{font-family:var(--f-display);font-size:20px;font-weight:700;line-height:1.55;margin:12px 0 16px;min-height:3.1em}
+.rl-btns{display:flex;gap:10px;flex-wrap:wrap}
+.rl-btns button{flex:1;min-width:120px;padding:12px;border-radius:10px;border:1.5px solid var(--rule);background:var(--surface);cursor:pointer;font-weight:700;font-size:16px}
+.rl-btns .y{color:var(--ok)} .rl-btns .y:hover{border-color:var(--ok)}
+.rl-btns .n{color:var(--seal)} .rl-btns .n:hover{border-color:var(--seal)}
+.rl-btns button[disabled]{opacity:.5;cursor:default}
+.rl-fb{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:15px}
+.rl-fb.good{background:var(--ok-soft)} .rl-fb.bad{background:var(--seal-soft)}
+.rl-fb b{margin-right:6px}
+.rl-next{display:flex;justify-content:flex-end;margin-top:12px}
+.zwrap{display:flex;flex-direction:column;gap:10px}
+.tier{display:grid;grid-template-columns:3fr 4fr 2fr;gap:4px}
+.tier div{padding:5px 10px;font-size:12px;font-weight:700;border-radius:6px;letter-spacing:.06em}
+.tier .t0{background:var(--accent-soft);color:var(--accent)}
+.tier .t1{background:var(--warn-soft);color:var(--warn)}
+.tier .t2{background:var(--seal-soft);color:var(--seal)}
+.zgrid{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:4px}
+.zb{display:flex;flex-direction:column;align-items:center;gap:1px;padding:10px 2px 8px;border:1px solid var(--rule);border-top:4px solid var(--tc);border-radius:8px;background:var(--surface);cursor:pointer;min-width:0}
+.zb .cn{font-family:var(--f-display);font-weight:900;font-size:22px;line-height:1.3}
+.zb .nm{font-size:12px;color:var(--ink-2);white-space:nowrap}
+.zb[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);border-top-color:var(--tc);color:var(--paper)}
+.zb[aria-pressed="true"] .nm{color:var(--paper)}
+.zlegend{display:none;gap:12px;font-size:12px;color:var(--ink-2)}
+.zlegend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+@media (max-width:640px){.zgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.tier{display:none}.zlegend{display:flex}.zb .nm{font-size:13px}}
+.zd{padding:20px;border:1.5px solid var(--ink);border-radius:var(--r);background:var(--surface);display:flex;flex-direction:column;gap:14px;scroll-margin-top:90px}
+.zd-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.zd-h h3{font-family:var(--f-display);font-size:28px;font-weight:900}
+.zd .who{font-size:14px;color:var(--ink-2)}
+.zd .who b{color:var(--ink);margin-right:6px}
+.zd .gist{font-size:18px;font-weight:700;line-height:1.6}
+.zd h4{margin:0;font-size:13px;letter-spacing:.1em;color:var(--ink-3);font-weight:600}
+.steps{list-style:none;margin:0 0 0 12px;padding:0;counter-reset:s;border-left:2px solid var(--rule)}
+.steps li{counter-increment:s;position:relative;padding:0 0 14px 24px}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{content:counter(s);position:absolute;left:-13px;top:1px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--paper);font-family:var(--f-mono);font-size:12px;display:grid;place-items:center;line-height:1}
+.steps b{display:block;line-height:1.5}
+.steps span{font-size:14px;color:var(--ink-2)}
+details.case{border:1px dashed var(--ink-3);border-radius:8px;padding:10px 14px;background:var(--paper);font-size:15px}
+details.case summary{cursor:pointer;font-weight:700}
+details.case p{margin-top:8px;color:var(--ink-2);line-height:1.8}
+.stairs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:230px;gap:6px;align-items:end}
+.stair{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;padding:10px 2px 0;height:var(--h);border:0;border-radius:8px 8px 0 0;background:var(--surface-2);cursor:pointer;min-width:0}
+.stair .sn{font-family:var(--f-mono);font-weight:600;font-size:14px}
+.stair .sr{font-size:12px;font-weight:700;color:var(--rc);line-height:1.3;text-align:center;word-break:keep-all}
+.stair[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.stair[aria-pressed="true"] .sr{color:var(--paper)}
+.stairs-axis{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3);border-top:2px solid var(--ink-3);padding-top:6px}
+.stair-d{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:start;padding:16px 18px;border:1.5px solid var(--ink);border-radius:var(--r);background:var(--surface)}
+.stair-d .big{font-family:var(--f-mono);font-size:30px;font-weight:600;line-height:1;grid-row:span 3}
+.stair-d b{font-size:17px}
+@media (max-width:480px){.stair .sr{font-size:11px}}
+.stops{position:relative;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px}
+.stops::before{content:"";position:absolute;left:7%;right:7%;top:15px;height:2px;background:var(--rule)}
+.stop{position:relative;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 0;font-size:12px;color:var(--ink-3);line-height:1.3;text-align:center}
+.stop i{width:16px;height:16px;border-radius:50%;background:var(--surface);border:2.5px solid var(--ink-3)}
+.stop.past i{background:var(--ink-3)}
+.stop[aria-pressed="true"]{color:var(--ink);font-weight:700}
+.stop[aria-pressed="true"] i{background:var(--seal);border-color:var(--seal);box-shadow:0 0 0 5px var(--seal-soft)}
+.stage-card{margin-top:12px;padding:18px;border-radius:var(--r);background:var(--surface);border:1.5px solid var(--ink);display:flex;flex-direction:column;gap:10px}
+.sc-h{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.sc-who{font-size:13px;color:var(--ink-2)}
+.sc-a{font-family:var(--f-display);font-size:19px;font-weight:700;line-height:1.55}
+.sc-how{font-size:14px;color:var(--ink-2)}
+.sc-how b{color:var(--ink);margin-right:8px}
+.row-btns{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:10px}
+.chk{display:flex;flex-direction:column;gap:2px}
+.chk label{display:flex;gap:10px;align-items:flex-start;padding:6px 0;cursor:pointer;font-size:15px;line-height:1.6}
+.chk input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--ok);flex:none}
+.evid input:checked + span,.dayc input:checked + span{color:var(--ink-3);text-decoration:line-through}
+.early-r{margin-top:10px;padding:12px 14px;border-radius:8px;background:var(--surface-2);font-size:15px}
+.early-r.ok{background:var(--ok-soft)}
+.early-r.ok b{color:var(--ok)}
+.triage{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.tr-a,.tr-q{align-self:center;padding:8px 18px;border-radius:999px;font-weight:700}
+.tr-a{background:var(--surface);border:1px solid var(--rule)}
+.tr-q{background:var(--ink);color:var(--paper);font-family:var(--f-display)}
+.tr-arr{align-self:center;color:var(--ink-3);line-height:1}
+.lanes{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:stretch}
+.lane{padding:16px 18px;border-radius:var(--r);background:var(--surface);border:1px solid var(--rule)}
+.lane h3{font-family:var(--f-display);font-size:20px;font-weight:900;margin-bottom:10px}
+.lane .ol li{font-size:15px}
+.lane-arr{align-self:center;color:var(--ink-3);font-size:20px}
+@media (max-width:640px){.lanes{grid-template-columns:1fr}.lane-arr{justify-self:center;transform:rotate(90deg)}}
+.evid-sum{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--ink-2)}
+.meter{flex:1;height:6px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.check{margin-top:44px;padding-top:28px;border-top:2px solid var(--ink);display:flex;flex-direction:column;gap:14px}
+.check>h2{font-family:var(--f-display);font-size:23px;font-weight:900}
+.quiz{display:flex;flex-direction:column;gap:14px}
+.q{padding:18px;border:1px solid var(--rule);border-radius:var(--r);background:var(--surface)}
+.q-t{display:flex;gap:10px;font-weight:700;font-size:16px;line-height:1.6}
+.q-n{font-family:var(--f-mono);color:var(--ink-3);font-weight:500;flex:none}
+.q-o{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.opt{text-align:left;padding:10px 14px;border:1.5px solid var(--rule);border-radius:8px;background:var(--surface);cursor:pointer;line-height:1.55;font-size:15px}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--seal);background:var(--seal-soft)}
+.q-e{margin-top:10px;font-size:14px;color:var(--ink-2);line-height:1.75}
+.q-e .ok-t{color:var(--ok);margin-right:4px}
+.q-e .bad-t{color:var(--seal);margin-right:4px}
+.q-src{margin-top:6px;font-size:13px}
+.done-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pn a{flex:1 1 0;max-width:50%;padding:14px 16px;border:1px solid var(--rule);border-radius:var(--r);text-decoration:none;color:var(--ink);background:var(--surface)}
+.pn a:hover{border-color:var(--accent)}
+.pn a small{display:block;color:var(--ink-3);font-size:12px}
+.pn a.next{text-align:right;margin-left:auto}
+
+/* ---------- views ---------- */
+.vh{padding-bottom:20px;border-bottom:1px solid var(--rule);margin-bottom:24px;display:flex;flex-direction:column;gap:8px}
+.vh h1{font-family:var(--f-display);font-weight:900;font-size:clamp(32px,5vw,46px);line-height:1.2}
+.vh p{color:var(--ink-2);max-width:42em}
+.vh .seg{align-self:flex-start;margin-top:8px}
+.fc{max-width:660px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.fc-boxes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.fc-boxes div{padding:10px 14px;border-radius:8px;background:var(--surface);border:1px solid var(--rule);font-size:13px;color:var(--ink-2);border-top:3px solid var(--bc)}
+.fc-boxes b{display:block;font-family:var(--f-mono);font-size:24px;color:var(--ink);line-height:1.3}
+.fc-card{min-height:280px;padding:26px 24px;border:1.5px solid var(--ink);border-radius:14px;background:var(--surface);display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow)}
+.fc-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3);letter-spacing:.06em}
+.fc-q{font-family:var(--f-display);font-size:23px;font-weight:900;line-height:1.5}
+.fc-a{font-size:17px;line-height:1.8;padding-top:16px;border-top:1px dashed var(--rule)}
+.fc-card>.btn{align-self:flex-start;margin-top:auto}
+.fc-rate{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:auto}
+.fc-rate button{padding:12px 6px;border-radius:10px;border:1.5px solid var(--rule);background:var(--surface);cursor:pointer;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:2px}
+.fc-rate button small{font-weight:400;font-size:12px;color:var(--ink-3)}
+.fc-rate [data-r="0"]{color:var(--seal)} .fc-rate [data-r="0"]:hover{border-color:var(--seal)}
+.fc-rate [data-r="1"]{color:var(--warn)} .fc-rate [data-r="1"]:hover{border-color:var(--warn)}
+.fc-rate [data-r="2"]{color:var(--ok)} .fc-rate [data-r="2"]:hover{border-color:var(--ok)}
+.fc-hint{font-size:13px;color:var(--ink-3);text-align:center}
+.mq{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.mq-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:var(--ink-3)}
+.pips{display:flex;gap:4px}
+.pips i{width:18px;height:6px;border-radius:3px;background:var(--surface-2)}
+.pips i.ok{background:var(--ok)} .pips i.bad{background:var(--seal)} .pips i.cur{background:var(--ink)}
+.mq-end{padding:26px;border:1.5px solid var(--ink);border-radius:14px;background:var(--surface);display:flex;flex-direction:column;gap:14px}
+.mq-score{font-family:var(--f-mono);font-size:52px;font-weight:600;line-height:1}
+.mq-score small{font-size:20px;color:var(--ink-3)}
+.tool-2col{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:24px;align-items:start}
+@media (max-width:880px){.tool-2col{grid-template-columns:1fr}}
+.panel{padding:20px;border:1px solid var(--rule);border-radius:var(--r);background:var(--surface);display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel h2{font-family:var(--f-display);font-size:21px;font-weight:900}
+.calc-in{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.calc-in label{font-weight:600}
+input[type="number"],input[type="text"],input[type="search"]{font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);min-width:0}
+.calc-in input{width:120px;font-family:var(--f-mono);font-size:24px;padding:6px 12px}
+.calc-next{padding:12px 14px;border-radius:8px;background:var(--surface-2);font-size:15px}
+.diag{display:flex;flex-direction:column;gap:6px}
+.diag button{text-align:left;padding:10px 14px;border:1.5px solid var(--rule);border-radius:8px;background:var(--surface);cursor:pointer;font-size:15px;line-height:1.5}
+.diag button:hover{border-color:var(--accent)}
+.diag button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.diag-r{display:flex;flex-direction:column;gap:10px}
+.zcard{display:flex;gap:14px;align-items:flex-start;padding:14px;border:1px solid var(--rule);border-left:4px solid var(--tc);border-radius:8px;background:var(--surface);text-align:left;cursor:pointer;width:100%}
+.zcard:hover{border-color:var(--accent);border-left-color:var(--tc)}
+.zcard .cn{font-family:var(--f-display);font-weight:900;font-size:24px;line-height:1.2;flex:none;width:28px;text-align:center}
+.zcard b{display:block;font-size:16px}
+.zcard span{font-size:14px;color:var(--ink-2);line-height:1.6}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}
+.form label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink-2);min-width:0}
+.form .full{grid-column:1/-1}
+@media (max-width:520px){.form{grid-template-columns:1fr}}
+.letter{padding:28px 26px;background:var(--surface);border:1px solid var(--rule);border-radius:4px;box-shadow:var(--shadow);font-size:15px;line-height:1.95;white-space:pre-wrap;word-break:break-word}
+.letter-t{font-family:var(--f-display);font-weight:900;font-size:20px;text-align:center;margin-bottom:12px;white-space:normal}
+.lawbar{display:flex;flex-direction:column;gap:10px}
+.lawbar input{width:100%;font-size:16px;padding:10px 14px}
+.lawchips{display:flex;flex-wrap:wrap;gap:6px}
+.lawchips button{border:1px solid var(--rule);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;color:var(--ink-2)}
+.lawchips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.laws{border:1px solid var(--rule);border-radius:var(--r);background:var(--surface)}
+.law{padding:14px 16px;border-top:1px solid var(--rule)}
+.law:first-child{border-top:0}
+.law-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.law-h .art{font-family:var(--f-display);font-weight:900;font-size:17px}
+.law-h small{font-size:12px;color:var(--ink-3)}
+.law p{font-size:15px;line-height:1.85;color:var(--ink-2);margin-top:4px}
+.law p b{color:var(--ink)}
+mark{background:var(--warn-soft);color:inherit;border-radius:2px;padding:0 1px}
+.empty{padding:24px;text-align:center;color:var(--ink-3);font-size:14px}
+.days{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:1100px){.days{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.days{grid-template-columns:1fr}}
+.day{padding:16px;background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);display:flex;flex-direction:column;gap:10px;min-width:0}
+.day-h{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.day-h b{font-family:var(--f-mono);font-size:14px;letter-spacing:.04em}
+.day h3{font-family:var(--f-display);font-size:18px;font-weight:900;line-height:1.45}
+.day .chk label{font-size:14px;padding:4px 0}
+.day .go{font-size:13px;margin-top:auto}
+.coda{display:grid;grid-template-columns:auto minmax(0,1fr);gap:28px;align-items:center;margin-top:44px;padding:28px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.coda svg{width:120px;height:120px;color:var(--seal);transform:rotate(-8deg)}
+.coda p{font-family:var(--f-display);font-weight:900;font-size:clamp(22px,3.4vw,32px);line-height:1.45}
+.coda small{display:block;margin-top:8px;font-family:var(--f-body);font-weight:400;font-size:15px;color:var(--ink-2)}
+@media (max-width:560px){.coda{grid-template-columns:1fr;padding:20px 0}.coda svg{width:88px;height:88px}}
+.seal-t{font-family:var(--f-display);font-weight:900}
+@media (prefers-reduced-motion: reduce){
+  .stamp-load,.stamp-in{animation:none}
+  .tile,.bar i,.meter i{transition:none}
+}
+/* ---------- 站点版补充：基础重置、返回主页按钮（与其他作品页统一）、页脚 ---------- */
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+img{max-width:100%}
+.pf-back{flex:none;display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:7px 13px 7px 10px;border-radius:999px;
+  font:500 13px/1.2 var(--f-body);color:var(--ink);text-decoration:none;white-space:nowrap;
+  background:var(--surface);border:1px solid var(--rule);box-shadow:0 1px 2px rgba(0,0,0,.06);transition:border-color .2s,box-shadow .2s}
+.pf-back:hover,.pf-back:focus-visible{border-color:var(--accent)}
+.pf-back:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:999px}
+.pf-back svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pf-back .pf-note{margin-left:3px;padding-left:9px;border-left:1px solid var(--rule);color:var(--ink-2)}
+.pf-scrolled .pf-back .pf-note{display:none}
+@media (max-width:620px){.pf-back .pf-note{display:none}.brand span{display:none}}
+@media (max-width:379px){.brand{display:none}.top-in{gap:8px}.nav a{padding:5px 7px}.pf-back{padding:7px 10px 7px 8px}}
+.site-foot{max-width:1180px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;font-size:13px;color:var(--ink-3)}
+.site-foot span:first-child{flex:1 1 24em}
+@media print{.pf-back{display:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="pf-back" href="../../"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2 3.5 6l4 4"/></svg>返回主页<span class="pf-note">个人作品展示</span></a>
+    <a class="brand" href="#home" aria-label="物业费收缴手册 首页">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13.5" fill="none" stroke="currentColor" stroke-width="2.6"/><polygon fill="currentColor" points="16,8.5 17.8,13.6 23.1,13.6 18.8,16.8 20.4,21.9 16,18.8 11.6,21.9 13.2,16.8 8.9,13.6 14.2,13.6"/></svg>
+      <span>收缴手册</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#home" data-v="home">学习</a>
+      <a href="#practice" data-v="practice">练习</a>
+      <a href="#tools" data-v="tools">工具</a>
+      <a href="#morning" data-v="morning">晨会</a>
+    </nav>
+    <span class="prog-t" id="prog-t">已学 0/10</span>
+  </div>
+  <div class="bar" aria-hidden="true"><i id="prog-i"></i></div>
+</header>
+<main class="main" id="main"></main>
+<footer class="site-foot"><span>个人作品展示页，非企业官方网站。法律内容供培训参考，具体个案以当地法规和律师意见为准；学习进度只保存在本机浏览器。</span><span>© 2026 程文辉</span></footer>
+
+<script>
+(function(){
+'use strict';
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle=a=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+const CN=['','一','二','三','四','五','六','七','八','九','十'];
+
+/* ---------- storage (per-viewer progress) ---------- */
+const KEY='wyf-shoujiao-v1';
+let ST={done:{},cards:{},morning:{},evid:{}};
+try{const raw=localStorage.getItem(KEY);if(raw){const p=JSON.parse(raw);ST=Object.assign(ST,p)}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}}
+
+/* ---------- seal svg ---------- */
+function starPts(cx,cy,R,r){const p=[];for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5;const rr=i%2?r:R;p.push((cx+rr*Math.cos(a)).toFixed(1)+','+(cy+rr*Math.sin(a)).toFixed(1))}return p.join(' ')}
+let sealN=0;
+function sealSVG(o){
+  o=Object.assign({ring:'物业费收缴规范与技巧手册',mid:'',bottom:'服务在前',cls:'',star:true,ls:2},o||{});
+  const id='sp'+(++sealN);
+  return `<svg class="${o.cls}" viewBox="0 0 200 200" aria-hidden="true">
+  <circle cx="100" cy="100" r="93" fill="none" stroke="currentColor" stroke-width="7"/>
+  <path id="${id}" d="M41.1,134 A68,68 0 1,1 158.9,134" fill="none"/>
+  <text class="seal-t" font-size="20" fill="currentColor" letter-spacing="${o.ls}"><textPath href="#${id}" startOffset="50%" text-anchor="middle">${o.ring}</textPath></text>
+  ${o.star?`<polygon fill="currentColor" points="${starPts(100,98,27,11)}"/>`:''}
+  ${o.mid?`<text class="seal-t" x="100" y="116" text-anchor="middle" font-size="46" fill="currentColor">${o.mid}</text>`:''}
+  ${o.bottom?`<text class="seal-t" x="100" y="160" text-anchor="middle" font-size="19" fill="currentColor" letter-spacing="2">${o.bottom}</text>`:''}
+</svg>`;
+}
+const doneSeal=(n,cls)=>sealSVG({ring:'物业费收缴手册',ls:9,star:false,mid:'已学',bottom:'第'+CN[n]+'课',cls});
+
+/* ---------- html helpers ---------- */
+const H={
+  key:t=>`<div class="key"><span class="key-l">本课要点</span><p>${t}</p></div>`,
+  sec:(t,inner,lead,id)=>`<section class="sec"${id?` id="${id}"`:''}><h2>${t}</h2>${lead?`<p class="lead">${lead}</p>`:''}${inner}</section>`,
+  tip:(l,h,k)=>`<aside class="tip ${k||''}"><b class="tip-l">${l}</b><div>${h}</div></aside>`,
+  ul:a=>`<ul class="ul">${a.map(x=>`<li>${x}</li>`).join('')}</ul>`,
+  ol:a=>`<ol class="ol">${a.map(x=>`<li>${x}</li>`).join('')}</ol>`,
+  say:(a,cap)=>`<figure class="say"><figcaption>${cap||'参考话术'}</figcaption>${a.map(([w,t,n])=>`<div class="bub ${w==='业主'?'them':'me'}"><span class="who">${w}${n?` · <em>${n}</em>`:''}</span><p>${t}</p>${w!=='业主'?'<button class="copy" type="button">复制话术</button>':''}</div>`).join('')}</figure>`,
+  w:(name,attrs)=>`<div data-w="${name}" ${attrs||''}></div>`,
+  boxes:(a,cls)=>`<div class="${cls||'g3'}">${a.map(([h,p,extra])=>`<div class="box">${extra||''}<h3>${h}</h3><p>${p}</p></div>`).join('')}</div>`,
+  chain:(a,endLast)=>`<div class="chain">${a.map(([b,s],i)=>`${i?'<span class="arr" aria-hidden="true">→</span>':''}<div class="ch ${endLast&&i===a.length-1?'end':''}"><span class="i">${String(i+1).padStart(2,'0')}</span><b>${b}</b>${s?`<span>${s}</span>`:''}</div>`).join('')}</div>`
+};
+
+/* ================= CONTENT ================= */
+const STAGES=[['基础','先懂为什么、能做什么'],['实战','对什么人，用什么招'],['流程','按节点推进，依法收口']];
+
+const RED7=[
+ ['停水、停电、停气、停暖催费','《民法典》第944条第3款明确禁止','通过催告、调解、诉讼或仲裁主张'],
+ ['限制门禁、电梯，不激活门禁卡','最高法2025年12月典型案例：缺乏法律依据','同上'],
+ ['公开张贴或在群里点名欠费业主姓名、房号、金额；向无关第三人透露','民法典人格权编（隐私权、名誉权）；《个人信息保护法》','只公示统计口径（如楼栋收缴率）；欠费一对一私下沟通'],
+ ['自制或冒用律所名义的“律师函”','冒用他人名义有法律风险，识破后严重损害信誉','由公司实际委托的律所出具，律师签名、律所盖章'],
+ ['虚构“已起诉”“已立案”“已进入诉讼排期”','虚假陈述易引发投诉和纠纷','只讲真实安排，如“已列入公司法律催收计划”'],
+ ['超出授权承诺打折、减免','违反内部授权，会被其他业主效仿','按公司审批权限办理'],
+ ['威胁、辱骂，或在休息时段反复致电','易引发投诉，可能侵犯人格权','合理时段沟通，有礼有节']
+];
+const REDGAME=[
+ ['业主欠费3个月，暂停他的门禁卡',false,'限制门禁、电梯缺乏法律依据（最高法2025年12月典型案例）。'],
+ ['在公告栏公布各楼栋的收缴率',true,'统计口径，不涉及个人信息，可以做。'],
+ ['欠费业主在装修，先停他家的水，交了再开',false,'《民法典》第944条第3款明令禁止停水、停电、停气、停暖催费。'],
+ ['委托合作律所出具律师函，律师签名、律所盖章',true,'律师函必须由实际委托的律所出具。'],
+ ['在业主群@欠费业主，写明房号和金额',false,'涉及隐私权、名誉权和《个人信息保护法》。欠费只能一对一私聊。'],
+ ['对业主说“您的欠费已列入公司法律催收计划”（属实）',true,'陈述真实安排，可以说。'],
+ ['业主说打八折就交，当场答应',false,'超出授权；确需减免的按公司审批权限办理。'],
+ ['自己用律所抬头写一封“律师函”寄给业主',false,'冒用律所名义有法律风险，一旦识破严重损害公司信誉。'],
+ ['按公司授权，为业主申请减免违约金',true,'在授权范围内，是促成缴费的正当手段。'],
+ ['晚上11点连续给业主打三次电话',false,'休息时段反复致电易引发投诉，可能侵犯人格权。'],
+ ['对业主说“已经立案了，下周开庭”（实际没有）',false,'虚构诉讼进展属于虚假陈述。'],
+ ['用EMS寄送催费函，保留底单和妥投记录',true,'标准做法，还能作为中断诉讼时效的证据。']
+];
+const CITE=[
+ ['我又没住，空置房凭什么交？','已按约提供服务的，<b>未接受</b>相关服务不能作为拒缴理由。合同或当地对空置房有优惠的，按约定执行。','民法典 第944条第1款'],
+ ['我住一楼，又不坐电梯。','<b>无需接受</b>相关服务同样不能拒缴；业主也不得以放弃共有部分权利为由不履行义务。','民法典 第944条第1款 · 第273条'],
+ ['房子租出去了，你找租户要。','约定由租户缴费的从其约定，但<b>业主承担连带</b>缴纳责任。','物业管理条例 第41条 · 收费管理办法 第15条'],
+ ['合同是开发商签的，我没签过。','依法签订的前期物业服务合同、物业服务合同，<b>对全体业主有法律约束力</b>。','民法典 第939条'],
+ ['房子漏水是质量问题，修好再说。','设计、质量问题属于商品房买卖合同关系，<b>不能拒缴，也不能用维修费抵扣</b>。','最高法 2025年12月典型案例'],
+ ['我准备卖房了，物业费以后再说。','房屋<b>产权转移时须结清</b>物业费。','收费管理办法 第15条'],
+ ['房子还没交到我手上。','已竣工未售出、或因建设单位原因未按时交付的，物业费<b>由建设单位缴纳</b>。这一条要如实告知。','物业管理条例 第41条 · 收费管理办法 第16条'],
+ ['我就不交，你们能怎样？','物业可催告其在合理期限内支付，期满仍不缴，<b>可以起诉或申请仲裁</b>。管理规约有规定的，还可限制其共同管理权。','民法典 第944条第2款 · 第286条 · 指导规则 第20条']
+];
+const UPD=[
+ ['诉讼时效 2 年','3 年（民法典第188条）；书面催缴可中断（第195条）'],
+ ['维修资金：2/3业主且面积2/3同意','面积、人数占比均2/3以上参与表决，参与者中面积、人数均过半同意（民法典第278条）'],
+ ['对公转账须到银行柜台','网银、手机银行均可对公转账，线上缴费已普及'],
+ ['司法解释第六、七条','已删除；改引民法典第944条、物业管理条例第41条'],
+ ['（原课件未涉及）','《个人信息保护法》：业主联系方式和欠费信息只能在必要范围内使用'],
+ ['（新增）','最高法2025年12月典型案例：不得限门禁电梯；质量问题不能拒缴；服务不到位可按质协商']
+];
+const HABIT=[['自动缴费',1,'优良客户。关注其服务需求变化，及时满足'],['需要提醒',2,'按缴费周期适时提醒，确保按时缴纳'],['需要多次提醒',3,'持续提醒，并约定明确的缴费时间'],['提醒多次也不缴',4,'细分欠费原因，个性化处理（见下方两张表）']];
+const CTYPE=[['VIP / 铁杆粉丝','意见领袖、政府人员等','深度维护 + 借力发声','重点维护关系，关键时刻请其为物业发声，再谈费用'],['问题客户','有实质诉求或不满','先解决诉求，再谈费用','深挖真实需求，用专业服务化解对立（第五、六招）'],['跟风型客户','无实质纠纷，易受舆论影响','增加触点，打破跟风','高频触达、正向引导，讲清跟风不交的后果（第7课）'],['空置房 / 无感知','长期不在，与物业缺乏连接','创造见面，让服务被看见','空置房巡查拍照、社区活动邀约、快递代收']];
+const REASON=[['开发原因','了解业主真实损失，代表或陪同业主与开发商谈判；让开发商明白付出一定成本能换来巨大的社会效益。（第五招）'],['服务瑕疵','统一标准难免忽略个性化需求。实事求是，及时有效处理，消除不满。（第六招）'],['收费流程','及时调整业主反映的流程问题；帮业主想办法，如开通线上缴费、银行代扣。']];
+const TIERS=[['温和提醒','var(--accent)'],['攻坚化解','var(--warn)'],['正式施压','var(--seal)']];
+const ZHAO=[
+{n:1,name:'适时提醒',tier:0,who:'未缴费的全体业主',gist:'让业主知道按时缴费有人管，还愿意说一声“谢谢”。',
+ pts:['称呼亲切：X总 / X姐，拉近距离','表达支持：“咱们相互支持”，弱化交易感','服务承诺前置：提醒时就说“有需要随时找我”','收款后再确认：发“感谢 + 服务承诺”，让缴费成为信任的开始','第一次接触切忌强硬；无理要求可放到第二次接触再婉拒（缓兵之计）'],
+ say:[['管家','X总 / X姐，您好！这是您X–X月份的物业费账单，咱们相互支持。支付完成后麻烦跟我说一声，后续家里有需要帮忙的地方，请随时联系我。','缴费前'],['业主','已转。'],['管家','收到了，感谢您！还是那句话，后续需要帮忙随时找我。','收款后']]},
+{n:2,name:'断其后路',tier:0,who:'满口答应，却总不出现的业主',gist:'替业主扫清缴费障碍，再锁定一个具体时间。',
+ pts:['借口忙、不在本地：直接给线上缴费或转账方式，并确定时间','含糊其辞：约一个明确时间，到点再提醒，让一拖再拖的人产生“失信”感','约定后一定按时跟进','谈话中透露：没按时缴，下次一定准时再联系'],
+ say:[['管家','您平时也比较忙，不如开通银行代扣或线上缴费，多省心，就不用每个月惦记着跑过来了。','突出“远、累”'],['管家','您人在外地，可以在小程序上直接缴，也可以银行转账，您看哪种方便？','做选择题'],['管家','打扰您了，我跟您确认一下缴费的时间和金额，避免中途有差错。那行，下周二我让财务查账，到时再通知您。','告知会跟进']],
+ cs:['案例：何老师','何老师有几个月历史欠费，每次都说“没空”“知道了”。客服小X发去公司账号，半小时后追问：“您看哪天方便转，我好让财务留意。”约定两天后。两天后用确认的口吻：“老师，您已经转账了哈，我跟您确认一下时间和金额。”没转就再约“周末之前”。到第四次，何老师不好意思再拖，主动转了账。']},
+{n:3,name:'苦肉计',tier:0,who:'欠费时间短、平日联系多、有交情、心软的业主',gist:'讲出真实的难处，换取业主的理解。',
+ pts:['先了解性格；暴躁、没耐心的业主不建议用','可以讲自己的难处、责任、考核时限，<b>必须真实，不可编造</b>','平时先建立良好关系，让业主信任你','态度诚恳，让对方知道按时收费对你的工作有多重要'],
+ say:[['管家','我知道您不是有意欠费，只是这个月部门通报，我负责的片区收费率排在最后，个人考核也受到了影响……'],['管家','说实话，我也知道您很忙，也不希望天天打电话打扰您。可每次给您打电话，我自己都不好意思了，真的挺为难的……']],
+ cs:['案例：A先生','A先生人在外地，每次都满怀歉意地说工作忙、保证汇款，却一直没兑现。年底客服小O再联系时，提到片区收费率在年终总结被点名、绩效受影响，也在反思自己哪里做得不到位。A先生连称理解，当天就汇了款。']},
+{n:4,name:'地毯搜索',tier:1,who:'无法取得联系的业主',gist:'挖资源找到人；实在找不到，按地址依次寄函。',
+ pts:['联动开发商：获取购房时登记的电话和通讯地址','用好日常积累：来电显示、装修押金退还、上门登记的联系方式，及时更新系统','请亲友、工作单位转告：只说“请联系物业服务中心”','仍联系不上：按合同或登记地址依次寄 催缴通知单 → 催费函 → 律师函 → 启动法律程序'],
+ tip:['合规提示','取得的业主信息只能用于联系业主、通知缴费，限于必要范围并妥善保管（《个人信息保护法》第六条）。转达时<b>不透露欠费金额等细节</b>。','blue']},
+{n:5,name:'统一战线',tier:1,who:'因房屋质量、历史遗留问题拒缴的业主（整改户）',gist:'站到业主一边，用物业的“好”盖住地产的“痛”。',
+ steps:[['第一时间到现场 <span class="tag red">重点</span>','业主提出问题后，第一时间出现在现场'],['当润滑剂，站在业主一边','代表或陪同业主与地产项目部、施工方、工程部协调，表明“我们和您站在一起”'],['明确维修计划与节点','本周做什么、下周做什么；口径专业统一，术语说成大白话'],['用服务覆盖遗留问题','快递上门、社区活动、增值服务建立信任；“谈费色变”的先不谈费'],['先整改，后谈赔付','涉及赔付的请开发商支持，把结清物业费作为赔付协议的处理项之一'],['跟进到底','直到合理诉求有结果；关系建立后可适当表达难处']],
+ say:[['管家','王老师，关于XX整改，我们会从进度和质量上做好管控，并跟您保持沟通。关于赔付，建议先整改，整改完毕后物业会全力协助您解决。同时也希望您在整改期间能配合我们……']],
+ tip:['法规提示','最高法2025年12月典型案例：房屋设计、专有部分质量问题属于商品房买卖关系，<b>不能作为拒缴理由</b>，也不能用维修费抵扣。可以温和讲清，但别拿来“压”业主，他首先需要被理解、看到进展。']},
+{n:6,name:'糖衣炮弹',tier:1,who:'对服务不满、有过误会或不愉快的业主',gist:'把抱怨变成信任的转折点：先破冰，再解决问题。',
+ steps:[['情感破冰','带小礼品上门表示诚意；不打断、全记录，让业主把情绪说完'],['共情转移','先认可、先致歉：“您说得对，这事儿确实不该发生……”随即转到方案'],['聚焦解决','只抓1–2个具体问题，明确承诺、跟进并反馈结果']],
+ pts:['我方有责且能改的，先改正，再反馈结果','这类业主的报事要特别敏感，负责人亲自回访','园区活动、节日关怀优先考虑他们','注意适度，避免“恃宠而骄”'],
+ say:[['管家','X先生，您说的保洁和维修问题，确实让您受累了，非常抱歉！您看这样：保洁问题我马上让保洁确认并反馈给您；维修的事我亲自跟进，今天下班前给您明确回复时间。我们先把这两个问题解决好，好吗？']]},
+{n:7,name:'全民总动员',tier:1,who:'答应缴费却一直拖延、电话效果有限的业主',gist:'门岗、前台、工程一起当面提醒，只在业主本人在场时说。',
+ say:[['门岗安保','很久没见您回来了，工作很忙吧！提醒您物业费每月15日交，别忘了哟！','业主出入小区时'],['前台客服','系统显示您的物业费暂未结清，是不是最近太忙了？','来咨询、办业务时'],['工程人员','××先生/女士，这边的工作已完成。据同事反馈，您的物业费暂未结清，看您等会儿是否方便和我一起去服务中心缴纳？','上门有偿服务完成后']],
+ sayCap:'三个岗位怎么说'},
+{n:8,name:'催费函',tier:2,who:'解释过或问题已解决，仍想借机讨价还价的业主',gist:'把员工与业主的个人沟通，升级为公司的正式行为。',
+ pts:['打消“讨价还价”“拿我没办法”“能拖就拖”的念头','内容、寄送、送达和跟进节奏按函件七条执行（第9课）','范本在工具箱“催费函”里，可直接生成'],
+ say:[['管家','小X和您沟通这么久，也是想解决这个问题。我一直认为能沟通解决最好，也不希望您和公司闹僵，对双方都没好处。但公司作为企业，肯定有它的制度在……','和业主站一边，减轻敌意'],['管家','难道您交了我就不为您服务了吗？肯定不会。相反您不交，我也没法向公司交代：认真缴费的业主都没帮，却帮没缴费的，说不过去吧？一直拖着，最后公司只能走法律途径，何必呢？','潜台词：法律上站不住脚'],['管家','要不这样，我帮您想想办法，看能不能向公司申请减免违约金。在我能力范围内的，我肯定帮您争取。','给边缘业主一点小利（按授权）']],
+ sayCap:'配套话术与用意'},
+{n:9,name:'律师函',tier:2,who:'所有关怀、催缴均无效的恶意欠费业主',gist:'震慑恶意欠费，打消“物业拿我没办法”的想法。',
+ pts:['时机：欠费满18个月；符合提前升级条件（恶意欠费≥3个月且≥2封书面催函无效）可经审批提前','发函前可以私人名义“透露消息”，让他赶紧来缴','由公司<b>实际委托的律所</b>出具，律师签名、律所盖章；不得自制或冒用','随函附缴费明细、欠费明细和缴纳方式；期限一般为发函起2周','发函后不主动联系，等业主上门；期满未联系再跟进','多户同时符合时<b>分批发</b>，优先有代表性或带头欠费的业主']}
+];
+const STAIRS=[['系统','发送短信提醒','正式提醒，留痕'],['管家','安抚业主，提及后续可能寄送函件，引导缴费','释放善意'],['财务','致电核对邮寄地址','制造正式感'],['管家','告知可为其争取“一次性减免违约金”','给台阶，建立信任'],['财务','再次致电，告知减免申请的截止日期','制造紧迫感'],['系统 / 管家','EMS寄出催缴函','增加正式性'],['管家 / 法务','告知“您的欠费已列入公司法律催收计划”，结合预存优惠引导缴费','最后收口']];
+const ROLEC={'系统':'var(--ink-3)','管家':'var(--accent)','财务':'var(--warn)','法务':'var(--seal)'};
+const CASES=[
+ {t:'跟风不缴费',s:'邻居都没交，我凭什么交？',own:'业主自身',pts:['跟风不交，实际上损害了已缴费业主的权利','欠费会导致服务水平下降，最终大家受损','自己还要承担违约金和诉讼费用'],ref:'另见第4课跟风型客户、第7课角色扮演法'},
+ {t:'房屋漏水',s:'地板泡坏、墙面毁损，物业根本没管。',own:'分情况：物业协调 / 开发商保修 / 维修资金',pts:['室内漏水：通知物业维修；可能是其他楼层或单元造成，由物业协调相关业主','保修期内防水、外墙渗漏：最低保修5年，自竣工验收合格起算，由建设单位保修，物业协助联系','保修期外的外墙漏水：属共用部位，按程序使用专项维修资金','质量问题不能拒缴，也不能用维修费抵扣（处理方法见第五招）'],ref:'建设工程质量管理条例 第40条 · 最高法2025年12月典型案例'},
+ {t:'电梯故障',s:'电梯老出故障，我被困过好几次。',own:'厂家、维保单位；过保修走维修资金',pts:['质量问题：联系销售商、生产厂家或维保单位处理，督促按规定维保并做好记录','已过保修期：使用专项维修资金，须面积、人数占比均2/3以上的业主参与表决，参与者中面积、人数均过半同意','危及安全的紧急情况，按当地应急使用程序办理'],ref:'民法典 第278条'},
+ {t:'室内财产被盗',s:'家里被盗十几万，到现在没破案，物业没尽责。',own:'盗窃者；破案归公安',pts:['物业应按约采取合理措施保护业主人身、财产安全','已按约提供安保服务的，物业不担责','确有未尽安保义务的，可能承担相应的补充责任，所以巡逻、门岗登记、监控记录必须做实留痕'],ref:'民法典 第942条 · 第1198条'},
+ {t:'空置房',s:'毛坯房几年没住，没享受过服务。',own:'业主应缴',pts:['交付后，物业不会因部分业主未入住而减少公共服务投入，仍须缴费','合同或当地规定有空置优惠的，按约定执行','提供空置房巡查拍照，让服务被看见'],ref:'民法典 第944条'},
+ {t:'人在外地',s:'出差呢，回来马上交。（第N次）',own:'业主应缴',pts:['引导线上缴费：APP / 小程序、微信 / 支付宝、银行代扣，或网银、手机银行对公转账','转账请备注房号、姓名和“物业费”，凭凭证开收据或发票；给业主完整的户名、账号和开户行','坚持回来再交的，明确具体回来时间（第二招）'],ref:'对公转账已无须到银行柜台办理'},
+ {t:'服务水平不高',s:'欠费几年，每次都列一堆理由说物业差。',own:'双方：物业改进，业主照缴',pts:['价格与服务水平相适应：不能用0.5元/㎡的价格要求1.5元/㎡的服务','服务不到位的地方在改进，欢迎提具体意见','长期欠费导致亏损、压缩成本、服务下降，形成恶性循环','业委会委员应模范履行义务；不少地方规定欠费业主不能担任委员（以当地规定为准）'],ref:'业主大会和业主委员会指导规则'},
+ {t:'相邻权纠纷',s:'隔壁天天打麻将到半夜，物业处理不力。',own:'相关业主之间',pts:['物业负责劝阻和协调，解决需要相关业主之间达成一致','噪声扰民可向公安机关报告','问题是否最终解决，物业不承担相应责任'],ref:''},
+ {t:'大堂摔伤',s:'雨天在大堂滑倒骨折，要物业赔，物业费也不交。',own:'看物业是否尽到安保义务',pts:['先看当时的防滑措施：防滑地毯、雨伞套、定岗扫水、地滑提示牌','业主自身有过错的，可以减轻物业责任','赔偿可以协商，协商不成交法院处理；赔偿和物业费是两回事'],ref:'民法典 第1198条'},
+ {t:'物业与开发商是一伙',s:'都是一个名字，房产证办不下来就找你们。',own:'开发商',pts:['物业和开发商是两个独立法人，即使同集团、同名','各自承担相应的责任和义务','物业可以协助业主与开发商沟通（第五招）'],ref:''}
+];
+const NODES=[
+ {k:'应收前1周',a:'发布《收费公示》，发放《收费通知单》',who:'管家',how:'公告栏 + 线上渠道；公示收费项目、标准'},
+ {k:'欠费 ≤1个月',a:'电话或上门沟通，系统记录欠费原因，分类催缴',who:'管家',how:'记录欠费原因、承诺时间、下次跟进时间',sub:[['近期缴费','承诺日前1天提醒'],['未明确时间','持续沟通，引导转化（第二招）'],['异地出差','引导线上缴费'],['特殊拒缴','协调资源，问题闭环后收费（第五、六招）'],['无法联系','联动开发商获取最新联系方式（第四招）']]},
+ {k:'欠费 1–3个月',a:'按欠费类型运用第二至第七招持续跟进',who:'管家',how:'每次沟通录入系统'},
+ {k:'欠费满3个月',a:'系统推送提醒，发放《催缴通知单》',who:'管家',how:'书面送达，本人签收或邮寄留底'},
+ {k:'欠费满12个月',a:'系统推送提醒，寄送《欠费催缴函》',who:'管家',how:'EMS寄送，保留底单和妥投记录'},
+ {k:'欠费满18个月',a:'系统推送提醒，寄送《催缴律师函》（委托律所出具）',who:'项目负责人',how:'EMS寄送，保留底单和妥投记录'},
+ {k:'欠费满24个月',a:'系统推送诉讼提醒，启动法律程序',who:'项目负责人',how:'见第10课 法律催收'}
+];
+const LETTER7=[['内容','写明合同依据条款、欠费期间、金额和违约金计算方式；附缴费明细、欠费明细和缴纳方式'],['出具','催缴通知单、催费函以公司名义出具并盖章；律师函由实际委托的律所出具'],['寄送','EMS等可查妥投记录的方式，保留底单和妥投记录；当面送达请业主书面签收'],['送达地址','优先合同约定或登记地址；退回的以物业联系表为准；空置房可装密封信封塞入户门并拍照（同时邮寄）；出租房可经租户转达'],['发出后','催费函寄出后<b>1周内不主动联系</b>，谁找谁决定主动权在谁手上；律师函期限内不主动联系，期满再跟进'],['批量发函','分批发，优先有代表性或带头欠费的业主，避免抱团对抗'],['系统留痕','函件、签收单、寄送凭证扫描上传，与沟通记录形成完整证据链']];
+const ROUTES=[['诉讼（含小额诉讼）','大多数物业费案件','标的额在当地上年度就业人员年平均工资50%以下的简单金钱给付案件，可适用小额诉讼：一审终审、审理较快'],['支付令','欠费清楚、无实质争议、能够送达','无需开庭，成本低；业主提出书面异议的，转入诉讼'],['仲裁','物业服务合同订有仲裁条款','民法典第944条明确可申请仲裁；一裁终局'],['集中化解 / 巡回审理','同一小区欠费户较多','部分法院到小区集中审理、释法说理，可主动对接']];
+const EVID=[['主体与合同',['物业服务合同或前期物业服务合同','（临时）管理规约','业主房屋信息（产权或交付证明）']],['收费依据',['收费标准','收费公示照片','价格备案文件（如有）']],['欠费事实',['欠费明细表','违约金计算表']],['催缴记录',['催缴通知单、催费函、律师函','送达凭证：EMS底单、妥投记录、签收单','通话录音、聊天记录（保存原始载体）']],['服务履行',['巡查记录','保洁、绿化、秩序维护记录','维修工单及回访记录']]];
+const DAYS=[
+ {d:'DAY 1',tag:'建议补充',t:'法律依据与合规红线',l:'l2',acts:['全员学习七条“催费红线”','每人复述3条可直接引用的法律要点']},
+ {d:'DAY 2',t:'“两见一收”·用服务赢得信任',l:'l3',acts:['晨会演练一次“公私结合”话术','每人完成至少一次“二次见面”回访']},
+ {d:'DAY 3',t:'服务力 × 客户分类攻坚',l:'l4',acts:['给跟风型客户发一次个性化服务问候','选一户空置房，完成巡查并拍照反馈业主']},
+ {d:'DAY 4',t:'缴费提醒·让业主说“谢谢”',l:'l6',z:1,acts:['发送缴费提醒时完整使用话术模板','业主支付后主动发送“感谢 + 服务承诺”','记录业主反馈（是否表达感谢）']},
+ {d:'DAY 5',t:'应对服务不满型欠费',l:'l6',z:6,acts:['选一位长期欠费的不满业主，尝试上门破冰','完整记录抱怨，聚焦解决1–2个具体问题','晨会演练“共情转移”话术']},
+ {d:'DAY 6',t:'应对历史遗留 / 房屋质量型欠费',l:'l6',z:5,acts:['梳理一户历史遗留问题业主，制定本周维修计划时间表','利用快递上门或社区活动创造一次服务触点','晨会演练“统一战线”话术']},
+ {d:'DAY 7',t:'角色扮演法·应对跟风 / 无理由欠费',l:'l7',acts:['选一户跟风型欠费业主，启动角色扮演流程（至少完成①②步）','晨会演练管家“减免权限”话术']},
+ {d:'DAY 8',t:'催缴标准流程',l:'l9',acts:['检查本月应收前1周的《收费公示》和通知单是否已准备','梳理欠费1个月内未明确缴费时间的业主，本周完成一轮沟通','确认欠费3个月以上业主的催缴节点是否已触发，准备EMS寄送']}
+];
+const SIX=[['律师函','注意内容和送达方式，由实际委托的律所出具'],['短信平台','使用高质量的短信平台通知'],['工作量','质量与数量并重'],['专业解答','情、理、法并用'],['复盘','催费人员与法务相互学习，定期复盘案例'],['节奏与心态','合理安排催收时间，建立心理疏导机制']];
+const DIAG=[['未缴费的所有业主',[1]],['满口答应，却总不出现',[2,3,7]],['联系不上',[4,7]],['房屋整改、历史遗留问题（重点）',[3,5,6,8]],['房屋久未出租而欠费',[3,5,6,8,9]],['对服务不满、有过不愉快',[6]],['以工作忙、不在家、没时间为借口',[2,3,7]],['跟风、无理由欠费',['r']],['所有关怀催缴都无效（恶意欠费）',[8,9,'e']]];
+const LAWNAME={'民法典':'《中华人民共和国民法典》','物业管理条例':'《物业管理条例》（2018年修订）','收费办法':'《物业服务收费管理办法》','指导规则':'《业主大会和业主委员会指导规则》','司法解释':'最高法物业服务纠纷司法解释（2020年修正）','质量条例':'《建设工程质量管理条例》（2019年修订）','典型案例':'最高法物业服务合同纠纷典型案例（2025年12月）'};
+const LAWS=[
+ ['民法典','第188条','向人民法院请求保护民事权利的诉讼时效期间为<b>三年</b>。法律另有规定的，依照其规定。'],
+ ['民法典','第189条','当事人约定同一债务分期履行的，诉讼时效期间自最后一期履行期限届满之日起计算。'],
+ ['民法典','第195条','有下列情形之一的，诉讼时效中断，从中断、有关程序终结时起，诉讼时效期间重新计算：（一）<b>权利人向义务人提出履行请求</b>；（二）义务人同意履行义务；（三）权利人提起诉讼或者申请仲裁；（四）与提起诉讼或者申请仲裁具有同等效力的其他情形。'],
+ ['民法典','第273条','业主对建筑物专有部分以外的共有部分，享有权利，承担义务；<b>不得以放弃权利为由不履行义务</b>。'],
+ ['民法典','第278条（节选）','下列事项由业主共同决定：……（五）使用建筑物及其附属设施的维修资金；（六）筹集建筑物及其附属设施的维修资金；……业主共同决定事项，应当由专有部分面积占比三分之二以上的业主且人数占比三分之二以上的业主参与表决。决定前款第六项至第八项规定的事项，应当经参与表决专有部分面积四分之三以上的业主且参与表决人数四分之三以上的业主同意。决定前款其他事项，应当经参与表决专有部分面积过半数的业主且参与表决人数过半数的业主同意。'],
+ ['民法典','第286条','业主应当遵守法律、法规以及管理规约，相关行为应当符合节约资源、保护生态环境的要求。对于物业服务企业或者其他管理人执行政府依法实施的应急处置措施和其他管理措施，业主应当依法予以配合。业主大会或者业主委员会，对任意弃置垃圾、排放污染物或者噪声、违反规定饲养动物、违章搭建、侵占通道、<b>拒付物业费</b>等损害他人合法权益的行为，有权依照法律、法规以及管理规约，请求行为人停止侵害、排除妨碍、消除危险、恢复原状、赔偿损失。业主或者其他行为人拒不履行相关义务的，有关当事人可以向有关行政主管部门报告或者投诉，有关行政主管部门应当依法处理。'],
+ ['民法典','第585条第2款','约定的违约金低于造成的损失的，人民法院或者仲裁机构可以根据当事人的请求予以增加；约定的违约金过分高于造成的损失的，人民法院或者仲裁机构可以根据当事人的请求予以适当减少。'],
+ ['民法典','第939条','建设单位依法与物业服务人订立的前期物业服务合同，以及业主委员会与业主大会依法选聘的物业服务人订立的物业服务合同，<b>对业主具有法律约束力</b>。'],
+ ['民法典','第942条第1款','物业服务人应当按照约定和物业的使用性质，妥善维修、养护、清洁、绿化和经营管理物业服务区域内的业主共有部分，维护物业服务区域内的基本秩序，采取合理措施保护业主的人身、财产安全。'],
+ ['民法典','第943条','物业服务人应当定期将服务的事项、负责人员、质量要求、收费项目、收费标准、履行情况，以及维修资金使用情况、业主共有部分的经营与收益情况等以合理方式向业主公开并向业主大会、业主委员会报告。'],
+ ['民法典','第944条','<b>业主应当按照约定向物业服务人支付物业费。</b>物业服务人已经按照约定和有关规定提供服务的，业主不得以未接受或者无需接受相关物业服务为由拒绝支付物业费。业主违反约定逾期不支付物业费的，物业服务人可以催告其在合理期限内支付；合理期限届满仍不支付的，物业服务人可以提起诉讼或者申请仲裁。<b>物业服务人不得采取停止供电、供水、供热、供燃气等方式催交物业费。</b>'],
+ ['民法典','第1198条（节选）','宾馆、商场、银行、车站、机场、体育场馆、娱乐场所等经营场所、公共场所的经营者、管理者或者群众性活动的组织者，未尽到安全保障义务，造成他人损害的，应当承担侵权责任。因第三人的行为造成他人损害的，由第三人承担侵权责任；经营者、管理者或者组织者未尽到安全保障义务的，承担相应的补充责任。'],
+ ['物业管理条例','第7条','业主在物业管理活动中，履行下列义务：……（四）按照国家有关规定交纳专项维修资金；（五）<b>按时交纳物业服务费用</b>；……'],
+ ['物业管理条例','第35条','物业服务企业应当按照物业服务合同的约定，提供相应的服务。物业服务企业未能履行物业服务合同的约定，导致业主人身、财产安全受到损害的，应当依法承担相应的法律责任。'],
+ ['物业管理条例','第40条','物业服务收费应当遵循合理、公开以及费用与服务水平相适应的原则，区别不同物业的性质和特点，由业主和物业服务企业按照国务院价格主管部门会同国务院建设行政主管部门制定的物业服务收费办法，在物业服务合同中约定。'],
+ ['物业管理条例','第41条','<b>业主应当根据物业服务合同的约定交纳物业服务费用。</b>业主与物业使用人约定由物业使用人交纳物业服务费用的，从其约定，业主负连带交纳责任。已竣工但尚未出售或者尚未交给物业买受人的物业，物业服务费用由建设单位交纳。'],
+ ['物业管理条例','第42条','县级以上人民政府价格主管部门会同同级房地产行政主管部门，应当加强对物业服务收费的监督。'],
+ ['物业管理条例','第64条','违反物业服务合同约定，业主逾期不交纳物业服务费用的，业主委员会应当督促其限期交纳；逾期仍不交纳的，物业服务企业可以向人民法院起诉。'],
+ ['收费办法','第4条','国务院价格主管部门会同国务院建设行政主管部门负责全国物业服务收费的监督管理工作。县级以上地方人民政府价格主管部门会同同级房地产行政主管部门负责本行政区域内物业服务收费的监督管理工作。'],
+ ['收费办法','第8条','物业管理企业应当按照政府价格主管部门的规定实行明码标价，在物业管理区域内的显著位置，将服务内容、服务标准以及收费项目、收费标准等有关情况进行公示。'],
+ ['收费办法','第9条','业主与物业管理企业可以采取包干制或者酬金制等形式约定物业服务费用。'],
+ ['收费办法','第10条','建设单位与物业买受人签订的买卖合同，应当约定物业管理服务内容、服务标准、收费标准、计费方式及计费起始时间等内容，涉及物业买受人共同利益的约定应当一致。'],
+ ['收费办法','第15条','<b>业主应当按照物业服务合同的约定按时足额交纳物业服务费用或者物业服务资金。</b>业主违反物业服务合同约定逾期不交纳服务费用或者物业服务资金的，业主委员会应当督促其限期交纳；逾期仍不交纳的，物业管理企业可以依法追缴。业主与物业使用人约定由物业使用人交纳物业服务费用或者物业服务资金的，从其约定，业主负连带交纳责任。物业发生产权转移时，业主或者物业使用人应当结清物业服务费用或者物业服务资金。'],
+ ['收费办法','第16条','纳入物业管理范围的已竣工但尚未出售，或者因开发建设单位原因未按时交给物业买受人的物业，物业服务费用或者物业服务资金由开发建设单位全额交纳。'],
+ ['收费办法','第21条','政府价格主管部门会同房地产行政主管部门，应当加强对物业管理企业的服务内容、标准和收费项目、标准的监督。物业管理企业违反价格法律、法规和规定，由政府价格主管部门依据《中华人民共和国价格法》和《价格违法行为行政处罚规定》予以处罚。'],
+ ['指导规则','第20条','业主拒付物业服务费，不缴存专项维修资金以及实施其他损害业主共同权益行为的，业主大会可以在管理规约和业主大会议事规则中对其共同管理权的行使予以限制。'],
+ ['司法解释','第2条','物业服务人违反物业服务合同约定或者法律、法规、部门规章规定，擅自扩大收费范围、提高收费标准或者重复收费，业主以违规收费为由提出抗辩的，人民法院应予支持。业主请求物业服务人退还其已经收取的违规费用的，人民法院应予支持。'],
+ ['司法解释','第4条','因物业的承租人、借用人或者其他物业使用人实施违反物业服务合同，以及法律、法规或者管理规约的行为引起的物业服务纠纷，人民法院可以参照关于业主的规定处理。'],
+ ['质量条例','第40条（节选）','在正常使用条件下，建设工程的最低保修期限为：……（二）屋面防水工程、有防水要求的卫生间、房间和外墙面的防渗漏，为<b>5年</b>；……建设工程的保修期，自竣工验收合格之日起计算。'],
+ ['典型案例','以限制门禁、电梯方式催费','业主欠费后，物业以不激活门禁卡、限制电梯使用等方式催费。法院认为，依据《民法典》第944条第3款，物业不得以停止供电、供水等方式催交物业费，<b>限制门禁和电梯同样缺乏依据</b>；物业应通过调解、诉讼或仲裁等方式主张权利。'],
+ ['典型案例','以房屋设计、质量问题拒缴','业主以厨房设计不合理、排烟倒灌为由拒付物业费。法院认为，房屋设计和专有部分质量问题属于商品房买卖合同关系，与物业服务合同是不同法律关系，<b>不能作为拒付物业费的理由</b>；以维修费用抵扣物业费的主张也不予支持。'],
+ ['典型案例','巡回审理、按服务质量调解','法院到小区巡回审理，现场查看服务质量并释法说理。物业认识到服务确有不到位，与业主当场达成调解，业主按服务项目和质量支付相应物业费，带动化解百余件潜在纠纷。']
+];
+const CARDS=[
+ ['收缴工作的主线是哪句话？','用服务换信任，用信任促收缴。'],
+ ['收缴的理想路径有哪五步？','诉求 → 见面 → 解决 → 回访 → 缴费自然发生。'],
+ ['“情、理、法”的使用顺序？','先动之以情，再晓之以理，最后依法维权。'],
+ ['《民法典》第944条三款各讲什么？','① 按约缴费，不得以未接受或无需接受服务拒缴；② 逾期可催告，期满可起诉或仲裁；③ 不得停水电气暖催费。'],
+ ['《民法典》第939条讲什么？','依法签订的前期物业服务合同、物业服务合同，对业主具有法律约束力。'],
+ ['业主说“我放弃使用共有部分，所以不交”，依据？','《民法典》第273条：不得以放弃权利为由不履行义务。'],
+ ['约定由租户缴物业费，租户不交，谁负责？','业主承担连带缴纳责任（物业管理条例第41条、收费管理办法第15条）。'],
+ ['未售出、或因开发商原因未交付的房屋，物业费谁交？','建设单位（物业管理条例第41条、收费管理办法第16条）。'],
+ ['业主卖房过户前，物业费怎么处理？','产权转移时须结清物业费（收费管理办法第15条）。'],
+ ['物业费的诉讼时效是多久？怎么中断？','3年（民法典第188条）。向业主提出缴费请求、业主同意履行、起诉或仲裁，都会中断时效并重新计算（第195条）。'],
+ ['说出七条催费红线。','停水电气暖；限门禁电梯；公开点名欠费信息；自制或冒用律师函；虚构已起诉；越权打折减免；威胁辱骂、休息时段反复致电。'],
+ ['公示欠费情况只能用什么口径？','统计口径，例如楼栋收缴率；具体欠费一对一私下沟通。'],
+ ['“两见一收”指什么？','诉求发生时见一次，问题解决后再见一次；缴费在日常服务中自然发生。'],
+ ['什么叫“公私结合”？','群内公开回应、表明重视；具体诉求和欠费只在私聊或电话中处理。'],
+ ['客户分类的三个维度分别决定什么？','缴费习惯→提醒强度；客户特征→沟通策略；欠费原因→先解决什么。'],
+ ['跟风型客户的核心策略？','增加触点，打破跟风心态；组合打法用角色扮演法。'],
+ ['刚柔两种催收心态？','柔：追求者心态，有耐心没脾气；刚：警察心态，立场坚定，有礼有节。'],
+ ['每打一个催费电话，至少要拿到什么？','一个结果：缴费时间、缴费方式或明确的问题清单。'],
+ ['第二招“断其后路”的三个动作？','扫清缴费障碍（给线上方式）→ 锁定具体时间 → 到点按时跟进。'],
+ ['“苦肉计”的两条禁忌？','对性格暴躁、没耐心的业主不用；讲的难处必须真实，不可编造。'],
+ ['“地毯搜索”找人的三个途径？','联动开发商；日常信息积累（来电、装修押金退还、上门登记）；亲友或单位转告“请联系物业服务中心”。'],
+ ['“统一战线”六步？','第一时间到现场 → 站在业主一边 → 明确维修节点 → 用服务覆盖 → 先整改后赔付 → 跟进到底。'],
+ ['“糖衣炮弹”三步？','情感破冰 → 共情转移 → 聚焦解决1–2个具体问题。'],
+ ['律师函发出后怎么跟？','期限一般2周；期限内不主动联系，期满再跟进；多户分批发。'],
+ ['分阶催缴的节点和动作？','前1周公示 / ≤1月分类沟通 / 满3月催缴通知单 / 满12月催缴函 / 满18月律师函 / 满24月启动诉讼。'],
+ ['恶意欠费提前升级的三个条件？','明确拒缴且无正当理由；欠费3个月以上；已送达2封以上书面催缴仍无效。'],
+ ['催费函寄出后多久不主动联系？','1周。谁找谁，决定主动权在谁手上。'],
+ ['防水、防渗漏的最低保修期？','5年，自竣工验收合格之日起计算，由建设单位负责。'],
+ ['使用专项维修资金的表决规则？','面积、人数占比均2/3以上的业主参与表决，参与者中面积、人数均过半数同意（民法典第278条）。'],
+ ['支付令适合什么情况？','欠费清楚、无实质争议、能够送达；业主提出书面异议的，转入诉讼。'],
+ ['诉讼证据分哪五类？','主体与合同、收费依据、欠费事实、催缴记录、服务履行。'],
+ ['合同里的“滞纳金”在法律上叫什么？过高会怎样？','违约金。约定过高的，法院通常会依民法典第585条调减。']
+].map((c,i)=>({id:'c'+(i+1),q:c[0],a:c[1]}));
+
+/* ---------- lessons ---------- */
+const LESSONS=[
+{id:'l1',stage:0,t:'收缴总览',sub:'危害 · 理念 · 全流程地图',min:3,
+ key:'收缴的主线是<em>用服务换信任，用信任促收缴</em>。技巧解决“怎么开口”，服务解决“业主为什么愿意交”。',
+ body:()=>H.sec('欠费会自我放大',H.w('cycle')+H.ul(['吞噬物业公司的利润','侵犯已缴费业主的利益','服务质量下降，形成“欠费—降质—更多欠费”','给已缴费业主造成负面影响，引发跟风欠费']))
+ +H.sec('理想路径：缴费是服务的结果',H.chain([['诉求','业主提出问题，是信任的起点'],['见面','迎接、安抚、记录、承诺跟进'],['解决','按承诺把问题处理到位'],['回访','还原过程、确认满意、致谢'],['缴费','自然发生；收款后再确认服务承诺']],true))
+ +H.sec('三条心法',H.boxes([['不敷衍每一件小事','这正是精准把握业主需求的关键。'],['服务在前，收费在后','收费后再次确认服务承诺，形成价值闭环。'],['情、理、法并用','先动之以情，再晓之以理，最后依法维权。']]))
+ +H.sec('全流程地图',H.w('map'),'五个阶段，加一条贯穿始终的合规底线。点任一阶段，跳到对应课程。'),
+ quiz:[
+  {q:'手册把收缴工作的主线概括为哪句话？',o:['先催费，后服务','用服务换信任，用信任促收缴','情理法并用，以法为先','提高电话频率，持续施压'],a:1,e:'技巧解决“怎么开口”，服务解决“业主为什么愿意交”。'},
+  {q:'“情、理、法并用”的正确顺序是？',o:['先依法维权，再讲道理，最后讲感情','先动之以情，再晓之以理，最后依法维权','先晓之以理，再动之以情，最后依法维权','三者同时使用，不分先后'],a:1,e:'法律途径是最后一步。'},
+  {q:'为什么少数业主欠费，会拖累整个小区的收缴率？',o:['物业会给欠费业主停水','欠费导致服务降质，已缴业主不满并跟风欠费','欠费业主会被公开点名','诉讼时效会过期'],a:1,e:'这就是“欠费—降质—更多欠费”的恶性循环。'}
+ ]},
+{id:'l2',stage:0,t:'法律依据与红线',sub:'两层关系 · 可引用要点 · 七条红线',min:6,
+ key:'按约缴费是业主的法定义务。催费手段有红线：<em>停水停电、限门禁电梯、公开点名、冒用律师函</em>，一律不做。',
+ body:()=>H.sec('两层关系',`<div class="g2"><div class="box"><span class="tag blue">法律关系</span>${H.ul(['《民法典》（2021年1月1日起施行）','《物业管理条例》（2018年修订）','《物业服务收费管理办法》','《业主大会和业主委员会指导规则》','最高法物业服务纠纷司法解释（2020年修正）','项目所在地的条例和收费办法（地方另有规定的从其规定）'])}</div><div class="box"><span class="tag">合同关系</span>${H.ul(['《前期物业服务合同》：建设单位依法与物业公司签订','《物业服务合同》：业主大会选聘后，由业委会与物业公司签订','《临时管理规约》/《管理规约》'])}</div></div>`)
+ +H.sec('业主这么说，你这么引',H.w('cite'),'先自己想想依据是哪条，再点开核对。')
+ +H.tip('法规提示','催费前先查自己：收费项目、标准、服务内容应当公示（民法典第943条、收费管理办法第8条）。擅自扩大收费范围、提高标准或重复收费的，业主可以抗辩并要求退还（司法解释第2条）。')
+ +H.sec('红线判断：这样做行不行？',H.w('redline'),'12个真实场景，逐个判断。')
+ +H.sec('七条红线清单',`<div class="ledger"><div class="lg-row lg-head"><span>红线</span><span>依据 / 风险</span><span>正确做法</span></div>${RED7.map(r=>`<div class="lg-row"><span class="x" data-l="红线">✕ ${r[0]}</span><span data-l="依据 / 风险">${r[1]}</span><span class="v" data-l="正确做法">${r[2]}</span></div>`).join('')}</div>`)
+ +H.sec('2026版更新：这些老说法别再用',`<div class="ledger"><div class="lg-row c2b lg-head"><span>旧说法</span><span>现行</span></div>${UPD.map(r=>`<div class="lg-row c2b"><span class="old" data-l="旧说法">${r[0]}</span><span data-l="现行">${r[1]}</span></div>`).join('')}</div>`+H.tip('待跟进','《物业管理条例》已于2026年5月列入国务院年度立法计划“预备修订”，尚未公布修订草案。修订稿出台后，本手册需同步更新。','blue')),
+ quiz:[
+  {q:'业主欠费半年，以下哪个做法合法？',o:['暂停其门禁卡','暂停供水直到缴费','用EMS寄送催费函，保留妥投记录','在业主群公布其房号和欠费金额'],a:2,e:'停水违反民法典第944条第3款；限门禁被最高法2025年12月典型案例否定；公开点名涉及隐私权和个人信息保护。'},
+  {q:'一楼业主说“我不坐电梯，电梯那部分不交”。最直接的依据是？',o:['民法典第944条第1款','民法典第1198条','建设工程质量管理条例第40条','收费管理办法第16条'],a:0,e:'已按约提供服务的，业主不得以未接受或无需接受服务为由拒缴。'},
+  {q:'下面哪句话可以对业主说？',o:['“我们已经起诉您了。”（实际未起诉）','“您的欠费已列入公司法律催收计划。”（属实）','“这封律师函是我们自己写的。”','“不交就停您家的水。”'],a:1,e:'只能陈述真实安排。虚构诉讼、自制律师函、停水都是红线。'}
+ ]},
+{id:'l3',stage:0,t:'两见一收',sub:'用服务赢得信任',min:3,
+ key:'收缴率的底子在平时。<em>诉求发生时见一次，问题解决后再见一次</em>，缴费在日常服务里自然发生。',
+ body:()=>H.sec('三个时刻',`<ol class="tl"><li><span class="tl-k">第一次见面</span><b>诉求发生时</b><div class="chips"><span>主动迎接</span><span>情绪安抚</span><span>倾听记录</span><span>确认诉求</span><span>承诺跟进</span></div><p>公私结合：群里公开回应、表明重视，具体情况转私聊处理。</p></li><li><span class="tl-k">第二次见面</span><b>问题解决后</b><div class="chips"><span>过程还原</span><span>结果确认</span><span>服务回访</span><span>真诚致谢</span><span>强化关系</span></div><p>把“问题解决”变成“关系拉近”。</p></li><li><span class="tl-k">一收</span><b>在日常维护中自然实现</b><p>不是专门去催，而是在每一个服务触点里攒信任。</p></li></ol>`)
+ +H.sec('公私结合：同一件事，两种说法',H.w('pubpri'))
+ +H.sec('第二次见面怎么说',H.say([['管家','X先生，您反馈的问题已处理完毕（简要还原处理过程）。您是否满意？后续随时找我。'],['管家','感谢您的理解与支持，能为您服务是我们的荣幸。']]))
+ +H.sec('“一收”的服务触点',H.boxes([['快递上门','代收快递、送件上门，创造见面机会。'],['空置房巡查','定期巡查并拍照反馈业主，让看不见的服务被看见。'],['细节服务','清洗地垫等，主动提供小而具体的帮助。'],['细致关怀','节日问候、天气提醒、特殊时期的关照。']],'g2')),
+ quiz:[
+  {q:'业主在业主群投诉楼道漏水，你第一步怎么做？',o:['群里不回应，直接上门','群内公开回应、表明重视，随即私聊了解详情','在群里详细讨论维修方案和责任','等工程部处理完再统一回复'],a:1,e:'公私结合：群里表态，私聊办事。'},
+  {q:'“两见一收”中的两次见面是？',o:['缴费前和缴费后','诉求发生时和问题解决后','入伙时和交房时','每月初和每月底'],a:1,e:'第一次接住诉求，第二次确认结果、强化关系。'}
+ ]},
+{id:'l4',stage:0,t:'客户分类',sub:'三个维度，对症施策',min:4,
+ key:'先分类，再出招。<em>缴费习惯</em>定提醒强度，<em>客户特征</em>定沟通策略，<em>欠费原因</em>定先解决什么。',
+ body:()=>H.sec('三个维度',H.boxes([['缴费习惯','决定提醒强度：自动缴费的少打扰，多次不缴的要细分原因。'],['客户特征','决定沟通策略：VIP、问题客户、跟风型、空置房各有打法。'],['欠费原因','决定先解决什么：开发原因、服务瑕疵、收费流程。']]))
+ +H.sec('按缴费习惯分级',`<div class="ladder">${HABIT.map(h=>`<div class="lad"><b>${h[0]}</b><div class="dots" aria-label="提醒强度 ${h[1]}/4">${[1,2,3,4].map(i=>`<i class="${i<=h[1]?'on':''}"></i>`).join('')}</div><span>${h[2]}</span></div>`).join('')}</div><p class="muted sm">圆点 = 提醒强度</p>`)
+ +H.sec('按客户特征攻坚',`<div class="g2">${CTYPE.map(c=>`<div class="box"><h3>${c[0]}</h3><p class="sm">${c[1]}</p><span class="tag blue" style="align-self:flex-start">${c[2]}</span><p>${c[3]}</p></div>`).join('')}</div>`)
+ +H.sec('按欠费原因对症',`<div class="ledger">${REASON.map(r=>`<div class="lg-row c2"><b data-l="欠费原因">${r[0]}</b><span data-l="措施">${r[1]}</span></div>`).join('')}</div>`)
+ +H.tip('速查','不确定该用哪一招？去 <a href="#tools" data-tool="diag">工具箱 · 招数诊断</a>，选业主情况就能匹配。','blue'),
+ quiz:[
+  {q:'业主没有实质纠纷，看邻居不交也跟着不交，属于哪类？',o:['问题客户：先解决诉求','跟风型客户：增加触点，打破跟风心态','VIP客户：借力发声','空置房客户：巡查拍照'],a:1,e:'高频触达、正向引导，讲清跟风不交的后果；组合打法见第7课。'},
+  {q:'对“提醒多次也不缴”的业主，第一步应该？',o:['直接发律师函','细分欠费原因，个性化处理','加大电话频率','等满12个月再处理'],a:1,e:'按开发原因、服务瑕疵、收费流程对症处理。'}
+ ]},
+{id:'l5',stage:0,t:'催收基本功',sub:'心态 · 原则 · 沟通 · 节奏',min:4,
+ key:'心态稳，立场正，<em>每通电话都要拿到一个结果</em>。',
+ body:()=>H.sec('先过心理关',H.boxes([['抵触','觉得业主就不该交、不可能交，于是应付了事，效果不佳。'],['恐惧','怕打电话、怕得罪业主，打起来磨磨蹭蹭、羞羞答答。']],'g2')+`<p>调节方法：业主发脾气是对事不对人。保持平和，换位思考，语气严厉与温和交替使用。</p>`)
+ +H.sec('刚柔两种心态',H.w('mind'))
+ +H.sec('五条原则',H.ol(['不轻易答应打折、减免；确需减免的，按公司授权审批','不轻易听信业主的一面之词，相关问题要核实','不轻易承诺帮业主解决物业解决不了的问题','<b>每打一个电话，都要拿到一个结果</b>：缴费时间、缴费方式或明确的问题清单','坚定立场：服务问题走“整改—反馈”，不构成拒缴理由'])+H.tip('法规提示','“不管物业有没有过错，物业费都要交”这个说法要修正。民法典第944条的前提是物业“已经按照约定和有关规定提供服务”；服务明显不到位的，法院可能按实际服务质量酌减。<b>我方有过错的，先整改，再催费。</b>'))
+ +H.sec('给选择题，不给判断题',H.w('ask'),'两组问法，选出更好的一句。')
+ +H.sec('沟通五要点',`<div class="ledger">${[['语言','语音语调适当，吐字清晰，让听者舒服'],['引导','让业主在我们的框架内回答、确定时间；不给过多质疑空间，快速结束通话'],['灵活','对收费起始日期有异议的，先倾听找症结，表示理解后再解释收费标准'],['公私结合','群内公开回应、表明态度；欠费只在私聊或电话中谈'],['留痕','每次结果录入系统：欠费原因、承诺时间、下次跟进时间']].map(r=>`<div class="lg-row c2"><b data-l="要点">${r[0]}</b><span data-l="做法">${r[1]}</span></div>`).join('')}</div>`)
+ +H.sec('节奏：松弛有度，波峰推进',H.w('wave')+H.ul(['<b>统筹安排</b>：综合缴费情况、催费进展、问题处理进展和上次沟通情况来定频率','<b>波峰节奏</b>：以通知单、催费函、律师函送达和当面调解为节点形成波峰，每天有重点、工作量适中','<b>坚持渗透</b>：每次沟通都讲清法律责任归属，电话辅以短信。短期难见效，但潜移默化'])),
+ quiz:[
+  {q:'每打一个催费电话，最低要拿到什么？',o:['业主的道歉','一个结果：缴费时间、缴费方式或明确的问题清单','业主的微信号','业主对物业的评价'],a:1,e:'五条原则第4条。'},
+  {q:'业主说“打个8折我马上交”，你应该？',o:['当场答应，先收进来','不轻易答应；确需减免的按公司授权审批','直接拒绝并挂电话','先答应，事后再找领导补批'],a:1,e:'越权打折是红线，还会被其他业主效仿。'},
+  {q:'哪种问法更容易拿到缴费时间？',o:['“您什么时候方便交一下？”','“您这个月能交吗？”','“您是小程序缴，还是银行转账？这周五前可以吗？”','“您到底交不交？”'],a:2,e:'给选择题，把对方引导进我们的框架。'}
+ ]},
+{id:'l6',stage:1,t:'催费九招',sub:'从温和提醒到律师函',min:8,
+ key:'九招从温到硬：<em>先提醒，再攻坚，后正式</em>。招数看人，不看欠了多久。',
+ body:()=>H.sec('九招总览',H.w('zhao'),'色条表示强度。点一招，看适用对象、要点、话术和案例。','zhao-sec'),
+ quiz:[
+  {q:'业主每次都说“有空就来交”，已经拖了两个月。首选哪一招？',o:['第九招 律师函','第二招 断其后路','第五招 统一战线','第四招 地毯搜索'],a:1,e:'替业主扫清缴费障碍，锁定具体时间，按时跟进。'},
+  {q:'使用“苦肉计”的底线是？',o:['必须带礼品','讲的难处必须真实，不可编造','只能在月底用','必须由项目负责人出面'],a:1,e:'另外，性格暴躁、没有耐心的业主不建议用。'},
+  {q:'请业主的同事帮忙转告时，可以说什么？',o:['欠费金额和月数','“请他联系物业服务中心”','“他再不交就要被起诉了”','业主家里的维修情况'],a:1,e:'个人信息保护法第6条：限于必要范围，不透露欠费细节。'},
+  {q:'5户同时满足律师函条件，怎么发？',o:['同一天全部寄出，形成震慑','分批发，优先有代表性或带头欠费的业主','只发给欠费金额最高的一户','先在业主群预告再发'],a:1,e:'同时发容易让多户抱团对抗。'}
+ ]},
+{id:'l7',stage:1,t:'角色扮演法',sub:'跟风 / 无理由欠费的组合打法',min:3,
+ key:'系统、管家、财务、法务<em>轮番出场，压力逐级上升</em>；管家始终是帮业主争取的那个人。',
+ body:()=>H.sec('压力阶梯',H.w('stairs'),'点每一级，看谁出场、做什么、起什么作用。')
+ +H.sec('四个关键',H.boxes([['压力递进','短信 → 管家 → 财务 → 函件 → 法律催收，层层升级。'],['管家定位','始终站在业主一边，帮业主争取减免，建立信任。'],['时间节点','明确“减免截止日期”，制造紧迫感。'],['最终闭环','管家以法律催收作最后提醒，结合预存活动收口。']],'g2'))
+ +H.tip('合规提示','第④⑤步的减免须事先取得公司授权，截止日期要真实执行；第⑦步只能陈述真实安排，不得虚构“已起诉”“已进入诉讼排期”。','red'),
+ quiz:[
+  {q:'角色扮演法中，管家扮演什么角色？',o:['施压的“坏人”','始终站在业主一边、帮其争取减免的“好人”','只负责寄函','负责核对邮寄地址'],a:1,e:'压力由系统、财务、法务给，台阶由管家给。'},
+  {q:'第⑤步财务再次致电，目的是？',o:['核对邮寄地址','告知违约金减免申请的截止日期，制造紧迫感','告知已经起诉','请业主到前台面谈'],a:1,e:'截止日期必须真实执行，减免须事先授权。'}
+ ]},
+{id:'l8',stage:1,t:'拒缴理由十问',sub:'先分清责任，再讲道理',min:6,
+ key:'先分清<em>责任在谁</em>。是物业的责任，马上整改反馈；不是物业的责任，讲清法律关系，物业费照交。',
+ body:()=>H.sec('处理原则',`<div class="triage"><div class="tr-a">业主提出拒缴理由</div><span class="tr-arr" aria-hidden="true">↓</span><div class="tr-q">责任在谁？</div><span class="tr-arr" aria-hidden="true">↓</span><div class="g2"><div class="box"><span class="tag blue" style="align-self:flex-start">物业的责任</span><p>及时整改，把结果反馈给业主，再谈费用。</p></div><div class="box"><span class="tag" style="align-self:flex-start">不是物业的责任</span><p>讲清法律关系，可以协助协调，但物业费仍应缴纳。</p></div></div></div>`)
+ +H.sec('十类拒缴理由',H.w('cases'),'先遮住答案想一想：责任在谁？物业费要不要交？'),
+ quiz:[
+  {q:'雨天业主在大堂摔伤，拒交物业费并起诉。首先要确认什么？',o:['业主往年费用是否缴清','物业当时是否做好防滑措施','业主是否买了保险','监控是否损坏'],a:1,e:'防滑地毯、雨伞套、定岗扫水、提示牌，决定物业是否尽到安全保障义务（民法典第1198条）。'},
+  {q:'交房3年，外墙渗漏进屋。谁负责保修？',o:['物业公司','建设单位（开发商），物业协助联系','业主自己','动用专项维修资金'],a:1,e:'防渗漏最低保修5年，自竣工验收合格起算；保修期外才走维修资金。'},
+  {q:'业主说“物业和开发商是一伙的”。应对要点是？',o:['承认并道歉','两家是独立法人，各担责任；物业可协助业主与开发商沟通','说开发商已经不管了','建议业主去起诉物业'],a:1,e:'即使同集团、同名，也是独立的民事主体。'}
+ ]},
+{id:'l9',stage:2,t:'分阶流程与函件',sub:'节点 · 提前升级 · 函件 · 时效',min:6,
+ key:'应收前1周先公示，之后按 <em>1 / 3 / 12 / 18 / 24 个月</em>逐级升级。每个动作都要能证明“已送达”。',
+ body:()=>H.sec('分阶节点',H.w('nodes'),'点节点，看该做什么、谁负责、怎么留痕。')
+ +H.sec('已缴费的业主也要闭环',H.chain([['收费开票',''],['审核入账',''],['感谢 + 服务承诺','价值闭环，见第一招']],true))
+ +H.sec('恶意欠费：可以提前升级',H.w('early'))
+ +H.sec('函件管理七条',`<div class="ledger">${LETTER7.map(r=>`<div class="lg-row c2"><b data-l="环节">${r[0]}</b><span data-l="要求">${r[1]}</span></div>`).join('')}</div>`)
+ +H.sec('诉讼时效：3年，书面催缴可中断',H.w('limit')+H.ul(['<b>时效期间</b>：3年（民法典第188条）','<b>起算</b>：有的法院按每期分别计算，有的自最后一期届满起算（第189条）。稳妥做法：按每期分别计算来管理','<b>中断</b>：物业提出缴费请求、业主同意履行，时效中断并重新计算（第195条），所以每次书面催缴都要能证明已送达','<b>留存</b>：书面函件及送达凭证；业主签字的欠费确认书或还款承诺；同意付款的聊天记录、通话录音（保存原始载体）'])+H.tip('法规提示','原课件“催缴记录2年内有效”是《民法通则》时期的说法。现行时效为3年，但按“1年内至少一次有效书面催缴”管理仍最稳妥。')),
+ quiz:[
+  {q:'欠费满12个月，标准动作是？',o:['发放《催缴通知单》','EMS寄送《欠费催缴函》，保留底单和妥投记录','寄送律师函','启动诉讼'],a:1,e:'3个月通知单，12个月催缴函，18个月律师函，24个月诉讼。'},
+  {q:'恶意欠费提前升级，需要同时满足什么？',o:['欠费满1个月且业主态度差','明确拒缴无正当理由 + 欠费3个月以上 + 已送达2封以上书面催缴仍无效','欠费金额超过1万元','业主拒接电话3次以上'],a:1,e:'满足后经项目负责人审批，可提前寄律师函或启动法律程序。'},
+  {q:'催费函寄出后第3天，业主还没回音。你应该？',o:['马上打电话追问','1周内不主动联系，等业主找你；1周后再了解情况','再寄一封','上门张贴在户门上'],a:1,e:'谁找谁，决定了主动权在谁手上。'},
+  {q:'现行物业费的诉讼时效是？',o:['1年','2年','3年，书面催缴可中断并重新计算','没有时效'],a:2,e:'民法典第188、195条。管理上两次有效书面催缴间隔不超过1年。'}
+ ]},
+{id:'l10',stage:2,t:'法律催收',sub:'调解 · 诉讼 · 证据',min:4,
+ key:'先调解，后诉讼。证据决定结果：<em>合同、收费依据、欠费事实、催缴送达、服务履行</em>，五类齐全。',
+ body:()=>H.sec('先调解，后诉讼',`<div class="lanes"><div class="lane"><h3>调解</h3>${H.ol(['律师介入通知，引起业主重视','讲解合同法律关系，情感疏导','发放律师函','律师函发出后高频调解','必要时诉前调解：法院诉调对接、人民调解委员会，或请业委会、居委会协调'])}</div><span class="lane-arr" aria-hidden="true">→</span><div class="lane"><h3>诉讼</h3>${H.ol(['立案前和解','立案后和解','庭审','判决、执行'])}</div></div>`)
+ +H.sec('四条法律途径',`<div class="g2">${ROUTES.map(r=>`<div class="box"><h3>${r[0]}</h3><span class="tag blue" style="align-self:flex-start;white-space:normal">适用：${r[1]}</span><p>${r[2]}</p></div>`).join('')}</div>`)
+ +H.sec('诉讼证据清单',H.w('evid'),'准备起诉前逐项打勾，记录保存在本机浏览器。'),
+ quiz:[
+  {q:'欠费事实清楚、业主无实质争议、地址能送达，成本最低的途径是？',o:['普通诉讼','支付令','仲裁','集中化解'],a:1,e:'无需开庭；业主提出书面异议的，转入诉讼。'},
+  {q:'业主以“服务差”抗辩，哪类证据最关键？',o:['欠费明细表','服务履行记录：巡查、保洁绿化秩序记录、维修工单及回访','收费公示照片','律师函'],a:1,e:'用于证明“已按约提供服务”。'},
+  {q:'物业服务合同里订有仲裁条款，可以怎么做？',o:['只能起诉','申请仲裁，一裁终局','只能调解','只能申请支付令'],a:1,e:'民法典第944条明确可以申请仲裁。'}
+ ]}
+];
+const LMAP={};LESSONS.forEach((l,i)=>{l.no=i+1;LMAP[l.id]=l});
+const EXTRA=[
+ {q:'王先生第三次说“下周回来就交”。最好的回应是？',o:['“好的，等您回来。”','“您在外地可以直接小程序缴，也可以转账。这周五前可以吗？到时我再跟您确认。”','“再不交就发律师函。”','把他的情况发到业主群提醒'],a:1,e:'第二招断其后路：给方式、做选择题、锁时间、按时跟进。',l:'l6'},
+ {q:'新同事想把欠费名单（房号 + 金额）贴在单元门口。你会？',o:['同意，有震慑作用','制止：只能公示楼栋收缴率等统计口径，欠费一对一沟通','同意，但隐去姓名','改成发到业主群'],a:1,e:'公开点名涉及隐私权、名誉权和个人信息保护法。',l:'l2'},
+ {q:'业主因楼上渗水泡坏地板，拒交物业费。你先做什么？',o:['告诉他质量问题与物业无关','立即安排维修，协调楼上业主处理，并把进展反馈给业主','直接寄催缴函','让他自己找开发商'],a:1,e:'室内漏水物业负责维修和协调相关业主；处理到位后再谈费用。',l:'l8'},
+ {q:'业主收到催费函后打来电话，语气很冲。你应该？',o:['同样强硬回应','让对方先把情绪说完，理解他对事不对人，再坚定地讲清法律关系','直接挂断','承诺减免全部违约金'],a:1,e:'柔：追求者心态，经得起软磨硬泡；刚：立场坚定，有礼有节。',l:'l5'},
+ {q:'业主对上次维修不满，已欠费5个月，“谈费色变”。首选？',o:['第八招 催费函','第六招 糖衣炮弹：上门破冰、先认可致歉、聚焦解决1–2个问题','第九招 律师函','第七招 全民总动员'],a:1,e:'把抱怨变成信任的转折点；我方有责先整改。',l:'l6'},
+ {q:'业主下个月要卖房，还欠8个月物业费。你应该？',o:['等过户后找新业主要','及时提醒：产权转移前须结清物业费','什么也不做','让中介从房款里扣'],a:1,e:'物业服务收费管理办法第15条。',l:'l9'}
+];
+const QUESTIONS=[];LESSONS.forEach(L=>L.quiz.forEach(q=>QUESTIONS.push(Object.assign({l:L.id},q))));EXTRA.forEach(q=>QUESTIONS.push(q));
+
+/* ================= QUIZ ENGINE ================= */
+const QMAP={};
+function quizBlock(q,id,num){
+  QMAP[id]=q;
+  const order=shuffle(q.o.map((_,j)=>j));
+  return `<div class="q" data-q="${id}"><p class="q-t"><span class="q-n">${num}</span><span>${q.q}</span></p><div class="q-o">${order.map(j=>`<button type="button" class="opt" data-j="${j}">${q.o[j]}</button>`).join('')}</div><p class="q-e" hidden></p></div>`;
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.opt');if(!b||b.disabled)return;
+  const box=b.closest('.q');const q=QMAP[box.dataset.q];if(!q)return;
+  const j=+b.dataset.j;const ok=j===q.a;
+  $$('.opt',box).forEach(o=>{o.disabled=true;if(+o.dataset.j===q.a)o.classList.add('right');else if(o===b)o.classList.add('wrong')});
+  const ex=$('.q-e',box);ex.hidden=false;
+  ex.innerHTML=(ok?'<b class="ok-t">答对了。</b>':'<b class="bad-t">不对。</b>正确答案已标绿。')+q.e;
+  box.dataset.ok=ok?'1':'0';
+  box.dispatchEvent(new CustomEvent('answered',{bubbles:true,detail:{ok,q}}));
+});
+
+/* ================= COPY ================= */
+function copyText(text,btn,srcEl){
+  const orig=btn.dataset.orig||btn.textContent;btn.dataset.orig=orig;
+  const ok=()=>{btn.textContent='已复制';setTimeout(()=>{btn.textContent=orig},1500)};
+  const fail=()=>{try{const r=document.createRange();r.selectNodeContents(srcEl);const s=getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}btn.textContent='已选中，请手动复制';setTimeout(()=>{btn.textContent=orig},2500)};
+  try{navigator.clipboard.writeText(text).then(ok,fail)}catch(e){fail()}
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.copy');if(!b)return;
+  const p=b.closest('.bub').querySelector('p');copyText(p.textContent,b,p);
+});
+
+/* ================= WIDGETS ================= */
+const W={};
+W.cycle=el=>{
+  const node=(cx,cy,t,w)=>`<g class="cy-node"><rect x="${cx-w/2}" y="${cy-20}" width="${w}" height="40" rx="20"/><text x="${cx}" y="${cy+5}" text-anchor="middle">${t}</text></g>`;
+  el.innerHTML=`<div class="svgwrap"><svg viewBox="0 0 520 300" role="img" aria-label="恶性循环：欠费增加，利润被吞噬，服务质量下降，已缴业主不满并跟风，欠费进一步增加">
+  <defs><marker id="ah-cy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+  <path class="cy-arc" d="M338 44 Q420 48 428 122" marker-end="url(#ah-cy)"/>
+  <path class="cy-arc" d="M430 178 Q424 252 346 258" marker-end="url(#ah-cy)"/>
+  <path class="cy-arc" d="M176 258 Q96 252 90 178" marker-end="url(#ah-cy)"/>
+  <path class="cy-arc" d="M90 122 Q96 48 180 44" marker-end="url(#ah-cy)"/>
+  ${node(260,40,'欠费增加',150)}${node(430,150,'利润被吞噬',150)}${node(260,258,'服务质量下降',160)}${node(90,150,'已缴业主不满、跟风',176)}
+  <text class="cy-mid" x="260" y="148" text-anchor="middle">恶性循环</text>
+  <text class="cy-sub" x="260" y="174" text-anchor="middle">欠费 — 降质 — 更多欠费</text></svg></div>`;
+};
+W.map=el=>{
+  const S=[['日常服务','“两见一收”：每次诉求处理都在攒信任','l3'],['缴费提醒','应收前1周公示与通知；让业主说“谢谢”','l6'],['分类施策','按缴费习惯、客户特征、欠费原因对症选招','l4'],['分阶催缴','1 / 3 / 12 / 18 / 24个月逐级升级，系统留痕','l9'],['依法追缴','调解 → 诉讼 / 支付令 / 仲裁 → 判决、执行','l10']];
+  el.innerHTML=`<div class="map">${S.map((s,i)=>`<a href="#${s[2]}" ${s[2]==='l6'?'data-z="1"':''}><span class="i">${String(i+1).padStart(2,'0')}</span><b>${s[0]}</b><span>${s[1]}</span><span class="go">第${LMAP[s[2]].no}课 →</span></a>`).join('')}</div><a class="map-band" href="#l2"><b>全程合规</b><span>不停水停电 · 不限门禁电梯 · 不泄露隐私 · 不冒用律师名义</span><span class="go" style="margin-left:auto;color:var(--seal)">第2课 →</span></a>`;
+};
+W.cite=el=>{
+  el.innerHTML=`<div class="rv-list">${CITE.map((c,i)=>`<div class="rv"><div class="rv-f"><div class="rv-q"><span class="lbl">业主说</span><q>${c[0]}</q></div><button type="button" class="btn ghost sm" aria-expanded="false" data-rv="${i}">看依据</button></div><div class="rv-b" hidden><p>${c[1]}</p><div class="rv-meta"><span class="tag blue">${c[2]}</span></div></div></div>`).join('')}</div><div class="rv-tools"><button type="button" class="link" data-all="1">全部展开</button></div>`;
+  wireReveal(el,'看依据');
+};
+function wireReveal(el,label){
+  el.addEventListener('click',e=>{
+    const b=e.target.closest('[data-rv]');
+    if(b){const body=b.closest('.rv').querySelector('.rv-b');const open=body.hidden;body.hidden=!open;b.setAttribute('aria-expanded',String(open));b.textContent=open?'收起':label;return}
+    const a=e.target.closest('[data-all]');
+    if(a){const show=a.dataset.all==='1';$$('.rv',el).forEach(r=>{$('.rv-b',r).hidden=!show;const bb=$('[data-rv]',r);bb.setAttribute('aria-expanded',String(show));bb.textContent=show?'收起':label});a.dataset.all=show?'0':'1';a.textContent=show?'全部收起':'全部展开'}
+  });
+}
+W.redline=el=>{
+  let i=0,score=0,answered=false;const list=REDGAME;
+  const draw=()=>{
+    if(i>=list.length){
+      el.innerHTML=`<div class="rl"><div class="rl-top"><span>完成</span><span>${list.length}/${list.length}</span></div><p class="rl-q">判断对了 ${score} / ${list.length} 题</p><p class="muted">${score===list.length?'全对。七条红线已经刻在脑子里了。':'错的那几条，对照下方的红线清单再看一遍。'}</p><div class="rl-next"><button type="button" class="btn ghost" data-re>再来一次</button></div></div>`;return}
+    const it=list[i];answered=false;
+    el.innerHTML=`<div class="rl"><div class="rl-top"><span>这样做行不行？</span><span class="mono">${i+1}/${list.length}</span></div><p class="rl-q">${it[0]}</p><div class="rl-btns"><button type="button" class="y" data-v="1">✓ 可以做</button><button type="button" class="n" data-v="0">✕ 红线</button></div><div class="rl-out"></div></div>`;
+  };
+  el.addEventListener('click',e=>{
+    if(e.target.closest('[data-re]')){i=0;score=0;draw();return}
+    if(e.target.closest('[data-next]')){i++;draw();return}
+    const b=e.target.closest('[data-v]');if(!b||answered)return;answered=true;
+    const it=list[i];const pick=b.dataset.v==='1';const right=pick===it[1];if(right)score++;
+    $$('[data-v]',el).forEach(x=>x.disabled=true);
+    $('.rl-out',el).innerHTML=`<div class="rl-fb ${right?'good':'bad'}"><b>${right?'对。':'不对。'}${it[1]?'可以做。':'这是红线。'}</b>${it[2]}</div><div class="rl-next"><button type="button" class="btn sm" data-next>${i===list.length-1?'看结果':'下一题'} →</button></div>`;
+    $('[data-next]',el).focus();
+  });
+  draw();
+};
+W.pubpri=el=>{
+  const V={pub:['公 · 业主群','XXX业主，您反馈的问题我们非常重视！我马上私信您了解详情，立刻跟进处理。','群里表态：让所有人看到物业重视、在行动。'],pri:['私 · 私聊','X先生，感谢提醒。我记录后马上协调，后续进展私信汇报，您看可以吗？','私聊办事：细节、进展、欠费，都只在这里谈。']};
+  let cur='pub';
+  const draw=()=>{const v=V[cur];el.innerHTML=`<div class="seg" role="group" aria-label="切换场景"><button type="button" data-k="pub" aria-pressed="${cur==='pub'}">公 · 群内</button><button type="button" data-k="pri" aria-pressed="${cur==='pri'}">私 · 私聊</button></div>${H.say([['管家',v[1],v[0]]],v[2])}`};
+  el.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b){cur=b.dataset.k;draw()}});draw();
+};
+W.mind=el=>{
+  const V={soft:['柔 · 追求者心态','有信心、有耐心、没脾气。让对方发泄不良情绪，经得起软磨硬泡。',['有信心','有耐心','没脾气','让业主发泄'],'业主情绪激动、初次接触、关系还在建立时'],hard:['刚 · 警察心态','正立场、强气场、显专业。情理法并用，分析法律关系和责任归属；作为公司代表，立场坚定，有礼有节。',['正立场','强气场','显专业','有礼有节'],'业主讨价还价、试探底线、拿无关问题拒缴时']};
+  let cur='soft';
+  const draw=()=>{const v=V[cur];el.innerHTML=`<div class="seg" role="group" aria-label="切换心态"><button type="button" data-k="soft" aria-pressed="${cur==='soft'}">柔</button><button type="button" data-k="hard" aria-pressed="${cur==='hard'}">刚</button></div><div class="box" style="margin-top:12px"><h3>${v[0]}</h3><div class="chips">${v[2].map(x=>`<span>${x}</span>`).join('')}</div><p>${v[1]}</p><p class="sm"><b>常用时机</b>：${v[3]}</p></div>`};
+  el.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b){cur=b.dataset.k;draw()}});draw();
+};
+W.ask=el=>{
+  const A=[{o:['您什么时候方便交一下？','您是小程序直接缴，还是银行转账，哪种方便？'],g:1,why:'开放式问题把主动权交给业主；选择题让他在我们的框架里作答。'},{o:['这周五之前，还是下周一上午，您看哪天方便？','您这个月能交吗？'],g:0,why:'“能不能”是判断题，最容易得到一句“再说吧”。给两个具体时间，对方只需二选一。'}];
+  el.innerHTML=A.map((a,i)=>`<div class="q" data-ask="${i}"><p class="q-t"><span class="q-n">${i+1}</span><span>哪句问法更好？</span></p><div class="q-o">${a.o.map((o,j)=>`<button type="button" class="opt ask-o" data-j="${j}">“${o}”</button>`).join('')}</div><p class="q-e" hidden></p></div>`).join('');
+  el.addEventListener('click',e=>{const b=e.target.closest('.ask-o');if(!b||b.disabled)return;const box=b.closest('[data-ask]');const a=A[+box.dataset.ask];const ok=+b.dataset.j===a.g;$$('.ask-o',box).forEach(o=>{o.disabled=true;if(+o.dataset.j===a.g)o.classList.add('right');else if(o===b)o.classList.add('wrong')});const ex=$('.q-e',box);ex.hidden=false;ex.innerHTML=(ok?'<b class="ok-t">对。</b>':'<b class="bad-t">另一句更好。</b>')+a.why;});
+};
+W.wave=el=>{
+  const base=140,pk=[[110,52,'催缴通知单'],[260,70,'催费函'],[410,88,'律师函'],[550,62,'当面调解']];
+  const y=x=>base-pk.reduce((s,p)=>s+p[1]*Math.exp(-Math.pow((x-p[0])/26,2)),0)-3*Math.sin(x/8)-3;
+  let d='M20 '+y(20).toFixed(1);for(let x=24;x<=620;x+=4)d+=' L'+x+' '+y(x).toFixed(1);
+  const area=d+` L620 ${base+12} L20 ${base+12} Z`;
+  el.innerHTML=`<div class="svgwrap"><svg viewBox="0 0 640 182" role="img" aria-label="波峰节奏：日常电话和短信持续渗透，在催缴通知单、催费函、律师函和当面调解时形成波峰"><path class="wv-area" d="${area}"/><path class="wv-line" d="${d}"/>${pk.map(p=>`<text class="wv-l" x="${p[0]}" y="${base-p[1]-14}" text-anchor="middle">${p[2]}</text>`).join('')}<line class="wv-base" x1="20" y1="${base+12}" x2="620" y2="${base+12}"/><text class="wv-s" x="20" y="${base+32}">日常渗透：电话 + 短信，每次讲清法律责任</text><text class="wv-s" x="620" y="${base+32}" text-anchor="end">时间 →</text></svg></div>`;
+};
+W.zhao=el=>{
+  let cur=pendingZhao||1;pendingZhao=null;
+  const tc=n=>TIERS[ZHAO[n-1].tier][1];
+  const detail=z=>{
+    let h=`<div class="zd" id="zd"><div class="zd-h"><h3>第${CN[z.n]}招　${z.name}</h3><span class="tag ${['blue','warn','red'][z.tier]}">${TIERS[z.tier][0]}</span></div><p class="who"><b>适用</b>${z.who}</p><p class="gist">${z.gist}</p>`;
+    if(z.steps)h+=`<h4>${z.n===5?'六步操作法':'三步法'}</h4><ol class="steps">${z.steps.map(s=>`<li><b>${s[0]}</b><span>${s[1]}</span></li>`).join('')}</ol>`;
+    if(z.pts)h+=`<h4>${z.steps?'配套要点':'操作要点'}</h4>${H.ul(z.pts)}`;
+    if(z.say)h+=H.say(z.say,z.sayCap);
+    if(z.tip)h+=H.tip(z.tip[0],z.tip[1],z.tip[2]);
+    if(z.cs)h+=`<details class="case"><summary>${z.cs[0]}</summary><p>${z.cs[1]}</p></details>`;
+    return h+'</div>';
+  };
+  const draw=()=>{
+    el.innerHTML=`<div class="zwrap"><div class="tier" aria-hidden="true"><div class="t0">温和提醒</div><div class="t1">攻坚化解</div><div class="t2">正式施压</div></div><div class="zlegend">${TIERS.map(t=>`<span><i style="background:${t[1]}"></i>${t[0]}</span>`).join('')}</div><div class="zgrid" role="group" aria-label="九招">${ZHAO.map(z=>`<button type="button" class="zb" style="--tc:${tc(z.n)}" data-n="${z.n}" aria-pressed="${z.n===cur}"><span class="cn">${CN[z.n]}</span><span class="nm">${z.name}</span></button>`).join('')}</div>${detail(ZHAO[cur-1])}</div>`;
+  };
+  el.addEventListener('click',e=>{const b=e.target.closest('.zb');if(!b)return;cur=+b.dataset.n;draw();const d=$('#zd',el);if(d&&d.getBoundingClientRect().top>window.innerHeight*0.7)d.scrollIntoView({behavior:'smooth',block:'start'})});
+  draw();
+};
+W.stairs=el=>{
+  let cur=0;
+  const roleChip=r=>r.split(' / ').map(x=>`<span style="color:${ROLEC[x]}">${x}</span>`).join(' / ');
+  const draw=()=>{
+    const s=STAIRS[cur];
+    el.innerHTML=`<div class="stairs" role="group" aria-label="七步压力阶梯">${STAIRS.map((t,i)=>`<button type="button" class="stair" style="--h:${28+i*12}%;--rc:${ROLEC[t[0].split(' / ')[0]]}" data-i="${i}" aria-pressed="${i===cur}"><span class="sn">${'①②③④⑤⑥⑦'[i]}</span><span class="sr">${t[0].replace(' / ','<br>')}</span></button>`).join('')}</div><div class="stairs-axis"><span>压力低</span><span>压力高 →</span></div><div class="stair-d" style="margin-top:12px"><span class="big">${'①②③④⑤⑥⑦'[cur]}</span><b>${roleChip(s[0])}</b><span>${s[1]}</span><span class="tag ${cur>=5?'red':cur>=2?'warn':'blue'}" style="justify-self:start">作用：${s[2]}</span></div><div class="row-btns"><button type="button" class="btn ghost sm" data-d="-1" ${cur===0?'disabled':''}>← 上一步</button><button type="button" class="btn ghost sm" data-d="1" ${cur===6?'disabled':''}>下一步 →</button></div>`;
+  };
+  el.addEventListener('click',e=>{const b=e.target.closest('.stair');if(b){cur=+b.dataset.i;draw();return}const d=e.target.closest('[data-d]');if(d&&!d.disabled){cur=Math.max(0,Math.min(6,cur+(+d.dataset.d)));draw()}});
+  draw();
+};
+W.cases=el=>{
+  el.innerHTML=`<div class="rv-list">${CASES.map((c,i)=>`<div class="rv"><div class="rv-f"><div class="rv-q"><span class="lbl">${String(i+1).padStart(2,'0')} · ${c.t}</span><q>${c.s}</q></div><button type="button" class="btn ghost sm" aria-expanded="false" data-rv="${i}">看应对</button></div><div class="rv-b" hidden><div class="rv-meta"><span class="tag">责任：${c.own}</span>${c.ref?`<span class="tag blue">${c.ref}</span>`:''}</div>${H.ul(c.pts)}</div></div>`).join('')}</div><div class="rv-tools"><button type="button" class="link" data-all="1">全部展开</button></div>`;
+  wireReveal(el,'看应对');
+};
+function stageCard(i){
+  const n=NODES[i];const tone=i>=5?'red':i>=3?'warn':'blue';
+  return `<div class="stage-card"><div class="sc-h"><span class="tag ${tone}">${n.k}</span><span class="sc-who">责任人：${n.who}</span></div><p class="sc-a">${n.a}</p>${n.sub?`<div class="ledger sm">${n.sub.map(s=>`<div class="lg-row c2"><b data-l="情形">${s[0]}</b><span data-l="做法">${s[1]}</span></div>`).join('')}</div>`:''}<p class="sc-how"><b>方式与留痕</b>${n.how}</p></div>`;
+}
+W.nodes=el=>{
+  let cur=1;const lbl=['前1周','≤1月','1–3月','满3月','满12月','满18月','满24月'];
+  const draw=()=>{el.innerHTML=`<div class="stops" role="group" aria-label="欠费节点">${lbl.map((l,i)=>`<button type="button" class="stop ${i<cur?'past':''}" aria-pressed="${i===cur}" data-i="${i}"><i></i><span>${l}</span></button>`).join('')}</div>${stageCard(cur)}<div class="row-btns"><button type="button" class="btn ghost sm" data-d="-1" ${cur===0?'disabled':''}>← 上一节点</button><button type="button" class="btn ghost sm" data-d="1" ${cur===6?'disabled':''}>下一节点 →</button></div>`};
+  el.addEventListener('click',e=>{const b=e.target.closest('.stop');if(b){cur=+b.dataset.i;draw();return}const d=e.target.closest('[data-d]');if(d&&!d.disabled){cur=Math.max(0,Math.min(6,cur+(+d.dataset.d)));draw()}});
+  draw();
+};
+W.early=el=>{
+  const C=['所有关怀、催缴均无效，业主明确拒缴且无正当理由','欠费已满3个月','已送达2封以上书面催缴通知或催费函，仍无效'];
+  el.innerHTML=`<div class="box"><p>同时满足以下三条，可经项目负责人审批，<b>不必等到18个月节点</b>：</p><div class="chk">${C.map((c,i)=>`<label><input type="checkbox" id="early-${i}"><span>${c}</span></label>`).join('')}</div><div class="early-r" aria-live="polite"></div></div><p class="muted sm" style="margin-top:8px">业主准备出售、转让房屋的，要及时提醒：产权转移前须结清物业费（收费管理办法第15条）。</p>`;
+  const upd=()=>{const n=$$('input',el).filter(x=>x.checked).length;const r=$('.early-r',el);r.className='early-r'+(n===3?' ok':'');r.innerHTML=n===3?'<b>可以提前升级</b>：报项目负责人审批后，提前寄送律师函或启动法律程序。':`还差 ${3-n} 条，继续按分阶节点推进。`};
+  el.addEventListener('change',upd);upd();
+};
+W.limit=el=>{
+  const X=m=>40+m*(560/36),ay=72;
+  const mk=[[0,'应收',''],[3,'通知单','第3月'],[12,'催缴函','第12月'],[18,'律师函','第18月'],[24,'起诉','第24月']];
+  const gaps=[[3,12,'间隔9个月'],[12,18,'间隔6个月'],[18,24,'间隔6个月']];
+  el.innerHTML=`<div class="svgwrap"><svg viewBox="0 0 640 132" role="img" aria-label="书面催缴节点：第3、12、18、24个月，相邻间隔都不超过12个月，每次送达都中断诉讼时效">
+  <line class="lm-axis" x1="40" y1="${ay}" x2="600" y2="${ay}"/>
+  ${gaps.map(g=>{const a=X(g[0]),b=X(g[1]),m=(a+b)/2;return `<path class="lm-arc" d="M${a} ${ay-8} Q${m} ${ay-52} ${b} ${ay-8}"/><text class="lm-g" x="${m}" y="${ay-36}" text-anchor="middle">${g[2]}</text>`}).join('')}
+  ${mk.map((k,i)=>`<circle class="lm-dot ${i===0?'':i===4?'s':'w'}" cx="${X(k[0])}" cy="${ay}" r="6"/><text class="lm-t" x="${X(k[0])}" y="${ay+24}" text-anchor="middle">${k[1]}</text>${k[2]?`<text class="lm-m" x="${X(k[0])}" y="${ay+40}" text-anchor="middle">${k[2]}</text>`:''}`).join('')}
+  <text class="lm-n" x="${X(30)}" y="${ay-14}" text-anchor="middle">起诉、仲裁同样中断时效</text>
+  <text class="lm-m" x="600" y="${ay+24}" text-anchor="end">36个月</text>
+  </svg></div><p class="muted sm">蓝点为书面催缴，每次送达都让3年时效重新计算。相邻两次都不超过12个月，满足“1年内至少一次有效书面催缴”。</p>`;
+};
+W.evid=el=>{
+  const total=EVID.reduce((s,g)=>s+g[1].length,0);
+  el.innerHTML=`<div class="box"><div class="evid-sum"><span class="mono" id="evid-n">0/${total}</span><div class="meter"><i id="evid-m"></i></div><button type="button" class="link" id="evid-reset">清空</button></div><div class="g2" style="margin-top:6px">${EVID.map((g,gi)=>`<div><h3 style="font-size:15px;margin:8px 0 2px">${g[0]}</h3><div class="chk evid">${g[1].map((t,ti)=>{const id=`evid-${gi}-${ti}`;return `<label><input type="checkbox" id="${id}" ${ST.evid[id]?'checked':''}><span>${t}</span></label>`}).join('')}</div></div>`).join('')}</div></div>`;
+  const upd=()=>{const n=$$('input',el).filter(x=>x.checked).length;$('#evid-n',el).textContent=`${n}/${total}`;$('#evid-m',el).style.width=(n/total*100)+'%'};
+  el.addEventListener('change',e=>{const i=e.target;if(i.type==='checkbox'){ST.evid[i.id]=i.checked;save();upd()}});
+  $('#evid-reset',el).addEventListener('click',()=>{$$('input',el).forEach(x=>{x.checked=false});ST.evid={};save();upd()});
+  upd();
+};
+function hydrate(root){$$('[data-w]',root).forEach(el=>{const f=W[el.dataset.w];if(f)f(el)})}
+
+/* ================= VIEWS ================= */
+const main=$('#main');
+let pendingZhao=null,practiceTab='fc',toolTab='calc';
+
+function updProg(){
+  const n=LESSONS.filter(l=>ST.done[l.id]).length;
+  $('#prog-i').style.width=(n/LESSONS.length*100)+'%';
+  $('#prog-t').textContent=`已学 ${n}/${LESSONS.length}`;
+}
+function boxCounts(){const c=[0,0,0];CARDS.forEach(k=>c[ST.cards[k.id]||0]++);return c}
+
+function homeHTML(){
+  const next=LESSONS.find(l=>!ST.done[l.id]);
+  const n=LESSONS.filter(l=>ST.done[l.id]).length;
+  const bc=boxCounts();
+  const total=LESSONS.reduce((s,l)=>s+l.min,0);
+  return `<section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">住宅物业 · 客服管家 / 主管 / 项目负责人</p>
+      <h1>物业费收缴<small>规范与技巧 · 互动学习版</small></h1>
+      <div class="thesis"><span>用服务赢得信任</span><span>分类精准施策</span><span>分阶依法催缴</span></div>
+      <div class="hero-cta">${next?`<a class="btn" href="#${next.id}">${n?'继续':'开始'}第${next.no}课 · ${next.t}</a>`:`<a class="btn" href="#practice">全部学完 · 去练习</a>`}<a class="btn ghost" href="#practice">闪卡复习</a></div>
+      <p class="hero-meta">${LESSONS.length}课 · 约${total}分钟 · 法律法规核对至2026年10月</p>
+    </div>
+    ${sealSVG({cls:'seal-big stamp-load'})}
+  </section>
+  <div class="today"><span>课程进度 <b>${n}/${LESSONS.length}</b></span><span>闪卡：生疏 <b>${bc[0]}</b> · 熟悉中 <b>${bc[1]}</b> · 已掌握 <b>${bc[2]}</b></span><span class="gap"></span><a href="#morning">今天晨会讲什么 →</a></div>
+  <div class="sec-h"><h2>学习路线</h2><p>按顺序学最顺；每课末尾答完小测，盖章完成。</p></div>
+  ${STAGES.map((s,si)=>`<div class="stage"><div class="stage-l">${s[0]}<small>${s[1]}</small></div><div class="tiles">${LESSONS.filter(l=>l.stage===si).map(l=>`<a class="tile${ST.done[l.id]?' done':''}" href="#${l.id}"><span class="no">${String(l.no).padStart(2,'0')}</span><h3>${l.t}</h3><p>${l.sub}</p><span class="ft"><span>约${l.min}分钟</span>${ST.done[l.id]?'<span class="ok">已学</span>':'<span>未学</span>'}</span>${ST.done[l.id]?doneSeal(l.no,'stamp'):''}</a>`).join('')}</div></div>`).join('')}
+  <div class="sec-h"><h2>现场速查</h2><p>站在业主门口也能用。</p></div>
+  <div class="toolrow">${[['calc','欠费节点计算','输入欠费月数，告诉你现在该做什么'],['diag','招数诊断','选业主情况，匹配九招'],['letter','催费函生成','填几项信息，生成可复制的函件正文'],['law','法条速查','搜关键词，找原文条款']].map(t=>`<button type="button" data-tool="${t[0]}"><b>${t[1]}</b><span>${t[2]}</span></button>`).join('')}</div>
+  <div class="sec-h"><h2>这样设计，是为了记得住</h2><p>参考学习科学里被反复验证的方法。</p></div>
+  <div class="methods">${[['先看全局','首页路线和第1课流程图，先搭框架，再填细节。'],['小块学习','10课，每课3–8分钟，一次只解决一个问题。'],['图文并用','循环图、节点轴、压力阶梯，把规则画出来。'],['先想再看','法条、拒缴理由先遮住答案；每课末尾小测，答错立刻看解释。'],['间隔复习','闪卡按“没记住 / 模糊 / 记住了”调整出现频率。'],['当天落地','晨会8天行动清单，学完当天就用在业主身上。']].map(m=>`<div><b>${m[0]}</b><p>${m[1]}</p></div>`).join('')}</div>`;
+}
+
+function lessonHTML(L){
+  const prev=LESSONS[L.no-2],next=LESSONS[L.no];
+  const done=!!ST.done[L.id];
+  return `<div class="lwrap"><nav class="rail" aria-label="课程目录"><span class="rail-h">课程目录</span>${LESSONS.map(l=>`<a href="#${l.id}" ${l.id===L.id?'aria-current="page"':''}><span class="n">${String(l.no).padStart(2,'0')}</span><span>${l.t}</span>${ST.done[l.id]?'<span class="d" title="已学"></span>':''}</a>`).join('')}</nav>
+  <article class="lesson">
+    <header class="l-head${done?' stamped':''}"><p class="l-eye">第 ${L.no} 课 / ${LESSONS.length} · ${STAGES[L.stage][0]} · 约 ${L.min} 分钟</p><h1>${L.t}</h1><p class="sub">${L.sub}</p><span id="l-stamp">${done?doneSeal(L.no,'l-stamp'):''}</span></header>
+    ${H.key(L.key)}
+    ${L.body()}
+    <section class="check" id="check"><h2>课后小测</h2><p class="lead">答完再盖章。答错没关系，看懂解释最重要。</p><div class="quiz">${L.quiz.map((q,i)=>quizBlock(q,L.id+'-'+i,i+1)).join('')}</div>
+      <div class="done-row"><button type="button" class="btn seal" id="done-btn" disabled>${done?'本课已盖章':'完成本课 · 盖章'}</button><span class="muted sm" id="done-msg">${done?'可以重做小测巩固记忆。':`还剩 ${L.quiz.length} 题`}</span></div>
+    </section>
+    <nav class="pn" aria-label="上一课和下一课">${prev?`<a href="#${prev.id}"><small>← 上一课</small>${prev.t}</a>`:'<span></span>'}${next?`<a class="next" href="#${next.id}"><small>下一课 →</small>${next.t}</a>`:`<a class="next" href="#practice"><small>学完了 →</small>去练习</a>`}</nav>
+  </article></div>`;
+}
+function mountLesson(L){
+  const chk=$('#check');const btn=$('#done-btn');const msg=$('#done-msg');
+  chk.addEventListener('answered',()=>{
+    const qs=$$('.q',chk);const ans=qs.filter(q=>q.dataset.ok!==undefined);const right=ans.filter(q=>q.dataset.ok==='1').length;
+    if(ans.length<qs.length){msg.textContent=`还剩 ${qs.length-ans.length} 题`;return}
+    if(ST.done[L.id]){msg.textContent=`答对 ${right}/${qs.length}。`;return}
+    btn.disabled=false;
+    msg.innerHTML=right===qs.length?`全部答对。`:`答对 ${right}/${qs.length}。错题的解释看懂了，就可以盖章；也可以 <button type="button" class="link" id="redo">重做小测</button>`;
+    const r=$('#redo');if(r)r.addEventListener('click',()=>{redoQuiz(L)});
+  });
+  btn.addEventListener('click',()=>{
+    if(btn.disabled)return;ST.done[L.id]=true;save();updProg();
+    $('.l-head').classList.add('stamped');$('#l-stamp').innerHTML=doneSeal(L.no,'l-stamp stamp-in');
+    btn.disabled=true;btn.textContent='本课已盖章';
+    const next=LESSONS[L.no];
+    msg.innerHTML=next?`已盖章。下一课：<a href="#${next.id}">${next.t} →</a>`:`十课全部完成。<a href="#practice">去做综合测验 →</a>`;
+    const ra=$(`.rail a[href="#${L.id}"]`);if(ra&&!$('.d',ra))ra.insertAdjacentHTML('beforeend','<span class="d" title="已学"></span>');
+    window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  });
+}
+function redoQuiz(L){$('.quiz',$('#check')).innerHTML=L.quiz.map((q,i)=>quizBlock(q,L.id+'-'+i,i+1)).join('');$('#done-msg').textContent=`还剩 ${L.quiz.length} 题`;if(!ST.done[L.id])$('#done-btn').disabled=true}
+
+/* ----- practice ----- */
+let fc={cur:null,flipped:false,count:0,last:null};
+let mq=null;
+function fcPick(){
+  const w=[6,3,1];const pool=CARDS.filter(c=>c.id!==fc.last);
+  let tot=pool.reduce((s,c)=>s+w[ST.cards[c.id]||0],0);let r=Math.random()*tot;
+  for(const c of pool){r-=w[ST.cards[c.id]||0];if(r<=0)return c}return pool[0];
+}
+function practiceHTML(){
+  return `<div class="vh"><h1>练习</h1><p>主动回忆比反复重读记得更牢。闪卡按你的记忆程度安排复习；情境测验从各课和实战场景里随机抽10题，混着练。</p><div class="seg" role="group" aria-label="练习方式"><button type="button" data-pt="fc" aria-pressed="${practiceTab==='fc'}">闪卡复习</button><button type="button" data-pt="mq" aria-pressed="${practiceTab==='mq'}">情境测验</button></div></div><div id="pbody"></div>`;
+}
+function mountPractice(){
+  main.querySelector('.vh .seg').addEventListener('click',e=>{const b=e.target.closest('[data-pt]');if(!b)return;practiceTab=b.dataset.pt;$$('[data-pt]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));drawPractice()});
+  drawPractice();
+}
+function drawPractice(){const pb=$('#pbody');if(practiceTab==='fc')drawFC(pb);else drawMQ(pb)}
+function drawFC(pb){
+  if(!fc.cur)fc.cur=fcPick();
+  const c=fc.cur,bc=boxCounts(),box=ST.cards[c.id]||0;
+  pb.innerHTML=`<div class="fc"><div class="fc-boxes"><div style="--bc:var(--seal)"><b>${bc[0]}</b>生疏</div><div style="--bc:var(--warn)"><b>${bc[1]}</b>熟悉中</div><div style="--bc:var(--ok)"><b>${bc[2]}</b>已掌握</div></div>
+  <div class="fc-card"><div class="fc-meta"><span>${['生疏','熟悉中','已掌握'][box]}</span><span>本轮已复习 ${fc.count} 张</span></div><p class="fc-q">${c.q}</p>${fc.flipped?`<div class="fc-a">${c.a}</div><div class="fc-rate"><button type="button" data-r="0">没记住<small>按 1</small></button><button type="button" data-r="1">有点模糊<small>按 2</small></button><button type="button" data-r="2">记住了<small>按 3</small></button></div>`:`<button type="button" class="btn" id="fc-flip">先在心里答，再翻面 <kbd>空格</kbd></button>`}</div>
+  <p class="fc-hint">记住了的卡片会越来越少出现，没记住的会很快再来。共 ${CARDS.length} 张。<button type="button" class="link" id="fc-reset">清空记录</button></p></div>`;
+  const f=$('#fc-flip',pb);if(f)f.addEventListener('click',fcFlip);
+  $$('[data-r]',pb).forEach(b=>b.addEventListener('click',()=>fcRate(+b.dataset.r)));
+  const rs=$('#fc-reset',pb);rs.addEventListener('click',()=>{if(rs.dataset.arm){ST.cards={};save();fc={cur:null,flipped:false,count:0,last:null};drawFC(pb)}else{rs.dataset.arm='1';rs.textContent='再点一次确认清空';setTimeout(()=>{if(rs.isConnected){delete rs.dataset.arm;rs.textContent='清空记录'}},3000)}});
+}
+function fcFlip(){fc.flipped=true;drawFC($('#pbody'));const b=$('.fc-rate button[data-r="2"]');if(b)b.focus()}
+function fcRate(r){
+  const c=fc.cur,box=ST.cards[c.id]||0;
+  ST.cards[c.id]=r===2?Math.min(2,box+1):r;save();
+  fc.last=c.id;fc.count++;fc.flipped=false;fc.cur=fcPick();drawFC($('#pbody'));
+  const f=$('#fc-flip');if(f)f.focus();
+}
+document.addEventListener('keydown',e=>{
+  if(location.hash!=='#practice'||practiceTab!=='fc')return;
+  if(e.target.matches('input,textarea,select'))return;
+  if(e.key===' '&&!fc.flipped){e.preventDefault();fcFlip()}
+  else if(fc.flipped&&['1','2','3'].includes(e.key)){fcRate(+e.key-1)}
+});
+function drawMQ(pb){
+  if(!mq)mq={list:shuffle(QUESTIONS).slice(0,10),i:0,res:[]};
+  const total=mq.list.length;
+  const pips=`<div class="pips" aria-hidden="true">${mq.list.map((_,k)=>`<i class="${k<mq.res.length?(mq.res[k]?'ok':'bad'):k===mq.i?'cur':''}"></i>`).join('')}</div>`;
+  if(mq.i>=total){
+    const sc=mq.res.filter(Boolean).length;
+    const wrong=mq.list.filter((_,k)=>!mq.res[k]);
+    const verdict=sc>=9?'可以上岗了。':sc>=7?'基本掌握，错题对应的课再翻一遍。':'建议回到课程，按顺序再学一遍错题相关的课。';
+    pb.innerHTML=`<div class="mq"><div class="mq-top"><span>完成</span>${pips}</div><div class="mq-end"><p class="mq-score">${sc}<small> / ${total}</small></p><p><b>${verdict}</b></p>${wrong.length?`<div><p class="muted sm" style="margin-bottom:6px">错题回看：</p>${H.ul(wrong.map(q=>`${q.q} <a href="#${q.l}">第${LMAP[q.l].no}课 ${LMAP[q.l].t}</a>`))}</div>`:''}<div><button type="button" class="btn" id="mq-new">再来一组</button></div></div></div>`;
+    $('#mq-new',pb).addEventListener('click',()=>{mq=null;drawMQ(pb)});return;
+  }
+  const q=mq.list[mq.i];
+  pb.innerHTML=`<div class="mq"><div class="mq-top"><span class="mono">第 ${mq.i+1} / ${total} 题</span>${pips}</div><div class="quiz">${quizBlock(q,'mq-'+mq.i+'-'+Date.now(),mq.i+1)}</div><div class="row-btns" id="mq-nx" hidden><button type="button" class="btn" id="mq-next">${mq.i===total-1?'看结果':'下一题'} →</button></div></div>`;
+  const qb=$('.q',pb);
+  qb.addEventListener('answered',e=>{
+    mq.res.push(e.detail.ok);
+    $('.q-e',qb).insertAdjacentHTML('afterend',`<p class="q-src">出自 <a href="#${q.l}">第${LMAP[q.l].no}课 ${LMAP[q.l].t}</a></p>`);
+    $('#mq-nx',pb).hidden=false;$('#mq-next',pb).focus();
+    $$('.pips i',pb)[mq.i].className=e.detail.ok?'ok':'bad';
+  });
+  $('#mq-next',pb).addEventListener('click',()=>{mq.i++;drawMQ(pb);window.scrollTo({top:0})});
+}
+
+/* ----- tools ----- */
+function toolsHTML(){
+  const T=[['calc','欠费节点'],['diag','招数诊断'],['letter','催费函'],['law','法条速查']];
+  return `<div class="vh"><h1>工具箱</h1><p>现场用得上的四件工具。函件和法条以手册为准，具体个案请以当地法规和律师意见为准。</p><div class="seg" role="group" aria-label="选择工具">${T.map(t=>`<button type="button" data-tt="${t[0]}" aria-pressed="${toolTab===t[0]}">${t[1]}</button>`).join('')}</div></div><div id="tbody"></div>`;
+}
+function mountTools(){
+  main.querySelector('.vh .seg').addEventListener('click',e=>{const b=e.target.closest('[data-tt]');if(!b)return;toolTab=b.dataset.tt;$$('[data-tt]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));drawTool()});
+  drawTool();
+}
+function drawTool(){const tb=$('#tbody');({calc:toolCalc,diag:toolDiag,letter:toolLetter,law:toolLaw})[toolTab](tb)}
+function stageOf(m){if(m<=0)return 0;if(m<=1)return 1;if(m<3)return 2;if(m<12)return 3;if(m<18)return 4;if(m<24)return 5;return 6}
+function toolCalc(tb){
+  tb.innerHTML=`<div class="tool-2col"><div class="panel"><h2>欠费节点计算</h2><div class="calc-in"><label for="calc-m">已欠费</label><input type="number" id="calc-m" min="0" max="120" step="1" value="5" inputmode="numeric"><span>个月</span></div><p class="muted sm">填 0 表示还没到期（应收前）。示例为 5 个月。</p><div id="calc-next"></div></div><div id="calc-card"></div></div>`;
+  const inp=$('#calc-m',tb);
+  const upd=()=>{
+    let m=parseInt(inp.value,10);if(isNaN(m)||m<0)m=0;
+    const s=stageOf(m);$('#calc-card',tb).innerHTML=stageCard(s);
+    const nx=[3,12,18,24].find(x=>x>m);const act={3:'发放《催缴通知单》',12:'EMS寄送《欠费催缴函》',18:'寄送《催缴律师函》',24:'启动法律程序'};
+    let h=nx?`<div class="calc-next">距下一节点 <b>满${nx}个月</b> 还有 <b class="mono">${nx-m}</b> 个月，届时${act[nx]}。</div>`:`<div class="calc-next">已过全部节点，按第10课推进法律程序。</div>`;
+    if(m>=3&&m<18)h+=`<p class="sm" style="margin-top:8px">恶意拒缴且已送达2封以上书面催缴仍无效？可以<a href="#l9">申请提前升级</a>。</p>`;
+    $('#calc-next',tb).innerHTML=h;
+  };
+  inp.addEventListener('input',upd);upd();
+}
+function toolDiag(tb){
+  let cur=1;
+  const draw=()=>{
+    const d=DIAG[cur];
+    const res=d[1].map(x=>{
+      if(x==='r')return `<a class="zcard" style="--tc:var(--warn);text-decoration:none;color:var(--ink)" href="#l7"><span class="cn">↗</span><span><b>角色扮演法（组合打法）</b><span>系统、管家、财务、法务轮番联系，压力逐级上升；管家给台阶。</span></span></a>`;
+      if(x==='e')return `<a class="zcard" style="--tc:var(--seal);text-decoration:none;color:var(--ink)" href="#l9"><span class="cn">↗</span><span><b>提前升级 → 法律催收</b><span>恶意欠费≥3个月且≥2封书面催函无效，经审批提前寄律师函或启动法律程序。</span></span></a>`;
+      const z=ZHAO[x-1];return `<button type="button" class="zcard" style="--tc:${TIERS[z.tier][1]}" data-goz="${z.n}"><span class="cn">${CN[z.n]}</span><span><b>第${CN[z.n]}招 ${z.name}</b><span>${z.gist}</span></span></button>`;
+    }).join('');
+    tb.innerHTML=`<div class="tool-2col"><div class="panel"><h2>业主属于哪种情况？</h2><div class="diag" role="group" aria-label="业主情况">${DIAG.map((x,i)=>`<button type="button" data-di="${i}" aria-pressed="${i===cur}">${x[0]}</button>`).join('')}</div></div><div class="panel"><h2>推荐打法</h2><div class="diag-r">${res}</div><p class="muted sm">点招数卡片，跳到第6课看完整要点和话术。</p></div></div>`;
+  };
+  tb.onclick=e=>{const b=e.target.closest('[data-di]');if(b){cur=+b.dataset.di;draw();return}const z=e.target.closest('[data-goz]');if(z){pendingZhao=+z.dataset.goz;location.hash='l6'}};
+  draw();
+}
+const LF=[['name','业主称呼','王女士'],['room','房号','5栋1203'],['co','物业公司','××物业服务有限公司'],['contract','合同名称','《××花园前期物业服务合同》'],['clause','合同条款','第五条第二款'],['from','欠费起始','2025年3月'],['to','欠费截止','2026年8月'],['months','欠费月数','18'],['fee','物业费（元）','6480'],['late','违约金（元）','320'],['contact','物业联系人','张××'],['tel','联系电话','020-8888 8888'],['app','线上缴费渠道','××小程序']];
+function toolLetter(tb){
+  tb.innerHTML=`<div class="tool-2col"><div class="panel"><h2>填写信息</h2><p class="muted sm">已填示例数据，改成你的业主信息即可。范本据手册附录二改写为通用版。</p><form class="form" id="lf" autocomplete="off">${LF.map(f=>`<label class="${['co','contract'].includes(f[0])?'full':''}" for="lf-${f[0]}">${f[1]}<input type="${['months','fee','late'].includes(f[0])?'number':'text'}" id="lf-${f[0]}" value="${esc(f[2])}" ${['fee','late'].includes(f[0])?'step="0.01" min="0"':''}${f[0]==='months'?'min="0" step="1"':''}></label>`).join('')}</form>${H.tip('使用提示','函件附缴费明细、欠费明细及缴纳方式说明；“滞纳金”统一称“违约金”，约定过高（如每日3‰，折合年化超过100%）的，诉讼中法院通常会调减；用EMS寄送并保留妥投记录；只寄给业主本人，不得张贴在公共区域。')}</div><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2>函件预览</h2><button type="button" class="btn sm" id="lf-copy">复制正文</button></div><div class="letter" id="lf-out"></div></div></div>`;
+  const v=k=>{const el=$('#lf-'+k,tb);return el?el.value.trim():''};
+  const money=x=>{const n=parseFloat(x);return isNaN(n)?'—':n.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})};
+  const d=new Date();const date=`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+  const build=()=>{
+    const total=(parseFloat(v('fee'))||0)+(parseFloat(v('late'))||0);
+    return `尊敬的${v('name')}：
+
+您好！
+
+首先，感谢您一直以来对${v('co')}工作的理解与支持！近期我司一直就贵单元（${v('room')}）物业费未缴纳一事与您沟通，现将我司的想法和建议与您作如下交流：
+
+此前沟通中，我司已就您反映的问题积极协调处理，并为您提供了线上缴费、转账、银行代扣等多种缴费方式。截至目前，相关费用仍未结清。根据您签署的${v('contract')}${v('clause')}的约定，作为业主，您有按时缴纳物业费的责任。
+
+作为从事服务工作的企业，我司愿意为业主做更多工作，也非常乐意为您提供力所能及的帮助，同时也希望您能站在客观理性的立场上理解、支持和配合我们的工作。
+
+特此提醒：贵单元自${v('from')}至${v('to')}，已有${v('months')}个月的物业费计${money(v('fee'))}元及违约金计${money(v('late'))}元，共计${money(total)}元未缴纳（明细见附件）。希望您接到此函后尽快结清相关费用，避免产生更多违约金，造成不必要的经济损失。
+
+缴费方式：①物业服务中心现场缴费；②线上缴费（${v('app')}）；③银行转账（户名、账号、开户行见附件，请备注房号、姓名和“物业费”）。
+
+感谢您的理解和支持！我们希望随时与您保持沟通，若您有好的建议，也非常欢迎您提出。
+
+物业联系人：${v('contact')}　联系电话：${v('tel')}
+
+顺颂商祺！
+
+${v('co')}（盖章）
+${date}
+
+附件：缴费明细、欠费明细、缴纳方式说明`;
+  };
+  const out=$('#lf-out',tb);
+  const render=()=>{out.innerHTML='<p class="letter-t">物业费催收温馨提示</p>';out.appendChild(document.createTextNode(build()))};
+  $('#lf',tb).addEventListener('input',render);
+  $('#lf',tb).addEventListener('submit',e=>e.preventDefault());
+  $('#lf-copy',tb).addEventListener('click',e=>copyText('物业费催收温馨提示\n\n'+build(),e.currentTarget,out));
+  render();
+}
+function toolLaw(tb){
+  let q='',f='全部';
+  const chips=['全部',...Object.keys(LAWNAME)];
+  tb.innerHTML=`<div class="lawbar"><input type="search" id="law-q" placeholder="搜关键词，如：时效、连带、停水、维修资金" aria-label="搜索法条"><div class="lawchips" role="group" aria-label="按法规筛选">${chips.map(c=>`<button type="button" data-lc="${c}" aria-pressed="${c==='全部'}">${c}</button>`).join('')}</div><p class="muted sm" id="law-n"></p></div><div class="laws" id="law-list" style="margin-top:12px"></div>`;
+  const hl=(html,t)=>{if(!t)return html;const et=esc(t);return html.split(/(<[^>]+>)/).map(s=>s.startsWith('<')?s:s.split(et).join(`<mark>${et}</mark>`)).join('')};
+  const draw=()=>{
+    const t=q.trim();
+    const rows=LAWS.filter(r=>(f==='全部'||r[0]===f)&&(!t||(r[1]+r[2].replace(/<[^>]+>/g,'')+LAWNAME[r[0]]).includes(t)));
+    $('#law-n',tb).textContent=`${rows.length} 条 · 核对日期 2026年10月 · 加粗为催费时最常引用的内容`;
+    $('#law-list',tb).innerHTML=rows.length?rows.map(r=>`<div class="law"><div class="law-h"><span class="art">${r[1]}</span><small>${LAWNAME[r[0]]}</small></div><p>${hl(r[2],t)}</p></div>`).join(''):`<p class="empty">没有找到“${esc(t)}”。换个关键词，或切换到“全部”。</p>`;
+  };
+  $('#law-q',tb).addEventListener('input',e=>{q=e.target.value;draw()});
+  $('.lawchips',tb).addEventListener('click',e=>{const b=e.target.closest('[data-lc]');if(!b)return;f=b.dataset.lc;$$('[data-lc]',tb).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));draw()});
+  draw();
+}
+
+/* ----- morning ----- */
+function morningHTML(){
+  return `<div class="vh"><h1>晨会落地</h1><p>8天晨会微课，每天一个主题，配两三个当天就能做完的动作。原合集从 DAY 2 开始，建议补上 DAY 1，先统一全员的依法催收底线。勾选记录保存在本机浏览器。</p></div>
+  <div class="days">${DAYS.map((d,di)=>{const n=d.acts.filter((_,j)=>ST.morning[`m-${di}-${j}`]).length;return `<div class="day"><div class="day-h"><b>${d.d}</b>${d.tag?`<span class="tag warn">${d.tag}</span>`:`<span class="sm muted mono" data-dn="${di}">${n}/${d.acts.length}</span>`}</div><h3>${d.t}</h3><div class="chk dayc">${d.acts.map((a,j)=>{const id=`m-${di}-${j}`;return `<label><input type="checkbox" id="${id}" data-di="${di}" ${ST.morning[id]?'checked':''}><span>${a}</span></label>`}).join('')}</div><a class="go" href="#${d.l}" ${d.z?`data-z="${d.z}"`:''}>复习：第${LMAP[d.l].no}课 ${LMAP[d.l].t} →</a></div>`}).join('')}</div>
+  <div class="sec-h"><h2>做好收缴的六个细节</h2></div>
+  <div class="methods">${SIX.map(s=>`<div><b>${s[0]}</b><p>${s[1]}</p></div>`).join('')}</div>
+  <div class="coda">${sealSVG({bottom:'服务在前'})}<p>再好的催费技巧，都不如用心的服务。<small>服务在于心，满意践于行；服务无小事，信任在细节。</small></p></div>`;
+}
+function mountMorning(){
+  main.addEventListener('change',onMorningChange);
+}
+function onMorningChange(e){
+  const i=e.target;if(!i.id||!i.id.startsWith('m-'))return;
+  ST.morning[i.id]=i.checked;save();
+  const di=+i.dataset.di;const d=DAYS[di];const n=d.acts.filter((_,j)=>ST.morning[`m-${di}-${j}`]).length;
+  const el=$(`[data-dn="${di}"]`);if(el)el.textContent=`${n}/${d.acts.length}`;
+}
+
+/* ================= ROUTER ================= */
+const VIEWS=['home','practice','tools','morning',...LESSONS.map(l=>l.id)];
+function route(){
+  let v=(location.hash||'').slice(1);if(!VIEWS.includes(v))v='home';
+  main.removeEventListener('change',onMorningChange);
+  const tab=v.startsWith('l')?'home':v;
+  $$('.nav a').forEach(a=>{if(a.dataset.v===tab)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  if(v==='home'){main.innerHTML=homeHTML()}
+  else if(v==='practice'){main.innerHTML=practiceHTML();mountPractice()}
+  else if(v==='tools'){main.innerHTML=toolsHTML();mountTools()}
+  else if(v==='morning'){main.innerHTML=morningHTML();mountMorning()}
+  else{const L=LMAP[v];main.innerHTML=lessonHTML(L);hydrate(main);mountLesson(L)}
+  if(v==='l6'&&zFromLink){const z=$('#zhao-sec');zFromLink=false;if(z){z.scrollIntoView({block:'start'});return}}
+  window.scrollTo(0,0);
+}
+let zFromLink=false;
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-tool]');
+  if(t){e.preventDefault();toolTab=t.dataset.tool;if(location.hash==='#tools')route();else location.hash='tools';return}
+  const z=e.target.closest('a[data-z]');
+  if(z){pendingZhao=+z.dataset.z;zFromLink=true;if(location.hash==='#l6'){e.preventDefault();route()}}
+});
+window.addEventListener('hashchange',()=>{if(pendingZhao&&location.hash==='#l6')zFromLink=true;route()});
+updProg();route();
+})();
+</script>
+
+<script>/* 返回主页按钮：滚动后收窄 */
+(function(){var r=document.documentElement,q=false;
+  function u(){q=false;r.classList.toggle('pf-scrolled',(window.scrollY||0)>40);if(window.pfNav)pfNav()}
+  addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(u)}},{passive:true});
+  addEventListener('resize',u);u();
+})();</script>
+<script defer src="https://events.vercount.one/js"></script>
+</body>
+</html>
