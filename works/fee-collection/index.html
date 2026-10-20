@@ -1096,7 +1096,7 @@ function homeHTML(){
       <div class="hero-cta">${next?`<a class="btn" href="#${next.id}">${n?'继续':'开始'}第${next.no}课 · ${next.t}</a>`:`<a class="btn" href="#practice">全部学完 · 去练习</a>`}<a class="btn ghost" href="#practice">闪卡复习</a></div>
       <p class="hero-meta">${LESSONS.length}课 · 约${total}分钟 · 法律法规核对至2026年10月</p>
     </div>
-    <figure class="hero-aside">${sealSVG({cls:'seal-big stamp-load'})}<figcaption class="hero-quote"><p>再好的催费技巧，<br>都不如用心的服务。</p><small>服务在于心，满意践于行；<br>服务无小事，信任在细节。</small></figcaption></figure>
+    <figure class="hero-aside">${sealSVG({cls:'seal-big stamp-load'})}<figcaption class="hero-quote"><p>最好的催费，<br>是用心的服务。</p></figcaption></figure>
   </section>
   <div class="today"><span>课程进度 <b>${n}/${LESSONS.length}</b></span><span>闪卡：生疏 <b>${bc[0]}</b> · 熟悉中 <b>${bc[1]}</b> · 已掌握 <b>${bc[2]}</b></span><span class="gap"></span><a href="#morning">今天晨会讲什么 →</a></div>
   <div class="sec-h"><h2>学习路线</h2><p>按顺序学最顺；每课末尾答完小测，盖章完成。</p></div>
@@ -1303,7 +1303,7 @@ function morningHTML(){
   <div class="days">${DAYS.map((d,di)=>{const n=d.acts.filter((_,j)=>ST.morning[`m-${di}-${j}`]).length;return `<div class="day"><div class="day-h"><b>${d.d}</b>${d.tag?`<span class="tag warn">${d.tag}</span>`:`<span class="sm muted mono" data-dn="${di}">${n}/${d.acts.length}</span>`}</div><h3>${d.t}</h3><div class="chk dayc">${d.acts.map((a,j)=>{const id=`m-${di}-${j}`;return `<label><input type="checkbox" id="${id}" data-di="${di}" ${ST.morning[id]?'checked':''}><span>${a}</span></label>`}).join('')}</div><a class="go" href="#${d.l}" ${d.z?`data-z="${d.z}"`:''}>复习：第${LMAP[d.l].no}课 ${LMAP[d.l].t} →</a></div>`}).join('')}</div>
   <div class="sec-h"><h2>做好收缴的六个细节</h2></div>
   <div class="methods">${SIX.map(s=>`<div><b>${s[0]}</b><p>${s[1]}</p></div>`).join('')}</div>
-  <div class="coda">${sealSVG({bottom:'服务在前'})}<p>再好的催费技巧，都不如用心的服务。<small>服务在于心，满意践于行；服务无小事，信任在细节。</small></p></div>`;
+  <div class="coda">${sealSVG({bottom:'服务在前'})}<p>最好的催费，是用心的服务。</p></div>`;
 }
 function mountMorning(){
   main.addEventListener('change',onMorningChange);
