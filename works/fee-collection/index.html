@@ -1095,9 +1095,7 @@ function homeHTML(){
   <div class="sec-h"><h2>学习路线</h2><p>按顺序学最顺；每课末尾答完小测，盖章完成。</p></div>
   ${STAGES.map((s,si)=>`<div class="stage"><div class="stage-l">${s[0]}<small>${s[1]}</small></div><div class="tiles">${LESSONS.filter(l=>l.stage===si).map(l=>`<a class="tile${ST.done[l.id]?' done':''}" href="#${l.id}"><span class="no">${String(l.no).padStart(2,'0')}</span><h3>${l.t}</h3><p>${l.sub}</p><span class="ft"><span>约${l.min}分钟</span>${ST.done[l.id]?'<span class="ok">已学</span>':'<span>未学</span>'}</span>${ST.done[l.id]?doneSeal(l.no,'stamp'):''}</a>`).join('')}</div></div>`).join('')}
   <div class="sec-h"><h2>现场速查</h2><p>站在业主门口也能用。</p></div>
-  <div class="toolrow">${[['calc','欠费节点计算','输入欠费月数，告诉你现在该做什么'],['diag','招数诊断','选业主情况，匹配九招'],['letter','催费函生成','填几项信息，生成可复制的函件正文'],['law','法条速查','搜关键词，找原文条款']].map(t=>`<button type="button" data-tool="${t[0]}"><b>${t[1]}</b><span>${t[2]}</span></button>`).join('')}</div>
-  <div class="sec-h"><h2>这样设计，是为了记得住</h2><p>参考学习科学里被反复验证的方法。</p></div>
-  <div class="methods">${[['先看全局','首页路线和第1课流程图，先搭框架，再填细节。'],['小块学习','10课，每课3–8分钟，一次只解决一个问题。'],['图文并用','循环图、节点轴、压力阶梯，把规则画出来。'],['先想再看','法条、拒缴理由先遮住答案；每课末尾小测，答错立刻看解释。'],['间隔复习','闪卡按“没记住 / 模糊 / 记住了”调整出现频率。'],['当天落地','晨会8天行动清单，学完当天就用在业主身上。']].map(m=>`<div><b>${m[0]}</b><p>${m[1]}</p></div>`).join('')}</div>`;
+  <div class="toolrow">${[['calc','欠费节点计算','输入欠费月数，告诉你现在该做什么'],['diag','招数诊断','选业主情况，匹配九招'],['letter','催费函生成','填几项信息，生成可复制的函件正文'],['law','法条速查','搜关键词，找原文条款']].map(t=>`<button type="button" data-tool="${t[0]}"><b>${t[1]}</b><span>${t[2]}</span></button>`).join('')}</div>`;
 }
 
 function lessonHTML(L){
