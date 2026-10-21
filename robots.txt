@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /works/yangxi-garden/
+Disallow: /works/fee-collection/
