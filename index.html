@@ -133,10 +133,10 @@ img{display:block;max-width:100%;height:auto}
 }
 
 .foot{position:relative;margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);
-  display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px}
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px}
 
-/* 座右铭：页脚第一行，单独一行小字，宋体常规体、灰色，和下面的声明同一级别。主人要低调，不放页面上方。 */
-.motto{flex-basis:100%;margin:0 0 2px;font-family:var(--f-serif);font-weight:400;font-size:13px;line-height:1.6;
+/* 座右铭：页脚左边一行小字，宋体常规体、灰色；右边是邮箱和版权。主人要低调，不放页面上方。 */
+.motto{margin:0;font-family:var(--f-serif);font-weight:400;font-size:13px;line-height:1.6;
   color:var(--muted);text-wrap:balance}
 
 /* 钥匙牌：页脚角落的隐形开关，图标不显示，位置和点击区域保留 */
@@ -213,7 +213,6 @@ img{display:block;max-width:100%;height:auto}
 
   <footer class="foot">
     <p class="motto" lang="en">First do it, then do it right, then do it better.</p>
-    <span>个人作品展示页，非企业官方网站。</span>
     <span class="foot-r"><a class="mail" href="mailto:timchingx@gmail.com">timchingx@gmail.com</a>© 2026 程文辉<span class="keytag" id="keytag" aria-hidden="true"><svg viewBox="0 0 24 36"><rect class="body" x="4" y="10" width="16" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><circle class="hole" cx="12" cy="14" r="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M12 14A6 6 0 1 1 17.2 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 29V24.5L12 21l4.5 3.5V29" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span></span>
     <div class="stats" id="stats" aria-label="访客数"><span id="vercount_value_site_uv">–</span></div>
   </footer>
