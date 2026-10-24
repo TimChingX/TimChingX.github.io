@@ -14,7 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231B231F'/%3E%3Cpath d='M14 50V30L32 16l18 14v20' fill='none' stroke='%23D6B67C' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
 /* 苹果风格首页（2026-10-24 改版）
-   参照 apple.com.cn 商店页：浅灰底、白色大圆角卡片、毛玻璃导航条、两色大标题、苹方/SF 系统字体。
+   参照 apple.com.cn 商店页：浅灰底、白色大圆角卡片、毛玻璃导航条、苹方/SF 系统字体。
    手机上作品排成 iOS“设置”式的分组列表，三项作品一屏看完；电脑上排成三张并排的商店卡片，截图从卡片底边升起。
    作品卡不放数字统计，也不放署名，只显示日期（主人明确要求）。座右铭留在页脚，不放页面上方。 */
 :root{
@@ -58,7 +58,7 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4
 img{display:block;max-width:100%;height:auto}
 .wrap{max-width:1180px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
 
-/* 毛玻璃导航条：页面往上滚、大标题被盖住时，中间浮出“作品”二字，底下出现一条发丝线（iOS 大标题的做法） */
+/* 毛玻璃导航条：中间是页面标题“作品”；页面一往上滚，底边出现一条发丝线 */
 .nav{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);
   background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
   box-shadow:0 1px 0 transparent;transition:box-shadow .3s}
@@ -67,17 +67,11 @@ img{display:block;max-width:100%;height:auto}
 .logo{display:grid;place-items:center;width:32px;height:32px;margin-left:-6px;color:var(--ink);border-radius:8px}
 .logo svg{width:20px;height:20px}
 .logo:hover{text-decoration:none;opacity:.7}
-.nav-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:17px;font-weight:600;
-  opacity:0;transition:opacity .25s;pointer-events:none}
-.nav.stuck .nav-title{opacity:1}
-
-/* 两色大标题：前半句黑、后半句灰，苹果商店页的写法 */
-.head{margin:0;padding:20px 0 22px;font-size:28px;line-height:1.18;font-weight:600;letter-spacing:0;
-  color:var(--muted);text-wrap:balance}
-.head b{font-weight:600;color:var(--ink)}
+.nav-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;
+  font-size:17px;line-height:1.3;font-weight:600;white-space:nowrap;pointer-events:none}
 
 /* ---------- 作品：手机上是 iOS 分组列表 ---------- */
-.works{margin:0;padding:0;list-style:none;background:var(--card);border-radius:18px;overflow:hidden}
+.works{margin:16px 0 0;padding:0;list-style:none;background:var(--card);border-radius:18px;overflow:hidden}
 .work{--pos:50% 50%;position:relative;display:grid;grid-template-columns:112px minmax(0,1fr) 10px;
   grid-template-areas:"shot text chev";column-gap:14px;align-items:center;padding:12px 16px 12px 12px}
 .work + .work::before{content:"";position:absolute;top:0;right:0;left:138px;height:1px;background:var(--sep)}
@@ -102,8 +96,7 @@ img{display:block;max-width:100%;height:auto}
 /* 平板：列表行加大，补上两行简介 */
 @media (min-width:560px){
   .wrap{padding-left:32px;padding-right:32px}
-  .head{padding:36px 0 28px;font-size:40px;line-height:1.1}
-  .works{max-width:760px}
+  .works{max-width:760px;margin-top:28px}
   .work{grid-template-columns:176px minmax(0,1fr) 10px;column-gap:20px;padding:16px 22px 16px 16px}
   .work + .work::before{left:212px}
   .work h2{font-size:19px;line-height:1.26}
@@ -122,8 +115,7 @@ img{display:block;max-width:100%;height:auto}
 @media (min-width:860px){
   .wrap{padding-left:40px;padding-right:40px}
   .nav-in{height:48px}
-  .head{padding:56px 0 36px;font-size:48px;line-height:1.08}
-  .works{max-width:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;
+  .works{max-width:none;margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;
     background:none;border-radius:0;overflow:visible}
   .work{display:flex;flex-direction:column;align-items:stretch;padding:28px 28px 0;background:var(--card);border-radius:18px;
     box-shadow:var(--shadow);overflow:hidden}
@@ -182,7 +174,7 @@ img{display:block;max-width:100%;height:auto}
 
 /* 开场：标题和作品依次淡入上浮，只放一次 */
 @media (prefers-reduced-motion:no-preference){
-  .head,.work{animation:rise .8s cubic-bezier(.2,.7,.2,1) backwards}
+  .work{animation:rise .8s cubic-bezier(.2,.7,.2,1) backwards}
   .work:nth-child(1){animation-delay:.08s}
   .work:nth-child(2){animation-delay:.16s}
   .work:nth-child(3){animation-delay:.24s}
@@ -192,7 +184,7 @@ img{display:block;max-width:100%;height:auto}
 @media (prefers-reduced-motion:reduce){
   .contact{transition:none}
   .keytag,.keytag.sway,.keytag:hover{animation:none}
-  .work,.nav,.nav-title,.stats{transition:none}.work:hover{transform:none}.stats{transform:none}
+  .work,.nav,.stats{transition:none}.work:hover{transform:none}.stats{transform:none}
 }
 @media print{.nav,.keytag,.stats{display:none}.works,.work{box-shadow:none}}
 </style>
@@ -201,13 +193,11 @@ img{display:block;max-width:100%;height:auto}
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <a class="logo" href="./" aria-label="物业服务作品集"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 20.5V10.4L12 4.5l7.5 5.9v10.1" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></svg></a>
-    <span class="nav-title" aria-hidden="true">作品</span>
+    <h1 class="nav-title" id="works-h">作品</h1>
   </div>
 </header>
 
 <main class="wrap">
-  <h1 class="head" id="works-h"><b>作品。</b>物业服务方案、演示材料和管理工具。</h1>
-
   <div class="works" role="list" aria-labelledby="works-h">
     <article class="work" role="listitem" style="--pos:85% 0">
       <div class="text">
@@ -251,12 +241,12 @@ img{display:block;max-width:100%;height:auto}
 </main>
 
 <script>
-// 大标题一钻到导航条底下，导航条中间就浮出“作品”、底边出现发丝线
+// 页面往上滚时，导航条底边出现发丝线
 (function(){
-  var nav=document.getElementById('nav'),head=document.getElementById('works-h');
-  if(!nav||!head||!('IntersectionObserver' in window))return;
-  new IntersectionObserver(function(es){nav.classList.toggle('stuck',es[0].intersectionRatio<.99)},
-    {rootMargin:'-'+nav.offsetHeight+'px 0px 0px 0px',threshold:[0,.99,1]}).observe(head);
+  var nav=document.getElementById('nav');
+  if(!nav)return;
+  function update(){nav.classList.toggle('stuck',window.scrollY>0)}
+  window.addEventListener('scroll',update,{passive:true});update();
 })();
 
 (function(){
