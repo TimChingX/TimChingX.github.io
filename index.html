@@ -14,7 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231B231F'/%3E%3Cpath d='M14 50V30L32 16l18 14v20' fill='none' stroke='%23D6B67C' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
 /* 苹果风格首页（2026-10-24 改版）
-   参照 apple.com.cn 商店页：浅灰底、白色大圆角卡片、毛玻璃导航条、两色大标题、苹方/SF 系统字体、蓝色按钮。
+   参照 apple.com.cn 商店页：浅灰底、白色大圆角卡片、毛玻璃导航条、两色大标题、苹方/SF 系统字体。
    手机上作品排成 iOS“设置”式的分组列表，三项作品一屏看完；电脑上排成三张并排的商店卡片，截图从卡片底边升起。
    作品卡不放数字统计，也不放署名，只显示日期（主人明确要求）。座右铭留在页脚，不放页面上方。 */
 :root{
@@ -28,6 +28,8 @@
   --link:#0066CC;      /* 文字链接 */
   --accent:#B64400;    /* 类别小字（苹果商店“新款”那种橙） */
   --press:#E8E8ED;     /* 手机点按时的行底色 */
+  --chip:#E8E8ED;      /* 页脚联系按钮 */
+  --chip-hi:#DCDCE1;
   --nav:rgba(245,245,247,.8);
   --shadow:2px 4px 12px rgba(0,0,0,.08);
   --shadow-hi:2px 4px 16px rgba(0,0,0,.16);
@@ -36,13 +38,13 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#000000;--card:#1C1C1E;--ink:#F5F5F7;--muted:#A1A1A6;--faint:#48484A;
-    --sep:rgba(84,84,88,.5);--blue:#0071E3;--link:#2997FF;--accent:#FF8A3D;--press:#2C2C2E;
+    --sep:rgba(84,84,88,.5);--blue:#0071E3;--link:#2997FF;--accent:#FF8A3D;--press:#2C2C2E;--chip:#2C2C2E;--chip-hi:#3A3A3C;
     --nav:rgba(22,22,23,.8);--shadow:none;--shadow-hi:0 0 0 1px rgba(255,255,255,.06);
   }
 }
 :root[data-theme="dark"]{
   --bg:#000000;--card:#1C1C1E;--ink:#F5F5F7;--muted:#A1A1A6;--faint:#48484A;
-  --sep:rgba(84,84,88,.5);--blue:#0071E3;--link:#2997FF;--accent:#FF8A3D;--press:#2C2C2E;
+  --sep:rgba(84,84,88,.5);--blue:#0071E3;--link:#2997FF;--accent:#FF8A3D;--press:#2C2C2E;--chip:#2C2C2E;--chip-hi:#3A3A3C;
   --nav:rgba(22,22,23,.8);--shadow:none;--shadow-hi:0 0 0 1px rgba(255,255,255,.06);
 }
 
@@ -68,9 +70,6 @@ img{display:block;max-width:100%;height:auto}
 .nav-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:17px;font-weight:600;
   opacity:0;transition:opacity .25s;pointer-events:none}
 .nav.stuck .nav-title{opacity:1}
-.nav-cta{display:inline-block;padding:4px 12px;border-radius:980px;background:var(--blue);color:#fff;
-  font-size:12px;line-height:1.5;letter-spacing:0}
-.nav-cta:hover{text-decoration:none;background:#0077ED}
 
 /* 两色大标题：前半句黑、后半句灰，苹果商店页的写法 */
 .head{margin:0;padding:20px 0 22px;font-size:28px;line-height:1.18;font-weight:600;letter-spacing:0;
@@ -154,7 +153,10 @@ img{display:block;max-width:100%;height:auto}
 /* 座右铭：页脚左边一行小字。主人要低调，不放页面上方。 */
 .motto{margin:0;text-wrap:balance}
 .foot-r{display:inline-flex;align-items:center;gap:10px;margin-left:auto}
-.mail{margin-right:6px;white-space:nowrap}
+/* 联系按钮：灰色小胶囊，点开发邮件；鼠标停留时提示邮箱地址 */
+.contact{display:inline-block;margin-right:6px;padding:4px 12px;border-radius:980px;background:var(--chip);color:var(--ink);
+  font-size:12px;line-height:1.5;white-space:nowrap;transition:background .2s}
+.contact:hover{text-decoration:none;background:var(--chip-hi)}
 @media (max-width:559px){.foot-r{flex-basis:100%;justify-content:flex-end}}
 
 /* 钥匙牌：页脚角落的隐形开关，图标不显示，位置和点击区域保留 */
@@ -188,6 +190,7 @@ img{display:block;max-width:100%;height:auto}
 }
 @keyframes rise{from{opacity:0;transform:translateY(16px)}}
 @media (prefers-reduced-motion:reduce){
+  .contact{transition:none}
   .keytag,.keytag.sway,.keytag:hover{animation:none}
   .work,.nav,.nav-title,.stats{transition:none}.work:hover{transform:none}.stats{transform:none}
 }
@@ -199,7 +202,6 @@ img{display:block;max-width:100%;height:auto}
   <div class="wrap nav-in">
     <a class="logo" href="./" aria-label="物业服务作品集"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 20.5V10.4L12 4.5l7.5 5.9v10.1" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></svg></a>
     <span class="nav-title" aria-hidden="true">作品</span>
-    <a class="nav-cta" href="mailto:timchingx@gmail.com">联系</a>
   </div>
 </header>
 
@@ -243,7 +245,7 @@ img{display:block;max-width:100%;height:auto}
 
   <footer class="foot">
     <p class="motto" lang="en">First do it, then do it right, then do it better.</p>
-    <span class="foot-r"><a class="mail" href="mailto:timchingx@gmail.com">timchingx@gmail.com</a>© 2026 程文辉<span class="keytag" id="keytag" aria-hidden="true"><svg viewBox="0 0 24 36"><rect class="body" x="4" y="10" width="16" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><circle class="hole" cx="12" cy="14" r="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M12 14A6 6 0 1 1 17.2 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 29V24.5L12 21l4.5 3.5V29" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span></span>
+    <span class="foot-r"><a class="contact" href="mailto:timchingx@gmail.com" title="timchingx@gmail.com">联系</a>© 2026 程文辉<span class="keytag" id="keytag" aria-hidden="true"><svg viewBox="0 0 24 36"><rect class="body" x="4" y="10" width="16" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><circle class="hole" cx="12" cy="14" r="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M12 14A6 6 0 1 1 17.2 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 29V24.5L12 21l4.5 3.5V29" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span></span>
     <div class="stats" id="stats" aria-label="访客数"><span id="vercount_value_site_uv">–</span></div>
   </footer>
 </main>
