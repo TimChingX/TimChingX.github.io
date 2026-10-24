@@ -44,13 +44,10 @@ document.addEventListener('keydown', function(e){
   if (block) { e.preventDefault(); e.stopPropagation(); }
 }, true);
 </script>
-<style>/* 禁止选中、拖拽和打印（输入框除外）；返回主页 */
+<style>/* 禁止选中、拖拽和打印（输入框除外） */
 html{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 img,svg{-webkit-user-drag:none}
 input,textarea,select{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
-.home-link{display:inline-flex;align-items:center;gap:6px;margin:0 0 14px 10px;font-size:13px;color:var(--ink-2);text-decoration:none}
-.home-link:hover{color:var(--primary)}
-.home-link svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .side-foot::before{content:"个人作品展示，非企业官方网站。";display:block;margin-bottom:6px;color:var(--ink-2)}
 @media print{
   @page{size:A4;margin:20mm}
@@ -600,13 +597,46 @@ mark.hl{background:var(--amber-soft);color:inherit;border-radius:2px}
 }
 
 </style>
+<style>/* 返回主页按钮：与央玺花园左上角一致（Apple 浅色毛玻璃胶囊），电脑和手机都固定在左上角；本页切到深色时换成深色胶囊 */
+:root{--pb-bg:rgba(255,255,255,.72);--pb-ink:#1d1d1f;--pb-line:rgba(0,0,0,.08);--pb-note:#6e6e73;--pb-sep:rgba(0,0,0,.15)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--pb-bg:rgba(40,40,42,.72);--pb-ink:#f5f5f7;--pb-line:rgba(255,255,255,.12);--pb-note:#a1a1a6;--pb-sep:rgba(255,255,255,.2)}
+}
+:root[data-theme="dark"]{--pb-bg:rgba(40,40,42,.72);--pb-ink:#f5f5f7;--pb-line:rgba(255,255,255,.12);--pb-note:#a1a1a6;--pb-sep:rgba(255,255,255,.2)}
+.pf-back{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:16px;z-index:35;display:inline-flex;align-items:center;gap:7px;
+  min-height:36px;padding:8px 14px 8px 10px;border-radius:999px;font:500 13px/1.2 var(--sans);letter-spacing:0;color:var(--pb-ink);text-decoration:none;white-space:nowrap;
+  background:var(--pb-bg);border:1px solid var(--pb-line);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  opacity:.92;transition:opacity .2s}
+.pf-back:hover,.pf-back:focus-visible{opacity:1}
+.pf-back:focus-visible{outline:2px solid #0071e3;outline-offset:3px}
+.pf-back svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pf-back .pf-note{margin-left:3px;padding-left:9px;border-left:1px solid var(--pb-sep);color:var(--pb-note)}
+/* 电脑：侧栏加宽一点、顶部留出按钮的位置 */
+@media (min-width:861px){.app{grid-template-columns:232px minmax(0,1fr)}}
+.side{padding-top:calc(68px + env(safe-area-inset-top,0px))}
+/* 手机：顶栏第一行左边是按钮，右边是搜索和外观；原来的标题和“主页”按钮去掉 */
+@media (max-width:860px){
+  .m-top{min-height:calc(56px + env(safe-area-inset-top,0px));padding:calc(14px + env(safe-area-inset-top,0px)) 16px 6px;justify-content:flex-end}
+  .m-top > b{display:none}
+}
+/* 窄屏手机：搜索和外观改成图标按钮，给左上角的按钮让位；外观图标随当前设置变（半圆=跟随系统，太阳=浅色，月亮=深色） */
+@media (max-width:480px){
+  .m-top .btn-row > button{width:36px;height:32px;padding:0;font-size:0;line-height:0;display:inline-flex;align-items:center;justify-content:center}
+  .m-top .btn-row > button::before{content:"";width:17px;height:17px;background:currentColor;-webkit-mask:var(--ico) center/contain no-repeat;mask:var(--ico) center/contain no-repeat}
+  .m-top [data-act="skOpen"]{--ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='8.5' cy='8.5' r='5.5'/%3E%3Cpath d='m13 13 4.5 4.5'/%3E%3C/svg%3E")}
+  .m-top .theme-btn{--ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='7' fill='none' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M10 3a7 7 0 0 1 0 14z'/%3E%3C/svg%3E")}
+  :root[data-theme="light"] .m-top .theme-btn{--ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='3.6'/%3E%3Cpath d='M10 1.8v2.1M10 16.1v2.1M1.8 10h2.1M16.1 10h2.1M4.2 4.2l1.5 1.5M14.3 14.3l1.5 1.5M4.2 15.8l1.5-1.5M14.3 5.7l1.5-1.5'/%3E%3C/svg%3E")}
+  :root[data-theme="dark"] .m-top .theme-btn{--ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M16.5 12.6A7 7 0 0 1 7.4 3.5a7 7 0 1 0 9.1 9.1z'/%3E%3C/svg%3E")}
+}
+@media print{.pf-back{display:none !important}}
+</style>
 </head>
 <body>
 <pf-gate></pf-gate>
 <div class="pf-lock" role="alert"><p class="pf-lock-t">本作品仅支持在线浏览</p><p class="pf-lock-s">另存或转载的副本无法打开，请访问在线版本</p><a href="https://timchingx.github.io/works/fee-collection/">前往在线版本 →</a></div>
+<a class="pf-back" href="../../"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2 3.5 6l4 4"/></svg>返回主页<span class="pf-note">个人作品展示</span></a>
 <div class="app">
   <aside class="side" aria-label="主导航">
-    <a class="home-link" href="../../"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2 3.5 6l4 4"/></svg>返回主页</a>
     <div class="brand"><b>物业费收缴助手</b><span>客服专用</span></div>
     <button class="search-btn" type="button" data-act="skOpen"><span>搜索话术、法条</span><kbd>/</kbd></button>
     <nav class="nav" id="nav"></nav>
@@ -614,7 +644,7 @@ mark.hl{background:var(--amber-soft);color:inherit;border-radius:2px}
   </aside>
   <div class="main">
     <div class="m-nav">
-      <div class="m-top"><b>物业费收缴助手</b><div class="btn-row"><a class="btn sm" href="../../">主页</a><button class="btn sm" type="button" data-act="skOpen">搜索</button><button class="theme-btn" type="button">外观：跟随系统</button></div></div>
+      <div class="m-top"><b>物业费收缴助手</b><div class="btn-row"><button class="btn sm" type="button" data-act="skOpen">搜索</button><button class="theme-btn" type="button">外观：跟随系统</button></div></div>
       <nav class="m-tabs" id="mtabs" aria-label="主导航"></nav>
     </div>
     <div class="ctx" id="ctx">
