@@ -140,16 +140,21 @@ img{display:block;max-width:100%;height:auto}
 /* ---------- 页脚 ---------- */
 .foot{position:relative;margin-top:32px;padding:16px 0 calc(24px + env(safe-area-inset-bottom,0px));
   border-top:1px solid var(--sep);font-size:12px;line-height:1.33;color:var(--muted);
-  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
-@media (min-width:860px){.foot{margin-top:48px}}
-/* 座右铭：页脚左边一行小字。主人要低调，不放页面上方。 */
-.motto{margin:0;text-wrap:balance}
-.foot-r{display:inline-flex;align-items:center;gap:10px;margin-left:auto}
+  display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;align-items:center;gap:10px 16px}
+/* 座右铭：页脚正中一行小字。主人要低调，不放页面上方。 */
+.motto{margin:0;text-align:center;text-wrap:balance}
+/* 手机和平板：座右铭在上、联系和版权在下，都居中；左边补 28px 抵消右端看不见的钥匙牌，让可见部分正好居中 */
+.foot-r{display:inline-flex;align-items:center;gap:10px;padding-left:28px}
+/* 电脑：座右铭在正中，联系和版权靠右 */
+@media (min-width:860px){
+  .foot{margin-top:48px;grid-template-columns:1fr auto 1fr}
+  .motto{grid-column:2}
+  .foot-r{grid-column:3;justify-self:end;padding-left:0}
+}
 /* 联系按钮：灰色小胶囊，点开发邮件；鼠标停留时提示邮箱地址 */
 .contact{display:inline-block;margin-right:6px;padding:4px 12px;border-radius:980px;background:var(--chip);color:var(--ink);
   font-size:12px;line-height:1.5;white-space:nowrap;transition:background .2s}
 .contact:hover{text-decoration:none;background:var(--chip-hi)}
-@media (max-width:559px){.foot-r{flex-basis:100%;justify-content:flex-end}}
 
 /* 钥匙牌：页脚角落的隐形开关，图标不显示，位置和点击区域保留 */
 .keytag{display:inline-block;width:18px;height:27px;color:var(--blue);opacity:0;cursor:default;
