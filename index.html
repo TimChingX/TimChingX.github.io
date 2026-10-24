@@ -5,210 +5,241 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>物业服务作品集</title>
 <meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F5F5F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:title" content="物业服务作品集">
 <meta property="og:description" content="收录物业服务方案、演示材料和管理工具。">
 <meta property="og:image" content="https://timchingx.github.io/works/yangxi-garden/cover.jpg?v=20261015">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231B231F'/%3E%3Cpath d='M14 50V30L32 16l18 14v20' fill='none' stroke='%23D6B67C' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="preload" href="assets/serif-600.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:"Wenhui Serif";src:url(assets/serif-600.woff2) format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:"Wenhui Serif";src:url(assets/serif-400.woff2) format("woff2");font-weight:400;font-display:swap}   /* 只含座右铭那句英文 */
-
+/* 苹果风格首页（2026-10-24 改版）
+   参照 apple.com.cn 商店页：浅灰底、白色大圆角卡片、毛玻璃导航条、两色大标题、苹方/SF 系统字体、蓝色按钮。
+   手机上作品排成 iOS“设置”式的分组列表，三项作品一屏看完；电脑上排成三张并排的商店卡片，截图从卡片底边升起。
+   作品卡不放数字统计，也不放署名，只显示日期（主人明确要求）。座右铭留在页脚，不放页面上方。 */
 :root{
-  --stone:#EDEFEB;   /* page */
-  --paper:#F7F8F5;   /* record card */
-  --ink:#1B231F;     /* text */
-  --muted:#56615B;   /* secondary text */
-  --line:#C9D0C9;    /* rules */
-  --brass:#7A5820;   /* links */
-  --brass-fill:#7A5820;
-  --on-brass:#FFFFFF;
-  --hl:#F2DFA6;      /* highlighter */
-  --hl-ink:#1B231F;
-  --lift:#FBFCFA;    /* 悬停时浮起的底板 */
-  --lift-shadow:0 1px 2px rgba(20,30,25,.06),0 16px 36px -16px rgba(20,30,25,.32);  --f-serif:"Wenhui Serif","Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif;
-  --f-sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Segoe UI","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;
+  --bg:#F5F5F7;        /* 页面底色 */
+  --card:#FFFFFF;      /* 卡片、列表底色 */
+  --ink:#1D1D1F;       /* 正文 */
+  --muted:#6E6E73;     /* 次要文字 */
+  --faint:#C7C7CC;     /* 列表箭头 */
+  --sep:rgba(60,60,67,.16);   /* 发丝分隔线 */
+  --blue:#0071E3;      /* 按钮 */
+  --link:#0066CC;      /* 文字链接 */
+  --accent:#B64400;    /* 类别小字（苹果商店“新款”那种橙） */
+  --press:#E8E8ED;     /* 手机点按时的行底色 */
+  --nav:rgba(245,245,247,.8);
+  --shadow:2px 4px 12px rgba(0,0,0,.08);
+  --shadow-hi:2px 4px 16px rgba(0,0,0,.16);
+  --f:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue","PingFang SC","Hiragino Sans GB","Segoe UI","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --stone:#131714;--paper:#1A1F1C;--ink:#E6EAE6;--muted:#9AA49E;--line:#2E3631;
-    --brass:#D6B67C;--brass-fill:#D6B67C;--on-brass:#1B160C;
-    --hl:#4A3E22;--hl-ink:#F4E6C4;
-    --lift:#212823;--lift-shadow:0 18px 40px -18px rgba(0,0,0,.75);
+    --bg:#000000;--card:#1C1C1E;--ink:#F5F5F7;--muted:#A1A1A6;--faint:#48484A;
+    --sep:rgba(84,84,88,.5);--blue:#0071E3;--link:#2997FF;--accent:#FF8A3D;--press:#2C2C2E;
+    --nav:rgba(22,22,23,.8);--shadow:none;--shadow-hi:0 0 0 1px rgba(255,255,255,.06);
   }
 }
 :root[data-theme="dark"]{
-  --stone:#131714;--paper:#1A1F1C;--ink:#E6EAE6;--muted:#9AA49E;--line:#2E3631;
-  --brass:#D6B67C;--brass-fill:#D6B67C;--on-brass:#1B160C;
-  --hl:#4A3E22;--hl-ink:#F4E6C4;
-  --lift:#212823;--lift-shadow:0 18px 40px -18px rgba(0,0,0,.75);
+  --bg:#000000;--card:#1C1C1E;--ink:#F5F5F7;--muted:#A1A1A6;--faint:#48484A;
+  --sep:rgba(84,84,88,.5);--blue:#0071E3;--link:#2997FF;--accent:#FF8A3D;--press:#2C2C2E;
+  --nav:rgba(22,22,23,.8);--shadow:none;--shadow-hi:0 0 0 1px rgba(255,255,255,.06);
 }
 
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--stone);color:var(--ink);font:400 16px/1.75 var(--f-sans);
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-a{color:var(--brass);text-underline-offset:.22em;text-decoration-thickness:1px}
-a:focus-visible{outline:2px solid var(--brass);outline-offset:4px;border-radius:2px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.47 var(--f);letter-spacing:0;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
 img{display:block;max-width:100%;height:auto}
+.wrap{max-width:1180px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
 
-.page{max-width:747px;margin:0 auto;   /* 电脑上内容宽 667px，比原来的 1000px 窄三分之一 */
-  padding:calc(40px + env(safe-area-inset-top,0px)) 16px calc(28px + env(safe-area-inset-bottom,0px))}
+/* 毛玻璃导航条：页面往上滚、大标题被盖住时，中间浮出“作品”二字，底下出现一条发丝线（iOS 大标题的做法） */
+.nav{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);
+  background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
+  box-shadow:0 1px 0 transparent;transition:box-shadow .3s}
+.nav.stuck{box-shadow:0 1px 0 var(--sep)}
+.nav-in{position:relative;height:44px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:grid;place-items:center;width:32px;height:32px;margin-left:-6px;color:var(--ink);border-radius:8px}
+.logo svg{width:20px;height:20px}
+.logo:hover{text-decoration:none;opacity:.7}
+.nav-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:17px;font-weight:600;
+  opacity:0;transition:opacity .25s;pointer-events:none}
+.nav.stuck .nav-title{opacity:1}
+.nav-cta{display:inline-block;padding:4px 12px;border-radius:980px;background:var(--blue);color:#fff;
+  font-size:12px;line-height:1.5;letter-spacing:0}
+.nav-cta:hover{text-decoration:none;background:#0077ED}
 
-.works h2{margin:0;font-family:var(--f-serif);font-weight:600;font-size:20px;line-height:1.3;
-  padding-bottom:10px;border-bottom:1px solid var(--line)}
-
-/* 作品列表：博客文章列表式排版。每项作品占一行，平时不加卡片底色和边框，作品之间用细线分隔。
-   左边 4:3 圆角封面；右边从上往下：类别小字、标题、两行简介、日期。
-   不放数字统计，也不放署名（主人明确不要）。
-   手机：封面 | 类别、标题、日期（简介隐藏，三项作品一屏看完）；平板和电脑再加两行简介。
-   封面从 16:9 裁成 4:3，主体不在正中的封面在 img 上用 object-position 指定保留哪边。
-   悬停效果参照 YouTube 首页视频卡：鼠标移到哪件作品，哪件就整行轻轻放大、衬出一块圆角底板，
-   封面图微微推近，上下两条分隔线隐去；移开就收回。只在有鼠标的设备上生效，手机点按不受影响。
-   键盘 Tab 选中时同样浮起，底板外加一圈黄铜色描边。
-   --pad 是每行上下留白，--bleed 是底板比内容四周多出的宽度，--grow 是整行放大倍数。 */
-.work{--pad:16px;--bleed:10px;--grow:1;
-  position:relative;isolation:isolate;display:grid;grid-template-columns:38% minmax(0,1fr);column-gap:14px;align-items:start;
-  padding:var(--pad) 0}
-.work::before{content:"";position:absolute;z-index:-1;pointer-events:none;
-  inset:calc(var(--pad) - var(--bleed)) calc(-1 * var(--bleed));
-  border-radius:12px;background:var(--lift);box-shadow:var(--lift-shadow);
-  opacity:0;transform:scale(.96)}
-.work + .work{border-top:1px solid var(--line)}
-.thumb{position:relative;aspect-ratio:4 / 3;border-radius:6px;overflow:hidden;background:#000;
-  box-shadow:0 0 0 1px var(--line)}
-.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-@media (hover:hover) and (pointer:fine){
-  .work{transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .2s}
-  .work::before{transition:opacity .2s ease,transform .3s cubic-bezier(.2,.8,.2,1)}
-  .thumb img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
-  .work:hover{transform:scale(var(--grow))}
-  .work:hover::before{opacity:1;transform:none}
-  .work:hover .thumb img{transform:scale(1.05)}
-  .work:hover,.work:hover + .work{border-top-color:transparent}
-}
-.text{min-width:0}
-.kind{margin:0 0 3px;font-size:11px;line-height:1.5;font-weight:600;letter-spacing:.14em;color:var(--brass)}
-.work h3{margin:0;font-family:var(--f-serif);font-weight:600;font-size:16px;line-height:1.4;letter-spacing:.02em;
-  text-wrap:balance;transition:color .15s}
-.work h3 a{color:inherit;text-decoration:none}
-.work h3 a::after{content:"";position:absolute;inset:0;z-index:1}   /* 整行都可点 */
-.work:hover h3{color:var(--brass)}
-.work h3 a:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
-@supports selector(:has(a)){
-  .work h3 a:focus-visible{outline:0}
-  .work:has(h3 a:focus-visible)::before{opacity:1;transform:none;box-shadow:0 0 0 2px var(--brass),var(--lift-shadow)}
-  .work:has(h3 a:focus-visible),.work:has(h3 a:focus-visible) + .work{border-top-color:transparent}
-  .work:has(h3 a:focus-visible) h3{color:var(--brass)}
-}
-.desc{display:none;margin:6px 0 0;font-size:14px;line-height:1.7;color:var(--muted);
-  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.meta{margin:6px 0 0;font-size:12px;line-height:1.5;color:var(--muted)}
-.meta .dot{margin:0 .55em}
-
-/* 很窄的手机（如 320 宽）：封面再窄一点，给标题留位置；标题字距收紧 */
-@media (max-width:359px){
-  .work{grid-template-columns:36% minmax(0,1fr);column-gap:12px}
-  .work h3{letter-spacing:0}
-}
-
-/* 平板：标题一行，补上两行简介 */
-@media (min-width:560px){
-  .work{grid-template-columns:160px minmax(0,1fr);column-gap:20px;--pad:20px;--bleed:10px;--grow:1.005}
-  .work h3{font-size:18px}
-  .work h3 br{display:none}
-  .desc{display:-webkit-box}
-  .meta{margin-top:10px;font-size:13px}
-}
-
-/* 电脑 */
-@media (min-width:840px){
-  .work{grid-template-columns:180px minmax(0,1fr);column-gap:24px;--pad:24px;--bleed:16px;--grow:1.015}
-  .kind{margin-bottom:5px;font-size:12px}
-  .work h3{font-size:20px}
-  .desc{margin-top:8px;font-size:14.5px}
-  .meta{margin-top:12px}
-}
-
-.foot{position:relative;margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);
-  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px}
-
-/* 座右铭：页脚左边一行小字，宋体常规体、灰色；右边是邮箱和版权。主人要低调，不放页面上方。 */
-.motto{margin:0;font-family:var(--f-serif);font-weight:400;font-size:13px;line-height:1.6;
+/* 两色大标题：前半句黑、后半句灰，苹果商店页的写法 */
+.head{margin:0;padding:20px 0 22px;font-size:28px;line-height:1.18;font-weight:600;letter-spacing:0;
   color:var(--muted);text-wrap:balance}
+.head b{font-weight:600;color:var(--ink)}
 
-/* 钥匙牌：页脚角落的隐形开关，图标不显示，位置和点击区域保留 */
+/* ---------- 作品：手机上是 iOS 分组列表 ---------- */
+.works{margin:0;padding:0;list-style:none;background:var(--card);border-radius:18px;overflow:hidden}
+.work{--pos:50% 50%;position:relative;display:grid;grid-template-columns:112px minmax(0,1fr) 10px;
+  grid-template-areas:"shot text chev";column-gap:14px;align-items:center;padding:12px 16px 12px 12px}
+.work + .work::before{content:"";position:absolute;top:0;right:0;left:138px;height:1px;background:var(--sep)}
+.text{grid-area:text;min-width:0}
+.shot{grid-area:shot;position:relative;aspect-ratio:4 / 3;border-radius:10px;overflow:hidden;background:#000;
+  box-shadow:inset 0 0 0 1px var(--sep)}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos)}
+.shot::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);pointer-events:none}
+.chev{grid-area:chev;width:8px;height:14px;color:var(--faint)}
+.kind{margin:0 0 2px;font-size:12px;line-height:1.33;font-weight:600;letter-spacing:0;color:var(--accent)}
+.work h2{margin:0;font-size:17px;line-height:1.29;font-weight:600;letter-spacing:0;color:var(--ink)}
+.work h2 a{color:inherit;-webkit-tap-highlight-color:transparent}
+.work h2 a:hover{text-decoration:none}
+.work h2 a::after{content:"";position:absolute;inset:0;z-index:1}   /* 整行、整张卡都可点 */
+.work h2 a:focus-visible{outline:0}
+.work:has(h2 a:focus-visible){outline:2px solid var(--blue);outline-offset:-2px}
+.desc{display:none;margin:6px 0 0;font-size:14px;line-height:1.5;color:var(--muted);
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meta{margin:4px 0 0;font-size:13px;line-height:1.38;color:var(--muted)}
+.work:active{background:var(--press)}
+
+/* 平板：列表行加大，补上两行简介 */
+@media (min-width:560px){
+  .wrap{padding-left:32px;padding-right:32px}
+  .head{padding:36px 0 28px;font-size:40px;line-height:1.1}
+  .works{max-width:760px}
+  .work{grid-template-columns:176px minmax(0,1fr) 10px;column-gap:20px;padding:16px 22px 16px 16px}
+  .work + .work::before{left:212px}
+  .work h2{font-size:19px;line-height:1.26}
+  .work h2 br{display:none}
+  .desc{display:-webkit-box}
+  .meta{margin-top:8px}
+}
+/* 很窄的手机（如 320 宽）：封面再小一点，给标题留位置 */
+@media (max-width:359px){
+  .work{grid-template-columns:96px minmax(0,1fr) 10px;column-gap:12px}
+  .work + .work::before{left:120px}
+  .work h2{font-size:16px}
+}
+
+/* ---------- 电脑：三张并排的商店卡片，截图从卡片底边升起 ---------- */
+@media (min-width:860px){
+  .wrap{padding-left:40px;padding-right:40px}
+  .nav-in{height:48px}
+  .head{padding:56px 0 36px;font-size:48px;line-height:1.08}
+  .works{max-width:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;
+    background:none;border-radius:0;overflow:visible}
+  .work{display:flex;flex-direction:column;align-items:stretch;padding:28px 28px 0;background:var(--card);border-radius:18px;
+    box-shadow:var(--shadow);overflow:hidden}
+  .work + .work::before,.chev{display:none}
+  .work:active{background:var(--card)}
+  .work:has(h2 a:focus-visible){outline-offset:4px}
+  .kind{margin-bottom:6px}
+  .work h2{font-size:24px;line-height:1.17}
+  .work h2 br{display:inline}
+  .desc{display:block;margin-top:12px;font-size:14px;line-height:1.57}
+  .meta{margin-top:12px;font-size:12px}
+  .shot{order:2;margin-top:auto;aspect-ratio:4 / 3;border-radius:12px 12px 0 0;
+    box-shadow:0 -1px 10px rgba(0,0,0,.06)}
+  .text{padding-bottom:28px}
+  .shot::after{box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+}
+@media (min-width:860px) and (hover:hover) and (pointer:fine){
+  .work{transition:transform .3s cubic-bezier(0,0,.5,1),box-shadow .3s cubic-bezier(0,0,.5,1)}
+  .work:hover{transform:scale(1.01);box-shadow:var(--shadow-hi)}
+}
+
+/* ---------- 页脚 ---------- */
+.foot{position:relative;margin-top:32px;padding:16px 0 calc(24px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid var(--sep);font-size:12px;line-height:1.33;color:var(--muted);
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
+@media (min-width:860px){.foot{margin-top:48px}}
+/* 座右铭：页脚左边一行小字。主人要低调，不放页面上方。 */
+.motto{margin:0;text-wrap:balance}
 .foot-r{display:inline-flex;align-items:center;gap:10px;margin-left:auto}
 .mail{margin-right:6px;white-space:nowrap}
-/* 窄屏：邮箱和版权单独一行，靠右 */
 @media (max-width:559px){.foot-r{flex-basis:100%;justify-content:flex-end}}
-.keytag{display:inline-block;width:18px;height:27px;color:var(--brass);opacity:0;cursor:default;
+
+/* 钥匙牌：页脚角落的隐形开关，图标不显示，位置和点击区域保留 */
+.keytag{display:inline-block;width:18px;height:27px;color:var(--blue);opacity:0;cursor:default;
   transform-origin:50% 4px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
   -webkit-user-select:none;user-select:none}
 .keytag svg{display:block;width:100%;height:100%;overflow:visible}
-.keytag .body{fill:var(--paper)}
-.keytag .hole{fill:var(--stone)}
+.keytag .body{fill:var(--card)}
+.keytag .hole{fill:var(--bg)}
 .keytag.sway{animation:sway 1.1s ease-in-out}
 @media (hover:hover){.keytag:hover{animation:sway 1.1s ease-in-out}}
 @keyframes sway{0%,100%{transform:rotate(0)}20%{transform:rotate(9deg)}45%{transform:rotate(-6deg)}70%{transform:rotate(3deg)}}
 
 /* 访客数：只显示一个数字的小胶囊 */
 .stats{position:fixed;z-index:30;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));
-  min-width:52px;padding:4px 14px;background:var(--paper);color:var(--brass);
-  border:1px solid var(--line);border-radius:999px;box-shadow:0 10px 24px -14px rgba(20,30,25,.5);
-  font:600 18px/1.2 var(--f-sans);font-variant-numeric:tabular-nums;text-align:center;cursor:default;
+  min-width:52px;padding:4px 14px;background:var(--card);color:var(--blue);
+  border-radius:999px;box-shadow:0 0 0 1px var(--sep),0 10px 24px -12px rgba(0,0,0,.35);
+  font:600 17px/1.3 var(--f);font-variant-numeric:tabular-nums;text-align:center;cursor:default;
   opacity:0;visibility:hidden;transform:translateY(6px) scale(.96);
   transition:opacity .18s,transform .18s,visibility 0s .18s}
 .stats.open{opacity:1;visibility:visible;transform:none;transition:opacity .18s,transform .18s}
-/* 窄屏时停在作品卡和页脚线之间、靠右，不挡住钥匙牌；跟着页脚走，页面翻不翻都在同一位置 */
-@media (max-width:1279px){.stats{position:absolute;right:0;bottom:calc(100% + 4px)}}
+@media (max-width:1279px){.stats{position:absolute;right:0;bottom:calc(100% + 8px)}}
 
-@media (min-width:840px){
-  .page{padding:48px 40px 24px}
+/* 开场：标题和作品依次淡入上浮，只放一次 */
+@media (prefers-reduced-motion:no-preference){
+  .head,.work{animation:rise .8s cubic-bezier(.2,.7,.2,1) backwards}
+  .work:nth-child(1){animation-delay:.08s}
+  .work:nth-child(2){animation-delay:.16s}
+  .work:nth-child(3){animation-delay:.24s}
+  .work:nth-child(n+4){animation-delay:.32s}
 }
-@media (prefers-reduced-motion:reduce){.keytag,.keytag.sway,.keytag:hover{animation:none}.work h3{transition:none}
-  .work,.work::before,.thumb img{transition:none}.work:hover,.work:hover .thumb img{transform:none}.stats{transition:none;transform:none}}
-@media print{.keytag,.stats{display:none}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+@media (prefers-reduced-motion:reduce){
+  .keytag,.keytag.sway,.keytag:hover{animation:none}
+  .work,.nav,.nav-title,.stats{transition:none}.work:hover{transform:none}.stats{transform:none}
+}
+@media print{.nav,.keytag,.stats{display:none}.works,.work{box-shadow:none}}
 </style>
 </head>
 <body>
-<main class="page">
-  <section class="works" aria-labelledby="works-h">
-    <h2 id="works-h">作品</h2>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="./" aria-label="物业服务作品集"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 20.5V10.4L12 4.5l7.5 5.9v10.1" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></svg></a>
+    <span class="nav-title" aria-hidden="true">作品</span>
+    <a class="nav-cta" href="mailto:timchingx@gmail.com">联系</a>
+  </div>
+</header>
 
-    <div class="list">
-      <article class="work">
-        <div class="thumb"><img src="works/fee-collection/cover.jpg?v=20261022c" width="1600" height="900" style="object-position:85% 0" alt="网页截图：物业费收缴助手的一户一策页面，左边勾选诊断信号，右边开出催缴处方笺"></div>
-        <div class="text">
-          <p class="kind">网页工具</p>
-          <h3><a href="works/fee-collection/">物业费收缴<br>助手</a></h3>
-          <p class="desc">客服专用的收缴工具：“七不”诊断开处方，拒缴话术自动带入业主信息，推算催缴节点与时效，一键生成催告函件。</p>
-          <p class="meta"><time datetime="2026-10-22">2026年10月22日</time></p>
-        </div>
-      </article>
+<main class="wrap">
+  <h1 class="head" id="works-h"><b>作品。</b>物业服务方案、演示材料和管理工具。</h1>
 
-      <article class="work">
-        <div class="thumb"><img src="works/yangxi-garden/cover.jpg?v=20261015" width="1600" height="900" alt="演示封面：建发央玺花园前期物业服务标准"></div>
-        <div class="text">
-          <p class="kind">网页演示</p>
-          <h3><a href="works/yangxi-garden/">建发央玺花园<br>前期物业服务标准</a></h3>
-          <p class="desc">把前期物业服务标准做成可翻页的网页演示，一级基础标准与超一级增项逐项对照，附可搜索的条款库。</p>
-          <p class="meta"><time datetime="2026-08-08">2026年8月8日</time></p>
-        </div>
-      </article>
+  <div class="works" role="list" aria-labelledby="works-h">
+    <article class="work" role="listitem" style="--pos:85% 0">
+      <div class="text">
+        <p class="kind">网页工具</p>
+        <h2><a href="works/fee-collection/">物业费收缴<br>助手</a></h2>
+        <p class="desc">客服专用的收缴工具：“七不”诊断开处方，拒缴话术自动带入业主信息，推算催缴节点与时效，一键生成催告函件。</p>
+        <p class="meta"><time datetime="2026-10-22">2026年10月22日</time></p>
+      </div>
+      <div class="shot"><img src="works/fee-collection/cover.jpg?v=20261022c" width="1600" height="900" decoding="async" alt="网页截图：物业费收缴助手的一户一策页面，左边勾选诊断信号，右边开出催缴处方笺"></div>
+      <svg class="chev" viewBox="0 0 8 14" aria-hidden="true"><path d="M1.5 1.5 6.5 7l-5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </article>
 
-      <article class="work">
-        <div class="thumb"><img src="works/repair-ledger/cover.jpg" width="1600" height="900" style="object-position:0 0" alt="Excel 截图：工程维修数据仪表盘的当日工单总览和人员排行榜"></div>
-        <div class="text">
-          <p class="kind">Excel 表格</p>
-          <h3><a href="works/repair-ledger/">工程维修台账<br>与数据仪表盘</a></h3>
-          <p class="desc">用 Excel 公式搭的维修工单系统：自动编号派单，按日、周、月统计完成率和满意度；导入腾讯文档、WPS 即可多人协作。</p>
-          <p class="meta"><time datetime="2026-08-07">2026年8月7日</time></p>
-        </div>
-      </article>
-    </div>
-  </section>
+    <article class="work" role="listitem">
+      <div class="text">
+        <p class="kind">网页演示</p>
+        <h2><a href="works/yangxi-garden/">建发央玺花园<br>前期物业服务标准</a></h2>
+        <p class="desc">把前期物业服务标准做成可翻页的网页演示，一级基础标准与超一级增项逐项对照，附可搜索的条款库。</p>
+        <p class="meta"><time datetime="2026-08-08">2026年8月8日</time></p>
+      </div>
+      <div class="shot"><img src="works/yangxi-garden/cover.jpg?v=20261015" width="1600" height="900" decoding="async" alt="演示封面：建发央玺花园前期物业服务标准"></div>
+      <svg class="chev" viewBox="0 0 8 14" aria-hidden="true"><path d="M1.5 1.5 6.5 7l-5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </article>
+
+    <article class="work" role="listitem" style="--pos:0 0">
+      <div class="text">
+        <p class="kind">Excel 表格</p>
+        <h2><a href="works/repair-ledger/">工程维修台账<br>与数据仪表盘</a></h2>
+        <p class="desc">用 Excel 公式搭的维修工单系统：自动编号派单，按日、周、月统计完成率和满意度；导入腾讯文档、WPS 即可多人协作。</p>
+        <p class="meta"><time datetime="2026-08-07">2026年8月7日</time></p>
+      </div>
+      <div class="shot"><img src="works/repair-ledger/cover.jpg" width="1600" height="900" decoding="async" alt="Excel 截图：工程维修数据仪表盘的当日工单总览和人员排行榜"></div>
+      <svg class="chev" viewBox="0 0 8 14" aria-hidden="true"><path d="M1.5 1.5 6.5 7l-5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </article>
+  </div>
 
   <footer class="foot">
     <p class="motto" lang="en">First do it, then do it right, then do it better.</p>
@@ -218,6 +249,14 @@ img{display:block;max-width:100%;height:auto}
 </main>
 
 <script>
+// 大标题一钻到导航条底下，导航条中间就浮出“作品”、底边出现发丝线
+(function(){
+  var nav=document.getElementById('nav'),head=document.getElementById('works-h');
+  if(!nav||!head||!('IntersectionObserver' in window))return;
+  new IntersectionObserver(function(es){nav.classList.toggle('stuck',es[0].intersectionRatio<.99)},
+    {rootMargin:'-'+nav.offsetHeight+'px 0px 0px 0px',threshold:[0,.99,1]}).observe(head);
+})();
+
 (function(){
   var tag=document.getElementById('keytag'),panel=document.getElementById('stats');
   if(!tag||!panel)return;
