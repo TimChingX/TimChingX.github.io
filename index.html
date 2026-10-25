@@ -16,7 +16,8 @@
 /* 社论式首页（2026-10-25 改版）
    跟央玺花园演示同一套：象牙纸色底、暖黑字、衬线标题、等宽小字标签、陶土橘点缀，细线分隔，不用阴影。
    电脑上三张并排的燕麦色卡片，截图从卡片底边升起；手机上是细线分隔的列表，三项作品一屏看完。
-   作品卡不放数字统计，也不放署名，只显示日期；标题一行放下（主人明确要求）。座右铭留在页脚，不放页面上方。 */
+   作品卡不放数字统计，也不放署名，只显示日期；标题一行放下（主人明确要求）。座右铭留在页脚，不放页面上方。
+   顶部不放刊头（小房子和“作品”二字已按主人要求删去），卡片直接从页面顶部开始。 */
 @font-face{font-family:"YX Serif";font-weight:500;font-display:swap;src:url(assets/home-serif-500.woff2) format("woff2")}
 @font-face{font-family:"YX Serif";font-weight:400;font-display:swap;src:url(assets/home-serif-400.woff2) format("woff2")}
 @font-face{font-family:"YX Mono";font-weight:500;font-display:swap;src:url(assets/home-mono-500.woff2) format("woff2")}
@@ -30,7 +31,6 @@
   --rule:rgba(20,20,19,.14);   /* 细线 */
   --clay:#D97757;      /* 陶土橘 */
   --clay-d:#B85A3B;    /* 类别小字 */
-  --nav:rgba(250,249,245,.86);
   --f:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","PingFang SC","Hiragino Sans GB","Segoe UI","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;
   --f-serif:"YX Serif","Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif;
   --f-mono:"YX Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
@@ -46,20 +46,8 @@ img{display:block;max-width:100%;height:auto}
 .wrap{max-width:1200px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
 .mono{font-family:var(--f-mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
 
-/* 刊头：左边回首页的小房子，正中衬线体“作品”；页面一往上滚，底边出现一条细线 */
-.nav{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);
-  background:var(--nav);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
-  box-shadow:0 1px 0 transparent;transition:box-shadow .3s}
-.nav.stuck{box-shadow:0 1px 0 var(--rule)}
-.nav-in{position:relative;height:52px;display:flex;align-items:center;justify-content:space-between}
-.logo{display:grid;place-items:center;width:34px;height:34px;margin-left:-7px;color:var(--ink);border-radius:8px;transition:color .2s}
-.logo svg{width:20px;height:20px}
-.logo:hover{color:var(--clay-d)}
-.nav-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;
-  font:500 19px/1.3 var(--f-serif);letter-spacing:.12em;white-space:nowrap;pointer-events:none}
-
 /* ---------- 作品：手机上是细线分隔的列表 ---------- */
-.works{margin:8px 0 0;padding:0;list-style:none}
+.works{margin:calc(24px + env(safe-area-inset-top,0px)) 0 0;padding:0;list-style:none}
 .work{--pos:50% 50%;position:relative;display:grid;grid-template-columns:112px minmax(0,1fr) 12px;
   grid-template-areas:"shot text chev";column-gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--rule)}
 .text{grid-area:text;min-width:0}
@@ -83,7 +71,7 @@ img{display:block;max-width:100%;height:auto}
 /* 平板：列表行加大，补上两行简介 */
 @media (min-width:560px){
   .wrap{padding-left:32px;padding-right:32px}
-  .works{max-width:760px;margin:20px auto 0}
+  .works{max-width:760px;margin:calc(48px + env(safe-area-inset-top,0px)) auto 0}
   .work{grid-template-columns:200px minmax(0,1fr) 12px;column-gap:24px;padding:22px 0}
   .work h2{font-size:22px}
   .desc{display:-webkit-box}
@@ -98,9 +86,7 @@ img{display:block;max-width:100%;height:auto}
 /* ---------- 电脑：三张并排的燕麦色卡片，截图从卡片底边升起 ---------- */
 @media (min-width:860px){
   .wrap{padding-left:40px;padding-right:40px}
-  .nav-in{height:60px}
-  .nav-title{font-size:21px}
-  .works{max-width:none;margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .works{max-width:none;margin-top:calc(72px + env(safe-area-inset-top,0px));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
   .work{display:flex;flex-direction:column;align-items:stretch;padding:30px 30px 0;background:var(--oat);border:0;border-radius:12px;overflow:hidden;
     transition:background-color .3s}
   .chev{display:none}
@@ -179,21 +165,14 @@ img{display:block;max-width:100%;height:auto}
 @media (prefers-reduced-motion:reduce){
   .contact,.work,.shot,.meta .go{transition:none}
   .keytag,.keytag.sway,.keytag:hover{animation:none}
-  .nav,.stats{transition:none}.work:hover .shot,.work:hover .meta .go{transform:none}.stats{transform:none}
+  .stats{transition:none}.work:hover .shot,.work:hover .meta .go{transform:none}.stats{transform:none}
 }
-@media print{.nav,.keytag,.stats{display:none}}
+@media print{.keytag,.stats{display:none}}
 </style>
 </head>
 <body>
-<header class="nav" id="nav">
-  <div class="wrap nav-in">
-    <a class="logo" href="./" aria-label="物业服务作品集"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 20.5V10.4L12 4.5l7.5 5.9v10.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></svg></a>
-    <h1 class="nav-title" id="works-h">作品</h1>
-  </div>
-</header>
-
 <main class="wrap">
-  <div class="works" role="list" aria-labelledby="works-h">
+  <div class="works" role="list" aria-label="作品">
     <article class="work" role="listitem" style="--pos:85% 0">
       <div class="text">
         <p class="kind">网页工具</p>
@@ -236,14 +215,6 @@ img{display:block;max-width:100%;height:auto}
 </main>
 
 <script>
-// 页面往上滚时，刊头底边出现细线
-(function(){
-  var nav=document.getElementById('nav');
-  if(!nav)return;
-  function update(){nav.classList.toggle('stuck',window.scrollY>0)}
-  window.addEventListener('scroll',update,{passive:true});update();
-})();
-
 (function(){
   var tag=document.getElementById('keytag'),panel=document.getElementById('stats');
   if(!tag||!panel)return;
