@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>X · 预览 2</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="程文辉的物业服务作品集：收缴工具、服务标准演示和维修数据台账。">
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#FAF9F5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23D97757'/%3E%3Cpath d='M15 49V30L32 17l17 13v19' fill='none' stroke='%23FAF9F5' stroke-width='5' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="../assets/home-serif-500.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* 首页预览版 2（2026-10-25）：在正式首页上做细节完善，风格、布局、内容都不变，正式首页不动。改了五处：
+   1. 截图完整显示：封面是 16:9，原来塞进 4:3 框里左右被裁（收缴助手左边的字被切掉一半），现在框改成 16:9，整张截图都看得到，不再需要 --pos；
+   2. 页面撑满一屏：页脚贴在屏幕底部；电脑上三张卡片在上方留白里略高于正中（上 2 份、下 3 份），不再挤在顶上、下面空一大块；
+   3. 日期、版权的灰色加深一点，类别小字的陶土色也加深一点，在燕麦色卡片上对比度都到 4.5:1（原来日期只有 3.2:1）；
+   4. 简介避免最后一行只剩一两个字；
+   5. 补一个看不见的 h1 和网页描述，读屏软件和搜索引擎能知道这是谁的作品集，页面上看不出变化。
+   以下是正式首页原来的说明。 */
+/* 社论式首页（2026-10-25 改版）
+   跟央玺花园演示同一套：象牙纸色底、暖黑字、衬线标题、等宽小字标签、陶土橘点缀，细线分隔，不用阴影。
+   电脑上三张并排的燕麦色卡片，截图从卡片底边升起；手机上是细线分隔的列表，三项作品一屏看完。
+   作品卡不放数字统计，也不放署名，只显示日期；标题一行放下（主人明确要求）。座右铭留在页脚，不放页面上方。
+   顶部不放刊头（小房子和“作品”二字已按主人要求删去），卡片直接从页面顶部开始。 */
+@font-face{font-family:"YX Serif";font-weight:500;font-display:swap;src:url(../assets/home-serif-500.woff2) format("woff2")}
+@font-face{font-family:"YX Serif";font-weight:400;font-display:swap;src:url(../assets/home-serif-400.woff2) format("woff2")}
+@font-face{font-family:"YX Mono";font-weight:500;font-display:swap;src:url(../assets/home-mono-500.woff2) format("woff2")}
+:root{
+  --paper:#FAF9F5;     /* 页面底色：象牙纸色 */
+  --oat:#F0EEE6;       /* 卡片 */
+  --oat2:#E8E6DC;      /* 卡片悬停、联系按钮悬停 */
+  --ink:#141413;       /* 正文：暖黑 */
+  --ink2:#5E5D59;      /* 简介 */
+  --ink3:#6C6B66;      /* 日期、版权（原 #87867F，燕麦色上 3.2:1，加深到 4.6:1） */
+  --rule:rgba(20,20,19,.14);   /* 细线 */
+  --clay:#D97757;      /* 陶土橘 */
+  --clay-d:#AA5333;    /* 类别小字（原 #B85A3B，燕麦色上 4.0:1，加深到 4.5:1） */
+  --f:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","PingFang SC","Hiragino Sans GB","Segoe UI","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;
+  --f-serif:"YX Serif","Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif;
+  --f-mono:"YX Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--f);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--clay);outline-offset:3px;border-radius:4px}
+img{display:block;max-width:100%;height:auto}
+.wrap{max-width:1200px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.mono{font-family:var(--f-mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+/* 页面至少一屏高，页脚贴在屏幕底部：作品和页脚之间用一块会伸缩的留白隔开（最少 40px） */
+.wrap{display:flex;flex-direction:column;min-height:100vh;min-height:100svh}
+.works,.foot{width:100%}
+.works{order:1}
+.wrap::after{content:"";order:2;flex:1 0 40px}
+.foot{order:3}
+
+/* ---------- 作品：手机上是细线分隔的列表 ---------- */
+.works{margin:calc(24px + env(safe-area-inset-top,0px)) 0 0;padding:0;list-style:none}
+.work{position:relative;display:grid;grid-template-columns:128px minmax(0,1fr) 12px;
+  grid-template-areas:"shot text chev";column-gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--rule)}
+.text{grid-area:text;min-width:0}
+.shot{grid-area:shot;position:relative;aspect-ratio:16 / 9;border-radius:6px;overflow:hidden;background:var(--oat)}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.shot::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--rule);pointer-events:none}
+.chev{grid-area:chev;width:12px;height:12px;color:var(--ink3)}
+.kind{margin:0 0 3px;font-size:12px;line-height:1.4;font-weight:600;letter-spacing:.04em;color:var(--clay-d)}
+.work h2{margin:0;font:500 18px/1.3 var(--f-serif);letter-spacing:.02em;white-space:nowrap;color:var(--ink)}
+.work h2 a{-webkit-tap-highlight-color:transparent}
+.work h2 a::after{content:"";position:absolute;inset:0;z-index:1}   /* 整行、整张卡都可点 */
+.work h2 a:focus-visible{outline:0}
+.work:has(h2 a:focus-visible){outline:2px solid var(--clay);outline-offset:4px;border-radius:8px}
+.desc{display:none;margin:8px 0 0;font-size:14px;line-height:1.65;color:var(--ink2);text-wrap:pretty;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meta{display:flex;align-items:center;justify-content:space-between;margin:6px 0 0;font-size:11.5px;line-height:1.4;color:var(--ink3)}
+.meta .go{display:none}
+.work:active{background:var(--oat)}
+.work:last-child{border-bottom:0}
+
+/* 平板：列表行加大，补上两行简介 */
+@media (min-width:560px){
+  .wrap{padding-left:32px;padding-right:32px}
+  .works{max-width:760px;margin:calc(48px + env(safe-area-inset-top,0px)) auto 0}
+  .work{grid-template-columns:224px minmax(0,1fr) 12px;column-gap:24px;padding:22px 0}
+  .work h2{font-size:22px}
+  .desc{display:-webkit-box}
+  .meta{margin-top:10px}
+}
+/* 很窄的手机（如 320 宽）：封面再小一点，给标题留位置 */
+@media (max-width:359px){
+  .work{grid-template-columns:104px minmax(0,1fr) 12px;column-gap:12px}
+  .work h2{font-size:16.5px}
+}
+
+/* ---------- 电脑：三张并排的燕麦色卡片，截图从卡片底边升起 ---------- */
+@media (min-width:860px){
+  .wrap{padding-left:40px;padding-right:40px}
+  .wrap::before{content:"";order:0;flex:2 0 0}
+  .wrap::after{flex:3 0 56px}
+  .works{max-width:none;margin-top:calc(72px + env(safe-area-inset-top,0px));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .work{display:flex;flex-direction:column;align-items:stretch;padding:30px 30px 0;background:var(--oat);border:0;border-radius:12px;overflow:hidden;
+    transition:background-color .3s}
+  .chev{display:none}
+  .work:active{background:var(--oat2)}
+  .work:has(h2 a:focus-visible){outline-offset:4px;border-radius:12px}
+  .kind{font-size:13px;margin-bottom:8px}
+  .work h2{font-size:clamp(20px,2.15vw,27px);line-height:1.25}
+  .desc{display:block;margin-top:14px;font-size:14.5px;line-height:1.7}
+  .meta{margin-top:18px;padding-top:12px;border-top:1px solid var(--rule);font-size:12px}
+  .meta .go{display:block;width:16px;height:16px;color:var(--ink);transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+  .text{padding-bottom:30px}
+  .shot{order:2;margin-top:auto;border-radius:8px 8px 0 0;background:var(--paper);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+  .shot::after{box-shadow:inset 0 1px 0 var(--rule),inset 1px 0 0 var(--rule),inset -1px 0 0 var(--rule)}
+}
+/* 三张卡的类别、标题、简介、日期线、截图各自对齐（浏览器支持 subgrid 时） */
+@supports (grid-template-rows:subgrid){
+  @media (min-width:860px){
+    .work{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:none;grid-template-rows:subgrid;grid-row:span 5;row-gap:0}
+    .shot{grid-area:auto}
+    .text{display:contents}
+    .meta{align-self:start;margin-bottom:30px}
+    .shot{align-self:end}
+  }
+}
+@media (min-width:860px) and (hover:hover) and (pointer:fine){
+  .work:hover{background:var(--oat2)}
+  .work:hover .shot{transform:translateY(-6px)}
+  .work:hover .meta .go{transform:translateX(4px)}
+}
+
+/* ---------- 页脚 ---------- */
+.foot{position:relative;margin-top:0;padding:22px 0 calc(28px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid var(--rule);font-size:12px;line-height:1.4;color:var(--ink3);
+  display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;align-items:center;gap:12px 16px}
+/* 座右铭：页脚正中一行衬线小字。主人要低调，不放页面上方。 */
+.motto{margin:0;text-align:center;text-wrap:balance;font:400 15px/1.5 var(--f-serif);color:var(--ink2)}
+/* 座右铭在上、版权和联系在它下面（版权在左、联系在右），都居中；左边补 28px 抵消右端看不见的钥匙牌，让可见部分正好居中 */
+.foot-r{display:inline-flex;align-items:center;gap:10px;padding-left:28px}
+@media (min-width:560px){.foot{max-width:760px;margin-left:auto;margin-right:auto}}
+@media (min-width:860px){.foot{max-width:none}.motto{font-size:16px}}
+/* 联系按钮：一个细线信封图标，点开发邮件；鼠标停留时提示邮箱地址，悬停垫一圈燕麦色 */
+.contact{display:inline-grid;place-items:center;width:30px;height:30px;margin-left:2px;border-radius:999px;color:var(--ink2);
+  transition:background-color .2s,color .2s}
+.contact svg{display:block;width:17px;height:17px}
+.contact:hover{background:var(--oat);color:var(--ink)}
+
+/* 钥匙牌：页脚角落的隐形开关，图标不显示，位置和点击区域保留 */
+.keytag{display:inline-block;width:18px;height:27px;color:var(--ink);opacity:0;cursor:default;
+  transform-origin:50% 4px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  -webkit-user-select:none;user-select:none}
+.keytag svg{display:block;width:100%;height:100%;overflow:visible}
+.keytag .body{fill:var(--oat)}
+.keytag .hole{fill:var(--paper)}
+.keytag.sway{animation:sway 1.1s ease-in-out}
+@media (hover:hover){.keytag:hover{animation:sway 1.1s ease-in-out}}
+@keyframes sway{0%,100%{transform:rotate(0)}20%{transform:rotate(9deg)}45%{transform:rotate(-6deg)}70%{transform:rotate(3deg)}}
+
+/* 访客数：只显示一个数字的小胶囊 */
+.stats{position:fixed;z-index:30;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  min-width:52px;padding:4px 14px;background:var(--paper);color:var(--clay-d);
+  border-radius:999px;box-shadow:0 0 0 1px var(--rule),0 10px 24px -12px rgba(20,20,19,.35);
+  font:500 16px/1.4 var(--f-mono);font-variant-numeric:tabular-nums;text-align:center;cursor:default;
+  opacity:0;visibility:hidden;transform:translateY(6px) scale(.96);
+  transition:opacity .18s,transform .18s,visibility 0s .18s}
+.stats.open{opacity:1;visibility:visible;transform:none;transition:opacity .18s,transform .18s}
+@media (max-width:1279px){.stats{position:absolute;right:0;bottom:calc(100% + 8px)}}
+
+/* 开场：作品依次淡入上浮，只放一次 */
+@media (prefers-reduced-motion:no-preference){
+  .work{animation:rise .8s cubic-bezier(.2,.7,.2,1) backwards}
+  .work:nth-child(1){animation-delay:.08s}
+  .work:nth-child(2){animation-delay:.16s}
+  .work:nth-child(3){animation-delay:.24s}
+  .work:nth-child(n+4){animation-delay:.32s}
+}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+@media (prefers-reduced-motion:reduce){
+  .contact,.work,.shot,.meta .go{transition:none}
+  .keytag,.keytag.sway,.keytag:hover{animation:none}
+  .stats{transition:none}.work:hover .shot,.work:hover .meta .go{transform:none}.stats{transform:none}
+}
+@media print{.keytag,.stats{display:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1 class="vh">程文辉 · 物业服务作品集</h1>
+  <div class="works" role="list" aria-label="作品">
+    <article class="work" role="listitem">
+      <div class="text">
+        <p class="kind">网页工具</p>
+        <h2><a href="../works/fee-collection/">物业费收缴助手</a></h2>
+        <p class="desc">客服专用的收缴工具：“七不”诊断开处方，拒缴话术自动带入业主信息，推算催缴节点与时效，一键生成催告函件。</p>
+        <p class="meta"><time class="mono" datetime="2026-02-02">2026.02.02</time><svg class="go" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+      </div>
+      <div class="shot"><img src="../works/fee-collection/cover.jpg?v=20261025a" width="1600" height="900" decoding="async" alt="网页截图：物业费收缴助手的一户一策页面，左边勾选诊断信号，右边开出催缴处方笺"></div>
+      <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6h7.5M6.5 3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </article>
+
+    <article class="work" role="listitem">
+      <div class="text">
+        <p class="kind">网页演示</p>
+        <h2><a href="../works/yangxi-garden/">前期物业服务标准</a></h2>
+        <p class="desc">把前期物业服务标准做成可翻页的网页演示，一级基础标准与超一级增项逐项对照，附可搜索的条款库。</p>
+        <p class="meta"><time class="mono" datetime="2026-08-08">2026.08.08</time><svg class="go" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+      </div>
+      <div class="shot"><img src="../works/yangxi-garden/cover.jpg?v=20261025i" width="1600" height="900" decoding="async" alt="演示封面：建发央玺花园前期物业服务标准"></div>
+      <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6h7.5M6.5 3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </article>
+
+    <article class="work" role="listitem">
+      <div class="text">
+        <p class="kind">Excel 表格</p>
+        <h2><a href="../works/repair-ledger/">工程维修数据台账</a></h2>
+        <p class="desc">用 Excel 公式搭的维修工单系统：一本台账自动编号派单，超期和重复报修自动提醒，仪表盘按当日、本周、本月、累计切换统计。</p>
+        <p class="meta"><time class="mono" datetime="2025-05-07">2025.05.07</time><svg class="go" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+      </div>
+      <div class="shot"><img src="../works/repair-ledger/cover.jpg?v=20261025v" width="1600" height="900" decoding="async" alt="Excel 截图：工程维修数据仪表盘的待处理事项和未结工单清单"></div>
+      <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6h7.5M6.5 3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </article>
+  </div>
+
+  <footer class="foot">
+    <p class="motto" lang="en">First do it, then do it right, then do it better.</p>
+    <span class="foot-r">© 2026 程文辉<a class="contact" href="mailto:timchingx@gmail.com" title="timchingx@gmail.com" aria-label="发邮件联系：timchingx@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.8 7l8.2 6.2L20.2 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><span class="keytag" id="keytag" aria-hidden="true"><svg viewBox="0 0 24 36"><rect class="body" x="4" y="10" width="16" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><circle class="hole" cx="12" cy="14" r="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M12 14A6 6 0 1 1 17.2 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 29V24.5L12 21l4.5 3.5V29" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span></span>
+    <div class="stats" id="stats" aria-label="访客数"><span id="vercount_value_site_uv">–</span></div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var tag=document.getElementById('keytag'),panel=document.getElementById('stats');
+  if(!tag||!panel)return;
+  function setOpen(v){panel.classList.toggle('open',v)}
+  function toggle(){setOpen(!panel.classList.contains('open'))}
+  function sway(){tag.classList.remove('sway');void tag.offsetWidth;tag.classList.add('sway')}
+  tag.addEventListener('animationend',function(){tag.classList.remove('sway')});
+
+  // 手机：3 秒内连点钥匙牌 6 下
+  var taps=[];
+  tag.addEventListener('click',function(){
+    var now=Date.now();sway();
+    taps=taps.filter(function(t){return now-t<3000});taps.push(now);
+    if(taps.length>=6){taps=[];toggle()}
+  });
+
+  // 电脑：键盘输入 666
+  var buf='',last=0;
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){setOpen(false);return}
+    if(e.ctrlKey||e.metaKey||e.altKey)return;
+    var t=e.target;
+    if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
+    var now=Date.now();if(now-last>1500)buf='';last=now;
+    buf=(buf+e.key).slice(-3);
+    if(buf==='666'){buf='';toggle()}
+  });
+
+  // 点数字本身或页面其他地方都会收起
+  document.addEventListener('click',function(e){
+    if(panel.classList.contains('open')&&!tag.contains(e.target))setOpen(false);
+  });
+})();
+</script>
+</body>
+</html>
