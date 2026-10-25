@@ -21,7 +21,7 @@
   --oat2:#E8E6DC;    /* 悬停 */
   --ink:#141413;     /* 正文：暖黑 */
   --ink2:#5E5D59;    /* 说明文字 */
-  --ink3:#87867F;    /* 版权 */
+  --ink3:#87867F;    /* 弱化文字、细节 */
   --rule:rgba(20,20,19,.14);
   --clay:#D97757;    /* 陶土橘：只给下载按钮 */
   --clay-d:#C6613F;
@@ -90,9 +90,6 @@ figcaption{margin-top:10px;font-size:13px;color:var(--ink2)}
 
 .pair{display:grid;gap:24px;align-items:start}
 .pair p{margin:12px 0 0;max-width:38em}
-
-.foot{margin-top:80px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink3);
-  display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px}
 
 @media (max-width:719px){
   .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--rule);border-radius:4px;background:var(--paper)}
@@ -236,9 +233,6 @@ figcaption{margin-top:10px;font-size:13px;color:var(--ink2)}
     </div>
   </section>
 
-  <footer class="foot">
-    <span>© 2026 程文辉</span>
-  </footer>
 </main>
 <script>/* 返回主页按钮：始终固定在左上角，滚动后收窄 */
 (function(){var r=document.documentElement,q=false;
