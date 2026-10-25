@@ -100,7 +100,7 @@ svg.defs{position:absolute;width:0;height:0;overflow:hidden}
 .slide.active{visibility:visible;transform:none;transition:transform var(--page-t) var(--page-ease),visibility 0s}
 .stage.instant .slide{transition:none !important}
 .deck .stage{overflow:hidden}
-.deck .viewport{touch-action:pinch-zoom;overscroll-behavior:none}
+.deck .viewport{touch-action:pinch-zoom;overscroll-behavior-y:none}
 .slide.active [data-a]{animation:rise .9s var(--ease) both;animation-delay:calc(var(--d,0) * 80ms + 120ms)}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .deck .stage.paging .slide.active [data-a]{animation:settle .9s cubic-bezier(.3,.6,.2,1) both;animation-delay:calc(var(--d,0) * 35ms)}
@@ -670,9 +670,10 @@ input,textarea{-webkit-user-select:text;user-select:text;-webkit-touch-callout:d
   var wheelAcc = 0, wheelArmed = true, wheelLast = 0, wheelHold = 0, wheelRecent = [];
   window.addEventListener('wheel', function(e){
     if (mode !== 'deck' || !lib.hidden) return;
+    /* sideways swipe: never turns a page, and is left to the browser so the two-finger swipe still goes back to the home page */
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
     e.preventDefault();
     var now = Date.now();
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;   /* sideways swipe: never turns a page */
     var d = e.deltaY;
     if (e.deltaMode === 1) d *= 32; else if (e.deltaMode === 2) d *= window.innerHeight;
     var gap = now - wheelLast; wheelLast = now;
