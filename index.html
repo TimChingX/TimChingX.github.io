@@ -127,10 +127,11 @@ img{display:block;max-width:100%;height:auto}
 .foot-r{display:inline-flex;align-items:center;gap:10px;padding-left:28px}
 @media (min-width:560px){.foot{max-width:760px;margin-left:auto;margin-right:auto}}
 @media (min-width:860px){.foot{max-width:none;margin-top:56px}.motto{font-size:16px}}
-/* 联系按钮：燕麦色小胶囊，点开发邮件；鼠标停留时提示邮箱地址 */
-.contact{display:inline-block;margin-left:6px;padding:4px 13px;border-radius:999px;background:var(--oat);color:var(--ink);
-  font-size:12px;line-height:1.5;white-space:nowrap;transition:background-color .2s}
-.contact:hover{background:var(--oat2)}
+/* 联系按钮：一个细线信封图标，点开发邮件；鼠标停留时提示邮箱地址，悬停垫一圈燕麦色 */
+.contact{display:inline-grid;place-items:center;width:30px;height:30px;margin-left:2px;border-radius:999px;color:var(--ink2);
+  transition:background-color .2s,color .2s}
+.contact svg{display:block;width:17px;height:17px}
+.contact:hover{background:var(--oat);color:var(--ink)}
 
 /* 钥匙牌：页脚角落的隐形开关，图标不显示，位置和点击区域保留 */
 .keytag{display:inline-block;width:18px;height:27px;color:var(--ink);opacity:0;cursor:default;
@@ -209,7 +210,7 @@ img{display:block;max-width:100%;height:auto}
 
   <footer class="foot">
     <p class="motto" lang="en">First do it, then do it right, then do it better.</p>
-    <span class="foot-r">© 2026 程文辉<a class="contact" href="mailto:timchingx@gmail.com" title="timchingx@gmail.com">联系</a><span class="keytag" id="keytag" aria-hidden="true"><svg viewBox="0 0 24 36"><rect class="body" x="4" y="10" width="16" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><circle class="hole" cx="12" cy="14" r="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M12 14A6 6 0 1 1 17.2 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 29V24.5L12 21l4.5 3.5V29" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span></span>
+    <span class="foot-r">© 2026 程文辉<a class="contact" href="mailto:timchingx@gmail.com" title="timchingx@gmail.com" aria-label="发邮件联系：timchingx@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.8 7l8.2 6.2L20.2 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><span class="keytag" id="keytag" aria-hidden="true"><svg viewBox="0 0 24 36"><rect class="body" x="4" y="10" width="16" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><circle class="hole" cx="12" cy="14" r="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M12 14A6 6 0 1 1 17.2 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 29V24.5L12 21l4.5 3.5V29" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span></span>
     <div class="stats" id="stats" aria-label="访客数"><span id="vercount_value_site_uv">–</span></div>
   </footer>
 </main>
