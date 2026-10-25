@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>工程维修台账与数据仪表盘</title>
-<meta name="description" content="程文辉的作品：用 Excel 公式搭建的维修工单系统，包含入户和公区维修台账、师傅调度看板、数据仪表盘（超期预警、重复报修、维修类别分析）、单元查询、入户维修评价表和使用说明。">
+<meta name="description" content="程文辉的作品：用 Excel 公式搭建的维修工单系统。一本工单台账加调度看板，仪表盘按当日、本周、本月、累计切换统计，另有单元查询、入户维修评价表、设置和使用说明。">
 <meta name="color-scheme" content="only light">
 <meta property="og:type" content="article">
 <meta property="og:title" content="工程维修台账与数据仪表盘">
-<meta property="og:description" content="用 Excel 公式搭建的维修工单系统：自动编号派单，超期和重复报修自动提醒，按日、周、月和维修类别统计。">
-<meta property="og:image" content="https://timchingx.github.io/works/repair-ledger/cover.jpg?v=20261025r">
+<meta property="og:description" content="用 Excel 公式搭建的维修工单系统：一本台账自动编号派单，超期和重复报修自动提醒，仪表盘按周期切换统计。">
+<meta property="og:image" content="https://timchingx.github.io/works/repair-ledger/cover.jpg?v=20261025s">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23141413'/%3E%3Cpath d='M14 50V30L32 16l18 14v20' fill='none' stroke='%23D97757' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preload" href="../../assets/serif-600.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -112,7 +112,7 @@ figcaption{margin-top:10px;font-size:13px;color:var(--ink2)}
 
   <header class="head">
     <h1>工程维修台账<br>与数据仪表盘</h1>
-    <p class="lead">一套用 Excel 公式搭起来的维修工单系统。客服只管登记报修；单据编号、可派单的师傅、处理天数、超期提醒、完成率和满意度都由表格自动算出，不用宏，打开就能用。</p>
+    <p class="lead">一套用 Excel 公式搭起来的维修工单系统。客服只管在台账里登记报修；单据编号、可派单的师傅、处理天数、超期提醒、完成率和满意度都由表格自动算出，不用宏，打开就能用。</p>
   </header>
 
   <section class="overview" aria-label="概况">
@@ -124,85 +124,86 @@ figcaption{margin-top:10px;font-size:13px;color:var(--ink2)}
       <div><dt>完成率</dt><dd>86.7%</dd></div>
       <div><dt>好评率</dt><dd>99.1%<span class="nw">（111 条评价）</span></dd></div>
       <div><dt>未结工单</dt><dd>19 张，<span class="nw">其中超期 17 张</span></dd></div>
-      <div><dt>重复报修</dt><dd>4 户</dd></div>
+      <div><dt>公式</dt><dd>1,478 条<span class="nw">（上一版 24,846 条）</span></dd></div>
     </dl>
     <div class="get">
-      <p><a class="btn" href="repair-ledger-sample.xlsx?v=20261025r" download="工程维修台账（示例）.xlsx"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m-3.5-3.5L8 10l3.5-3.5M3 13h10"/></svg>下载示例文件</a></p>
-      <p class="note">示例文件已脱敏：师傅姓名、房号和备注里的住户信息都换成了虚构内容。统计基准日固定在 2026 年 8 月 7 日，日榜、周榜和等待天数都按这一天算，改成其他日期即可回看。</p>
+      <p><a class="btn" href="repair-ledger-sample.xlsx?v=20261025s" download="工程维修台账（示例）.xlsx"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m-3.5-3.5L8 10l3.5-3.5M3 13h10"/></svg>下载示例文件</a></p>
+      <p class="note">示例文件已脱敏：师傅姓名、房号和备注里的住户信息都换成了虚构内容。统计基准日在【设置】里，示例固定为 2026 年 8 月 7 日；清空即按今天计算。</p>
     </div>
   </section>
 
   <section class="sheet" aria-labelledby="s0">
-    <h2 id="s0">配色与排版</h2>
+    <h2 id="s0">从问题出发重搭</h2>
+    <p>上一版有 24,846 条公式，八成在一张隐藏的辅助表里，台账还预先铺了 400 行空公式。这一版不在旧结构上删，而是先问这本台账要解决什么，再决定每张表留什么：</p>
+    <ul>
+      <li><b>登记工单</b>：入户、公区合成一本台账，用“类型”一列区分。台账做成 Excel 表格，只有 3 列是公式；在最后一行下面接着填，公式、下拉和颜色自动带下去，不再预铺空行。</li>
+      <li><b>现在要处理什么</b>：仪表盘第一部分只放未结、超期和重复报修，各带一张清单。</li>
+      <li><b>这段时间做得怎样</b>：原来当日、日、周、月各一套表，合成一套，用“统计周期”下拉切换当日、本周、本月、累计。</li>
+      <li><b>问题集中在哪</b>：按维修类别、按楼栋各一张表和图；师傅 × 楼栋从 70 行明细压成一张矩阵。</li>
+      <li><b>名单谁来维护</b>：师傅、楼栋、维修类别、超期阈值放进看得见的【设置】表，取代隐藏的辅助表。</li>
+    </ul>
+    <p>精简后公式减少 94%，文件从 472 KB 降到 69 KB；四个统计周期的数字和上一版逐项核对一致。</p>
+  </section>
+
+  <section class="sheet" aria-labelledby="s7">
+    <h2 id="s7">配色与排版</h2>
     <p>表格整体用纸墨配色，和作品集其他页面一致。颜色和字体按四条原则来定：</p>
     <ul>
       <li><b>可读优先于好看</b>：纸色底、墨色字，不用纯白和纯黑，文字和底色的对比度都在 4.5:1 以上。</li>
       <li><b>提醒优先于装饰</b>：最醒目的陶土橘只标超期未结、优先 1、跟进人重复这类马上要处理的事；陶土橘上写墨色字，不写白字。</li>
       <li><b>宋体说话，等线指路</b>：标题用宋体，表格和数字用等线，小字在屏幕上更清楚。</li>
-      <li><b>自动优先于手填</b>：处理天数、单据编号、该户累计都由公式算出，少一处手填就少一处出错。</li>
+      <li><b>自动优先于手填</b>：处理天数、单据编号、该户第几次都由公式算出，少一处手填就少一处出错。</li>
     </ul>
   </section>
 
   <section class="sheet" aria-labelledby="s1">
-    <h2 id="s1">入户维修台账</h2>
-    <p>每张工单一行，顶部是师傅调度看板。</p>
+    <h2 id="s1">工单台账</h2>
+    <p>入户和公区的全部工单都在这里，每张一行，顶部是师傅调度看板。</p>
     <ul>
-      <li>工单处于“跟进中”的师傅自动列为工作中，其余的列为空闲可派单；把某位师傅设成“休息”，他就不会出现在空闲名单和跟进人下拉里。</li>
-      <li>单据编号按“楼栋-房号-月日”自动生成，同一户再次报修自动加 -02、-03 后缀。</li>
-      <li>维修类别用下拉选择，分门窗五金、电气照明、给排水、空调暖通、渗漏防水等 10 类。</li>
-      <li>处理天数自动计算：已完成的按完成日期算用了几天，没完成的按统计基准日算已经等了几天，等满超期阈值（默认 3 天）就标陶土橘。</li>
-      <li>“该户累计”统计同一户报修了几次，2 次标米黄，3 次及以上标浅陶土色。</li>
+      <li>调度看板三行：师傅、今日休息、当前状态。手上有“跟进中”工单的师傅显示在岗几单，没有的显示空闲；选了“休息”，跟进人下拉里就不再出现他。</li>
+      <li>单据编号按“楼栋-房号-月日”自动生成，同一户再次报修自动加 -02、-03；“该户第几次”标出这是这一户（或同一位置）的第几次报修，第 2 次标米黄，第 3 次起标浅陶土色。</li>
+      <li>处理天数自动计算：已完成的按完成日期算用了几天，没完成的算已经等了几天，等满超期阈值（默认 3 天）就标陶土橘。</li>
       <li>漏填报修日期、维修类别或完成情况，跟进人重复选了同一位师傅，完成日期早于报修日期，都会标色提醒。</li>
     </ul>
     <figure>
-      <div class="scroller"><a class="shot" href="ledger.png?v=20261025r"><img src="ledger.png?v=20261025r" width="1800" height="953" alt="入户维修台账截图：顶部是师傅调度看板，下方是工单列表，包含报修日期、楼栋、房号、问题描述、维修类别、跟进人、预约时间、上门排序、完成情况、完成日期、处理天数、该户累计、单据编号、维修备注、耗材费、维修评价和业主意见"></a></div>
-      <figcaption>入户维修台账（示例数据）<span class="swipe">，左右滑动查看，点图片看大图</span></figcaption>
+      <div class="scroller"><a class="shot" href="ledger.png?v=20261025s"><img src="ledger.png?v=20261025s" width="1800" height="699" alt="工单台账截图：顶部是今日调度看板，下方是工单表格，包含单据编号、报修日期、类型、楼栋、房号、问题描述、维修类别、跟进人、预约时间、上门排序、完成情况、完成日期、处理天数、该户第几次、维修备注、耗材费、维修评价和业主意见"></a></div>
+      <figcaption>工单台账（示例数据）<span class="swipe">，左右滑动查看，点图片看大图</span></figcaption>
     </figure>
   </section>
 
   <section class="sheet" aria-labelledby="s2">
-    <h2 id="s2">公区维修台账</h2>
-    <p>列和入户台账一致，按楼栋加区域位置登记，比如东大门、车库出口、某个车位。两张台账共用同一批师傅，一位师傅只要在任一张台账里有跟进中的工单，就不会出现在空闲名单里。</p>
+    <h2 id="s2">仪表盘</h2>
+    <p>三个部分对应三个问题。第二、三部分按“统计周期”切换，基准日改成哪天就回看哪天。</p>
+    <ul>
+      <li><b>现在要处理的事</b>：未结工单、其中超期、重复报修户、空闲师傅；未结工单按等待天数从长到短列出，重复报修户按时间列出，用来安排回访。</li>
+      <li><b>这一期的表现</b>：报修量、完成率、好评率、平均处理天数、耗材费用，以及师傅排行（按已完成单数，附满意度得分：非常满意 100 分、满意 80 分、一般 60 分、不满意 0 分，取平均）。</li>
+      <li><b>问题集中在哪</b>：按维修类别、按楼栋的报修量、完成率和好评率，各配一张图；师傅 × 楼栋矩阵看每位师傅熟悉哪些楼。</li>
+    </ul>
     <figure>
-      <div class="scroller"><a class="shot" href="public.png?v=20261025r"><img src="public.png?v=20261025r" width="1800" height="780" loading="lazy" alt="公区维修台账截图：按楼栋和区域位置登记的公共区域维修工单"></a></div>
-      <figcaption>公区维修台账（示例数据）<span class="swipe">，左右滑动查看</span></figcaption>
+      <div class="scroller"><a class="shot" href="dashboard.png?v=20261025s"><img src="dashboard.png?v=20261025s" width="1600" height="1961" loading="lazy" alt="仪表盘截图：统计基准日和统计周期，第一部分现在要处理的事（未结、超期、重复报修户、空闲师傅及清单），第二部分本期报修量、完成率、好评率和师傅排行"></a></div>
+      <figcaption>仪表盘第一、二部分（示例数据，本月）<span class="swipe">，左右滑动查看</span></figcaption>
+    </figure>
+    <figure>
+      <div class="scroller"><a class="shot" href="dashboard-2.png?v=20261025s"><img src="dashboard-2.png?v=20261025s" width="1600" height="1484" loading="lazy" alt="仪表盘第三部分截图：按维修类别和按楼栋的统计表及条形图、柱状图，以及师傅乘楼栋的接单矩阵"></a></div>
+      <figcaption>仪表盘第三部分：问题集中在哪（示例数据，本月）<span class="swipe">，左右滑动查看</span></figcaption>
     </figure>
   </section>
 
   <section class="sheet" aria-labelledby="s3">
-    <h2 id="s3">总仪表盘</h2>
-    <p>入户和公区两张台账的数据汇总到一页。改一个“统计基准日”，下面的数字全部跟着刷新，可以回看任意一天。</p>
-    <ul>
-      <li>顶部 8 项核心指标：累计工单、完成率、好评率、未结工单、其中超期、重复报修户、平均处理天数、耗材费用。超期数大于 0 时，这一格标陶土橘。</li>
-      <li>未结工单跟踪：跟进中、需另约时间和没填状态的工单，按等待天数从长到短列出，超期的标色；超期阈值在这里改。</li>
-      <li>重复报修重点户：累计报修 2 次及以上的住户，按次数排序，用来安排回访。</li>
-      <li>当日总览；日榜、周榜、月榜各分两列排名，一列按完成量，一列按满意度得分（非常满意 100 分、满意 80 分、一般 60 分、不满意 0 分，取平均）。</li>
-      <li>维修类别分析，以及按楼栋、按师傅、师傅×楼栋的累计统计，另有三张图表。</li>
-    </ul>
+    <h2 id="s3">单元查询</h2>
+    <p>选楼栋，填上房号，就能按时间从近到远列出这个单元的全部维修记录，并汇总完成情况、评价、首次和最近一次报修日期。房号留空就查整栋，适合每月盘点哪栋楼问题集中。</p>
     <figure>
-      <div class="scroller"><a class="shot" href="dashboard.png?v=20261025r"><img src="dashboard.png?v=20261025r" width="1600" height="1900" loading="lazy" alt="总仪表盘截图：统计基准日、8 项核心指标、当日工单总览、各师傅当日明细、未结工单跟踪和重复报修重点户"></a></div>
-      <figcaption>总仪表盘上半部分（示例数据）<span class="swipe">，左右滑动查看</span></figcaption>
-    </figure>
-    <figure>
-      <div class="scroller"><a class="shot" href="categories.png?v=20261025r"><img src="categories.png?v=20261025r" width="1400" height="524" loading="lazy" alt="维修类别分析表：各类别的报修总量、入户和公区数量、已完成、未结、完成率、占比、平均处理天数、评价总数、好评率和耗材费用"></a></div>
-      <figcaption>维修类别分析（示例数据）<span class="swipe">，左右滑动查看</span></figcaption>
-    </figure>
-    <figure class="chart">
-      <a class="shot" href="chart-categories.png?v=20261025r"><img src="chart-categories.png?v=20261025r" width="1100" height="653" loading="lazy" alt="条形图：各维修类别累计报修量，门窗五金最多，其次是电气照明、空调暖通和给排水"></a>
-      <figcaption>仪表盘图表：各维修类别报修量（累计）</figcaption>
-    </figure>
-    <figure class="chart">
-      <a class="shot" href="chart-buildings.png?v=20261025r"><img src="chart-buildings.png?v=20261025r" width="1100" height="540" loading="lazy" alt="柱状图：各楼栋累计工单状态，按已完成、跟进中、需另约时间分段"></a>
-      <figcaption>仪表盘图表：各楼栋工单状态（累计）</figcaption>
+      <div class="scroller"><a class="shot" href="lookup.png?v=20261025s"><img src="lookup.png?v=20261025s" width="1800" height="1081" loading="lazy" alt="单元查询截图：查询 6 栋全栋，共 17 单报修记录及汇总统计"></a></div>
+      <figcaption>单元查询：6 栋全栋（示例数据）<span class="swipe">，左右滑动查看</span></figcaption>
     </figure>
   </section>
 
   <section class="sheet" aria-labelledby="s4">
-    <h2 id="s4">单元查询</h2>
-    <p>选查询范围和楼栋，填上房号，就能列出这个单元的全部维修记录，并汇总完成情况、好评率、首次和最近一次报修日期。房号留空就查整栋，适合每月盘点哪栋楼问题集中。</p>
+    <h2 id="s4">设置</h2>
+    <p>所有需要人维护的东西都在这一张表：师傅名单、楼栋、维修类别、统计基准日（留空即今天）、超期阈值。改了名单，台账的下拉、调度看板和仪表盘一起变。下方灰字是计算区，放统计周期的起止日期和师傅本期统计，不需要动。</p>
     <figure>
-      <div class="scroller"><a class="shot" href="lookup.png?v=20261025r"><img src="lookup.png?v=20261025r" width="1800" height="1252" loading="lazy" alt="单元查询截图：查询 6 栋全栋，共 17 单报修记录及汇总统计"></a></div>
-      <figcaption>单元查询：6 栋全栋（示例数据）<span class="swipe">，左右滑动查看</span></figcaption>
+      <div class="scroller"><a class="shot" href="settings.png?v=20261025s"><img src="settings.png?v=20261025s" width="1600" height="826" loading="lazy" alt="设置表截图：统计基准日、超期阈值、师傅名单与今日可派单、楼栋、维修类别、统计周期，以及灰色的计算区"></a></div>
+      <figcaption>设置（示例数据）<span class="swipe">，左右滑动查看</span></figcaption>
     </figure>
   </section>
 
@@ -210,11 +211,11 @@ figcaption{margin-top:10px;font-size:13px;color:var(--ink2)}
     <div class="pair">
       <div>
         <h2 id="s5">入户维修评价表</h2>
-        <p>打印出来随工单上门，维修完成后由业主验收签字。栏目和台账对应：维修类别、完工时间、耗材使用、业主评价，最后一栏留给客服回访记录。单据编号和台账一一对应，回来按编号录入台账，再进入仪表盘统计。</p>
+        <p>打印出来随工单上门，维修完成后由业主验收签字。栏目和台账对应：维修类别、完工时间、耗材使用、业主评价，最后一栏留给客服回访记录。回来按单据编号录入台账，再进入仪表盘统计。</p>
         <p>打印设为黑白，屏幕上的纸色底不会印出来。</p>
       </div>
       <figure>
-        <a class="shot" href="form.png?v=20261025r"><img src="form.png?v=20261025r" width="1063" height="1966" loading="lazy" alt="入户维修评价表：楼栋房号、业主姓名、联系电话、维修内容登记、维修类别、完工时间、耗材使用、满意度评价、签字确认和回访记录"></a>
+        <a class="shot" href="form.png?v=20261025s"><img src="form.png?v=20261025s" width="1063" height="1957" loading="lazy" alt="入户维修评价表：楼栋房号、业主姓名、联系电话、维修内容登记、维修类别、完工时间、耗材使用、满意度评价、签字确认和回访记录"></a>
         <figcaption>入户维修评价表（打印版）</figcaption>
       </figure>
     </div>
@@ -227,12 +228,11 @@ figcaption{margin-top:10px;font-size:13px;color:var(--ink2)}
         <p>工作簿的第一张表。写清日常五步（登记、派单、上门跟进、完工、评价与回访）、各表分工、哪些格子能填哪些别动，以及每种颜色代表什么。新同事接手时先看这一张。</p>
       </div>
       <figure>
-        <a class="shot" href="guide.png?v=20261025r"><img src="guide.png?v=20261025r" width="1000" height="1552" loading="lazy" alt="使用说明表：日常五步、各表分工、哪些格子填哪些别动、颜色说明、配色与排版原则"></a>
+        <a class="shot" href="guide.png?v=20261025s"><img src="guide.png?v=20261025s" width="1000" height="1861" loading="lazy" alt="使用说明表：日常五步、各表分工、哪些格子填哪些别动、颜色说明、配色与排版原则"></a>
         <figcaption>使用说明</figcaption>
       </figure>
     </div>
   </section>
-
 </main>
 <script>/* 返回主页按钮：始终固定在左上角，滚动后收窄 */
 (function(){var r=document.documentElement,q=false;
