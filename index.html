@@ -123,12 +123,12 @@ img{display:block;max-width:100%;height:auto}
   display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;align-items:center;gap:12px 16px}
 /* 座右铭：页脚正中一行衬线小字。主人要低调，不放页面上方。 */
 .motto{margin:0;text-align:center;text-wrap:balance;font:400 15px/1.5 var(--f-serif);color:var(--ink2)}
-/* 座右铭在上、联系和版权在它下面，都居中；左边补 28px 抵消右端看不见的钥匙牌，让可见部分正好居中 */
+/* 座右铭在上、版权和联系在它下面（版权在左、联系在右），都居中；左边补 28px 抵消右端看不见的钥匙牌，让可见部分正好居中 */
 .foot-r{display:inline-flex;align-items:center;gap:10px;padding-left:28px}
 @media (min-width:560px){.foot{max-width:760px;margin-left:auto;margin-right:auto}}
 @media (min-width:860px){.foot{max-width:none;margin-top:56px}.motto{font-size:16px}}
 /* 联系按钮：燕麦色小胶囊，点开发邮件；鼠标停留时提示邮箱地址 */
-.contact{display:inline-block;margin-right:6px;padding:4px 13px;border-radius:999px;background:var(--oat);color:var(--ink);
+.contact{display:inline-block;margin-left:6px;padding:4px 13px;border-radius:999px;background:var(--oat);color:var(--ink);
   font-size:12px;line-height:1.5;white-space:nowrap;transition:background-color .2s}
 .contact:hover{background:var(--oat2)}
 
@@ -209,7 +209,7 @@ img{display:block;max-width:100%;height:auto}
 
   <footer class="foot">
     <p class="motto" lang="en">First do it, then do it right, then do it better.</p>
-    <span class="foot-r"><a class="contact" href="mailto:timchingx@gmail.com" title="timchingx@gmail.com">联系</a>© 2026 程文辉<span class="keytag" id="keytag" aria-hidden="true"><svg viewBox="0 0 24 36"><rect class="body" x="4" y="10" width="16" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><circle class="hole" cx="12" cy="14" r="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M12 14A6 6 0 1 1 17.2 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 29V24.5L12 21l4.5 3.5V29" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span></span>
+    <span class="foot-r">© 2026 程文辉<a class="contact" href="mailto:timchingx@gmail.com" title="timchingx@gmail.com">联系</a><span class="keytag" id="keytag" aria-hidden="true"><svg viewBox="0 0 24 36"><rect class="body" x="4" y="10" width="16" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><circle class="hole" cx="12" cy="14" r="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M12 14A6 6 0 1 1 17.2 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 29V24.5L12 21l4.5 3.5V29" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg></span></span>
     <div class="stats" id="stats" aria-label="访客数"><span id="vercount_value_site_uv">–</span></div>
   </footer>
 </main>
