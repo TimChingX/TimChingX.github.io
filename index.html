@@ -58,7 +58,7 @@ document.addEventListener('keydown', function(e){
    电脑上三张并排的燕麦色卡片，截图从卡片底边升起；手机上是细线分隔的列表，三项作品一屏看完。作品按日期从新到旧排。
    截图按封面原比例 16:9 整张显示，不裁切。
    作品卡不放数字统计，也不放署名，只显示日期；标题一行放下。座右铭留在页脚，不放页面上方。
-   顶部不放刊头。页面至少一屏高，页脚贴在屏幕底部；电脑上卡片在上方留白里略高于正中。
+   顶部不放刊头。页面至少一屏高，页脚贴在屏幕底部；作品在页脚上方的留白里略高于正中（上下留白 2:3，手机、平板、电脑都一样）。
    日期、版权、类别小字在燕麦色卡片上对比度都不低于 4.5:1。 */
 @font-face{font-family:"YX Serif";font-weight:500;font-display:swap;src:url(assets/home-serif-500.woff2) format("woff2")}
 @font-face{font-family:"YX Serif";font-weight:400;font-display:swap;src:url(assets/home-serif-400.woff2) format("woff2")}
@@ -89,11 +89,12 @@ img{display:block;max-width:100%;height:auto}
 .mono{font-family:var(--f-mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
 /* 只给读屏软件和搜索引擎看的标题，页面上不显示 */
 .vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-/* 页面至少一屏高，页脚贴在屏幕底部：作品和页脚之间用一块会伸缩的留白隔开（最少 40px） */
+/* 页面至少一屏高，页脚贴在屏幕底部：作品上下各有一块会伸缩的留白，按 2:3 分，作品略高于正中，中间不空出一大块（下面那块最少 40px） */
 .wrap{display:flex;flex-direction:column;min-height:100vh;min-height:100svh}
 .works,.foot{width:100%}
 .works{order:1}
-.wrap::after{content:"";order:2;flex:1 0 40px}
+.wrap::before{content:"";order:0;flex:2 0 0}
+.wrap::after{content:"";order:2;flex:3 0 40px}
 .foot{order:3}
 
 /* ---------- 作品：手机上是细线分隔的列表 ---------- */
@@ -136,7 +137,6 @@ img{display:block;max-width:100%;height:auto}
 /* ---------- 电脑：三张并排的燕麦色卡片，截图从卡片底边升起 ---------- */
 @media (min-width:860px){
   .wrap{padding-left:40px;padding-right:40px}
-  .wrap::before{content:"";order:0;flex:2 0 0}   /* 卡片上下的留白按 2:3 分，看起来略高于正中 */
   .wrap::after{flex:3 0 56px}
   .works{max-width:none;margin-top:calc(72px + env(safe-area-inset-top,0px));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
   .work{display:flex;flex-direction:column;align-items:stretch;padding:30px 30px 0;background:var(--oat);border:0;border-radius:12px;overflow:hidden;
