@@ -162,6 +162,9 @@ p,.lv-hook,.sec-sub,.stage-tip,.fb-title,.fb-note,.fb-voice,.hero-sub,.quick-q,.
   .topbar .fs-dock button:hover{background:rgba(20,20,19,.1)}
   .topbar .brand,.topbar .meter,.topbar .rail,.topbar .fs-dock{transition:opacity .35s,visibility .35s}
   .topbar.at-hero .brand,.topbar.at-hero .meter,.topbar.at-hero .rail,.topbar.at-hero .fs-dock{opacity:0;visibility:hidden}
+  /* the column box itself lets clicks through (in the hero it is invisible but sits over “开始通关”); only its own controls take clicks */
+  .topbar{pointer-events:none}
+  .topbar .brand,.topbar .meter,.topbar .icon-btn,.topbar .rail a,.topbar .fs-dock{pointer-events:auto}
   .hero{min-height:calc(100vh - 40px)}
 }
 @media (min-width:1200px) and (max-height:540px){.topbar .fs-dock{display:none}}
