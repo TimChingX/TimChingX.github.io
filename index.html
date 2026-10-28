@@ -154,7 +154,7 @@ img{display:block;max-width:100%;height:auto}
   @media (min-width:860px){.work{--ch:clamp(96px,calc((100svh - 220px) / 4 - 28px),200px)}}
 }
 @media (min-width:860px) and (max-height:899px){.desc{display:none}}
-/* 1100 宽以上：简介放到右边单独一栏，和标题并排，不增加行高，屏幕矮也照样显示 */
+/* 1100 宽以上：简介放到右边单独一栏，和标题并排，不增加行高，屏幕矮也照样显示；栏宽 20 个字，排成三行，不拉成长横条 */
 @media (min-width:1100px){
   .works{max-width:1120px}
   .work{grid-template-columns:calc(var(--ch) * 16 / 9) minmax(240px,300px) minmax(0,1fr) 16px;column-gap:40px;
@@ -164,7 +164,7 @@ img{display:block;max-width:100%;height:auto}
   .kind{grid-area:kind}
   .work h2{grid-area:title}
   .meta{grid-area:meta}
-  .desc{grid-area:desc;align-self:center;display:-webkit-box;-webkit-line-clamp:3;margin:0;max-width:30em}
+  .desc{grid-area:desc;align-self:center;display:-webkit-box;-webkit-line-clamp:3;margin:0;max-width:20em}
   .chev{align-self:center}
 }
 @media (min-width:1100px) and (max-height:899px){.desc{display:-webkit-box}}
