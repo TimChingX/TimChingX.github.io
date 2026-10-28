@@ -2,3 +2,4 @@ User-agent: *
 Disallow: /works/yangxi-garden/
 Disallow: /works/fee-collection/
 Disallow: /works/repair-ledger/
+Disallow: /works/service-training/
