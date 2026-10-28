@@ -383,12 +383,12 @@ details.more[open] summary::before{content:"−"}
 .rules5{counter-reset:r;list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .rules5 li{counter-increment:r;display:grid;grid-template-columns:28px 1fr;gap:8px;font:400 15.5px/1.8 var(--serif-read)}
 .rules5 li::before{content:counter(r);font:500 13px/2.1 var(--mono);color:var(--ink-3)}
-/* 墨色区块：今日作战用它收尾，像书的章节分隔 */
-.sec.ink{background:var(--ink);color:var(--surface);border-radius:var(--r-l);padding:40px 44px 44px}
-.sec.ink>h2{color:var(--surface);margin-bottom:20px}
+/* 浅陶土色区块：今日作战用它收尾，像书的章节分隔（陶土橘约 25% 叠在象牙纸上，墨色字 13.6:1，序号深陶土 4.6:1） */
+.sec.ink{background:#F1D9CA;color:var(--ink);border-radius:var(--r-l);padding:40px 44px 44px}
+.sec.ink>h2{color:var(--ink);margin-bottom:20px}
 .sec.ink .rules5{gap:14px;max-width:46em}
 .sec.ink .rules5 li{font-size:17px;line-height:1.75}
-.sec.ink .rules5 li::before{color:var(--ink-muted);line-height:2}
+.sec.ink .rules5 li::before{color:#9A4A2E;line-height:2}
 
 /* ===== Drawer ===== */
 .drawer-bg{position:fixed;inset:0;background:rgba(20,20,19,.28);z-index:40;display:none}
