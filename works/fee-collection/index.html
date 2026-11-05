@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 禁止夜间模式：本页固定浅色，不跟随系统深色，也不让浏览器、微信或护眼插件强制变暗 -->
 <meta name="color-scheme" content="only light">
+<meta name="supported-color-schemes" content="light only">
+<meta name="darkreader-lock">
+<style id="no-dark">*,::before,::after{color-scheme:only light !important}html:root,html:root>body{filter:none !important;-webkit-filter:none !important}</style>
 <meta name="theme-color" content="#F0EEE6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23D97757'/%3E%3Cpath d='M15 49V30L32 17l17 13v19' fill='none' stroke='%23FAF9F5' stroke-width='5' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>物业费收缴助手</title>
@@ -101,7 +105,7 @@ input,textarea,select{-webkit-user-select:text;user-select:text;-webkit-touch-ca
   --sans:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC","Source Han Sans SC",system-ui,sans-serif;
   --mono:"FC Mono",ui-monospace,"SF Mono",Menlo,Consolas,"PingFang SC","Microsoft YaHei",monospace;
   --r-s:8px; --r-m:16px; --r-l:24px; --g-ink:#FAF9F5;
-  color-scheme:light;
+  color-scheme:only light;
 }
 
 *{box-sizing:border-box}
